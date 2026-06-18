@@ -1,0 +1,134 @@
+\title{Approche module de Thiele}
+\maketitle
+\vspace{-1.5cm}
+
+\section*{Système de base}
+
+Le système d'équations de départ est le suivant :
+
+\begin{align}
+&\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_g \label{eq:cons_thiele}\\
+&N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \label{eq:NP_thiele}\\
+&-\mathbf{n} \cdot N_i = \frac{\nu_i}{nF} j \quad \text{sur } A_{sf} \label{eq:CL_N}\\
+&-\varepsilon_0 \varepsilon_r \nab^2 \varphi_l = F\sum_i z_i C_i \quad \text{dans } \Omega_g \label{eq:poisson_thiele}\\
+&\nab(-\sigma_s \nab \Phi_s) = 0 \quad \text{dans } \Omega_s \label{eq:ohm_thiele}\\
+&\mathbf{n}_s \sigma_s \nab \Phi_s = j \quad \text{sur } A_{sf} \label{eq:CL_ohm}\\
+&j = j_0 \left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right) - \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right] \label{eq:BV}\\
+&\eta = \Phi_s - \varphi_l - E_{eq} \label{eq:surtension}
+\end{align}
+ 
+\section*{Hypothèses}
+
+On applique successivement les hypothèses suivantes :
+
+\paragraph{1. Stationnaire :}
+On suppose que le système a atteint un état stationnaire :
+\begin{equation}
+\frac{\partial C_i}{\partial t} = 0 \quad \Rightarrow \quad \nab \cdot N_i = 0 \quad \text{dans } \Omega_g
+\end{equation}
+
+ce qui implique $\nab^2 C_i = 0$ dans $\Omega_g$.
+
+\paragraph{2. Potentiels uniformes :}
+On suppose que les potentiels électriques dans le solide et dans le fluide 
+sont uniformes, ce qui revient à négliger les gradients de potentiel :
+\begin{equation}
+\nab \Phi_s = 0 \quad \text{et} \quad \nab \varphi_l = 0
+\end{equation}
+
+La surtension $\eta = \Phi_s - \varphi_l - E_{eq}$ est alors uniforme.
+
+\paragraph{3. Linéarisation de Butler-Volmer :}
+On linéarise l'équation de Butler-Volmer \eqref{eq:BV} autour de 
+la surtension $\eta$, supposée fixe et uniforme :
+\begin{equation}
+j = k(\eta) C_i
+\end{equation}
+
+avec :
+\begin{equation}
+k(\eta) = \frac{j_0}{C^0}\left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right) 
+- \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right]
+\end{equation}
+
+\section*{Calcul du module de Thiele}
+
+On adimensionne le problème avec $l_e$ et $C_i^0$ :
+\begin{equation}
+C_i^* = \frac{C_i}{C_i^0} \quad \text{et} \quad r^* = \frac{r}{l_e}
+\end{equation}
+
+On obtient alors :
+\begin{align}
+\nab^{*2} C_i^* &= 0 \quad \text{dans } \Omega_g \\
+-\mathbf{n} \cdot \nab^* C_i^* &= \frac{\nu_i k(\eta) l_e}{nF D_i} C_i^* \quad \text{sur } A_{sf}
+\end{align}
+
+Le module de Thiele apparaît naturellement comme le coefficient 
+devant $C_i^*$ dans la condition limite :
+
+\begin{equation}
+\boxed{\phi = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF D_i}}}
+\end{equation}
+
+\section*{Réduction en 1D}
+
+La réduction en 1D n'est valable que si $\phi \ll 1$. Dans ce cas, 
+les variations selon $x$ et $y$ sont négligeables :
+\begin{equation}
+\frac{\partial C_i}{\partial x} \approx 0 \quad \text{et} \quad 
+\frac{\partial C_i}{\partial y} \approx 0 
+\quad \Rightarrow \quad \nab^2 C_i = \frac{\partial^2 C_i}{\partial z^2}
+\end{equation}
+
+On obtient le système 1D :
+\begin{equation}
+\begin{cases}
+D_i \dfrac{\partial^2 C_i}{\partial z^2} = 0 \quad \text{dans } \Omega_g \\[8pt]
+-\mathbf{n} \cdot D_i \dfrac{\partial C_i}{\partial z} = \dfrac{\nu_i k(\eta)}{nF} C_i \quad \text{sur } A_{sf}
+\end{cases}
+\end{equation}
+
+\section*{Régime volumique}
+
+En appliquant le théorème de la prise de moyenne à l'équation 1D :
+\begin{equation}
+D_i \left\langle \frac{\partial^2 C_i}{\partial z^2} \right\rangle = 0
+\quad \xrightarrow{\text{théorème de prise de moyenne}} \quad
+\varepsilon_g D_i^{\text{eff}} \frac{d^2 \avg{C_i}^\beta}{dz^2} 
+= \frac{\nu_i a_v k(\eta)}{nF} \avg{C_i}^\beta
+\end{equation}
+
+\section*{Module de Thiele macroscopique}
+
+En adimensionnant avec $l_e$ et $\avg{C_i}^\beta$ :
+\begin{equation}
+\frac{d^2 \avg{C_i}^\beta}{dz^{*2}} = \underbrace{\frac{\nu_i a_v k(\eta) l_e^2}{nF \varepsilon_g D_i^{\text{eff}}}}_{\phi^2_{\text{macro}}} \avg{C_i}^\beta = \phi^2_{\text{macro}} \avg{C_i}^\beta
+\end{equation}
+
+\begin{equation}
+\boxed{\phi_{\text{macro}} = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF \varepsilon_g D_i^{\text{eff}}}}}
+\end{equation}
+
+\section*{Résumé}
+
+À condition que $\phi \ll 1$ et sous les hypothèses précédentes, 
+on obtient un système simplifié portant uniquement sur les concentrations :
+
+\begin{equation}
+\frac{d^2 \avg{C_i}^\beta}{dz^{*2}} = \phi^2_{\text{macro}} \avg{C_i}^\beta
+\end{equation}
+
+\section*{Solution analytique}
+
+Avec les conditions aux limites :
+\begin{itemize}
+    \item $z = -l_e$ : contact électrode
+    \item $z = 0$ : interface pore/électrolyte
+\end{itemize}
+
+En posant $\zeta = \dfrac{z}{l_e}$, la solution analytique est :
+
+\begin{equation}
+\boxed{\avg{C_i}^\beta(\zeta) = C_i^0 \frac{\cosh(\phi_{\text{macro}}(\zeta + 1))}{\cosh(\phi_{\text{macro}})}}
+\end{equation}

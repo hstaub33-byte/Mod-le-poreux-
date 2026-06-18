@@ -1,23 +1,5 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{babel}
-\newcommand{\circled}[1]{\textcircled{\small #1}}
-\usepackage{amsmath, amssymb}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
-
-% Commandes utiles
-\newcommand{\avg}[1]{\langle #1 \rangle}
-\newcommand{\avgl}[1]{\langle #1 \rangle^l}
-\newcommand{\nab}{\nabla}
-\newcommand{\eps}{\varepsilon}
-
+% !TEX root = main.tex
 \title{Passage du 3D au 1D}
-\date{}
-\geometry{margin=2.5cm, top=1cm}
-
-\begin{document}
 \maketitle
 \vspace{-1.5cm}
 
@@ -40,7 +22,7 @@ $\varepsilon_l = \frac{V_l}{V}$.
 \noindent La relation entre moyenne superficielle et moyenne intrinsèque est donnée par:
 
 \begin{equation}
-\avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avg{g}^l  \label{eq:relation_moy}
+\avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avgl{g}  \label{eq:relation_moy}
 \end{equation}
 
 \paragraph{Théorème de la moyenne spatiale :}
@@ -115,7 +97,7 @@ consommée à l'interface et $R_i > 0$ si elle y est produite. On obtient
 alors l'équation de conservation homogénéisée :
 
 \begin{equation}
-\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t} + \nab \cdot \avg{N_i} 
+\varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \nab \cdot \avg{N_i} 
 = -a_v \avg{R_i}^{sf}
 \label{eq:cons_homo}
 \end{equation}
@@ -780,7 +762,6 @@ On impose la continuité des concentrations, des flux et des potentiels
 \varepsilon_s \sigma^{\text{eff}} \frac{\partial \avg{\Phi_s}^s}{\partial z} &= 0
 \end{align*}
 
-\end{document}
 
 
 
