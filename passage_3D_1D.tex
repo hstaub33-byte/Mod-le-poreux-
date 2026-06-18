@@ -1,0 +1,786 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\newcommand{\circled}[1]{\textcircled{\small #1}}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Commandes utiles
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\avgl}[1]{\langle #1 \rangle^l}
+\newcommand{\nab}{\nabla}
+\newcommand{\eps}{\varepsilon}
+
+\title{Passage du 3D au 1D}
+\date{}
+\geometry{margin=2.5cm, top=1cm}
+
+\begin{document}
+\maketitle
+\vspace{-1.5cm}
+
+% ============================================================
+\section*{Rappels théoriques}
+
+\paragraph{Moyenne superficielle :}
+On prend une quantité $g$ qui existe uniquement dans le fluide $V_l$ 
+(volume occupé par le fluide), on l'intègre sur $V_l$ mais on divise 
+par $V$, le volume total (fluide + solide). On appelle cette opération 
+\emph{moyenne superficielle} : elle est dite "superficielle" car diluée 
+par rapport au volume total, et non par $V_l$. Ce n'est donc pas la vraie 
+valeur physique moyenne dans le fluide : elle est pondérée par la porosité 
+$\varepsilon_l = \frac{V_l}{V}$.
+
+\begin{equation}
+\avg{g} = \frac{1}{V}\int_{V_l} g\, dV \label{eq:moy_sup}
+\end{equation}
+
+\noindent La relation entre moyenne superficielle et moyenne intrinsèque est donnée par:
+
+\begin{equation}
+\avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avg{g}^l  \label{eq:relation_moy}
+\end{equation}
+
+\paragraph{Théorème de la moyenne spatiale :}
+Ce théorème découle du théorème de la divergence de Gauss. 
+Il relie la moyenne du gradient d'une quantité $g$ à son gradient 
+de moyenne, avec un terme de correction surfacique sur l'interface 
+$Asf$ entre le fluide et le solide :
+
+\begin{equation}
+\avg{\nab g} = \nab\avg{ g} + \frac{1}{V}\int_{Asf} \mathbf{n}\, g\, dA \label{eq:moy_spatiale}
+\end{equation}
+
+où $\mathbf{n}$ est le vecteur normal à l'interface $Asf$ 
+pointant du fluide vers le solide.
+
+\paragraph{Théorème de transport :}
+Ce théorème permet d'échanger la moyenne et la dérivée temporelle, 
+à condition que le volume $V_l$ ne dépende pas du temps :
+
+\begin{equation}
+\left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
+\end{equation}
+
+\paragraph{Théorème de la divergence de Gauss :}
+Ce théorème relie une intégrale de volume à une intégrale de surface. 
+Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
+
+\begin{equation}
+\int_V \nab g\, dV = \oint_A \mathbf{n}\, g\, dA
+\label{eq:gauss}
+\end{equation}
+
+où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
+
+% ============================================================
+\section*{Équation de conservation}
+
+L'équation de conservation en 3D pour l'espèce $i$ s'écrit :
+
+\begin{equation}
+\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0
+\label{eq:cons3D}
+\end{equation}
+
+où $C_i$ est la concentration de l'espèce $i$ et $N_i$ est le flux molaire.
+En appliquant la moyenne superficielle à l'équation \eqref{eq:cons3D}, 
+on obtient l'équation de conservation en 1D :
+
+\begin{equation}
+\left\langle \frac{\partial C_i}{\partial t} \right\rangle + \avg{\nab \cdot N_i} = 0
+\label{eq:cons1D}
+\end{equation}
+
+En appliquant le théorème de transport \eqref{eq:transport} et le théorème 
+de la moyenne spatiale \eqref{eq:moy_spatiale}, on développe chaque terme :
+\begin{equation}
+\frac{\partial \avg{C_i}}{\partial t} + \nab \cdot \avg{N_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = 0
+\end{equation}
+
+Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA$ 
+représente l'échange à l'interface fluide/solide. En notant $R_i = \frac{j}{n_e F}$ 
+le taux de réaction à l'interface, avec $j$ la densité de courant interfacial 
+et $n_e$ le nombre d'électrons échangés, et $a_v = \frac{A_{sf}}{V}$ 
+l'aire interfaciale spécifique :
+
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = -a_v \avg{R_i}^{sf}
+\end{equation}
+
+où $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
+consommée à l'interface et $R_i > 0$ si elle y est produite. On obtient 
+alors l'équation de conservation homogénéisée :
+
+\begin{equation}
+\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t} + \nab \cdot \avg{N_i} 
+= -a_v \avg{R_i}^{sf}
+\label{eq:cons_homo}
+\end{equation}
+
+% ============================================================
+\section*{Flux de Nernst--Planck}
+
+Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst-Planck, 
+qui prend en compte trois contributions :
+
+\begin{equation}
+N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
+\label{eq:NP3D}
+\end{equation}
+
+où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante 
+de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
+$\varphi_l$ le potentiel électrique dans le fluide.
+
+\subsection*{Terme diffusif}
+
+En appliquant la moyenne superficielle au terme diffusif :
+
+\begin{equation}
+\avg{-D_i \nab C_i}= \frac{1}{V}\int_{V_l} (-D_i \nab C_i)\, dV \notag
+\end{equation}
+
+En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
+
+\begin{equation}
+\avg{-D_i \nab C_i}= -D_i \left(\nab\avg{C_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right) \notag
+\end{equation}
+
+\noindent En utilisant la relation \eqref{eq:relation_moy}, 
+
+\noindent on a $\avg{C_i} = \varepsilon_l \avg{C_i}^l$, 
+donc $\nab\avg{C_i} = \nab(\varepsilon_l \avg{C_i}^l)$. En développant :
+
+\begin{equation}
+\avg{-D_i \nab C_i}= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \avg{C_i}^l \nab\varepsilon_l
++ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right)
+\end{equation}
+
+On décompose ensuite $C_i$ en une moyenne intrinsèque et une fluctuation à l'échelle du pore :
+% ============================================================
+% PAGE 2
+% ============================================================
+
+\begin{equation}
+C_i = \avg{C_i}^l + \tilde{C}_i
+\label{eq:decomp}
+\end{equation}
+
+où $\avg{C_i}^l$ varie à l'échelle macroscopique $L$ et $\tilde{C}_i$ 
+varie à l'échelle du pore $\ell_p$.
+
+
+
+\noindent En injectant la décomposition \eqref{eq:decomp} dans le terme surfacique, 
+on sépare la contribution de la moyenne et celle des fluctuations :
+
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA
+= \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA
++ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
+\end{equation}
+
+En appliquant le théorème de Gauss au premier terme, sachant que 
+$\avg{C_i}^l$ varie à l'échelle macroscopique et peut sortir de l'intégrale :
+
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA = -\avg{C_i}^l \nab\varepsilon_l
+\end{equation}
+
+On obtient donc :
+
+\begin{equation}
+\avg{-D_i \nab C_i} = -D_i \varepsilon_l \nab\avg{C_i}^l
+- D_i \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
+\end{equation}
+
+où le premier terme correspond à la diffusion macroscopique et le second 
+à la correction due aux fluctuations de concentration à l'échelle du pore.
+
+L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$. 
+On suppose que le transport à l'échelle du pore est quasi-stationnaire, 
+c'est-à-dire que le temps caractéristique à l'échelle du pore $\ell_p$ 
+est très petit devant le temps caractéristique macroscopique $L$. 
+Cela revient à négliger les effets transitoires à l'échelle du pore, 
+ce qui donne :
+
+\begin{equation}
+\nab^2 C_i = 0 \quad \text{dans } V_l
+\end{equation}
+
+En décomposant $C_i = \avg{C_i}^l + \tilde{C}_i$ et sachant que 
+$\avg{C_i}^l$ varie à l'échelle macroscopique $L \gg \ell_p$, 
+on a $\nab^2\avg{C_i}^l \approx 0$ à l'échelle du pore. On obtient donc :
+
+\begin{equation}
+\nab^2 \tilde{C}_i = 0 \quad \text{dans } V_l
+\end{equation}
+
+avec la condition limite sur $A_{sf}$ :
+
+\begin{equation}
+-\mathbf{n} \cdot \nab\tilde{C}_i = \mathbf{n} \cdot \nab\avg{C_i}^l \quad \text{sur } A_{sf}
+\end{equation}
+
+L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$.
+Par linéarité, on cherche une solution de la forme :
+
+\begin{equation}
+\tilde{C}_i = \mathbf{b}\cdot\nab\avg{C_i}^l
+\end{equation}
+
+où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant :
+
+\begin{align}
+\nab^2 \mathbf{b} &= 0 \quad \text{dans } V_l \\
+-\mathbf{n}\cdot\nab\mathbf{b} &= \mathbf{n} \quad \text{sur } A_{sf}\\
+\avg{\mathbf{b}}^l &= 0 \quad \text{et périodicité} : \quad b(\mathbf{r}) = b(\mathbf{r} + l_i \mathbf{e}_i)
+\end{align}
+
+En substituant cette expression dans le terme de correction surfacique, on obtient :
+
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
+= \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot\nab\avg{C_i}^l
+\end{equation}
+
+En substituant dans l'expression du terme diffusif et en factorisant :
+
+\begin{align}
+\avg{-D_i \nab C_i}
+&= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot \nab\avg{C_i}^l \right) \notag\\
+&= -D_i \nab\avg{C_i}^l \left[\varepsilon_l I + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right] \notag\\
+&= -\varepsilon_l D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right] \nab\avg{C_i}^l
+\end{align}
+
+On définit le coefficient de diffusion effectif $D_{\text{eff}}$ qui tient compte 
+de la tortuosité du milieu poreux :
+
+\begin{equation}
+D_{\text{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
+\end{equation}
+
+Ce qui donne finalement :
+
+\begin{equation}
+\boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_{\text{eff}} \nab\avg{C_i}^l}
+\label{eq:diff_eff}
+\end{equation}
+
+% ============================================================
+% PAGE 3
+% ============================================================
+
+% ============================================================
+\subsection*{Terme migratoire}
+
+De la même façon que pour le terme diffusif, on applique la moyenne 
+superficielle au terme migratoire. On décompose le potentiel électrique 
+en une moyenne intrinsèque et une fluctuation à l'échelle du pore :
+
+\begin{equation}
+\varphi_l = \avg{\varphi_l}^l + \widetilde{\varphi}_l
+\end{equation}
+
+En injectant les décompositions de $C_i$ et $\varphi_l$ :
+
+\begin{align}
+\left\langle -\frac{z_i F}{RT} D_i C_i \nab\varphi_l \right\rangle
+&= -\frac{z_i F}{RT} D_i \avg{C_i \nab\varphi_l}
+= -\frac{z_i F}{RT} D_i \frac{1}{V}\int_{V_l} C_i \nab\varphi_l\, dV \notag\\
+&= -\frac{z_i F}{RT} \frac{D_i}{V} \int_{V_l}
+\left[(\avg{C_i}^l + \tilde{C}_i)(\nab\avg{\varphi_l}^l + \nab\widetilde{\varphi}_l)\right] dV \notag\\
+&= -\frac{z_i F}{RT} \frac{D_i}{V} \int_{V_l}
+\left[\avg{C_i}^l \nab\avg{\varphi_l}^l
++ \avg{C_i}^l \nab\widetilde{\varphi}_l
++ \tilde{C}_i \nab\avg{\varphi_l}^l
++ \tilde{C}_i \nab\widetilde{\varphi}_l \right] dV \notag\\
+&= -\frac{z_i F}{RT} D_i
+\left[
+\underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV}_{\textcircled{1}}
++ \underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV}_{\textcircled{2}}
+\right. \notag\\
+&\quad\quad\left.
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV}_{\textcircled{3}}
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV}_{\textcircled{4}}
+\right]
+\end{align}
+
+On développe chacun des quatre termes :
+
+\paragraph{Terme 1 :}
+$\avg{C_i}^l$ et $\nab\avg{\varphi_l}^l$ sont constants à l'échelle du pore 
+et peuvent sortir de l'intégrale :
+
+\begin{equation}
+\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV
+= \avg{C_i}^l \nab\avg{\varphi_l}^l \frac{V_l}{V}
+= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
+\end{equation}
+
+\paragraph{Terme 2 :}
+$\avg{C_i}^l$ est constant à l'échelle du pore et sort de l'intégrale. 
+En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} 
+et sachant que $\avg{\widetilde{\varphi}_l}^l = 0$ :
+
+\begin{equation}
+\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV
+= \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA
+\end{equation}
+
+\paragraph{Terme 3 :}
+$\nab\avg{\varphi_l}^l$ est constant à l'échelle du pore et sort de l'intégrale. 
+Or $\avg{\tilde{C}_i}^l = 0$ par définition de la fluctuation :
+
+\begin{equation}
+\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV
+= \nab\avg{\varphi_l}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0} = 0
+\end{equation}
+
+\paragraph{Terme 4 :}
+Ce terme est un produit de deux fluctuations à l'échelle du pore, 
+il est négligeable devant les autres termes :
+
+\begin{equation}
+\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV \approx 0
+\end{equation}
+
+En regroupant les termes non nuls :
+
+\begin{equation}
+\avg{C_i \nab\varphi_l}
+= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
++ \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA
+\end{equation}
+
+De la même façon que pour $\tilde{C}_i$, on pose par linéarité : 
+$\widetilde{\varphi}_l = \mathbf{d}\cdot\nab\avg{\varphi_l}^l$, 
+où $\mathbf{d}$ est un vecteur de fermeture analogue à $\mathbf{b}$. On obtient :
+
+\begin{align}
+\avg{C_i \nab\varphi_l}
+&= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
++ \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\, \nab\avg{\varphi_l}^l \notag\\
+&= \varepsilon_l \avg{C_i}^l \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right) \nab\avg{\varphi_l}^l
+\end{align}
+
+En définissant le coefficient de migration effectif $D^{\text{eff,mig}}$ 
+de façon analogue à $D_{\text{eff}}$ :
+
+\begin{equation}
+D^{\text{eff,mig}} = D_i \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right)
+\end{equation}
+
+On obtient finalement :
+
+\begin{equation}
+\boxed{-\frac{z_i F}{RT} D_i \avg{C_i \nab\varphi_l}
+= -\frac{z_i F}{RT} \varepsilon_l D^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l}
+\label{eq:mig_eff}
+\end{equation}
+
+% ============================================================
+\subsection*{Terme convectif}
+
+De la même façon que pour les termes précédents, on applique la moyenne 
+superficielle au terme convectif. On décompose la vitesse en une moyenne 
+intrinsèque et une fluctuation à l'échelle du pore :
+
+\begin{equation}
+v = \avg{v}^l + \tilde{v}
+\end{equation}
+
+En injectant les décompositions de $C_i$ et $v$ :
+
+\begin{align}
+\avg{C_i v}
+&= \avg{(\avg{C_i}^l + \tilde{C}_i)(\avg{v}^l + \tilde{v})} \notag\\
+&= \avg{\avg{C_i}^l \avg{v}^l}
++ \avg{\avg{C_i}^l \tilde{v}}
++ \avg{\tilde{C}_i \avg{v}^l}
++ \avg{\tilde{C}_i \tilde{v}} \notag\\
+&= \varepsilon_l \avg{C_i}^l \avg{v}^l
++ \avg{C_i}^l \underbrace{\avg{\tilde{v}}^l}_{=0}
++ \avg{v}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0}
++ \avg{\tilde{C}_i \tilde{v}} \notag\\
+&= \varepsilon_l \avg{C_i}^l \avg{v}^l + \avg{\tilde{C}_i \tilde{v}}
+\end{align}
+
+où les termes $\avg{\tilde{v}}^l = 0$ et $\avg{\tilde{C}_i}^l = 0$ 
+sont nuls par définition des fluctuations. Le dernier terme $\avg{\tilde{C}_i \tilde{v}}$ 
+représente la dispersion due aux fluctuations à l'échelle du pore. 
+En utilisant l'expression de fermeture $\tilde{C}_i = \mathbf{b}\cdot\nab\avg{C_i}^l + b_v \avg{v}^l$, on obtient :
+
+\begin{equation}
+\avg{\tilde{C}_i \tilde{v}} = \avg{{\mathbf{b}}\cdot\tilde{v}}\nab\avg{C_i}^l 
+- D^{\text{disp}}\avg{v}^l
+\end{equation}
+
+où $D^{\text{disp}}$ est le coefficient de dispersion. On obtient finalement :
+
+\begin{equation}
+\boxed{
+\avg{C_i v}
+= \varepsilon_l \avg{C_i}^l \avg{v}^l
++ \avg{{\mathbf{b}}\cdot\tilde{v}}\nab\avg{C_i}^l
+- D^{\text{disp}}\avg{v}^l
+}
+\label{eq:conv_eff}
+\end{equation}
+
+% ============================================================
+% PAGE 5
+% ============================================================
+
+\subsection*{Réunification des termes}
+
+En combinant les résultats obtenus pour les termes diffusif 
+\eqref{eq:diff_eff}, migratoire \eqref{eq:mig_eff} et convectif 
+\eqref{eq:conv_eff}, on obtient l'expression homogénéisée du flux de 
+Nernst-Planck :
+
+\begin{align}
+\avg{N_i}
+&= \varepsilon_l \avg{C_i}^l \avg{v}^l
+- \underbrace{\left(\varepsilon_l D_{\text{eff}} + \avg{\tilde{\mathbf{b}}\cdot\tilde{v}}\right)}_{\displaystyle D_{\text{tot}}} \nab\avg{C_i}^l
+- D^{\text{disp}}\avg{v}^l
+- \frac{z_i F}{RT} \varepsilon_l D^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l
+\label{eq:Ni_reunif}
+\end{align}
+
+où $D_{\text{tot}}$ est le coefficient de diffusion total qui regroupe 
+la diffusion effective à l'échelle macroscopique et la contribution 
+des fluctuations de vitesse à l'échelle du pore. En simplifiant :
+
+\begin{equation}
+\boxed{
+\avg{N_i}
+= \varepsilon_l \avg{C_i}^l \avg{v}^l
+- D_{\text{tot}} \nab\avg{C_i}^l
+- D^{\text{disp}}\avg{v}^l
+- \frac{z_i F}{RT} \varepsilon_l D^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l}
+\label{eq:Ni_final}
+\end{equation}
+
+% ============================================================
+\section*{Équation de Poisson}
+
+En appliquant la moyenne superficielle à l'équation de Poisson :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \avg{\nab^2 \varphi_l} = F\sum_i z_i \avg{C_i}
+\end{equation}
+
+\subsection*{Membre de gauche}
+
+En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
+
+\begin{equation}
+\avg{\nab\nab\varphi_l} = \nab\avg{\nab\varphi_l} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\nab\varphi_l\, dA
+\end{equation}
+
+La condition limite à l'interface $A_{sf}$ traduit la présence d'une 
+charge de surface $\sigma_s$ :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \nab\varphi_l \cdot \mathbf{n} = \sigma_s 
+\quad \text{sur } A_{sf}
+\quad \Rightarrow \quad 
+\mathbf{n}\cdot\nab\varphi_l = -\frac{\sigma_s}{\varepsilon_0 \varepsilon_r}
+\end{equation}
+
+En utilisant la décomposition $\widetilde{\varphi}_l = \mathbf{d}\cdot\nab\avg{\varphi_l}^l$ 
+et le problème de fermeture sur $\mathbf{d}$, analogue à celui sur $\mathbf{b}$ :
+
+\begin{align}
+\avg{\nab\nab\varphi_l}
+&= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r} \notag\\
+&= \nab\!\left(\nab\avg{\varphi_l}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\varphi_l\, dA\right) 
+- \frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r} \notag\\
+&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
++ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA\right] \notag\\
+&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
+\left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)\right] \notag\\
+&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \frac{\varepsilon^{\text{eff}}}{\varepsilon_r} \nab\avg{\varphi_l}^l\right]
+\end{align}
+
+où $\varepsilon^{\text{eff}}$ est la permittivité effective du milieu poreux, 
+définie de façon analogue à $D_{\text{eff}}$ :
+
+\begin{equation}
+\varepsilon^{\text{eff}} = \varepsilon_r \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)
+\end{equation}
+
+\subsection*{Membre de droite}
+
+En utilisant la relation entre moyenne superficielle et moyenne intrinsèque 
+\eqref{eq:relation_moy} :
+
+\begin{equation}
+F\sum_i z_i \avg{C_i} = F\sum_i z_i \varepsilon_l \avg{C_i}^l
+\end{equation}
+
+\subsection*{Réunification}
+
+En combinant les membres de gauche et de droite, on obtient l'équation 
+de Poisson homogénéisée :
+
+\begin{equation}
+\boxed{
+-\varepsilon_0 \nab\!\left(\varepsilon_l \varepsilon^{\text{eff}} \nab\avg{\varphi_l}^l\right)
+= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_s
+}
+\label{eq:poisson_homo}
+\end{equation}
+
+\subsection*{Hypothèse d'électroneutralité}
+
+Une alternative à l'équation de Poisson consiste à supposer 
+l'électroneutralité du milieu, c'est-à-dire que la charge électrique 
+nette dans le fluide est nulle :
+
+\begin{equation}
+\sum_i z_i \avg{C_i}^l = 0
+\end{equation}
+
+Dans ce cas, l'équation de Poisson \eqref{eq:poisson_homo} se réduit à :
+
+\begin{equation}
+a_v \sigma_s = 0
+\end{equation}
+
+et le potentiel électrique $\avg{\varphi_l}^l$ est alors déterminé par 
+les conditions aux limites et l'équation de conservation du courant 
+plutôt que par l'équation de Poisson.
+
+% ============================================================
+% PAGE 6
+% ============================================================
+\section*{Loi d'Ohm}
+
+La loi d'Ohm décrit le transport du courant électrique dans la phase 
+solide. En appliquant la moyenne superficielle à l'équation de conservation 
+du courant dans le solide :
+
+\begin{equation}
+\avg{\nab(\sigma_s \nab\Phi_s)} = 0
+\end{equation}
+
+En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} 
+et en notant $i_s = -\sigma_s \nab\Phi_s$ la densité de courant dans le solide :
+
+\begin{equation}
+\avg{\nab i_s} = \nab\avg{i_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, i_s\, dA = 0
+\quad \Rightarrow \quad \nab\avg{i_s} = -a_v \avg{j}^{sf}
+\end{equation}
+
+où $\avg{j}^{sf}$ est la densité de courant échangée à l'interface 
+fluide/solide. En développant $\avg{i_s} = -\sigma_s \avg{\nab\Phi_s}$ 
+et en appliquant le théorème de la moyenne spatiale :
+
+\begin{align}
+\avg{\nab\Phi_s}
+&= \nab\avg{\Phi_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \Phi_s\, dA \notag\\
+&= \varepsilon_s \nab\avg{\Phi_s}^s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \Phi_s\, dA
+\end{align}
+
+De façon analogue aux termes diffusif et migratoire, on pose par linéarité 
+$\widetilde{\Phi}_s = e\cdot\nab\avg{\Phi_s}^s$, où $e$ est un vecteur 
+de fermeture qui satisfait :
+
+\begin{align}
+\nab^2 e &= 0 \quad \text{dans } V_s \\
+-\mathbf{n}_s \cdot \nab e &= \mathbf{n}_s \quad \text{sur } A_{sf}
+\end{align}
+
+En substituant dans l'expression de $\avg{\nab\Phi_s}$ :
+
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf{n}_s \widetilde{\Phi}_s\, dA
+= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, e\, dA\, \nab\avg{\Phi_s}^s
+\end{equation}
+
+On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
+
+\begin{equation}
+\sigma^{\text{eff}} = \sigma_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right)
+\end{equation}
+
+D'où :
+
+\begin{equation}
+\avg{\nab\Phi_s}
+= -\varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right) \nab\avg{\Phi_s}^s
+= -\varepsilon_s \frac{\sigma^{\text{eff}}}{\sigma_s} \nab\avg{\Phi_s}^s
+\end{equation}
+
+On obtient finalement la loi d'Ohm homogénéisée :
+
+\begin{equation}
+\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\Phi_s}^s\right) = a_v \avg{j}^{sf}}
+\label{eq:ohm_homo}
+\end{equation}
+
+
+% ============================================================
+\section*{Mon système}
+
+En combinant les équations de conservation \eqref{eq:cons_homo}, 
+de Nernst-Planck \eqref{eq:Ni_final}, de Poisson \eqref{eq:poisson_homo} 
+et de la loi d'Ohm \eqref{eq:ohm_homo}, on obtient le système d'équations 
+homogénéisées suivant :
+
+\begin{equation}
+\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t}
+= \nab\!\left[\varepsilon_l \left(D_i^{\text{eff}} \nab\avg{C_i}^l
+- D_i^{\text{eff,mig}} \frac{z_i F}{RT} \avg{C_i}^l \nab\avg{\varphi_l}^l
+- D^{\text{disp}}\avg{v}^l \right)
+- \varepsilon_l \avg{C_i}^l \avg{v}^l \right]
+- a_v R_i
+\label{eq:sys1}
+\end{equation}
+
+\begin{equation}
+-\varepsilon_0 \nab\!\left(\varepsilon_l \varepsilon^{\text{eff}} \nab\avg{\varphi_l}^l\right)
+= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_s
+\label{eq:sys2}
+\end{equation}
+
+\begin{equation}
+\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\Phi_s}^s\right) = a_v j
+\label{eq:sys3}
+\end{equation}
+
+avec $R_i = \dfrac{j}{n_e F}$.
+
+\subsection*{Simplifications du système}
+
+On applique successivement les hypothèses suivantes :
+
+\paragraph{1. Régime stationnaire :}
+On suppose que le système a atteint un état stationnaire, 
+c'est-à-dire que les concentrations ne varient plus dans le temps :
+
+\begin{equation}
+\frac{\partial \avg{C_i}^l}{\partial t} = 0
+\end{equation}
+
+\eqref{eq:sys1} se réduit alors à :
+
+\begin{equation}
+\nab\!\left[\varepsilon_l \left(D_i^{\text{eff}} \nab\avg{C_i}^l
+- D_i^{\text{eff,mig}} \frac{z_i F}{RT} \avg{C_i}^l \nab\avg{\varphi_l}^l
+- D^{\text{disp}}\avg{v}^l \right)
+- \varepsilon_l \avg{C_i}^l \avg{v}^l \right]
+= a_v R_i
+\end{equation}
+
+\paragraph{2. Pas de convection :}
+On suppose que la vitesse du fluide est négligeable :
+
+\begin{equation}
+\avg{v}^l = 0
+\end{equation}
+
+\eqref{eq:sys1} se réduit alors à :
+
+\begin{equation}
+\nab\!\left[\varepsilon_l \left(D_i^{\text{eff}} \nab\avg{C_i}^l
+- D_i^{\text{eff,mig}} \frac{z_i F}{RT} \avg{C_i}^l \nab\avg{\varphi_l}^l\right)\right]
+= a_v R_i
+\end{equation}
+
+\paragraph{3. Électroneutralité :}
+On suppose que la charge électrique nette dans le fluide est nulle :
+
+\begin{equation}
+\sum_i z_i \avg{C_i}^l = 0
+\end{equation}
+
+L'équation de Poisson \eqref{eq:poisson_homo} est remplacée par cette 
+condition et les coefficients de diffusion et de migration effectifs 
+deviennent égaux : $D_i^{\text{eff}} = D_i^{\text{eff,mig}}$.
+
+\paragraph{4. Pas de migration :}
+On suppose que le terme migratoire est négligeable devant le terme 
+diffusif, ce qui revient à négliger l'effet du champ électrique sur 
+le transport des espèces. L'équation de Poisson disparaît du système 
+et il ne reste que :
+
+\begin{equation}
+\nab\!\left(\varepsilon_l D_i^{\text{eff}} \nab\avg{C_i}^l\right) = a_v R_i
+\label{eq:diff_reaction}
+\end{equation}
+
+\paragraph{5. Potentiel solide uniforme :}
+Si la conductivité du solide est très grande devant celle du fluide, 
+le potentiel dans le solide peut être considéré comme uniforme :
+
+\begin{equation}
+\nab\avg{\Phi_s}^s = 0
+\end{equation}
+
+La loi d'Ohm \eqref{eq:ohm_homo} est alors triviale et $R_i = \frac{j}{n_e F}$ 
+reste le terme source de \eqref{eq:diff_reaction}.
+
+\paragraph{6. Module de Thiele :}
+On adimensionne l'équation \eqref{eq:diff_reaction} en posant 
+$\avg{C_i}^l = \frac{\avg{C_i}^l}{C_{\text{ref}}}$ et $x = \frac{x}{L}$, 
+où $L$ est la longueur caractéristique macroscopique. En supposant 
+une réaction du premier ordre $R_i = k \avg{C_i}^l$ :
+
+\begin{equation}
+\nab^2 \avg{C_i}^l = \underbrace{\frac{a_v k L^2}{\varepsilon_l D_i^{\text{eff}}}}_{\phi^2} \avg{C_i}^l
+\end{equation}
+
+où $\phi$ est le \textbf{module de Thiele}, qui compare le temps 
+caractéristique de diffusion au temps caractéristique de réaction :
+
+\begin{equation}
+\boxed{\phi^2 = \frac{a_v k L^2}{\varepsilon_l D_i^{\text{eff}}}}
+\end{equation}
+
+\begin{itemize}
+    \item $\phi \ll 1$ : la diffusion est rapide devant la réaction, 
+    la concentration est uniforme dans l'électrode.
+    \item $\phi \gg 1$ : la réaction est rapide devant la diffusion, 
+    la concentration chute rapidement près de l'interface.
+\end{itemize}
+
+
+\subsection*{Conditions limites}
+
+Le système d'équations \eqref{eq:sys1}-\eqref{eq:sys3} est complété 
+par les conditions limites suivantes, imposées à la paroi et à 
+l'interface entre le milieu poreux et le bulk :
+
+\paragraph{Paroi :}
+On impose un flux nul pour les espèces et le potentiel électrique, 
+ainsi qu'un potentiel solide imposé :
+\begin{align*}
+\avg{N_i} &= 0\\
+\frac{\partial}{\partial z}\avg{\varphi_l}^l &= 0\\
+\avg{\Phi_s}^s &= E
+\end{align*}
+
+\paragraph{Interface pore / bulk :}
+On impose la continuité des concentrations, des flux et des potentiels 
+électriques :
+\begin{align*}
+\avg{C_i}^l &= C_i^{\text{bulk}}\\
+\avg{N_i} &= N_i\\
+\avg{\varphi_l}^l &= \varphi_l^{\text{bulk}}\\
+\varepsilon_l \varepsilon^{\text{eff}} \frac{\partial \avg{\varphi_l}^l}{\partial z} &= \varepsilon_0 \frac{\partial \varphi_l}{\partial z}\\
+\varepsilon_s \sigma^{\text{eff}} \frac{\partial \avg{\Phi_s}^s}{\partial z} &= 0
+\end{align*}
+
+\end{document}
+
+
+
