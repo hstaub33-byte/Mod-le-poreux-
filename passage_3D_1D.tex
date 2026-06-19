@@ -1,10 +1,10 @@
 % !TEX root = main.tex
-\title{Passage du 3D au 1D}
 \maketitle
 \vspace{-1.5cm}
 
+\section*{Passage du 3D au 1D}
 % ============================================================
-\section*{Rappels théoriques}
+\subsection*{Rappels théoriques}
 
 \paragraph{Moyenne superficielle :}
 On prend une quantité $g$ qui existe uniquement dans le fluide $V_l$ 
@@ -58,7 +58,7 @@ Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A
 où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
 
 % ============================================================
-\section*{Équation de conservation}
+\subsection*{Équation de conservation}
 
 L'équation de conservation en 3D pour l'espèce $i$ s'écrit :
 
@@ -103,7 +103,7 @@ alors l'équation de conservation homogénéisée :
 \end{equation}
 
 % ============================================================
-\section*{Flux de Nernst--Planck}
+\subsection*{Flux de Nernst--Planck}
 
 Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst-Planck, 
 qui prend en compte trois contributions :
@@ -117,7 +117,7 @@ où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
 $\varphi_l$ le potentiel électrique dans le fluide.
 
-\subsection*{Terme diffusif}
+\subsubsection*{Terme diffusif}
 
 En appliquant la moyenne superficielle au terme diffusif :
 
@@ -257,7 +257,7 @@ Ce qui donne finalement :
 % ============================================================
 
 % ============================================================
-\subsection*{Terme migratoire}
+\subsubsection*{Terme migratoire}
 
 De la même façon que pour le terme diffusif, on applique la moyenne 
 superficielle au terme migratoire. On décompose le potentiel électrique 
@@ -365,7 +365,7 @@ On obtient finalement :
 \end{equation}
 
 % ============================================================
-\subsection*{Terme convectif}
+\subsubsection*{Terme convectif}
 
 De la même façon que pour les termes précédents, on applique la moyenne 
 superficielle au terme convectif. On décompose la vitesse en une moyenne 
@@ -417,7 +417,7 @@ où $D^{\text{disp}}$ est le coefficient de dispersion. On obtient finalement :
 % PAGE 5
 % ============================================================
 
-\subsection*{Réunification des termes}
+\subsubsection*{Réunification des termes}
 
 En combinant les résultats obtenus pour les termes diffusif 
 \eqref{eq:diff_eff}, migratoire \eqref{eq:mig_eff} et convectif 
@@ -448,7 +448,7 @@ des fluctuations de vitesse à l'échelle du pore. En simplifiant :
 \end{equation}
 
 % ============================================================
-\section*{Équation de Poisson}
+\subsection*{Équation de Poisson}
 
 En appliquant la moyenne superficielle à l'équation de Poisson :
 
@@ -456,7 +456,7 @@ En appliquant la moyenne superficielle à l'équation de Poisson :
 -\varepsilon_0 \varepsilon_r \avg{\nab^2 \varphi_l} = F\sum_i z_i \avg{C_i}
 \end{equation}
 
-\subsection*{Membre de gauche}
+\subsubsection*{Membre de gauche}
 
 En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
 
@@ -499,7 +499,7 @@ définie de façon analogue à $D_{\text{eff}}$ :
 \varepsilon^{\text{eff}} = \varepsilon_r \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)
 \end{equation}
 
-\subsection*{Membre de droite}
+\subsubsection*{Membre de droite}
 
 En utilisant la relation entre moyenne superficielle et moyenne intrinsèque 
 \eqref{eq:relation_moy} :
@@ -508,7 +508,7 @@ En utilisant la relation entre moyenne superficielle et moyenne intrinsèque
 F\sum_i z_i \avg{C_i} = F\sum_i z_i \varepsilon_l \avg{C_i}^l
 \end{equation}
 
-\subsection*{Réunification}
+\subsubsection*{Réunification}
 
 En combinant les membres de gauche et de droite, on obtient l'équation 
 de Poisson homogénéisée :
@@ -521,7 +521,7 @@ de Poisson homogénéisée :
 \label{eq:poisson_homo}
 \end{equation}
 
-\subsection*{Hypothèse d'électroneutralité}
+\subsubsection*{Hypothèse d'électroneutralité}
 
 Une alternative à l'équation de Poisson consiste à supposer 
 l'électroneutralité du milieu, c'est-à-dire que la charge électrique 
@@ -544,7 +544,7 @@ plutôt que par l'équation de Poisson.
 % ============================================================
 % PAGE 6
 % ============================================================
-\section*{Loi d'Ohm}
+\subsection*{Loi d'Ohm}
 
 La loi d'Ohm décrit le transport du courant électrique dans la phase 
 solide. En appliquant la moyenne superficielle à l'équation de conservation 
@@ -611,7 +611,7 @@ On obtient finalement la loi d'Ohm homogénéisée :
 
 
 % ============================================================
-\section*{Mon système}
+\subsection*{Mon système}
 
 En combinant les équations de conservation \eqref{eq:cons_homo}, 
 de Nernst-Planck \eqref{eq:Ni_final}, de Poisson \eqref{eq:poisson_homo} 
@@ -641,7 +641,7 @@ homogénéisées suivant :
 
 avec $R_i = \dfrac{j}{n_e F}$.
 
-\subsection*{Simplifications du système}
+\subsubsection*{Simplifications du système}
 
 On applique successivement les hypothèses suivantes :
 
@@ -736,7 +736,7 @@ caractéristique de diffusion au temps caractéristique de réaction :
 \end{itemize}
 
 
-\subsection*{Conditions limites}
+\subsubsection*{Conditions limites}
 
 Le système d'équations \eqref{eq:sys1}-\eqref{eq:sys3} est complété 
 par les conditions limites suivantes, imposées à la paroi et à 

@@ -1,8 +1,7 @@
-\title{Approche module de Thiele}
-\maketitle
-\vspace{-1.5cm}
+\newpage
+\section*{Approche module de thiele}
 
-\section*{Système de base}
+\subsection*{Système de base}
 
 Le système d'équations de départ est le suivant :
 
@@ -17,7 +16,7 @@ Le système d'équations de départ est le suivant :
 &\eta = \Phi_s - \varphi_l - E_{eq} \label{eq:surtension}
 \end{align}
  
-\section*{Hypothèses}
+\subsection*{Hypothèses}
 
 On applique successivement les hypothèses suivantes :
 
@@ -51,7 +50,7 @@ k(\eta) = \frac{j_0}{C^0}\left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right)
 - \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right]
 \end{equation}
 
-\section*{Calcul du module de Thiele}
+\subsection*{Calcul du module de Thiele}
 
 On adimensionne le problème avec $l_e$ et $C_i^0$ :
 \begin{equation}
@@ -71,7 +70,7 @@ devant $C_i^*$ dans la condition limite :
 \boxed{\phi = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF D_i}}}
 \end{equation}
 
-\section*{Réduction en 1D}
+\subsection*{Réduction en 1D}
 
 La réduction en 1D n'est valable que si $\phi \ll 1$. Dans ce cas, 
 les variations selon $x$ et $y$ sont négligeables :
@@ -89,7 +88,7 @@ D_i \dfrac{\partial^2 C_i}{\partial z^2} = 0 \quad \text{dans } \Omega_g \\[8pt]
 \end{cases}
 \end{equation}
 
-\section*{Régime volumique}
+\subsection*{Régime volumique}
 
 En appliquant le théorème de la prise de moyenne à l'équation 1D :
 \begin{equation}
@@ -99,7 +98,7 @@ D_i \left\langle \frac{\partial^2 C_i}{\partial z^2} \right\rangle = 0
 = \frac{\nu_i a_v k(\eta)}{nF} \avg{C_i}^\beta
 \end{equation}
 
-\section*{Module de Thiele macroscopique}
+\subsection*{Module de Thiele macroscopique}
 
 En adimensionnant avec $l_e$ et $\avg{C_i}^\beta$ :
 \begin{equation}
@@ -110,7 +109,7 @@ En adimensionnant avec $l_e$ et $\avg{C_i}^\beta$ :
 \boxed{\phi_{\text{macro}} = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF \varepsilon_g D_i^{\text{eff}}}}}
 \end{equation}
 
-\section*{Résumé}
+\subsection*{Résumé}
 
 À condition que $\phi \ll 1$ et sous les hypothèses précédentes, 
 on obtient un système simplifié portant uniquement sur les concentrations :
@@ -119,7 +118,7 @@ on obtient un système simplifié portant uniquement sur les concentrations :
 \frac{d^2 \avg{C_i}^\beta}{dz^{*2}} = \phi^2_{\text{macro}} \avg{C_i}^\beta
 \end{equation}
 
-\section*{Solution analytique}
+\subsection*{Solution analytique}
 
 Avec les conditions aux limites :
 \begin{itemize}
@@ -131,4 +130,72 @@ En posant $\zeta = \dfrac{z}{l_e}$, la solution analytique est :
 
 \begin{equation}
 \boxed{\avg{C_i}^\beta(\zeta) = C_i^0 \frac{\cosh(\phi_{\text{macro}}(\zeta + 1))}{\cosh(\phi_{\text{macro}})}}
+\end{equation}
+
+\subsection*{Démonstration de la solution analytique}
+
+On cherche une solution de la forme $\avg{C_i}^\beta = e^{R\zeta}$, ce qui donne :
+
+\begin{equation}
+R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi_{\text{macro}}
+\end{equation}
+
+On a donc :
+\begin{equation}
+\avg{C_i}^\beta = A e^{\phi\zeta} + B e^{-\phi\zeta}
+\end{equation}
+
+En utilisant $\cosh(\phi\zeta) = \dfrac{e^{\phi\zeta} + e^{-\phi\zeta}}{2}$ et $\sinh(\phi\zeta) = \dfrac{e^{\phi\zeta} - e^{-\phi\zeta}}{2}$, soit $e^{\phi\zeta} = \cosh(\phi\zeta) + \sinh(\phi\zeta)$ et $e^{-\phi\zeta} = \cosh(\phi\zeta) - \sinh(\phi\zeta)$, on obtient :
+
+\begin{align}
+\avg{C_i}^\beta &= A(\cosh + \sinh) + B(\cosh - \sinh) \notag\\
+&= (A+B)\cosh(\phi\zeta) + (A-B)\sinh(\phi\zeta) \notag\\
+&= C\cosh(\phi\zeta) + D\sinh(\phi\zeta)
+\end{align}
+
+\paragraph{D'après les conditions limites :}
+
+\begin{itemize}
+\item $\left.\dfrac{d\avg{C_i}^\beta}{d\zeta}\right|_{\zeta=-1} = 0 \quad \Rightarrow \quad C\phi\sinh(-\phi) + D\phi\cosh(-\phi) = 0 \quad \Rightarrow \quad D = C\dfrac{\sinh(\phi)}{\cosh(\phi)} = C\tanh(\phi)$
+
+\item $\avg{C_i}^\beta(0) = C_i^0 \quad \Rightarrow \quad C\cosh(0) + D\sinh(0) = C_i^0 \quad \Rightarrow \quad C = C_i^0$
+\end{itemize}
+
+Soit :
+\begin{align}
+\avg{C_i}^\beta &= C_i^0\left[\cosh(\phi\zeta) + \tanh(\phi)\sinh(\phi\zeta)\right] \notag\\
+&= C_i^0\left[\frac{\cosh(\phi\zeta)\cosh(\phi) + \sinh(\phi)\sinh(\phi\zeta)}{\cosh(\phi)}\right] \notag\\
+&= C_i^0\frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}
+\end{align}
+
+en utilisant $\cosh(a+b) = \cosh(a)\cosh(b) + \sinh(a)\sinh(b)$.
+
+% ============================================================
+\subsection*{Facteur d'efficacité}
+
+Le facteur d'efficacité est défini comme le rapport entre la vitesse de réaction réelle et la vitesse de réaction si $C_i = C_i^0$ partout :
+
+\begin{equation}
+\eta_E = \frac{\dot{r}_{\text{réel}}}{\dot{r}_{\text{idéal}}}
+\end{equation}
+
+avec le dénominateur du membre de droite qui vaut également $\dfrac{\nu_i a_v}{n_e F}\dfrac{j_0}{C_i^0}\left[\exp\!\left(\dfrac{\alpha_a F\eta}{RT}\right) - \exp\!\left(-\dfrac{\alpha_c F\eta}{RT}\right)\right]$ (réaction volumique).
+
+\paragraph{Calcul de la réaction réelle :}
+\begin{align}
+\dot{r}_{\text{réel}} &= \int_{-1}^{0} k_v \avg{C_i}^\beta(\zeta)\, d\zeta
+= k_v C_i^0 \int_{-1}^{0} \frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}\, d\zeta \notag\\
+&= k_v C_i^0 \frac{\tanh(\phi)}{\phi}
+\end{align}
+
+en utilisant $\int_{-1}^{0} \cosh(\phi(\zeta+1))\, d\zeta = \left[\dfrac{\sinh(\phi(\zeta+1))}{\phi}\right]_{-1}^{0} = \dfrac{\sinh(\phi)}{\phi}$.
+
+\paragraph{Calcul du dénominateur :}
+\begin{equation}
+\dot{r}_{\text{idéal}} = \int_{-1}^{0} k_v C_i^0\, d\zeta = k_v C_i^0
+\end{equation}
+
+D'où :
+\begin{equation}
+\boxed{\eta_E = \frac{\tanh(\phi)}{\phi}}
 \end{equation}
