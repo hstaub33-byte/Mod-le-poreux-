@@ -2,6 +2,9 @@
 \newpage
 \section*{Nombres adimensionnels}
 
+Certains nombres adimensionnels sont utiles pour comparer les différents phénomènes physiques en jeu dans le système étudié. On présente ici trois nombres adimensionnels importants : le nombre de Peclet, le nombre de Damköhler et la longueur de Debye.
+Ces nombres sont obtenus en adimensionnant les équations de conservation et les conditions limites associées. Ils permettent de comparer les effets de la convection, de la diffusion et de la réaction chimique dans le système, et par conséquent, de déterminer les régimes dominants et les simplifications possibles pour l'analyse du système.
+
 \subsection*{Peclet}
 
 Le nombre de Peclet compare la convection et la diffusion :
@@ -10,7 +13,13 @@ Le nombre de Peclet compare la convection et la diffusion :
 Pe = \frac{vL}{D}
 \end{equation}
 
-En partant de l'équation de conservation $\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0$ avec $N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_f + C_i v$, on pose :
+En partant de l'équation de conservation $\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0$ avec 
+
+\begin{equation}
+N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_f + C_i v
+\end{equation}
+
+On pose :
 
 \begin{equation}
 c^* = \frac{C_i}{C_{\text{ref}}}, \quad \varphi_f^* = \frac{\varphi_f F}{RT}, \quad x^* = \frac{x}{L}, \quad y^* = \frac{y}{L}, \quad z^* = \frac{z}{L}

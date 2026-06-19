@@ -1,0 +1,1 @@
+add_cto_latexmk('makeindex %O -s nomencl.ist -o %D %S', '%B.nlo', '%B.nls');

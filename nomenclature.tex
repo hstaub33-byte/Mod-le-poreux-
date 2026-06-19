@@ -1,0 +1,85 @@
+% Nomenclature — Passage du 3D au 1D
+% Préambule : \usepackage{nomencl} et \makenomenclature
+% Document  : \input{nomenclature} puis \printnomenclature
+% Compiler  : makeindex main.nlo -s nomencl.ist -o main.nls
+
+% -----------------------------------------------
+% VARIABLES
+% -----------------------------------------------
+\nomenclature[A]{$C_i$}{Concentration de l'espèce $i$ (mol\,m$^{-3}$)}
+\nomenclature[A]{$N_i$}{Flux molaire de l'espèce $i$ (mol\,m$^{-2}$\,s$^{-1}$)}
+\nomenclature[A]{$g$}{Grandeur physique quelconque définie dans le fluide}
+\nomenclature[A]{$v$}{Vitesse du fluide (m\,s$^{-1}$)}
+\nomenclature[A]{$\varphi_l$}{Potentiel électrique dans le fluide (V)}
+\nomenclature[A]{$\Phi_s$}{Potentiel électrique dans le solide (V)}
+\nomenclature[A]{$j$}{Densité de courant interfacial (A\,m$^{-2}$)}
+\nomenclature[A]{$j_0$}{Densité de courant d'échange (A\,m$^{-2}$)}
+\nomenclature[A]{$\eta$}{Surtension (V)}
+\nomenclature[A]{$R_i$}{Taux de réaction interfaciale de l'espèce $i$ (mol\,m$^{-2}$\,s$^{-1}$)}
+\nomenclature[A]{$b$}{Vecteur de fermeture pour la concentration (m)}
+\nomenclature[A]{$d$}{Vecteur de fermeture pour le potentiel électrique (m)}
+\nomenclature[A]{$e$}{Vecteur de fermeture pour le potentiel solide (m)}
+\nomenclature[A]{$\mathbf{n}$}{Vecteur normal unitaire (pointant du fluide vers le solide)}
+
+% -----------------------------------------------
+% COEFFICIENTS ET PROPRIÉTÉS
+% -----------------------------------------------
+\nomenclature[B]{$D_i$}{Coefficient de diffusion de l'espèce $i$ (m$^2$\,s$^{-1}$)}
+\nomenclature[B]{$D_i^e$}{Coefficient de diffusion effectif de l'espèce $i$ (m$^2$\,s$^{-1}$)}
+\nomenclature[B]{$D_i^{e,\text{mig}}$}{Coefficient de migration effectif de l'espèce $i$ (m$^2$\,s$^{-1}$)}
+\nomenclature[B]{$D_{\text{tot}}$}{Coefficient de diffusion total, diffusion et dispersion (m$^2$\,s$^{-1}$)}
+\nomenclature[B]{$D_{\text{disp}}$}{Coefficient de dispersion (m$^2$\,s$^{-1}$)}
+\nomenclature[B]{$\sigma_s$}{Conductivité électrique du solide (S\,m$^{-1}$)}
+\nomenclature[B]{$\sigma^e$}{Conductivité effective du milieu poreux (S\,m$^{-1}$)}
+\nomenclature[B]{$\varepsilon_r$}{Permittivité relative du fluide}
+\nomenclature[B]{$\varepsilon^e$}{Permittivité effective du milieu poreux}
+\nomenclature[B]{$k$}{Constante de réaction du premier ordre (m\,s$^{-1}$)}
+
+% -----------------------------------------------
+% GRANDEURS GÉOMÉTRIQUES
+% -----------------------------------------------
+\nomenclature[C]{$V$}{Volume total de contrôle, fluide et solide (m$^3$)}
+\nomenclature[C]{$V_l$}{Volume occupé par le fluide (m$^3$)}
+\nomenclature[C]{$V_s$}{Volume occupé par le solide (m$^3$)}
+\nomenclature[C]{$A_{sf}$}{Aire de l'interface fluide--solide (m$^2$)}
+\nomenclature[C]{$a_v$}{Aire interfaciale spécifique volumique $= A_{sf}/V$ (m$^{-1}$)}
+\nomenclature[C]{$\varepsilon_l$}{Porosité du milieu $= V_l/V$}
+\nomenclature[C]{$\varepsilon_s$}{Fraction volumique du solide $= V_s/V$}
+\nomenclature[C]{$L$}{Longueur caractéristique macroscopique (m)}
+\nomenclature[C]{$\ell_p$}{Longueur caractéristique à l'échelle du pore (m)}
+\nomenclature[C]{$l_e$}{Épaisseur de l'électrode (m)}
+\nomenclature[C]{$\lambda_0$}{Longueur de Debye (m)}
+
+% -----------------------------------------------
+% CONSTANTES PHYSIQUES
+% -----------------------------------------------
+\nomenclature[D]{$F$}{Constante de Faraday $= 96\,485$ C\,mol$^{-1}$}
+\nomenclature[D]{$R$}{Constante des gaz parfaits $= 8.314$ J\,mol$^{-1}$\,K$^{-1}$}
+\nomenclature[D]{$T$}{Température (K)}
+\nomenclature[D]{$\varepsilon_0$}{Permittivité du vide $= 8.854 \times 10^{-12}$ F\,m$^{-1}$}
+
+% -----------------------------------------------
+% INDICES ET EXPOSANTS
+% -----------------------------------------------
+\nomenclature[E]{$z_i$}{Valence de l'espèce $i$}
+\nomenclature[E]{$n_e$}{Nombre d'électrons échangés lors de la réaction}
+\nomenclature[E]{$\nu_i$}{Coefficient stœchiométrique de l'espèce $i$}
+\nomenclature[E]{$\alpha_a$, $\alpha_c$}{Coefficients de transfert anodique et cathodique}
+\nomenclature[E]{$E_{\text{eq}}$}{Potentiel d'équilibre (V)}
+
+% -----------------------------------------------
+% OPÉRATEURS ET MOYENNES
+% -----------------------------------------------
+\nomenclature[F]{$\langle g \rangle$}{Moyenne superficielle de $g$}
+\nomenclature[F]{$\langle g \rangle^l$}{Moyenne intrinsèque de $g$ dans le fluide}
+\nomenclature[F]{$\tilde{g}$}{Fluctuation de $g$ à l'échelle du pore}
+
+% -----------------------------------------------
+% NOMBRES ADIMENSIONNELS
+% -----------------------------------------------
+\nomenclature[G]{$Pe$}{Nombre de Péclet $= vL/D$}
+\nomenclature[G]{$Da$}{Nombre de Damköhler $= j_n L / (F D_i C_{\text{ref}})$}
+\nomenclature[G]{$\bar{\delta}$}{Longueur de Debye adimensionnée $= \lambda_0 / L$}
+\nomenclature[G]{$\varphi$}{Module de Thiele microscopique}
+\nomenclature[G]{$\varphi_{\text{macro}}$}{Module de Thiele macroscopique}
+\nomenclature[G]{$\eta_E$}{Facteur d'efficacité}

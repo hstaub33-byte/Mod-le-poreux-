@@ -7,26 +7,37 @@
 \subsection*{Rappels théoriques}
 
 \paragraph{Moyenne superficielle :}
-On prend une quantité $g$ qui existe uniquement dans le fluide $V_l$ 
-(volume occupé par le fluide), on l'intègre sur $V_l$ mais on divise 
-par $V$, le volume total (fluide + solide). On appelle cette opération 
-\emph{moyenne superficielle} : elle est dite "superficielle" car diluée 
-par rapport au volume total, et non par $V_l$. Ce n'est donc pas la vraie 
-valeur physique moyenne dans le fluide : elle est pondérée par la porosité 
-$\varepsilon_l = \frac{V_l}{V}$.
+On considère une grandeur $g$ définie uniquement dans le volume fluide $V_l$.
+On définit sa moyenne sur le volume total $V$ (fluide + solide) par :
 
 \begin{equation}
 \avg{g} = \frac{1}{V}\int_{V_l} g\, dV \label{eq:moy_sup}
 \end{equation}
-
-\noindent La relation entre moyenne superficielle et moyenne intrinsèque est donnée par:
+Cette moyenne, dite superficielle, s’exprime comme la moyenne dans le fluide multipliée 
+par la porosité $\varepsilon_l = \frac{V_l}{V}$.\cite{le<3MultiscaleModelling2022}
+Elle ne correspond donc pas à la moyenne de g dans le fluide seul.
+La moyenne intrinsèque $\avgl{g}$ représente la vraie valeur moyenne de $g$ 
+dans le fluide seul. La relation entre moyenne superficielle et moyenne 
+intrinsèque est alors :
 
 \begin{equation}
 \avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avgl{g}  \label{eq:relation_moy}
 \end{equation}
 
+\paragraph{Théorème de la divergence de Gauss :}
+Ce théorème relie une intégrale de volume à une intégrale de surface. 
+Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
+
+\begin{equation}
+\int_V \nab g\, dV = \oint_A \mathbf{n}\, g\, dA
+\label{eq:gauss}
+\end{equation}
+
+où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
+
 \paragraph{Théorème de la moyenne spatiale :}
-Ce théorème découle du théorème de la divergence de Gauss. 
+Ce théorème découle du théorème de la divergence 
+de Gauss appliqué au volume fluide.
 Il relie la moyenne du gradient d'une quantité $g$ à son gradient 
 de moyenne, avec un terme de correction surfacique sur l'interface 
 $Asf$ entre le fluide et le solide :
@@ -46,56 +57,52 @@ Ce théorème permet d'échanger la moyenne et la dérivée temporelle,
 \left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
 \end{equation}
 
-\paragraph{Théorème de la divergence de Gauss :}
-Ce théorème relie une intégrale de volume à une intégrale de surface. 
-Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
 
-\begin{equation}
-\int_V \nab g\, dV = \oint_A \mathbf{n}\, g\, dA
-\label{eq:gauss}
-\end{equation}
-
-où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
 
 % ============================================================
 \subsection*{Équation de conservation}
 
 L'équation de conservation en 3D pour l'espèce $i$ s'écrit :
-
 \begin{equation}
 \frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0
 \label{eq:cons3D}
 \end{equation}
-
 où $C_i$ est la concentration de l'espèce $i$ et $N_i$ est le flux molaire.
-En appliquant la moyenne superficielle à l'équation \eqref{eq:cons3D}, 
-on obtient l'équation de conservation en 1D :
-
+En appliquant la moyenne superficielle à l'équation \eqref{eq:cons3D} :
 \begin{equation}
 \left\langle \frac{\partial C_i}{\partial t} \right\rangle + \avg{\nab \cdot N_i} = 0
 \label{eq:cons1D}
 \end{equation}
-
-En appliquant le théorème de transport \eqref{eq:transport} et le théorème 
-de la moyenne spatiale \eqref{eq:moy_spatiale}, on développe chaque terme :
+En utilisant le théorème de transport \eqref{eq:transport} et le théorème 
+de la moyenne spatiale \eqref{eq:moy_spatiale} :
 \begin{equation}
 \frac{\partial \avg{C_i}}{\partial t} + \nab \cdot \avg{N_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = 0
 \end{equation}
-
 Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA$ 
-représente l'échange à l'interface fluide/solide. En notant $R_i = \frac{j}{n_e F}$ 
-le taux de réaction à l'interface, avec $j$ la densité de courant interfacial 
-et $n_e$ le nombre d'électrons échangés, et $a_v = \frac{A_{sf}}{V}$ 
-l'aire interfaciale spécifique :
-
+représente l'échange à l'interface fluide/solide. On introduit la vitesse de réaction interfaciale
+ $R_i$ définie par :
+\begin{equation}
+\mathbf{n}\cdot \mathbf{N}_i = R_i \quad \text{sur } A_{sf}
+\end{equation}
+Dans le cas d’une réaction électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par la loi de Faraday :
+\begin{equation}
+R_i = \frac{j}{n_e F}
+\end{equation}
+où $n_e$ est le nombre d’électrons échangés et $F$ la constante de Faraday.
+$R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
+consommée à l'interface et $R_i > 0$ si elle y est produite.
+ L’aire interfaciale spécifique volumique est quant à elle définie par :
+\begin{equation}
+a_v = \frac{A_{sf}}{V}
+\end{equation} 
+où $A_{sf}$ est l’aire de l’interface fluide–solide contenue dans le volume de contrôle $V$.
+Cette grandeur caractérise la surface d’échange disponible par unité de volume et s’exprime en m$^{-1}$.
+On a donc : %Faut se mettre d'accord sur une convention pour le signe
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = -a_v \avg{R_i}^{sf}
-\end{equation}
-
-où $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
-consommée à l'interface et $R_i > 0$ si elle y est produite. On obtient 
+\end{equation} 
+On obtient 
 alors l'équation de conservation homogénéisée :
-
 \begin{equation}
 \varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \nab \cdot \avg{N_i} 
 = -a_v \avg{R_i}^{sf}
@@ -106,13 +113,11 @@ alors l'équation de conservation homogénéisée :
 \subsection*{Flux de Nernst--Planck}
 
 Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst-Planck, 
-qui prend en compte trois contributions :
-
+qui prend en compte trois contributions, diffusion, migration électrique et convection :
 \begin{equation}
 N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
 \label{eq:NP3D}
 \end{equation}
-
 où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante 
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
 $\varphi_l$ le potentiel électrique dans le fluide.
@@ -282,12 +287,12 @@ En injectant les décompositions de $C_i$ et $\varphi_l$ :
 + \tilde{C}_i \nab\widetilde{\varphi}_l \right] dV \notag\\
 &= -\frac{z_i F}{RT} D_i
 \left[
-\underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV}_{\textcircled{1}}
-+ \underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV}_{\textcircled{2}}
+\underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV}_{\circled{1}}
++ \underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV}_{\circled{2}}
 \right. \notag\\
 &\quad\quad\left.
-+ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV}_{\textcircled{3}}
-+ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV}_{\textcircled{4}}
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV}_{\circled{3}}
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV}_{\circled{4}}
 \right]
 \end{align}
 
