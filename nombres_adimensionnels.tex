@@ -1,0 +1,87 @@
+% !TEX root = main.tex
+\newpage
+\section*{Nombres adimensionnels}
+
+\subsection*{Peclet}
+
+Le nombre de Peclet compare la convection et la diffusion :
+
+\begin{equation}
+Pe = \frac{vL}{D}
+\end{equation}
+
+En partant de l'équation de conservation $\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0$ avec $N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_f + C_i v$, on pose :
+
+\begin{equation}
+c^* = \frac{C_i}{C_{\text{ref}}}, \quad \varphi_f^* = \frac{\varphi_f F}{RT}, \quad x^* = \frac{x}{L}, \quad y^* = \frac{y}{L}, \quad z^* = \frac{z}{L}
+\end{equation}
+
+On obtient :
+\begin{equation}
+\frac{N_i L}{D_i C_{\text{ref}}} = -\frac{D_i \nab C_i L}{D_i C_{\text{ref}}} - \frac{z_i F}{RT} \frac{D_i C_i \nab \varphi_f}{D_i C_{\text{ref}}} L + \frac{C_i v L}{D_i C_{\text{ref}}}
+\end{equation}
+
+\begin{equation}
+N_i^* = -\nab^* c^* - z_i c^* \nab^* \varphi_f^* + c^* Pe
+\end{equation}
+
+Soit :
+\begin{equation}
+\frac{L}{C_{\text{ref}}} \frac{\partial C_i}{\partial t} \frac{L}{D_{\text{ref}}} + L \nab \cdot N_i \frac{L}{C_{\text{ref}} D_{\text{ref}}} = 0
+\quad \Rightarrow \quad
+\frac{\partial c^*}{\partial t} \frac{L^2}{D_{\text{ref}}} + \nab^* \cdot N_i^* = 0
+\end{equation}
+
+On pose $t^* = \frac{t D_{\text{ref}}}{L^2}$ et on obtient $\frac{\partial c^*}{\partial t^*} + \nab^* \cdot N_i^* = 0$, soit :
+
+\begin{equation}
+\frac{\partial c^*}{\partial t^*} + \nab^* \cdot \left(-\nab^* c^* - z_i c^* \nab^* \varphi_f^* + c^* Pe\right) = 0
+\end{equation}
+
+% ============================================================
+\subsection*{Damköhler}
+
+Le nombre de Damköhler compare la vitesse de réaction surfacique à la diffusion :
+
+\begin{equation}
+Da = \frac{j_n L}{F D_i C_{\text{ref}}}
+\end{equation}
+
+En partant de la condition limite $-N_i \cdot \hat{n} = \frac{\nu_i j_n}{n_e F}$, on adimensionne :
+
+\begin{equation}
+\frac{-N_i \cdot \hat{n} L}{D_i C_{\text{ref}}} = \frac{\nu_i j_n L}{n_e F D_i C_{\text{ref}}} = \frac{j_n L}{F D_i C_{\text{ref}}} \frac{\nu_i}{n_e}
+\end{equation}
+
+Ce qui donne :
+
+\begin{equation}
+-N_i^* \cdot \hat{n} = Da \frac{\nu_i}{n_e}
+\end{equation}
+
+% ============================================================
+\subsection*{Longueur de Debye}
+
+La longueur de Debye compare l'épaisseur de la double couche à la taille du pore :
+
+\begin{equation}
+\bar{\delta} = \frac{\lambda_0}{L} = \frac{1}{L}\sqrt{\frac{\varepsilon RT}{2F^2 C_{\text{ref}}}}
+\end{equation}
+
+En partant de l'équation de Poisson $\varepsilon \nab^2 \varphi_f = -F\sum_i z_i C_i$, on adimensionne :
+
+\begin{equation}
+\frac{\varepsilon L^2}{C_{\text{ref}}} \nab^{*2}\!\left(\frac{F \varphi_f}{RT}\right) = -\frac{L^2 F}{RT C_{\text{ref}}} F \sum_i z_i C_i
+\end{equation}
+
+\begin{equation}
+\frac{\varepsilon \nab^{*2}(\varphi_f^*) RT}{C_{\text{ref}} L^2 F^2} = -\sum_i z_i c_i^*
+\end{equation}
+
+\begin{equation}
+\Rightarrow \quad \frac{2\lambda_0^2}{L^2} \nab^{*2} \varphi_f^* = -\sum_i z_i c_i^*
+\end{equation}
+
+\begin{equation}
+\Rightarrow \quad \bar{\delta}^2 \nab^{*2} \varphi_f^* = -\frac{1}{2}\sum_i z_i c_i^*
+\end{equation}
