@@ -1,1 +1,4 @@
-add_cto_latexmk('makeindex %O -s nomencl.ist -o %D %S', '%B.nlo', '%B.nls');
+add_cus_dep('nlo', 'nls', 0, 'makeindex');
+sub makeindex {
+    system("makeindex $_[0].nlo -s nomencl.ist -o $_[0].nls");
+}

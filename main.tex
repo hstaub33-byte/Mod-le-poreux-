@@ -1,11 +1,32 @@
 \documentclass[12pt,a4paper,titlepage]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern} 
 \usepackage{babel}
 \usepackage{amsmath, amssymb}
 \usepackage{geometry}
 \usepackage{nomencl}        % <-- ajouter ici
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[version=4]{mhchem}   % pour \ce{CO2}
+
+\titlespacing*{\section}
+  {0pt}    % indentation gauche
+  {1.5em}  % espace AVANT le titre
+  {1.5em}  % espace APRÈS le titre
+  
+\usetikzlibrary{arrows.meta, positioning, fit, backgrounds, decorations.pathreplacing}
 \makenomenclature            % <-- et ici
+\renewcommand{\nomgroup}[1]{%
+  \ifthenelse{\equal{#1}{A}}{\item[\textbf{Lettres latines}]}{%
+  \ifthenelse{\equal{#1}{B}}{\item[\textbf{Lettres grecques}]}{%
+  \ifthenelse{\equal{#1}{C}}{\item[\textbf{Opérateurs et moyennes}]}{}}}%
+}
 
 \geometry{margin=2.5cm, top=1cm}
 
@@ -26,9 +47,18 @@
 \renewcommand{\nomname}{Nomenclature}
 \printnomenclature           % <-- affiche la liste
 \newpage
-\input{passage_3D_1D}
-\input{module_thiele}
+\input{Intro}
+\newpage
+\input{Pres_modele}
+\newpage
+\input{Hyp_supp}
+\newpage
 \input{nombres_adimensionnels}
+\newpage
+\input{module_thiele}
+\newpage
+\input{passage_3D_1D}
+
 
 \bibliographystyle{plain}
 \bibliography{Poreux}

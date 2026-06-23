@@ -4,6 +4,9 @@
 
 \section*{Passage du 3D au 1D}
 % ============================================================
+
+\input{figures/schema_homogeneisation}
+
 \subsection*{Rappels théoriques}
 
 \paragraph{Moyenne superficielle :}
@@ -57,7 +60,7 @@ Ce théorème permet d'échanger la moyenne et la dérivée temporelle,
 \left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
 \end{equation}
 
-
+\newpage
 
 % ============================================================
 \subsection*{Équation de conservation}
@@ -113,7 +116,7 @@ alors l'équation de conservation homogénéisée :
 \subsection*{Flux de Nernst--Planck}
 
 Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst-Planck, 
-qui prend en compte trois contributions, diffusion, migration électrique et convection :
+qui prend en compte trois contributions : diffusion, migration électrique et convection :
 \begin{equation}
 N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
 \label{eq:NP3D}
@@ -121,6 +124,8 @@ N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
 où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante 
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
 $\varphi_l$ le potentiel électrique dans le fluide.
+
+% ============================================================
 
 \subsubsection*{Terme diffusif}
 
@@ -256,6 +261,8 @@ Ce qui donne finalement :
 \boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_{\text{eff}} \nab\avg{C_i}^l}
 \label{eq:diff_eff}
 \end{equation}
+
+
 
 % ============================================================
 % PAGE 3

@@ -1,0 +1,172 @@
+\section*{Description 3D à l'échelle du pore}
+
+\subsection*{Système étudié}
+
+L'électrode poreuse considérée est représentée schématiquement en 
+figure~\ref{fig:systeme}. Elle est constituée d'une phase solide conductrice
+$\Omega_s$ formée de fibres de carbone sur lesquelles sont greffées des particules 
+de catalyseur, et d'une phase fluide $\Omega_l$ dans laquelle circule 
+un électrolyte contenant le \ce{CO2} dissous. Deux configurations sont 
+envisageables pour l'apport en \ce{CO2} : soit par électrode à 
+diffusion gazeuse (GDE), soit par bullage direct dans la phase fluide. 
+
+Les espèces dissoutes sont transportées dans l'électrolyte tandis que 
+les électrons circulent dans la phase solide conductrice. Les deux 
+domaines sont séparés par une interface solide--fluide $A_{sf}$, 
+siège des réactions électrochimiques de réduction du \ce{CO2}.
+
+La géométrie du milieu poreux influence à la fois le transport 
+des espèces et l'intensité des échanges électrochimiques. Elle 
+sera caractérisée dans la suite par la porosité $\varepsilon_l$
+et l'aire interfaciale spécifique volumique $a_v$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/schema}
+    \caption{Représentation schématique de l'électrode poreuse : 
+    phase solide $\Omega_s$ (fibres de carbone avec catalyseur greffé), 
+    phase fluide $\Omega_l$ (électrolyte chargé en \ce{CO2} dissous) 
+    et interface $A_{sf}$ siège des réactions électrochimiques.}
+    \label{fig:systeme}
+\end{figure}
+
+La réaction électrochimique visée est la réduction du \ce{CO2} en \ce{CO} :
+
+\begin{equation}
+    \ce{CO2 + 2H+ + 2e- -> CO + H2O}
+\end{equation}
+
+\subsection*{Hypothèses de modélisation}
+
+Le modèle développé dans ce travail repose sur les hypothèses suivantes.
+
+\textbf{Hypothèses géométriques}
+\begin{itemize}
+    \item Les échelles caractéristiques du pore $\ell_p$ et de 
+    l'électrode $L$ sont bien séparées : $\ell_p \ll L$.
+    \item La microstructure du milieu poreux est localement périodique.
+    \item La géométrie est stationnaire : le milieu poreux n'évolue 
+    pas au cours du temps.
+\end{itemize}
+
+\textbf{Hypothèses sur les phases}
+\begin{itemize}
+    \item La phase solide est indéformable et imperméable au fluide.
+    \item L'électrolyte est incompressible.
+    \item Il n'y a pas de convection au sein de l'électrode poreuse.
+    \item La phase homogène, située hors du milieu poreux et en contact 
+    avec lui, est modélisée comme un réacteur piston. Les échanges entre 
+    la phase homogène et l'électrode poreuse sont décrits par un flux 
+    entrant et un flux sortant à leur interface commune.
+\end{itemize}
+
+\textbf{Hypothèses thermodynamiques}
+\begin{itemize}
+    \item Le système est isotherme : la température est uniforme et 
+    constante.
+    \item La pression est uniforme.
+\end{itemize}
+
+\textbf{Hypothèses électrochimiques}
+\begin{itemize}
+    \item La cinétique interfaciale est décrite par la loi de 
+    Butler--Volmer. Cette hypothèse est retenue comme point de départ 
+    mais sa validité dans cette configuration reste à questionner.
+    \item La double couche électrique est prise en compte dans le 
+    modèle complet ; elle pourra être négligée dans les simplifications 
+    ultérieures.
+    \item L'électrolyte est électriquement neutre en volume.
+\end{itemize}
+
+\textbf{Hypothèses sur le transport}
+\begin{itemize}
+    \item Le transport des espèces dans l'électrolyte est décrit par 
+    l'équation de Nernst--Planck, qui prend en compte la diffusion, 
+    la migration sous l'effet du champ électrique et la convection.
+    \item La convection pourra être négligée dans les simplifications 
+    ultérieures.
+    \item Les coefficients de diffusion sont supposés constants.
+\end{itemize}
+
+\subsection*{Transport des espèces dans $\Omega_g$}
+
+Dans le fluide, les espèces ioniques et moléculaires sont transportées par deux mécanismes. D'abord la diffusion, qui tend à homogénéiser les $C_i$ en déplaçant les espèces des zones concentrées vers les zones diluées. Ensuite la migration, qui déplace les espèces chargées sous l'effet du champ électrique dans l'électrolyte. Ces contributions sont décrites par Nernst-Planck :
+
+\begin{equation}
+N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_f \quad \text{dans } \Omega_g \tag{1}
+\end{equation}
+
+La conservation de la masse de l'espèce $i$ dans $\Omega_g$ traduit le fait que la variation temporelle de $C_i$ résulte du flux entrant et sortant d'un volume de contrôle :
+
+\begin{equation}
+\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_g \tag{2}
+\end{equation}
+
+A l'interface solide/fluide, le flux normal de l'espèce $i$ est imposé par la réaction électrochimique 
+et relié à la densité de courant interfaciale via la loi de Faraday :
+
+\begin{equation}
+-\mathbf{n} \cdot N_i = \frac{\nu_i}{n_e F} j \quad \text{sur } A_{sf} \tag{3}
+\end{equation}
+
+\subsection*{Potentiel électrolytique dans $\Omega_g$}
+
+Le champ électrique dans l'électrolyte est lui-même généré par la distribution des charges dans le fluide. L'équation de Poisson relie le laplacien du potentiel électrolytique à la densité volumique de charges libres portées par les ions en solution :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \nab^2 \varphi_f = F\sum_i z_i C_i \quad \text{dans } \Omega_g \tag{4}
+\end{equation}
+
+A l'interface solide/fluide, la présence d'une densité de charge surfacique liée à la double couche électrique impose une condition de saut sur le flux normal du potentiel électrolytique :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \mathbf{n} \cdot \nab \varphi_f = \sigma_s \quad \text{sur } A_{sf} \tag{5}
+\end{equation}
+
+\subsection*{Transport électronique dans $\Omega_s$}
+
+Le transport des électrons est décrit par la loi d'Ohm qui relie le courant électronique au gradient du potentiel électrique dans le solide. La conservation de la charge dans le solide impose que la divergence du courant soit nulle en volume :
+
+\begin{equation}
+\nab(-\sigma_s \nab \Phi_s) = 0 \quad \text{dans } \Omega_s \tag{6}
+\end{equation}
+
+A l'interface solide/fluide, la continuité du courant normal impose que tout le courant quittant $\Omega_s$ soit intégralement transféré dans l'électrolyte :
+
+\begin{equation}
+\mathbf{n}_s \sigma_s \nab \Phi_s = j \quad \text{sur } A_{sf}
+\end{equation}
+
+\subsection*{Loi de Butler-Volmer}
+
+La densité de courant interfaciale $j$ est donnée par la loi de Butler-Volmer :
+
+\begin{equation}
+j = j_0 \left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right) - \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right] \quad \text{sur } A_{sf}
+\end{equation}
+
+où $\eta = \Phi_s - \varphi_f - E_{eq}$ est la surtension locale, $j_0$ la densité de courant d'échange, $\alpha_a$ et $\alpha_c$ les coefficients de transfert anodique et cathodique.
+
+\subsection*{Conditions aux limites externes}
+
+\subsubsection*{Paroi}
+
+On impose un flux nul pour les espèces et le potentiel électrolytique, ainsi qu'un potentiel solide imposé :
+
+\begin{align*}
+\mathbf{n} \cdot N_i &= 0 \\
+\mathbf{n} \cdot \nab \varphi_f &= 0 \\
+\Phi_s &= E
+\end{align*}
+
+\subsubsection*{Interface pore / bulk}
+
+On impose la continuité des concentrations, des flux et des potentiels électriques :
+
+\begin{align*}
+C_i &= C_i^{\text{bulk}} \\
+N_i &= N_i^{\text{bulk}} \\
+\varphi_f &= \varphi_f^{\text{bulk}} \\
+-\varepsilon_0 \varepsilon_r \mathbf{n} \cdot \nab \varphi_f &= 0 \\
+\mathbf{n}_s \sigma_s \nab \Phi_s &= 0
+\end{align*}

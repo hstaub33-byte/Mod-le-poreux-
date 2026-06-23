@@ -1,0 +1,83 @@
+% ============================================================
+\section*{Possibles ajouts dans le modèle}
+
+% -------------------------------------------------------
+\subsection*{Terme stérique}
+
+\textit{Pathways to enhance electrochemical CO$_2$ reduction\ldots}
+
+\medskip
+Ce terme prend en compte le volume fini des ions (ils ne peuvent pas s'empiler indéfiniment). On ajoute au flux de Nernst--Planck une contribution :
+
+\begin{equation}
+    -\mathcal{R} c_i \left(
+        \frac{N_a \displaystyle\sum_j a_j^3 \,\nabla c_j}
+             {1 - N_a \displaystyle\sum_j a_j^3 \, c_j}
+    \right)
+\end{equation}
+
+où $\displaystyle\sum_j a_j^3 c_j$ est la fraction volumique occupée par l'espèce $j$, et $1 - \displaystyle\sum_j a_j^3 c_j$ est la fraction volumique libre.
+
+\medskip
+Quand $\dfrac{\displaystyle\sum_j a_j^3 \, c_j}{1 - \displaystyle\sum_j a_j^3 \, c_j} \to \infty$, le terme repousse les ions lorsque l'espace libre devient nul.
+
+% -------------------------------------------------------
+\subsection*{HER (Hydrogen Evolution Reaction)}
+
+\textit{Pathways to enhance\ldots}
+
+\begin{align}
+    2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
+    2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
+\end{align}
+
+\paragraph{Problème :} Le courant total se décompose comme :
+\begin{equation}
+    j_{\mathrm{tot}} = j_{\mathrm{CO_2RR}} + j_{\mathrm{HER}}
+\end{equation}
+
+La HER consomme aussi des H$^+$ et des $e^-$. Elle est négligeable si $j_{\mathrm{HER}} \ll j_{\mathrm{CO_2RR}}$.
+
+% -------------------------------------------------------
+\subsection*{Réactions volumiques}
+
+\textit{Pathways to\ldots}
+
+\begin{align}
+    \mathrm{CO_2} + \mathrm{H_2O} &\rightleftharpoons \mathrm{H}^+ + \mathrm{HCO_3}^-
+        && \rightarrow \text{mauvais pH local} \\
+    \mathrm{HCO_3}^- &\rightleftharpoons \mathrm{H}^+ + \mathrm{CO_3}^{2-}
+        && \rightarrow \text{mauvaise } c_{\mathrm{CO_2}} \\
+    \mathrm{H_2O} &\rightleftharpoons \mathrm{H}^+ + \mathrm{OH}^-
+        && \rightarrow \text{électroneutralité incorrecte}
+\end{align}
+
+% -------------------------------------------------------
+\subsection*{Milieu concentré}
+
+En milieu concentré, on est obligé de passer à l'approche \textbf{Maxwell--Stefan} : on ne peut plus utiliser \textbf{Nernst--Planck} pour calculer $N_i$.
+
+% -------------------------------------------------------
+\subsection*{Pas de dépendance en $T$}
+
+\textit{Derivation of an effective thermal\ldots}
+
+On prend $T = \mathrm{cst}$ (sinon effet Soret).
+
+% -------------------------------------------------------
+\subsection*{Pas de dépendance en $P$}
+
+On prend $P = \mathrm{cst}$.
+
+% -------------------------------------------------------
+\subsection*{Pas de résistance de contact}
+
+On néglige la résistance de contact, ce qui revient à poser $R_c \to 0$ dans :
+\begin{equation}
+    i_n = \frac{\phi^s - \phi^l}{R_c}
+\end{equation}
+
+% -------------------------------------------------------
+\subsection*{Formation de bulles}
+
+Le CO$_2$ pourrait buller dans la couche poreuse — cet effet n'est pas pris en compte dans le modèle actuel.

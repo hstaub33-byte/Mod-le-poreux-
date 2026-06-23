@@ -1,4 +1,3 @@
-\newpage
 \section*{Approche module de thiele}
 
 \subsection*{Système de base}
@@ -94,15 +93,15 @@ En appliquant le théorème de la prise de moyenne à l'équation 1D :
 \begin{equation}
 D_i \left\langle \frac{\partial^2 C_i}{\partial z^2} \right\rangle = 0
 \quad \xrightarrow{\text{théorème de prise de moyenne}} \quad
-\varepsilon_g D_i^{\text{eff}} \frac{d^2 \avg{C_i}^\beta}{dz^2} 
-= \frac{\nu_i a_v k(\eta)}{nF} \avg{C_i}^\beta
+\varepsilon_g D_i^{\text{eff}} \frac{d^2 \avg{C_i}^l}{dz^2} 
+= \frac{\nu_i a_v k(\eta)}{nF} \avg{C_i}^l
 \end{equation}
 
 \subsection*{Module de Thiele macroscopique}
 
-En adimensionnant avec $l_e$ et $\avg{C_i}^\beta$ :
+En adimensionnant avec $l_e$ et $\avg{C_i}^l$ :
 \begin{equation}
-\frac{d^2 \avg{C_i}^\beta}{dz^{*2}} = \underbrace{\frac{\nu_i a_v k(\eta) l_e^2}{nF \varepsilon_g D_i^{\text{eff}}}}_{\phi^2_{\text{macro}}} \avg{C_i}^\beta = \phi^2_{\text{macro}} \avg{C_i}^\beta
+\frac{d^2 \avg{C_i}^l}{dz^{*2}} = \underbrace{\frac{\nu_i a_v k(\eta) l_e^2}{nF \varepsilon_g D_i^{\text{eff}}}}_{\phi^2_{\text{macro}}} \avg{C_i}^l = \phi^2_{\text{macro}} \avg{C_i}^l
 \end{equation}
 
 \begin{equation}
@@ -115,7 +114,7 @@ En adimensionnant avec $l_e$ et $\avg{C_i}^\beta$ :
 on obtient un système simplifié portant uniquement sur les concentrations :
 
 \begin{equation}
-\frac{d^2 \avg{C_i}^\beta}{dz^{*2}} = \phi^2_{\text{macro}} \avg{C_i}^\beta
+\frac{d^2 \avg{C_i}^l}{dz^{*2}} = \phi^2_{\text{macro}} \avg{C_i}^l
 \end{equation}
 
 \subsection*{Solution analytique}
@@ -129,12 +128,12 @@ Avec les conditions aux limites :
 En posant $\zeta = \dfrac{z}{l_e}$, la solution analytique est :
 
 \begin{equation}
-\boxed{\avg{C_i}^\beta(\zeta) = C_i^0 \frac{\cosh(\phi_{\text{macro}}(\zeta + 1))}{\cosh(\phi_{\text{macro}})}}
+\boxed{\avg{C_i}^l(\zeta) = C_i^0 \frac{\cosh(\phi_{\text{macro}}(\zeta + 1))}{\cosh(\phi_{\text{macro}})}}
 \end{equation}
 
 \subsection*{Démonstration de la solution analytique}
 
-On cherche une solution de la forme $\avg{C_i}^\beta = e^{R\zeta}$, ce qui donne :
+On cherche une solution de la forme $\avg{C_i}^l = e^{R\zeta}$, ce qui donne :
 
 \begin{equation}
 R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi_{\text{macro}}
@@ -142,13 +141,13 @@ R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \R
 
 On a donc :
 \begin{equation}
-\avg{C_i}^\beta = A e^{\phi\zeta} + B e^{-\phi\zeta}
+\avg{C_i}^l = A e^{\phi\zeta} + B e^{-\phi\zeta}
 \end{equation}
 
 En utilisant $\cosh(\phi\zeta) = \dfrac{e^{\phi\zeta} + e^{-\phi\zeta}}{2}$ et $\sinh(\phi\zeta) = \dfrac{e^{\phi\zeta} - e^{-\phi\zeta}}{2}$, soit $e^{\phi\zeta} = \cosh(\phi\zeta) + \sinh(\phi\zeta)$ et $e^{-\phi\zeta} = \cosh(\phi\zeta) - \sinh(\phi\zeta)$, on obtient :
 
 \begin{align}
-\avg{C_i}^\beta &= A(\cosh + \sinh) + B(\cosh - \sinh) \notag\\
+\avg{C_i}^l &= A(\cosh + \sinh) + B(\cosh - \sinh) \notag\\
 &= (A+B)\cosh(\phi\zeta) + (A-B)\sinh(\phi\zeta) \notag\\
 &= C\cosh(\phi\zeta) + D\sinh(\phi\zeta)
 \end{align}
@@ -156,14 +155,14 @@ En utilisant $\cosh(\phi\zeta) = \dfrac{e^{\phi\zeta} + e^{-\phi\zeta}}{2}$ et $
 \paragraph{D'après les conditions limites :}
 
 \begin{itemize}
-\item $\left.\dfrac{d\avg{C_i}^\beta}{d\zeta}\right|_{\zeta=-1} = 0 \quad \Rightarrow \quad C\phi\sinh(-\phi) + D\phi\cosh(-\phi) = 0 \quad \Rightarrow \quad D = C\dfrac{\sinh(\phi)}{\cosh(\phi)} = C\tanh(\phi)$
+\item $\left.\dfrac{d\avg{C_i}^l}{d\zeta}\right|_{\zeta=-1} = 0 \quad \Rightarrow \quad C\phi\sinh(-\phi) + D\phi\cosh(-\phi) = 0 \quad \Rightarrow \quad D = C\dfrac{\sinh(\phi)}{\cosh(\phi)} = C\tanh(\phi)$
 
-\item $\avg{C_i}^\beta(0) = C_i^0 \quad \Rightarrow \quad C\cosh(0) + D\sinh(0) = C_i^0 \quad \Rightarrow \quad C = C_i^0$
+\item $\avg{C_i}^l(0) = C_i^0 \quad \Rightarrow \quad C\cosh(0) + D\sinh(0) = C_i^0 \quad \Rightarrow \quad C = C_i^0$
 \end{itemize}
 
 Soit :
 \begin{align}
-\avg{C_i}^\beta &= C_i^0\left[\cosh(\phi\zeta) + \tanh(\phi)\sinh(\phi\zeta)\right] \notag\\
+\avg{C_i}^l &= C_i^0\left[\cosh(\phi\zeta) + \tanh(\phi)\sinh(\phi\zeta)\right] \notag\\
 &= C_i^0\left[\frac{\cosh(\phi\zeta)\cosh(\phi) + \sinh(\phi)\sinh(\phi\zeta)}{\cosh(\phi)}\right] \notag\\
 &= C_i^0\frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}
 \end{align}
@@ -183,7 +182,7 @@ avec le dénominateur du membre de droite qui vaut également $\dfrac{\nu_i a_v}
 
 \paragraph{Calcul de la réaction réelle :}
 \begin{align}
-\dot{r}_{\text{réel}} &= \int_{-1}^{0} k_v \avg{C_i}^\beta(\zeta)\, d\zeta
+\dot{r}_{\text{réel}} &= \int_{-1}^{0} k_v \avg{C_i}^l(\zeta)\, d\zeta
 = k_v C_i^0 \int_{-1}^{0} \frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}\, d\zeta \notag\\
 &= k_v C_i^0 \frac{\tanh(\phi)}{\phi}
 \end{align}
