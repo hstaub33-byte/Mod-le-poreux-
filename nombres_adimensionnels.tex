@@ -1,50 +1,56 @@
 % !TEX root = main.tex
 \section*{Nombres adimensionnels}
 
-Certains nombres adimensionnels sont utiles pour comparer les différents phénomènes physiques en jeu dans le système étudié. On présente ici trois nombres adimensionnels importants : le nombre de Peclet, le nombre de Damköhler et la longueur de Debye.
-Ces nombres sont obtenus en adimensionnant les équations de conservation et les conditions limites associées. Ils permettent de comparer les effets de la convection, de la diffusion et de la réaction chimique dans le système, et par conséquent, de déterminer les régimes dominants et les simplifications possibles pour l'analyse du système.
+\section*{Nombres adimensionnels}
 
-\subsection*{Peclet}
+Avant de procéder aux simplifications du modèle, il est utile d'identifier 
+les régimes physiques en jeu et de hiérarchiser l'importance relative des 
+différents phénomènes de transport. On introduit pour cela trois nombres 
+adimensionnels, obtenus en adimensionnant les équations de conservation et 
+leurs conditions aux limites : le nombre de Péclet, qui compare convection 
+et diffusion, le nombre de Damköhler, qui compare la vitesse de réaction 
+interfaciale à la diffusion, et la longueur de Debye adimensionnée, qui 
+compare l'épaisseur de la double couche électrique à la taille caractéristique 
+du pore. Ces nombres permettront de justifier les hypothèses de simplification 
+retenues dans la suite.
 
-Le nombre de Peclet compare la convection et la diffusion :
+\subsection*{Péclet}
 
-\begin{equation}
-Pe = \frac{vL}{D}
-\end{equation}
-
-En partant de l'équation de conservation $\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0$ avec 
-
-\begin{equation}
-N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_f + C_i v
-\end{equation}
-
-On pose :
+Le nombre de Péclet compare la convection et la diffusion :
 
 \begin{equation}
-c^* = \frac{C_i}{C_{\text{ref}}}, \quad \varphi_f^* = \frac{\varphi_f F}{RT}, \quad x^* = \frac{x}{L}, \quad y^* = \frac{y}{L}, \quad z^* = \frac{z}{L}
+Pe = \frac{vL}{D_{\text{ref}}}
 \end{equation}
 
-On obtient :
-\begin{equation}
-\frac{N_i L}{D_i C_{\text{ref}}} = -\frac{D_i \nab C_i L}{D_i C_{\text{ref}}} - \frac{z_i F}{RT} \frac{D_i C_i \nab \varphi_f}{D_i C_{\text{ref}}} L + \frac{C_i v L}{D_i C_{\text{ref}}}
-\end{equation}
+En partant des équations~\eqref{eq:nernst-planck},~\eqref{eq:conservation}, et en posant :
 
-\begin{equation}
-N_i^* = -\nab^* c^* - z_i c^* \nab^* \varphi_f^* + c^* Pe
-\end{equation}
+\begin{equation*}
+c^* = \frac{C_i}{C_{\text{ref}}}, \quad 
+\varphi_l^* = \frac{\varphi_l F}{RT}, \quad 
+\nabla^* = L\nabla, \quad
+t^* = \frac{t D_{\text{ref}}}{L^2}
+\end{equation*}
 
-Soit :
-\begin{equation}
-\frac{L}{C_{\text{ref}}} \frac{\partial C_i}{\partial t} \frac{L}{D_{\text{ref}}} + L \nab \cdot N_i \frac{L}{C_{\text{ref}} D_{\text{ref}}} = 0
-\quad \Rightarrow \quad
-\frac{\partial c^*}{\partial t} \frac{L^2}{D_{\text{ref}}} + \nab^* \cdot N_i^* = 0
-\end{equation}
+En introduisant le flux adimensionné
 
-On pose $t^* = \frac{t D_{\text{ref}}}{L^2}$ et on obtient $\frac{\partial c^*}{\partial t^*} + \nab^* \cdot N_i^* = 0$, soit :
+\[
+N_i^*=\frac{N_iL}{D_iC_{\rm ref}},
+\]
 
-\begin{equation}
-\frac{\partial c^*}{\partial t^*} + \nab^* \cdot \left(-\nab^* c^* - z_i c^* \nab^* \varphi_f^* + c^* Pe\right) = 0
-\end{equation}
+on obtient :
+
+\begin{equation*}
+N_i^* = -\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + c^* Pe
+\end{equation*}
+
+et l'équation de conservation adimensionnée :
+
+\begin{equation*}
+\frac{\partial c^*}{\partial t^*} + \nabla^* \cdot \left(-\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + c^* Pe\right) = 0
+\end{equation*}
+
+Le nombre de Péclet mesure ainsi l'importance relative de la convection
+par rapport à la diffusion.
 
 % ============================================================
 \subsection*{Damköhler}
@@ -55,41 +61,42 @@ Le nombre de Damköhler compare la vitesse de réaction surfacique à la diffusi
 Da = \frac{j_n L}{F D_i C_{\text{ref}}}
 \end{equation}
 
-En partant de la condition limite $-N_i \cdot \hat{n} = \frac{\nu_i j_n}{n_e F}$, on adimensionne :
+En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
 
-\begin{equation}
-\frac{-N_i \cdot \hat{n} L}{D_i C_{\text{ref}}} = \frac{\nu_i j_n L}{n_e F D_i C_{\text{ref}}} = \frac{j_n L}{F D_i C_{\text{ref}}} \frac{\nu_i}{n_e}
-\end{equation}
-
-Ce qui donne :
-
-\begin{equation}
+\begin{equation*}
 -N_i^* \cdot \hat{n} = Da \frac{\nu_i}{n_e}
-\end{equation}
+\end{equation*}
+
+Le nombre de Damköhler mesure l'importance relative de la réaction par
+rapport à la diffusion. Il constitue ainsi un précurseur naturel du
+module de Thiele, qui sera utilisé par la suite pour analyser les
+limitations réaction--transport dans l'électrode poreuse.
 
 % ============================================================
 \subsection*{Longueur de Debye}
 
-La longueur de Debye compare l'épaisseur de la double couche à la taille du pore :
+La longueur de Debye compare l'épaisseur caractéristique de la double
+couche électrique à la taille caractéristique d'un pore $\ell_p$ :
 
 \begin{equation}
-\bar{\delta} = \frac{\lambda_0}{L} = \frac{1}{L}\sqrt{\frac{\varepsilon RT}{2F^2 C_{\text{ref}}}}
+\bar{\delta} = \frac{\lambda_0}{\ell_p}
+= \frac{1}{\ell_p}
+\sqrt{\frac{\varepsilon RT}{2F^2 C_{\text{ref}}}}
 \end{equation}
 
-En partant de l'équation de Poisson $\varepsilon \nab^2 \varphi_f = -F\sum_i z_i C_i$, on adimensionne :
-
-\begin{equation}
-\frac{\varepsilon L^2}{C_{\text{ref}}} \nab^{*2}\!\left(\frac{F \varphi_f}{RT}\right) = -\frac{L^2 F}{RT C_{\text{ref}}} F \sum_i z_i C_i
-\end{equation}
+En partant de l'équation de Poisson~\eqref{eq:poisson}, on adimensionne :
 
 \begin{equation}
-\frac{\varepsilon \nab^{*2}(\varphi_f^*) RT}{C_{\text{ref}} L^2 F^2} = -\sum_i z_i c_i^*
+\quad \bar{\delta}^2 \nab^{*2} \varphi_l^* = -\frac{1}{2}\sum_i z_i c_i^*
 \end{equation}
 
-\begin{equation}
-\Rightarrow \quad \frac{2\lambda_0^2}{L^2} \nab^{*2} \varphi_f^* = -\sum_i z_i c_i^*
-\end{equation}
+\bigskip
 
-\begin{equation}
-\Rightarrow \quad \bar{\delta}^2 \nab^{*2} \varphi_f^* = -\frac{1}{2}\sum_i z_i c_i^*
-\end{equation}
+L'analyse adimensionnelle permet ainsi d'identifier les phénomènes dominants dans 
+les régimes de fonctionnement étudiés et de justifier certaines hypothèses de 
+simplification. Le modèle présenté reste néanmoins une description 
+volontairement simplifiée du système réel. Plusieurs 
+phénomènes physiques susceptibles d'influencer 
+son comportement n'ont pas été pris en 
+compte et constituent autant de 
+pistes d'extension possibles.

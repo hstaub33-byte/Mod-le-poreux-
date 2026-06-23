@@ -1,83 +1,132 @@
+\section*{Limites du modèle et extensions possibles}
+
+Le modèle présenté constitue une première description de la réduction
+électrochimique du \ce{CO2} dans une électrode poreuse. Plusieurs
+hypothèses simplificatrices ont été retenues afin de conserver un cadre
+de modélisation tractable. Cette section présente les principales
+extensions envisageables, classées selon leur nature physique.
+
 % ============================================================
-\section*{Possibles ajouts dans le modèle}
+\subsection*{Réactions supplémentaires}
 
-% -------------------------------------------------------
-\subsection*{Terme stérique}
+\subsubsection*{Réaction de dégagement d'hydrogène (HER)}
 
-\textit{Pathways to enhance electrochemical CO$_2$ reduction\ldots}
+La réduction du \ce{CO2} est généralement en compétition avec la
+réaction de dégagement d'hydrogène (HER) :
 
-\medskip
-Ce terme prend en compte le volume fini des ions (ils ne peuvent pas s'empiler indéfiniment). On ajoute au flux de Nernst--Planck une contribution :
+\begin{align*}
+2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
+2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
+\end{align*}
+
+Le courant total devient alors :
 
 \begin{equation}
-    -\mathcal{R} c_i \left(
-        \frac{N_a \displaystyle\sum_j a_j^3 \,\nabla c_j}
-             {1 - N_a \displaystyle\sum_j a_j^3 \, c_j}
-    \right)
+j_{\mathrm{tot}}
+=
+j_{\mathrm{CO_2RR}}
++
+j_{\mathrm{HER}}
 \end{equation}
 
-où $\displaystyle\sum_j a_j^3 c_j$ est la fraction volumique occupée par l'espèce $j$, et $1 - \displaystyle\sum_j a_j^3 c_j$ est la fraction volumique libre.
+Cette réaction concurrente consomme également des électrons et peut
+fortement affecter la sélectivité du système lorsque
+$j_{\mathrm{HER}}$ devient comparable à
+$j_{\mathrm{CO_2RR}}$.
 
-\medskip
-Quand $\dfrac{\displaystyle\sum_j a_j^3 \, c_j}{1 - \displaystyle\sum_j a_j^3 \, c_j} \to \infty$, le terme repousse les ions lorsque l'espace libre devient nul.
+\subsubsection*{Réactions homogènes en volume}
 
-% -------------------------------------------------------
-\subsection*{HER (Hydrogen Evolution Reaction)}
+Le modèle actuel suppose que toutes les réactions se produisent à
+l'interface solide--fluide. En pratique, plusieurs réactions acido-basiques
+peuvent avoir lieu dans l'électrolyte :
 
-\textit{Pathways to enhance\ldots}
+\begin{align*}
+\ce{CO2 + H2O} &\rightleftharpoons \ce{H+ + HCO3-} \\
+\ce{HCO3-} &\rightleftharpoons \ce{H+ + CO3^{2-}} \\
+\ce{H2O} &\rightleftharpoons \ce{H+ + OH-}
+\end{align*}
 
-\begin{align}
-    2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
-    2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
-\end{align}
+Ces réactions modifient localement le pH ainsi que la répartition des
+espèces carbonées dissoutes. Elles influencent donc la concentration
+effective en \ce{CO2} disponible à proximité des sites catalytiques et
+peuvent affecter significativement les performances de l'électrode.
 
-\paragraph{Problème :} Le courant total se décompose comme :
+% ============================================================
+\subsection*{Transport et description de l'électrolyte}
+
+\subsubsection*{Milieu concentré}
+
+Le modèle présenté repose sur l'équation de Nernst--Planck, adaptée aux
+électrolytes dilués. Dans un électrolyte concentré, les interactions
+entre espèces deviennent importantes et les coefficients de diffusion
+ne peuvent plus être considérés indépendants. Une description plus
+rigoureuse du transport repose alors sur les équations de
+Maxwell--Stefan, qui prennent explicitement en compte les interactions
+entre espèces dissoutes.
+
+\subsubsection*{Effets stériques}
+
+L'équation de Nernst--Planck repose sur l'hypothèse d'espèces
+ponctuelles. Lorsque les concentrations deviennent élevées,
+notamment à proximité des interfaces chargées, le volume fini des ions
+peut devenir significatif. Une correction stérique peut alors être
+ajoutée au flux :
+
 \begin{equation}
-    j_{\mathrm{tot}} = j_{\mathrm{CO_2RR}} + j_{\mathrm{HER}}
+-D_i C_i \left(
+\frac{N_a \displaystyle\sum_j a_j^3 \nabla C_j}
+{1 - N_a \displaystyle\sum_j a_j^3 C_j}
+\right)
 \end{equation}
 
-La HER consomme aussi des H$^+$ et des $e^-$. Elle est négligeable si $j_{\mathrm{HER}} \ll j_{\mathrm{CO_2RR}}$.
+où $a_j$ représente la taille caractéristique de l'espèce $j$.
 
-% -------------------------------------------------------
-\subsection*{Réactions volumiques}
 
-\textit{Pathways to\ldots}
+% ============================================================
+\subsection*{Hypothèses thermodynamiques}
 
-\begin{align}
-    \mathrm{CO_2} + \mathrm{H_2O} &\rightleftharpoons \mathrm{H}^+ + \mathrm{HCO_3}^-
-        && \rightarrow \text{mauvais pH local} \\
-    \mathrm{HCO_3}^- &\rightleftharpoons \mathrm{H}^+ + \mathrm{CO_3}^{2-}
-        && \rightarrow \text{mauvaise } c_{\mathrm{CO_2}} \\
-    \mathrm{H_2O} &\rightleftharpoons \mathrm{H}^+ + \mathrm{OH}^-
-        && \rightarrow \text{électroneutralité incorrecte}
-\end{align}
+\subsubsection*{Température uniforme}
 
-% -------------------------------------------------------
-\subsection*{Milieu concentré}
+La température est supposée uniforme et constante. Les effets liés aux
+gradients thermiques, à l'échauffement ohmique ou à la chaleur produite
+par les réactions électrochimiques ne sont pas pris en compte.
 
-En milieu concentré, on est obligé de passer à l'approche \textbf{Maxwell--Stefan} : on ne peut plus utiliser \textbf{Nernst--Planck} pour calculer $N_i$.
+\subsubsection*{Pression uniforme}
 
-% -------------------------------------------------------
-\subsection*{Pas de dépendance en $T$}
+La pression est supposée uniforme dans l'ensemble du domaine. Les
+effets liés aux gradients de pression, aux variations de densité du
+fluide et aux modifications locales de la solubilité du \ce{CO2} sont
+donc négligés.
 
-\textit{Derivation of an effective thermal\ldots}
+% ============================================================
+\subsection*{Interfaces et morphologie}
 
-On prend $T = \mathrm{cst}$ (sinon effet Soret).
+\subsubsection*{Résistance de contact}
 
-% -------------------------------------------------------
-\subsection*{Pas de dépendance en $P$}
+Le modèle suppose un transfert électronique parfait entre les différentes
+fibres constituant le réseau conducteur de l'électrode. Les résistances
+de contact locales sont donc négligées, ce qui revient à considérer la
+limite $R_c \rightarrow 0$ dans la relation :
 
-On prend $P = \mathrm{cst}$.
 
-% -------------------------------------------------------
-\subsection*{Pas de résistance de contact}
-
-On néglige la résistance de contact, ce qui revient à poser $R_c \to 0$ dans :
 \begin{equation}
-    i_n = \frac{\phi^s - \phi^l}{R_c}
+i_n = \frac{\phi^s - \phi^l}{R_c}
 \end{equation}
 
-% -------------------------------------------------------
-\subsection*{Formation de bulles}
+\subsubsection*{Formation de bulles}
 
-Le CO$_2$ pourrait buller dans la couche poreuse — cet effet n'est pas pris en compte dans le modèle actuel.
+La formation de bulles gazeuses n'est pas prise en compte dans le modèle
+actuel. Pourtant, la production de \ce{CO} ou de \ce{H2} peut conduire à
+l'apparition de phases gazeuses dans le milieu poreux. Ces bulles
+modifient localement la porosité et la surface active disponible, et
+peuvent également limiter l'accès des réactifs aux sites catalytiques en
+perturbant le transport de matière.
+
+
+\bigskip
+Ces extensions constituent des pistes d'amélioration du modèle présenté
+précédemment. Avant d'introduire une procédure d'homogénéisation plus
+rigoureuse, on considère d'abord une approche simplifiée fondée sur le
+module de Thiele. Bien que reposant sur des hypothèses fortes, cette
+approche permet d'obtenir des solutions analytiques et fournit une
+première compréhension des limitations par transport et par réaction.
