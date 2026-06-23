@@ -1,0 +1,102 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    scale=1,
+    box/.style={draw, rounded corners=4pt, minimum width=2.8cm, 
+                minimum height=1cm, align=center, font=\small},
+    solidbox/.style={box, fill=gray!20},
+    fluidbox/.style={box, fill=blue!10},
+    homogbox/.style={box, fill=orange!15},
+    arrow/.style={-{Stealth}, thick},
+    label/.style={font=\footnotesize, align=center}
+]
+
+%--- Bloc 1 : Échelle du pore (3D hétérogène) ---
+\begin{scope}[xshift=0cm]
+    % Solide
+    \fill[gray!30, rounded corners=3pt] (0,0) rectangle (2.8,3.5);
+    % Pores (fluide)
+    \fill[blue!15, rounded corners=2pt] (0.3,0.2) rectangle (1.1,1.5);
+    \fill[blue!15, rounded corners=2pt] (1.4,0.4) rectangle (2.5,1.8);
+    \fill[blue!15, rounded corners=2pt] (0.5,1.9) rectangle (2.3,3.2);
+    % Interface
+    \draw[red!70!black, thick, dashed, rounded corners=2pt] 
+        (0.3,0.2) rectangle (1.1,1.5);
+    \draw[red!70!black, thick, dashed, rounded corners=2pt] 
+        (1.4,0.4) rectangle (2.5,1.8);
+    \draw[red!70!black, thick, dashed, rounded corners=2pt] 
+        (0.5,1.9) rectangle (2.3,3.2);
+    % Légendes internes
+    \node[font=\tiny, gray!60!black] at (1.4, 0.85) {$\Omega_s$};
+    \node[font=\tiny, blue!60!black] at (0.7, 0.85) {$\Omega_l$};
+    \node[font=\tiny, red!70!black] at (2.0, 3.0) {$A_{sf}$};
+    % Titre
+    \node[below, label] at (1.4, -0.1) {3D hétérogène\\(échelle du pore $\ell_p$)};
+\end{scope}
+
+%--- Flèche + label homogénéisation ---
+\begin{scope}[xshift=3.2cm]
+    \draw[arrow, double, double distance=2pt] (0, 1.75) -- (1.4, 1.75);
+    \node[above, font=\footnotesize, align=center] at (0.7, 1.9) 
+        {Prise de};
+    \node[below, font=\footnotesize, align=center] at (0.7, 1.6) 
+        {moyenne};
+\end{scope}
+
+%--- Bloc 2 : VER (Volume Élémentaire Représentatif) ---
+\begin{scope}[xshift=4.8cm]
+    % Fond homogène
+    \fill[orange!10, rounded corners=3pt] (0,0) rectangle (2.8,3.5);
+    \draw[orange!60!black, thick, rounded corners=3pt] (0,0) rectangle (2.8,3.5);
+    % Propriétés effectives
+    \node[font=\scriptsize, align=center, orange!70!black] at (1.4, 2.6) 
+        {$\varepsilon_l$, $a_v$};
+    \node[font=\scriptsize, align=center] at (1.4, 2.0) 
+        {$D^e_i$, $\sigma^e$};
+    \node[font=\scriptsize, align=center] at (1.4, 1.4) 
+        {$\langle C_i \rangle^l$, $\langle \phi_l \rangle^l$};
+    \node[font=\scriptsize, align=center] at (1.4, 0.8) 
+        {$\langle \Phi_s \rangle^s$};
+    % Titre
+    \node[below, label] at (1.4, -0.1) {Milieu homogène\\équivalent};
+\end{scope}
+
+%--- Flèche + label réduction 1D ---
+\begin{scope}[xshift=8.0cm]
+    \draw[arrow, double, double distance=2pt] (0, 1.75) -- (1.4, 1.75);
+    \node[above, font=\footnotesize, align=center] at (0.7, 1.9) 
+        {Réduction};
+    \node[below, font=\footnotesize, align=center] at (0.7, 1.6) 
+        {1D};
+\end{scope}
+
+%--- Bloc 3 : Modèle 1D ---
+\begin{scope}[xshift=9.6cm]
+    % Fond 1D
+    \fill[green!10, rounded corners=3pt] (0.9,0) rectangle (1.9,3.5);
+    \draw[green!60!black, thick, rounded corners=3pt] (0.9,0) rectangle (1.9,3.5);
+    % Axe z
+    \draw[-{Stealth}, gray!60] (1.4,-0.3) -- (1.4,3.8);
+    \node[right, font=\scriptsize] at (1.4, 3.8) {$z$};
+    % Conditions limites
+    \node[left, font=\tiny, align=right] at (0.9, 3.4) 
+        {Paroi\\$\Phi_s = E$};
+    \node[left, font=\tiny, align=right] at (0.9, 0.2) 
+        {Bulk\\$\langle C_i\rangle^l = C_i^{\mathrm{bulk}}$};
+    % Titre
+    \node[below, label] at (1.4, -0.1) {Modèle 1D\\(échelle $L$)};
+\end{scope}
+
+%--- Accolade échelles ---
+\draw[decorate, decoration={brace, amplitude=6pt, mirror}, gray!60]
+    (0,-0.7) -- (7.7,-0.7) 
+    node[midway, below=8pt, font=\footnotesize, gray!70!black] 
+    {$\ell_p \ll L$};
+
+\end{tikzpicture}
+\caption{Démarche d'homogénéisation : passage du modèle 3D hétérogène 
+à l'échelle du pore au modèle 1D homogénéisé à l'échelle de l'électrode. 
+L'interface $A_{sf}$ (en rouge) disparaît au profit de coefficients 
+effectifs ($D^e_i$, $\sigma^e$, $a_v$).}
+\label{fig:homogeneisation}
+\end{figure}
