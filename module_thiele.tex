@@ -1,200 +1,433 @@
-\section*{Approche module de thiele}
+\section*{Approche par le module de Thiele}
 
-\subsection*{Système de base}
+Avant d'introduire une procédure d'homogénéisation plus générale, il est
+utile de considérer une approche simplifiée fondée sur le module de
+Thiele. Cette approche repose sur des hypothèses fortes mais permet
+d'obtenir des solutions analytiques et de mettre en évidence les
+mécanismes de compétition entre diffusion et réaction au sein de
+l'électrode.
 
-Le système d'équations de départ est le suivant :
+\subsection*{Point de départ}
 
-\begin{align}
-&\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_g \label{eq:cons_thiele}\\
-&N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \label{eq:NP_thiele}\\
-&-\mathbf{n} \cdot N_i = \frac{\nu_i}{nF} j \quad \text{sur } A_{sf} \label{eq:CL_N}\\
-&-\varepsilon_0 \varepsilon_r \nab^2 \varphi_l = F\sum_i z_i C_i \quad \text{dans } \Omega_g \label{eq:poisson_thiele}\\
-&\nab(-\sigma_s \nab \Phi_s) = 0 \quad \text{dans } \Omega_s \label{eq:ohm_thiele}\\
-&\mathbf{n}_s \sigma_s \nab \Phi_s = j \quad \text{sur } A_{sf} \label{eq:CL_ohm}\\
-&j = j_0 \left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right) - \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right] \label{eq:BV}\\
-&\eta = \Phi_s - \varphi_l - E_{eq} \label{eq:surtension}
-\end{align}
- 
+Le modèle complet présenté précédemment couple :
+\begin{itemize}
+\item le transport des espèces par Nernst--Planck ;
+\item le potentiel électrolytique par Poisson ;
+\item le transport électronique par la loi d'Ohm ;
+\item la cinétique interfaciale par Butler--Volmer.
+\end{itemize}
+
+L'objectif est maintenant d'obtenir un modèle simplifié permettant
+l'introduction du module de Thiele.
+
+
 \subsection*{Hypothèses}
 
-On applique successivement les hypothèses suivantes :
+Afin d'obtenir une formulation simple permettant l'introduction du
+module de Thiele, plusieurs hypothèses simplificatrices sont adoptées.
 
-\paragraph{1. Stationnaire :}
-On suppose que le système a atteint un état stationnaire :
+\paragraph{1. Régime stationnaire :}
+
+On suppose que les temps caractéristiques de transport sont courts
+devant les temps d'évolution du système. Les concentrations ne
+dépendent donc plus du temps :
+
+\begin{equation*}
+\frac{\partial C_i}{\partial t}=0.
+\end{equation*}
+
+L'équation de conservation devient alors :
+
+\begin{equation*}
+\nabla\cdot N_i=0.
+\end{equation*}
+
+\paragraph{2.Transport purement diffusif :}
+
+On néglige les effets de migration électrique et de convection dans
+l'électrolyte. Le flux de matière se réduit alors à la loi de Fick :
+
+\begin{equation*}
+N_i=-D_i\nabla C_i.
+\end{equation*}
+
+\paragraph{3. Surtension uniforme :}
+On suppose que les variations des potentiels électrique dans les phases
+solide et liquide sont suffisamment faibles pour considérer la
+surtension uniforme à l'échelle de l'électrode : 
+
+\begin{equation*}
+\eta = \mathrm{cste}.
+\end{equation*}
+
+\paragraph{4. Cinétique du premier ordre :}
+La surtension étant supposée constante, les termes exponentiels de la
+loi de Butler--Volmer sont constants. La densité de courant
+interfaciale devient alors proportionnelle à la concentration locale :
+
+\begin{equation*}
+j = k(\eta)\,C_i,
+\end{equation*}
+
+avec
+
+\begin{equation*}
+k(\eta)
+=
+\frac{j_0}{C_i^{\text{ref}}}
+\left[
+\exp\!\left(\frac{\alpha_aF\eta}{RT}\right)
+-
+\exp\!\left(-\frac{\alpha_cF\eta}{RT}\right)
+\right].
+\end{equation*}
+
+\bigskip
+\subsection*{Passage à une description volumique}
+
+Sous les hypothèses précédentes, on ne cherche plus à décrire
+explicitement les phénomènes à l'échelle de chaque pore. L'objectif est
+au contraire d'obtenir une description moyenne du comportement de
+l'électrode.
+
+La réaction électrochimique est initialement localisée à l'interface
+solide--fluide $A_{sf}$ et décrite par le flux réactionnel :
+
+\begin{equation*}
+-\mathbf n \cdot N_i
+=
+\frac{\nu_i}{n_eF}j.
+\end{equation*}
+
+En utilisant la forme simplifiée de la cinétique
+
+\begin{equation*}
+j=k(\eta)C_i,
+\end{equation*}
+
+et en introduisant l'aire interfaciale spécifique volumique $a_v$, ce
+flux surfacique peut être converti en une vitesse de réaction volumique
+moyenne :
+
 \begin{equation}
-\frac{\partial C_i}{\partial t} = 0 \quad \Rightarrow \quad \nab \cdot N_i = 0 \quad \text{dans } \Omega_g
+R_i
+=
+\frac{\nu_i a_v k(\eta)}{n_eF}C_i.
 \end{equation}
 
-ce qui implique $\nab^2 C_i = 0$ dans $\Omega_g$.
+À partir de cette étape, les concentrations sont interprétées comme des
+grandeurs moyennées dans la phase fluide du milieu poreux. Par souci de
+cohérence avec la description macroscopique, elles seront notées
+$\langle C_i\rangle^l$ dans la suite.
 
-\paragraph{2. Potentiels uniformes :}
-On suppose que les potentiels électriques dans le solide et dans le fluide 
-sont uniformes, ce qui revient à négliger les gradients de potentiel :
+La conservation de la matière conduit alors à une équation de
+diffusion--réaction :
+
 \begin{equation}
-\nab \Phi_s = 0 \quad \text{et} \quad \nab \varphi_l = 0
+D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
+=
+\frac{\nu_i a_v k(\eta)}{n_eF}\langle C_i\rangle^l.
 \end{equation}
 
-La surtension $\eta = \Phi_s - \varphi_l - E_{eq}$ est alors uniforme.
+Le milieu poreux étant maintenant décrit par des grandeurs moyennées,
+on se ramène à un problème 1D selon la direction normale à l'électrode.
+L'adimensionnement de cette équation à l'échelle macroscopique $l_e$
+fait alors apparaître naturellement le module de Thiele.
 
-\paragraph{3. Linéarisation de Butler-Volmer :}
-On linéarise l'équation de Butler-Volmer \eqref{eq:BV} autour de 
-la surtension $\eta$, supposée fixe et uniforme :
-\begin{equation}
-j = k(\eta) C_i
-\end{equation}
-
-avec :
-\begin{equation}
-k(\eta) = \frac{j_0}{C^0}\left[\exp\!\left(\frac{\alpha_a F \eta}{RT}\right) 
-- \exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)\right]
-\end{equation}
+%--------------------------------------------------------------------------------------------------------------
+%-------------------------Calcul du module de Thiele -------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
 
 \subsection*{Calcul du module de Thiele}
 
-On adimensionne le problème avec $l_e$ et $C_i^0$ :
-\begin{equation}
-C_i^* = \frac{C_i}{C_i^0} \quad \text{et} \quad r^* = \frac{r}{l_e}
-\end{equation}
-
-On obtient alors :
-\begin{align}
-\nab^{*2} C_i^* &= 0 \quad \text{dans } \Omega_g \\
--\mathbf{n} \cdot \nab^* C_i^* &= \frac{\nu_i k(\eta) l_e}{nF D_i} C_i^* \quad \text{sur } A_{sf}
-\end{align}
-
-Le module de Thiele apparaît naturellement comme le coefficient 
-devant $C_i^*$ dans la condition limite :
+On adimensionne l'équation précédente à l'aide de l'épaisseur
+caractéristique de l'électrode $l_e$ et d'une concentration de
+référence $C_i^{\text{ref}}$ :
 
 \begin{equation}
-\boxed{\phi = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF D_i}}}
+\left\langle C_i \right\rangle^{l,*}
+=
+\frac{\left\langle C_i \right\rangle^l}
+     {C_i^{\text{ref}}},
+\qquad
+z^*
+=
+\frac{z}{l_e}.
 \end{equation}
 
-\subsection*{Réduction en 1D}
-
-La réduction en 1D n'est valable que si $\phi \ll 1$. Dans ce cas, 
-les variations selon $x$ et $y$ sont négligeables :
-\begin{equation}
-\frac{\partial C_i}{\partial x} \approx 0 \quad \text{et} \quad 
-\frac{\partial C_i}{\partial y} \approx 0 
-\quad \Rightarrow \quad \nab^2 C_i = \frac{\partial^2 C_i}{\partial z^2}
-\end{equation}
-
-On obtient le système 1D :
-\begin{equation}
-\begin{cases}
-D_i \dfrac{\partial^2 C_i}{\partial z^2} = 0 \quad \text{dans } \Omega_g \\[8pt]
--\mathbf{n} \cdot D_i \dfrac{\partial C_i}{\partial z} = \dfrac{\nu_i k(\eta)}{nF} C_i \quad \text{sur } A_{sf}
-\end{cases}
-\end{equation}
-
-\subsection*{Régime volumique}
-
-En appliquant le théorème de la prise de moyenne à l'équation 1D :
-\begin{equation}
-D_i \left\langle \frac{\partial^2 C_i}{\partial z^2} \right\rangle = 0
-\quad \xrightarrow{\text{théorème de prise de moyenne}} \quad
-\varepsilon_g D_i^{\text{eff}} \frac{d^2 \avg{C_i}^l}{dz^2} 
-= \frac{\nu_i a_v k(\eta)}{nF} \avg{C_i}^l
-\end{equation}
-
-\subsection*{Module de Thiele macroscopique}
-
-En adimensionnant avec $l_e$ et $\avg{C_i}^l$ :
-\begin{equation}
-\frac{d^2 \avg{C_i}^l}{dz^{*2}} = \underbrace{\frac{\nu_i a_v k(\eta) l_e^2}{nF \varepsilon_g D_i^{\text{eff}}}}_{\phi^2_{\text{macro}}} \avg{C_i}^l = \phi^2_{\text{macro}} \avg{C_i}^l
-\end{equation}
+L'équation devient :
 
 \begin{equation}
-\boxed{\phi_{\text{macro}} = l_e \sqrt{\frac{\nu_i a_v k(\eta)}{nF \varepsilon_g D_i^{\text{eff}}}}}
+\frac{d^2\left\langle C_i \right\rangle^{l,*}}
+     {dz^{*2}}
+=
+\underbrace{
+\frac{\nu_i a_v k(\eta)l_e^2}
+     {n_eF D_i^{\mathrm{eff}}}
+}_{\phi^2}
+\left\langle C_i \right\rangle^{l,*}.
 \end{equation}
 
-\subsection*{Résumé}
-
-À condition que $\phi \ll 1$ et sous les hypothèses précédentes, 
-on obtient un système simplifié portant uniquement sur les concentrations :
+On définit alors le module de Thiele :
 
 \begin{equation}
-\frac{d^2 \avg{C_i}^l}{dz^{*2}} = \phi^2_{\text{macro}} \avg{C_i}^l
+\boxed{
+\phi
+=
+l_e
+\sqrt{
+\frac{\nu_i a_v k(\eta)}
+     {n_eF D_i^{\mathrm{eff}}}
+}
+}
 \end{equation}
+
+Le module de Thiele compare la vitesse caractéristique de réaction à la
+vitesse caractéristique de diffusion dans l'électrode. Lorsque
+$\phi \ll 1$, la diffusion est suffisamment rapide pour alimenter
+uniformément l'ensemble de l'électrode. À l'inverse, lorsque
+$\phi \gg 1$, la réaction est limitée par le transport de matière.
+
+%--------------------------------------------------------------------------------------------------------------
+%-------------------------Sol analytique -------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
 
 \subsection*{Solution analytique}
 
-Avec les conditions aux limites :
-\begin{itemize}
-    \item $z = -l_e$ : contact électrode
-    \item $z = 0$ : interface pore/électrolyte
-\end{itemize}
-
-En posant $\zeta = \dfrac{z}{l_e}$, la solution analytique est :
+On considère l'équation adimensionnée :
 
 \begin{equation}
-\boxed{\avg{C_i}^l(\zeta) = C_i^0 \frac{\cosh(\phi_{\text{macro}}(\zeta + 1))}{\cosh(\phi_{\text{macro}})}}
+\frac{d^2\left\langle C_i \right\rangle^{l,*}}{d z^{*2}}
+=
+\phi^2 \left\langle C_i \right\rangle^{l,*}.
 \end{equation}
+
+On note
+
+\begin{equation}
+\zeta = \frac{z}{l_e},
+\qquad
+-1 \le \zeta \le 0.
+\end{equation}
+
+Les conditions aux limites sont :
+
+\begin{itemize}
+    \item flux nul au fond de l'électrode :
+\end{itemize}
+
+\begin{equation}
+\left.
+\frac{d\left\langle C_i \right\rangle^{l,*}}{d\zeta}
+\right|_{\zeta=-1}
+=
+0,
+\end{equation}
+
+\begin{itemize}
+    \item concentration imposée à l'interface avec l'électrolyte :
+\end{itemize}
+
+\begin{equation}
+\left\langle C_i \right\rangle^{l,*}(0)
+=1
+\end{equation}
+
+La résolution du problème conduit à :
+
+\begin{equation}
+\boxed{
+\left\langle C_i \right\rangle^{l}(\zeta)
+=
+C_i^{\text{ref}}
+\frac{
+\cosh\!\left(\phi(\zeta+1)\right)
+}{
+\cosh(\phi)
+}
+}
+\end{equation}
+%--------------------------------------------------------------------------------------------------------------
+%-------------------------Démonstration de la solution analytique -------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
 
 \subsection*{Démonstration de la solution analytique}
 
-On cherche une solution de la forme $\avg{C_i}^l = e^{R\zeta}$, ce qui donne :
+On cherche une solution de la forme $\left\langle C_i \right\rangle^{l,*} = e^{R\zeta}$, ce qui donne :
 
-\begin{equation}
-R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi_{\text{macro}}
-\end{equation}
+\begin{equation*}
+R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi
+\end{equation*}
 
 On a donc :
-\begin{equation}
-\avg{C_i}^l = A e^{\phi\zeta} + B e^{-\phi\zeta}
-\end{equation}
+\begin{equation*}
+\left\langle C_i \right\rangle^{l,*} = A e^{\phi\zeta} + B e^{-\phi\zeta}
+\end{equation*}
 
-En utilisant $\cosh(\phi\zeta) = \dfrac{e^{\phi\zeta} + e^{-\phi\zeta}}{2}$ et $\sinh(\phi\zeta) = \dfrac{e^{\phi\zeta} - e^{-\phi\zeta}}{2}$, soit $e^{\phi\zeta} = \cosh(\phi\zeta) + \sinh(\phi\zeta)$ et $e^{-\phi\zeta} = \cosh(\phi\zeta) - \sinh(\phi\zeta)$, on obtient :
+La solution générale peut être réécrite sous la forme :
 
-\begin{align}
-\avg{C_i}^l &= A(\cosh + \sinh) + B(\cosh - \sinh) \notag\\
-&= (A+B)\cosh(\phi\zeta) + (A-B)\sinh(\phi\zeta) \notag\\
-&= C\cosh(\phi\zeta) + D\sinh(\phi\zeta)
-\end{align}
+\begin{equation*}
+\left\langle C_i \right\rangle^{l,*}
+=
+C\cosh(\phi\zeta)
++
+D\sinh(\phi\zeta).
+\end{equation*}
 
 \paragraph{D'après les conditions limites :}
 
-\begin{itemize}
-\item $\left.\dfrac{d\avg{C_i}^l}{d\zeta}\right|_{\zeta=-1} = 0 \quad \Rightarrow \quad C\phi\sinh(-\phi) + D\phi\cosh(-\phi) = 0 \quad \Rightarrow \quad D = C\dfrac{\sinh(\phi)}{\cosh(\phi)} = C\tanh(\phi)$
+La condition de flux nul à la base de l'électrode,
 
-\item $\avg{C_i}^l(0) = C_i^0 \quad \Rightarrow \quad C\cosh(0) + D\sinh(0) = C_i^0 \quad \Rightarrow \quad C = C_i^0$
-\end{itemize}
+\begin{equation*}
+\left.
+\frac{d\left\langle C_i \right\rangle^{l,*}}{d\zeta}
+\right|_{\zeta=-1}
+=
+0,
+\end{equation*}
 
-Soit :
-\begin{align}
-\avg{C_i}^l &= C_i^0\left[\cosh(\phi\zeta) + \tanh(\phi)\sinh(\phi\zeta)\right] \notag\\
-&= C_i^0\left[\frac{\cosh(\phi\zeta)\cosh(\phi) + \sinh(\phi)\sinh(\phi\zeta)}{\cosh(\phi)}\right] \notag\\
-&= C_i^0\frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}
-\end{align}
+conduit à
 
-en utilisant $\cosh(a+b) = \cosh(a)\cosh(b) + \sinh(a)\sinh(b)$.
+\begin{equation*}
+D=C\tanh(\phi).
+\end{equation*}
 
-% ============================================================
+La condition de concentration imposée à l'interface,
+
+\begin{equation*}
+\left\langle C_i \right\rangle^{l,*}(0)=1
+\end{equation*}
+
+donne directement
+
+\begin{equation*}
+C=1
+\end{equation*}
+
+En reportant les constantes obtenues dans la solution générale, on trouve :
+
+\begin{align*}
+\left\langle C_i \right\rangle^{l,*}
+&=
+\cosh(\phi\zeta)
++
+\tanh(\phi)\sinh(\phi\zeta)
+\notag\\
+&=
+\frac{
+\cosh(\phi\zeta)\cosh(\phi)
++
+\sinh(\phi)\sinh(\phi\zeta)
+}
+{\cosh(\phi)}
+\notag\\
+&=
+\frac{\cosh(\phi(\zeta+1))}
+{\cosh(\phi)},
+\end{align*}
+
+où la dernière égalité résulte de l'identité :
+
+\begin{equation*}
+\cosh(a+b)
+=
+\cosh(a)\cosh(b)
++
+\sinh(a)\sinh(b).
+\end{equation*}
+
+La solution analytique permet d'obtenir explicitement le profil de
+concentration dans l'électrode et servira à calculer le facteur
+d'efficacité associé au module de Thiele.
+
+%--------------------------------------------------------------------------------------------------------------
+%-------------------------Facteur d'efficacité -------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+
 \subsection*{Facteur d'efficacité}
 
-Le facteur d'efficacité est défini comme le rapport entre la vitesse de réaction réelle et la vitesse de réaction si $C_i = C_i^0$ partout :
+Le facteur d'efficacité est défini comme le rapport entre la vitesse 
+de réaction réelle et la vitesse de réaction si la concentration était 
+uniforme et égale à $C_i^{\text{ref}}$ partout dans l'électrode :
 
 \begin{equation}
 \eta_E = \frac{\dot{r}_{\text{réel}}}{\dot{r}_{\text{idéal}}}
 \end{equation}
 
-avec le dénominateur du membre de droite qui vaut également $\dfrac{\nu_i a_v}{n_e F}\dfrac{j_0}{C_i^0}\left[\exp\!\left(\dfrac{\alpha_a F\eta}{RT}\right) - \exp\!\left(-\dfrac{\alpha_c F\eta}{RT}\right)\right]$ (réaction volumique).
+On introduit la constante de réaction volumique
+
+\begin{equation}
+k_v
+=
+\frac{\nu_i a_v k(\eta)}
+     {n_eF}.
+\end{equation}
 
 \paragraph{Calcul de la réaction réelle :}
+La vitesse réelle de réaction est obtenue en intégrant la vitesse
+locale sur l'épaisseur de l'électrode :
+
 \begin{align}
-\dot{r}_{\text{réel}} &= \int_{-1}^{0} k_v \avg{C_i}^l(\zeta)\, d\zeta
-= k_v C_i^0 \int_{-1}^{0} \frac{\cosh(\phi(\zeta+1))}{\cosh(\phi)}\, d\zeta \notag\\
-&= k_v C_i^0 \frac{\tanh(\phi)}{\phi}
+\dot r_{\text{réel}}
+&=
+\int_{-1}^{0}
+k_v
+\left\langle C_i \right\rangle^l(\zeta)
+\,d\zeta
+\notag\\
+&=
+k_v C_i^{\text{ref}}
+\int_{-1}^{0}
+\frac{\cosh(\phi(\zeta+1))}
+     {\cosh(\phi)}
+\,d\zeta
+\notag\\
+&=
+k_v C_i^{\text{ref}}
+\frac{\tanh(\phi)}
+     {\phi}.
 \end{align}
 
-en utilisant $\int_{-1}^{0} \cosh(\phi(\zeta+1))\, d\zeta = \left[\dfrac{\sinh(\phi(\zeta+1))}{\phi}\right]_{-1}^{0} = \dfrac{\sinh(\phi)}{\phi}$.
-
 \paragraph{Calcul du dénominateur :}
+Dans le cas idéal, la concentration est uniforme dans toute
+l'électrode :
 \begin{equation}
-\dot{r}_{\text{idéal}} = \int_{-1}^{0} k_v C_i^0\, d\zeta = k_v C_i^0
+\left\langle C_i \right\rangle^l
+=
+C_i^{\text{ref}}.
 \end{equation}
 
-D'où :
+On obtient alors :
+
 \begin{equation}
-\boxed{\eta_E = \frac{\tanh(\phi)}{\phi}}
+\dot r_{\text{idéal}}
+=
+\int_{-1}^{0}
+k_v C_i^{\text{ref}}
+\,d\zeta
+=
+k_v C_i^{\text{ref}}.
 \end{equation}
+
+Le facteur d'efficacité vaut donc :
+
+\begin{equation}
+\boxed{
+\eta_E
+=
+\frac{\tanh(\phi)}
+     {\phi}
+}
+\end{equation}
+
+\bigskip
+L'approche fondée sur le module de Thiele fournit une première
+description analytique du couplage entre diffusion et réaction dans
+l'électrode poreuse. Elle repose toutefois sur plusieurs hypothèses
+fortes, notamment la réduction à un transport purement diffusif, la
+linéarisation de la cinétique électrochimique et la représentation de
+la réaction par un terme volumique moyen. La validité de ces hypothèses
+n'est pas garantie dans les conditions de fonctionnement considérées.
+Il est donc nécessaire de développer une approche plus générale,
+permettant de conserver davantage d'informations sur la structure du
+milieu poreux et sur les mécanismes physiques mis en jeu.
