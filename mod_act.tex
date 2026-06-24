@@ -1,0 +1,115 @@
+\section*{Modèle retenu : application au CO$_2$ et CO}
+
+Dans un premier temps, on retient le modèle réduit obtenu à partir de
+l'approche de Thiele. Le transport est supposé purement diffusif, le
+système est considéré en régime stationnaire, et les effets de migration,
+de convection et de chute ohmique sont négligés.
+
+On considère uniquement deux espèces : le CO$_2$, consommé par la
+réaction, et le CO, produit par cette même réaction. La réaction globale
+est représentée sous la forme simplifiée :
+
+\begin{equation}
+\mathrm{CO_2 \longrightarrow CO}.
+\end{equation}
+
+Cette écriture ne décrit pas explicitement les espèces ioniques, l'eau,
+ni les intermédiaires réactionnels. Elle sert uniquement à construire un
+premier modèle diffusion--réaction pour les deux espèces carbonées.
+
+Le système étudié est donc :
+
+\begin{equation}
+\begin{cases}
+\varepsilon_l D_{CO_2}^{\mathrm{eff}}
+\dfrac{d^2 C_{CO_2}}{dz^2}
+=
+a_v k C_{CO_2},\\[0.4cm]
+\varepsilon_l D_{CO}^{\mathrm{eff}}
+\dfrac{d^2 C_{CO}}{dz^2}
+=
+- a_v k C_{CO_2}.
+\end{cases}
+\end{equation}
+
+On introduit la coordonnée adimensionnée
+
+\begin{equation}
+\zeta = \frac{z}{L},
+\end{equation}
+
+ainsi que le module de Thiele associé à la consommation du CO$_2$ :
+
+\begin{equation}
+\phi^2 =
+\frac{a_v k L^2}
+{\varepsilon_l D_{CO_2}^{\mathrm{eff}}}.
+\end{equation}
+
+Le problème devient alors :
+
+\begin{equation}
+\begin{cases}
+\dfrac{d^2 C_{CO_2}}{d\zeta^2}
+=
+\phi^2 C_{CO_2},\\[0.4cm]
+\dfrac{d^2 C_{CO}}{d\zeta^2}
+=
+-\dfrac{a_v k L^2}
+{\varepsilon_l D_{CO}^{\mathrm{eff}}}
+C_{CO_2}.
+\end{cases}
+\end{equation}
+
+On impose une concentration fixée à l'interface avec le bulk et un flux
+nul à la paroi :
+
+\begin{align}
+C_{CO_2}(0) &= C_{CO_2}^{\mathrm{bulk}},
+&
+\frac{d C_{CO_2}}{d\zeta}(-1) &= 0,\\
+C_{CO}(0) &= C_{CO}^{\mathrm{bulk}},
+&
+\frac{d C_{CO}}{d\zeta}(-1) &= 0.
+\end{align}
+
+La solution analytique pour le CO$_2$ est :
+
+\begin{equation}
+\boxed{
+C_{CO_2}(\zeta)
+=
+C_{CO_2}^{\mathrm{bulk}}
+\frac{
+\cosh\!\left[\phi(\zeta+1)\right]
+}
+{\cosh(\phi)}
+}
+\end{equation}
+
+Le CO étant produit localement à partir de la consommation du CO$_2$,
+son profil est obtenu en injectant la solution précédente dans l'équation
+de conservation du CO. On obtient :
+
+\begin{equation}
+\boxed{
+C_{CO}(\zeta)
+=
+C_{CO}^{\mathrm{bulk}}
++
+\frac{D_{CO_2}^{\mathrm{eff}}}
+     {D_{CO}^{\mathrm{eff}}}
+C_{CO_2}^{\mathrm{bulk}}
+\left[
+1-
+\frac{
+\cosh\!\left[\phi(\zeta+1)\right]
+}
+{\cosh(\phi)}
+\right]
+}
+\end{equation}
+
+Ce modèle constitue le premier cas test retenu pour les simulations.
+Il permet d'étudier l'influence du module de Thiele sur la pénétration
+du CO$_2$ dans l'électrode et sur la formation locale de CO.
