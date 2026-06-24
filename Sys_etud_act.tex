@@ -1,0 +1,211 @@
+% ============================================================
+\subsection*{Modèle homogénéisé et hypothèses de réduction}
+
+Les équations homogénéisées obtenues précédemment peuvent maintenant
+être regroupées afin de former un système macroscopique complet décrivant
+les transferts de matière et de charge dans l'électrode poreuse.
+
+En combinant les équations de conservation \eqref{eq:cons_homo},
+de Nernst--Planck \eqref{eq:Ni_final}, de Poisson \eqref{eq:poisson_homo}
+et de la loi d'Ohm \eqref{eq:ohm_homo}, on obtient le système
+d'équations homogénéisées suivant :
+
+\begin{equation}
+\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t}
+=
+\nab\!\cdot
+\left[
+D_i^{\mathrm{tot}}\nab\avg{C_i}^l
++
+\frac{z_iF}{RT}
+\varepsilon_l D_i^{\mathrm{eff,mig}}
+\avg{C_i}^l
+\nab\avg{\varphi_l}^l
+-
+\varepsilon_l \avg{C_i}^l \avg{v}^l
+\right]
+- a_v R_i
+\label{eq:sys1}
+\end{equation}
+
+\begin{equation}
+-\varepsilon_0 \nab\!\cdot
+\left(\varepsilon_l \varepsilon^{\mathrm{eff}}
+\nab\avg{\varphi_l}^l\right)
+=
+F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_q
+\label{eq:sys2}
+\end{equation}
+
+\begin{equation}
+\nab\!\cdot
+\left(\varepsilon_s \sigma^{\mathrm{eff}}
+\nab\avg{\varphi_s}^s\right)
+=
+a_v j
+\label{eq:sys3}
+\end{equation}
+
+On étudie maintenant l'effet de différentes hypothèses simplificatrices sur ce système.
+
+\subsubsection*{Simplifications du système}
+
+On applique successivement les hypothèses suivantes :
+
+\paragraph{1. Régime stationnaire :}
+On suppose que le système a atteint un état stationnaire, 
+c'est-à-dire que les concentrations ne varient plus dans le temps :
+
+\begin{equation}
+\frac{\partial \avg{C_i}^l}{\partial t} = 0
+\end{equation}
+
+\eqref{eq:sys1} se réduit alors à :
+
+\begin{equation}
+\nab\!\cdot
+\left[
+D_i^{\mathrm{tot}} \nab\avg{C_i}^l
++
+\frac{z_i F}{RT}\varepsilon_l D_i^{\mathrm{eff,mig}}
+\avg{C_i}^l \nab\avg{\varphi_l}^l
+-
+\varepsilon_l \avg{C_i}^l \avg{v}^l
+\right]
+= a_v R_i
+\end{equation}
+
+
+\paragraph{2. Pas de convection :}
+On suppose que la vitesse du fluide est négligeable :
+
+\begin{equation}
+\avg{v}^l = 0
+\end{equation}
+
+\eqref{eq:sys1} se réduit alors à :
+
+\begin{equation}
+\nab\!\cdot
+\left[
+D_i^{\mathrm{tot}} \nab\avg{C_i}^l
++
+\frac{z_i F}{RT}\varepsilon_l D_i^{\mathrm{eff,mig}}
+\avg{C_i}^l \nab\avg{\varphi_l}^l
+\right]
+= a_v R_i
+\end{equation}
+
+En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
+$D_i^{\mathrm{tot}} = \varepsilon_l D_i^{\mathrm{eff}}$.
+
+\paragraph{3. Électroneutralité :}
+On suppose que la charge électrique nette dans le fluide est nulle :
+
+\begin{equation}
+\sum_i z_i \avg{C_i}^l = 0
+\end{equation}
+
+L'équation de Poisson \eqref{eq:poisson_homo} est remplacée par cette 
+contrainte algébrique d'électroneutralité.
+
+\paragraph{4. Pas de migration :}
+On suppose que le terme migratoire est négligeable devant le terme
+diffusif, ce qui revient à négliger l'effet du champ électrique sur
+le transport des espèces. Le transport est alors gouverné uniquement
+par la diffusion et la réaction :
+
+\begin{equation}
+\nab\!\left(\varepsilon_l D_i^{\text{eff}} \nab\avg{C_i}^l\right) = a_v R_i
+\label{eq:diff_reaction}
+\end{equation}
+
+\paragraph{5. Potentiel solide uniforme :}
+Lorsque la chute de potentiel dans la phase solide est négligeable,
+le potentiel solide peut être considéré comme uniforme :
+
+\begin{equation}
+\nab\avg{\varphi_s}^s = 0
+\end{equation}
+
+La loi d'Ohm homogénéisée est alors automatiquement satisfaite et
+le potentiel solide devient un paramètre uniforme du problème.
+
+\paragraph{6. Module de Thiele :}
+On adimensionne l'équation \eqref{eq:diff_reaction} en posant 
+$\avg{C_i}^{l,*} = \frac{\avg{C_i}^l}{C_{\text{ref}}}$ et 
+$\zeta = \frac{z}{L}$, où $L$ est la longueur caractéristique macroscopique.
+En supposant une réaction du premier ordre $R_i = k \avg{C_i}^l$ :
+
+\begin{equation}
+\frac{d^2 \avg{C_i}^{l,*}}{d \zeta^2}
+=
+\underbrace{\frac{a_v k L^2}{\varepsilon_l D_i^{\text{eff}}}}_{\phi^2}
+\avg{C_i}^{l,*}
+\end{equation}
+
+où $\phi$ est le \textbf{module de Thiele}, qui compare le temps 
+caractéristique de diffusion au temps caractéristique de réaction :
+
+\begin{equation}
+\boxed{\phi^2 = \frac{a_v k L^2}{\varepsilon_l D_i^{\text{eff}}}}
+\end{equation}
+
+\begin{itemize}
+    \item $\phi \ll 1$ : la diffusion est rapide devant la réaction, 
+    la concentration est uniforme dans l'électrode.
+    \item $\phi \gg 1$ : la réaction est rapide devant la diffusion, 
+    la concentration chute rapidement près de l'interface.
+\end{itemize}
+
+La solution analytique de cette équation ainsi que l'interprétation
+physique du module de Thiele ont été présentées dans la section
+consacrée à l'approche de Thiele.
+
+\subsubsection*{Conditions limites}
+
+Le système homogénéisé \eqref{eq:sys1}--\eqref{eq:sys3} doit être complété
+par des conditions limites traduisant les échanges avec le milieu extérieur
+et les contraintes imposées aux frontières de l'électrode poreuse.
+On considère ici une géométrie unidimensionnelle selon la direction
+normale à l'électrode.
+
+\paragraph{Paroi conductrice :}
+À la paroi conductrice, aucun échange de matière n'est possible avec
+l'extérieur. On impose donc un flux nul pour les espèces dissoutes.
+Le potentiel dans le fluide vérifie une condition de symétrie normale
+à la paroi, tandis que le potentiel solide est fixé à la valeur imposée
+$E$ :
+\begin{align*}
+\avg{N_i} &= 0\\
+\frac{\partial \avg{\varphi_l}^l}{\partial \zeta} &= 0\\
+\avg{\varphi_s}^s &= E
+\end{align*}
+
+\paragraph{Interface pore / milieu homogène :}
+À l'interface entre l'électrode poreuse et l'électrolyte bulk, les
+concentrations et le potentiel électrique dans le fluide sont supposés
+continus :
+
+\begin{align*}
+\avg{C_i}^l &= C_i^{\text{bulk}}\\
+\avg{\varphi_l}^l &= \varphi_l^{\text{bulk}}
+\end{align*}
+
+Lorsque l'équation de Poisson est conservée, la continuité du
+déplacement électrique impose également :
+
+\begin{equation*}
+\varepsilon_l \varepsilon^{\text{eff}}
+\frac{\partial \avg{\varphi_l}^l}{\partial \zeta}
+=
+\varepsilon_0
+\frac{\partial \varphi_l}{\partial \zeta}.
+\end{equation*}
+
+\bigskip
+Les différentes hypothèses introduites permettent de relier le système
+homogénéisé général à des modèles réduits plus simples. En particulier,
+le modèle de Thiele apparaît comme un cas limite du formalisme obtenu
+par homogénéisation lorsque seuls les phénomènes de diffusion et de
+réaction sont conservés.
