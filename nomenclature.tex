@@ -10,28 +10,31 @@
 \nomenclature[AAsf]{$A_{sf}$}{Aire de l'interface fluide-solide ($\text{m}^2$)}
 \nomenclature[Ab]{$\mathbf{b}$}{Vecteur de fermeture pour la concentration (m)}
 \nomenclature[ACi]{$C_i$}{Concentration de l'espèce $i$ ($\text{mol m}^{-3}$)}
+\nomenclature[ACref]{$C_\text{ref}$}{Concentration de référence ($\text{mol m}^{-3}$)}
 \nomenclature[Ad]{$\mathbf{d}$}{Vecteur de fermeture pour le potentiel électrique (m)}
-\nomenclature[ADa]{$Da$}{Nombre de Damköhler $= j_n L / (F D_i C_\text{ref})$}
+\nomenclature[ADa]{$Da$}{Nombre de Damköhler $= j\,n\,l_e / (F D_i C_\text{ref})$}
 \nomenclature[ADi]{$D_i$}{Coefficient de diffusion de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADei]{$D^e_i$}{Coefficient de diffusion effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADmig]{$D^{e,\text{mig}}_i$}{Coefficient de migration effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADei]{$D^{eff}_i$}{Coefficient de diffusion effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADmig]{$D^{eff,\text{mig}}_i$}{Coefficient de migration effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
 \nomenclature[ADdisp]{$D_\text{disp}$}{Coefficient de dispersion ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADtot]{$D_\text{tot}$}{Coefficient de diffusion total, diffusion et dispersion ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADtot]{$D^\text{tot}_i$}{Coefficient de diffusion total, diffusion et dispersion ($\text{m}^2\text{s}^{-1}$)}
 \nomenclature[Ae]{$\mathbf{e}$}{Vecteur de fermeture pour le potentiel solide (m)}
 \nomenclature[AEeq]{$E_\text{eq}$}{Potentiel d'équilibre (V)}
+\nomenclature[AE]{$E$}{Potentiel imposé au collecteur de courant (V)}
 \nomenclature[AF]{$F$}{Constante de Faraday $= 96\,485$ C mol$^{-1}$}
 \nomenclature[Ag]{$g$}{Grandeur physique quelconque définie dans le fluide}
 \nomenclature[Aj]{$j$}{Densité de courant interfacial ($\text{A m}^{-2}$)}
 \nomenclature[Aj0]{$j_0$}{Densité de courant d'échange ($\text{A m}^{-2}$)}
 \nomenclature[Ak]{$k$}{Constante de réaction du premier ordre ($\text{m s}^{-1}$)}
-\nomenclature[AL]{$L$}{Longueur caractéristique macroscopique (m)}
+\nomenclature[Akv]{$k_v$}{Constante de réaction volumique $= \nu_i a_v k(\eta)/(n_e F)$ ($\text{s}^{-1}$)}
+%\nomenclature[AL]{$L$}{Longueur caractéristique macroscopique (m)}
 \nomenclature[Ale]{$l_e$}{Épaisseur de l'électrode (m)}
 \nomenclature[Alp]{$\ell_p$}{Longueur caractéristique à l'échelle du pore (m)}
-\nomenclature[An]{$\mathbf{n}$}{Vecteur normal unitaire (pointant du fluide vers le solide)}
-\nomenclature[An]{$\mathbf{n}_s$}{Vecteur normal unitaire sortant de la phase solide ; $\mathbf{n}_s = -\mathbf{n}$}
+\nomenclature[Ana]{$\mathbf{n}$}{Vecteur normal unitaire (pointant du fluide vers le solide)}
+\nomenclature[Anb]{$\mathbf{n}_s$}{Vecteur normal unitaire sortant de la phase solide ; $\mathbf{n}_s = -\mathbf{n}$}
 \nomenclature[Ane]{$n_e$}{Nombre d'électrons échangés lors de la réaction}
 \nomenclature[ANi]{$N_i$}{Flux molaire de l'espèce $i$ ($\text{mol m}^{-2}\text{s}^{-1}$)}
-\nomenclature[APe]{$Pe$}{Nombre de Péclet $= vL/D$}
+\nomenclature[APe]{$Pe$}{Nombre de Péclet $= v\,l_e/D_\text{ref}$}
 \nomenclature[AR]{$R$}{Constante des gaz parfaits $= 8.314$ J mol$^{-1}$ K$^{-1}$}
 \nomenclature[ARi]{$R_i$}{Taux de réaction interfaciale de l'espèce $i$ ($\text{mol m}^{-2}\text{s}^{-1}$)}
 \nomenclature[AT]{$T$}{Température (K)}
@@ -45,7 +48,7 @@
 % LETTRES GRECQUES
 % ------------------------------------------------------------
 \nomenclature[Baa]{$\alpha_a,\, \alpha_c$}{Coefficients de transfert anodique et cathodique}
-\nomenclature[Bdelta]{$\bar{\delta}$}{Longueur de Debye adimensionnée $= \lambda_0/L$}
+\nomenclature[Bdelta]{$\bar{\delta}$}{Longueur de Debye adimensionnée $= \lambda_0/\ell_p$}
 \nomenclature[Bepsl]{$\varepsilon_l$}{Porosité du milieu $= V_l/V$}
 \nomenclature[Bepss]{$\varepsilon_s$}{Fraction volumique du solide $= V_s/V$}
 \nomenclature[Bepse]{$\varepsilon^e$}{Permittivité effective du milieu poreux}
@@ -56,10 +59,11 @@
 \nomenclature[Blambda]{$\lambda_0$}{Longueur de Debye (m)}
 \nomenclature[Bnu]{$\nu_i$}{Coefficient stœchiométrique de l'espèce $i$}
 \nomenclature[Bphi]{$\varphi$}{Module de Thiele microscopique}
-\nomenclature[Bphimacro]{$\varphi_\text{macro}$}{Module de Thiele macroscopique}
+%\nomenclature[Bphimacro]{$\varphi_\text{macro}$}{Module de Thiele macroscopique}
 \nomenclature[Bphil]{$\varphi_l$}{Potentiel électrique dans le fluide (V)}
 \nomenclature[Bphis]{$\varphi_s$}{Potentiel électrique dans le solide (V)}
 \nomenclature[Bsigmas]{$\sigma_s$}{Conductivité électrique du solide ($\text{S m}^{-1}$)}
+\nomenclature[Bsigmaq]{$\sigma_q$}{Densité de charge surfacique à l'interface ($\text{C m}^{-2}$)}
 \nomenclature[Bsigmae]{$\sigma^e$}{Conductivité effective du milieu poreux ($\text{S m}^{-1}$)}
 
 % ------------------------------------------------------------

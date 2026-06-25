@@ -64,6 +64,34 @@ rigoureuse du transport repose alors sur les équations de
 Maxwell--Stefan, qui prennent explicitement en compte les interactions
 entre espèces dissoutes.
 
+\subsubsection*{Prise en compte des charges d'espace}
+
+Le modèle présenté repose sur l'hypothèse d'électroneutralité.
+ Lorsque la longueur de Debye devient comparable à la taille 
+ caractéristique des pores, cette hypothèse n'est plus valable
+  et il devient nécessaire de résoudre explicitement l'équation de Poisson :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \nabla^2 \phi_l
+=
+F \sum_i z_i C_i
+\qquad \text{dans } \Omega_l .
+\label{eq:poisson}
+\end{equation}
+
+À l'interface solide--fluide, la présence d'une densité 
+de charge surfacique associée à la double couche électrique impose la condition
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \, \mathbf{n}\cdot\nabla\phi_l
+=
+\sigma_q
+\qquad \text{sur } A_{sf}.
+\end{equation}
+
+Cette formulation permet de décrire explicitement les
+ effets de charge d'espace et de double couche électrique, au prix d'un modèle plus complexe.
+
 \subsubsection*{Effets stériques}
 
 L'équation de Nernst--Planck repose sur l'hypothèse d'espèces

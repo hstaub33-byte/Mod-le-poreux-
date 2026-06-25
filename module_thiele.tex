@@ -72,14 +72,9 @@ j = k(\eta)\,C_i,
 avec
 
 \begin{equation*}
-k(\eta)
-=
-\frac{j_0}{C_i^{\text{ref}}}
-\left[
-\exp\!\left(\frac{\alpha_aF\eta}{RT}\right)
--
-\exp\!\left(-\frac{\alpha_cF\eta}{RT}\right)
-\right].
+k(\eta) = \frac{j_0}{C^{\text{ref}}}
+\left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)
+     - \exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right].
 \end{equation*}
 
 \bigskip
@@ -112,8 +107,11 @@ moyenne :
 \begin{equation}
 R_i
 =
-\frac{\nu_i a_v k(\eta)}{n_eF}C_i.
+-\frac{\nu_i a_v k(\eta)}{n_eF}C_i.
 \end{equation}
+
+Le facteur $-\nu_i$, positif pour une espèce consommée, fait de $R_i$ la vitesse
+de consommation volumique du \ce{CO2}, comptée positive.
 
 À partir de cette étape, les concentrations sont interprétées comme des
 grandeurs moyennées dans la phase fluide du milieu poreux. Par souci de
@@ -126,7 +124,7 @@ diffusion--réaction :
 \begin{equation}
 D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
 =
-\frac{\nu_i a_v k(\eta)}{n_eF}\langle C_i\rangle^l.
+-\frac{\nu_i a_v k(\eta)}{n_eF}\langle C_i\rangle^l.
 \end{equation}
 
 Le milieu poreux étant maintenant décrit par des grandeurs moyennées,
@@ -142,13 +140,13 @@ fait alors apparaître naturellement le module de Thiele.
 
 On adimensionne l'équation précédente à l'aide de l'épaisseur
 caractéristique de l'électrode $l_e$ et d'une concentration de
-référence $C_i^{\text{ref}}$ :
+référence $C^{\text{ref}}$ :
 
 \begin{equation}
 \left\langle C_i \right\rangle^{l,*}
 =
 \frac{\left\langle C_i \right\rangle^l}
-     {C_i^{\text{ref}}},
+     {C^{\text{ref}}},
 \qquad
 z^*
 =
@@ -162,7 +160,7 @@ L'équation devient :
      {dz^{*2}}
 =
 \underbrace{
-\frac{\nu_i a_v k(\eta)l_e^2}
+-\frac{\nu_i a_v k(\eta)l_e^2}
      {n_eF D_i^{\mathrm{eff}}}
 }_{\phi^2}
 \left\langle C_i \right\rangle^{l,*}.
@@ -175,12 +173,14 @@ On définit alors le module de Thiele :
 \phi
 =
 l_e
-\sqrt{
+\sqrt{-
 \frac{\nu_i a_v k(\eta)}
      {n_eF D_i^{\mathrm{eff}}}
 }
 }
 \end{equation}
+
+Le facteur $-\nu_i$ (positif pour une espèce consommée) garantit $\Phi^2 > 0$.
 
 Le module de Thiele compare la vitesse caractéristique de réaction à la
 vitesse caractéristique de diffusion dans l'électrode. Lorsque
@@ -354,11 +354,12 @@ uniforme et égale à $C_i^{\text{ref}}$ partout dans l'électrode :
 \eta_E = \frac{\dot{r}_{\text{réel}}}{\dot{r}_{\text{idéal}}}
 \end{equation}
 
-On introduit la constante de réaction volumique
+On introduit la constante de réaction volumique, définie positive pour une espèce
+consommée :
 
 \begin{equation}
 k_v
-=
+=-
 \frac{\nu_i a_v k(\eta)}
      {n_eF}.
 \end{equation}

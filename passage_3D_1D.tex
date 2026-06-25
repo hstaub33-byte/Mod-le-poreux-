@@ -112,9 +112,11 @@ représente l'échange à l'interface fluide/solide. On introduit la vitesse de 
 \begin{equation}
 \mathbf{n}\cdot \mathbf{N}_i = -R_i \quad \text{sur } A_{sf}
 \end{equation}
-Dans le cas d’une réaction électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par la loi de Faraday :
+Avec la convention adoptée pour $j$, le taux $R_i$ représente la vitesse de
+production algébrique de l'espèce $i$,
+dans le cas d’une réaction électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par la loi de Faraday :
 \begin{equation}
-R_i =\frac{\nu_i}{n_e F} j
+R_i =-\frac{\nu_i}{n_e F} j
 \end{equation}
 où $n_e$ est le nombre d’électrons échangés et $F$ la constante de Faraday.
 $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
@@ -133,7 +135,7 @@ On obtient
 alors l'équation de conservation homogénéisée :
 \begin{equation}
 \varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \nab \cdot \avg{N_i} 
-= -a_v \avg{R_i}^{sf}
+= a_v \avg{R_i}^{sf}
 \label{eq:cons_homo}
 \end{equation}
 
@@ -566,6 +568,9 @@ D_i^{\mathrm{tot}}
 
 % ============================================================
 \subsection*{Équation de Poisson}
+À titre d'extension, on présente également l'homogénéisation de 
+l'équation de Poisson, qui permet de décrire explicitement les 
+effets de charge d'espace lorsque l'hypothèse d'électroneutralité n'est plus vérifiée.
 
 En appliquant la moyenne superficielle à l'équation de Poisson :
 
