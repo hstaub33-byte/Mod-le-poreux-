@@ -110,11 +110,11 @@ Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA$
 représente l'échange à l'interface fluide/solide. On introduit la vitesse de réaction interfaciale
  $R_i$ définie par :
 \begin{equation}
-\mathbf{n}\cdot \mathbf{N}_i = R_i \quad \text{sur } A_{sf}
+\mathbf{n}\cdot \mathbf{N}_i = -R_i \quad \text{sur } A_{sf}
 \end{equation}
 Dans le cas d’une réaction électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par la loi de Faraday :
 \begin{equation}
-R_i = \frac{j}{n_e F}
+R_i =\frac{\nu_i}{n_e F} j
 \end{equation}
 où $n_e$ est le nombre d’électrons échangés et $F$ la constante de Faraday.
 $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
@@ -186,7 +186,7 @@ C_i = \avg{C_i}^l + \tilde{C}_i
 \label{eq:decomp}
 \end{equation}
 
-où $\avg{C_i}^l$ varie à l'échelle macroscopique $L$ et $\tilde{C}_i$ 
+où $\avg{C_i}^l$ varie à l'échelle macroscopique $l_e$ et $\tilde{C}_i$ 
 varie à l'échelle du pore $\ell_p$.
 
 
@@ -220,7 +220,7 @@ où le premier terme correspond à la diffusion macroscopique et le second
 L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$. 
 On suppose que le transport à l'échelle du pore est quasi-stationnaire, 
 c'est-à-dire que le temps caractéristique à l'échelle du pore $\ell_p$ 
-est très petit devant le temps caractéristique macroscopique $L$. 
+est très petit devant le temps caractéristique macroscopique $l_e$. 
 Cela revient à négliger les effets transitoires à l'échelle du pore, 
 ce qui donne :
 
@@ -229,7 +229,7 @@ ce qui donne :
 \end{equation}
 
 En décomposant $C_i = \avg{C_i}^l + \tilde{C}_i$ et sachant que 
-$\avg{C_i}^l$ varie à l'échelle macroscopique $L \gg \ell_p$, 
+$\avg{C_i}^l$ varie à l'échelle macroscopique $l_e \gg \ell_p$, 
 on a $\nab^2\avg{C_i}^l \approx 0$ à l'échelle du pore. On obtient donc :
 
 \begin{equation}
@@ -277,13 +277,13 @@ On définit le coefficient de diffusion effectif $D_{\text{eff}}$ qui tient comp
 de la tortuosité du milieu poreux :
 
 \begin{equation}
-D_{\text{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
+D_i^{\mathrm{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
 \end{equation}
 
 Ce qui donne finalement :
 
 \begin{equation}
-\boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_{\text{eff}} \nab\avg{C_i}^l}
+\boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_i^{\mathrm{eff}} \nab\avg{C_i}^l}
 \label{eq:diff_eff}
 \end{equation}
 
@@ -393,18 +393,18 @@ l'équation de Poisson. On obtient ainsi :
 &= \varepsilon_l \avg{C_i}^l \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right) \nab\avg{\varphi_l}^l
 \end{align}
 
-En définissant le coefficient de migration effectif $D^{\text{eff,mig}}$ 
-de façon analogue à $D_{\text{eff}}$ :
+En définissant le coefficient de migration effectif $D_i^{\text{eff,mig}}$ 
+de façon analogue à $D_i^{\mathrm{eff}}$ :
 
 \begin{equation}
-D^{\text{eff,mig}} = D_i \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right)
+D_i^{\text{eff,mig}} = D_i \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right)
 \end{equation}
 
 On obtient finalement :
 
 \begin{equation}
 \boxed{-\frac{z_i F}{RT} D_i \avg{C_i \nab\varphi_l}
-= -\frac{z_i F}{RT} \varepsilon_l D^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l}
+= -\frac{z_i F}{RT} \varepsilon_l D_i^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l}
 \label{eq:mig_eff}
 \end{equation}
 
@@ -582,13 +582,13 @@ En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
 \end{equation}
 
 La condition limite à l'interface $A_{sf}$ traduit la présence d'une 
-charge de surface $\sigma_s$ :
+charge de surface $\sigma_q$ :
 
 \begin{equation}
--\varepsilon_0 \varepsilon_r \nab\varphi_l \cdot \mathbf{n} = \sigma_s 
+-\varepsilon_0 \varepsilon_r \nab\varphi_l \cdot \mathbf{n} = \sigma_q 
 \quad \text{sur } A_{sf}
 \quad \Rightarrow \quad 
-\mathbf{n}\cdot\nab\varphi_l = -\frac{\sigma_s}{\varepsilon_0 \varepsilon_r}
+\mathbf{n}\cdot\nab\varphi_l = -\frac{\sigma_q}{\varepsilon_0 \varepsilon_r}
 \end{equation}
 
 En utilisant la fermeture introduite précédemment pour
@@ -598,16 +598,16 @@ on obtient :
 
 \begin{align}
 \avg{\nab\nab\varphi_l}
-&= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r} \notag\\
+&= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
 &= \nab\!\left(\nab\avg{\varphi_l}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\varphi_l\, dA\right) 
-- \frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r} \notag\\
-&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
+- \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
 + \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
 + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA\right] \notag\\
-&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
 + \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
 \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)\right] \notag\\
-&= -\frac{a_v \sigma_s}{\varepsilon_0 \varepsilon_r}
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
 + \nab\!\left[\varepsilon_l \frac{\varepsilon^{\text{eff}}}{\varepsilon_r} \nab\avg{\varphi_l}^l\right]
 \end{align}
 
@@ -635,7 +635,7 @@ de Poisson homogénéisée :
 \begin{equation}
 \boxed{
 -\varepsilon_0 \nab\!\left(\varepsilon_l \varepsilon^{\text{eff}} \nab\avg{\varphi_l}^l\right)
-= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_s
+= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_q
 }
 \label{eq:poisson_homo}
 \end{equation}
@@ -678,12 +678,12 @@ En appliquant la moyenne superficielle à l'équation de conservation du
 courant dans le solide :
 
 \begin{equation}
-\avg{\nab \cdot (\sigma_s \nab\Phi_s)} = 0
+\avg{\nab \cdot (\sigma_s \nab\varphi_s)} = 0
 \end{equation}
 
 En notant
 \begin{equation}
-i_s = -\sigma_s \nab\Phi_s
+i_s = -\sigma_s \nab\varphi_s
 \end{equation}
 la densité de courant dans le solide, on obtient :
 
@@ -719,22 +719,22 @@ fluide/solide.
 
 On cherche maintenant à relier $\avg{i_s}$ au potentiel moyen dans la
 phase solide. En développant
-$\avg{i_s} = -\sigma_s \avg{\nab\Phi_s}$ et en appliquant le théorème
+$\avg{i_s} = -\sigma_s \avg{\nab\varphi_s}$ et en appliquant le théorème
 de la moyenne spatiale :
 
 \begin{align}
-\avg{\nab\Phi_s}
-&= \nab\avg{\Phi_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \Phi_s\, dA \notag\\
-&= \varepsilon_s \nab\avg{\Phi_s}^s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \Phi_s\, dA
+\avg{\nab\varphi_s}
+&= \nab\avg{\varphi_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA \notag\\
+&= \varepsilon_s \nab\avg{\varphi_s}^s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA
 \end{align}
 
 Comme pour le terme diffusif, les fluctuations du potentiel solide sont
 représentées à l'aide d'un vecteur de fermeture $e$ défini par
 
 \begin{equation}
-\widetilde{\Phi}_s
+\widetilde{\varphi}_s
 =
-e\cdot\nab\avg{\Phi_s}^s.
+e\cdot\nab\avg{\varphi_s}^s.
 \end{equation}
 
 Le vecteur de fermeture $e$ satisfait alors le problème local :
@@ -745,11 +745,11 @@ Le vecteur de fermeture $e$ satisfait alors le problème local :
 \end{align}
 complété par des conditions de périodicité sur les frontières de la cellule élémentaire.
 
-En substituant dans l'expression de $\avg{\nab\Phi_s}$ :
+En substituant dans l'expression de $\avg{\nab\varphi_s}$ :
 
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n}_s \widetilde{\Phi}_s\, dA
-= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, e\, dA\, \nab\avg{\Phi_s}^s
+\frac{1}{V}\int_{A_{sf}} \mathbf{n}_s \widetilde{\varphi}_s\, dA
+= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, e\, dA\, \nab\avg{\varphi_s}^s
 \end{equation}
 
 On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
@@ -761,15 +761,15 @@ On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
 D'où :
 
 \begin{equation}
-\avg{\nab\Phi_s}
-= \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right) \nab\avg{\Phi_s}^s
-= \varepsilon_s \frac{\sigma^{\text{eff}}}{\sigma_s} \nab\avg{\Phi_s}^s
+\avg{\nab\varphi_s}
+= \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right) \nab\avg{\varphi_s}^s
+= \varepsilon_s \frac{\sigma^{\text{eff}}}{\sigma_s} \nab\avg{\varphi_s}^s
 \end{equation}
 
 On obtient finalement la loi d'Ohm homogénéisée :
 
 \begin{equation}
-\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\Phi_s}^s\right) = a_v \avg{j}^{sf}}
+\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\varphi_s}^s\right) = a_v \avg{j}^{sf}}
 \label{eq:ohm_homo}
 \end{equation}
 
