@@ -1,0 +1,120 @@
+\appendix
+
+\section{Paramètres nécessaires aux simulations}
+
+Cette annexe rassemble les paramètres physiques nécessaires à la mise en œuvre des
+différents modèles présentés dans ce document. Les tableaux suivants ont également
+pour objectif de servir de support de discussion avec les expérimentateurs afin
+d'identifier les paramètres disponibles, ceux pouvant être mesurés et ceux devant
+être estimés à partir de la littérature ou ajustés.
+
+\subsection{Géométrie de l'électrode}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Paramètre & Symbole & Unité & Valeur \\
+\hline
+Épaisseur de l'électrode & $l_e$ & m & \\
+Porosité & $\varepsilon_l$ & -- & \\
+Fraction volumique solide & $\varepsilon_s$ & -- & \\
+Aire interfaciale spécifique & $a_v$ & m$^{-1}$ & \\
+Diamètre moyen des pores & $d_p$ & m & \\
+Tortuosité & $\tau$ & -- & \\
+\hline
+\end{tabular}
+\caption{Paramètres géométriques de l'électrode poreuse.}
+\end{table}
+
+\subsection{Transport des espèces}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Paramètre & Symbole & Unité & Valeur \\
+\hline
+Diffusion du CO$_2$ & $D_{CO_2}$ & m$^2$ s$^{-1}$ & \\
+Diffusion du CO & $D_{CO}$ & m$^2$ s$^{-1}$ & \\
+Diffusion effective du CO$_2$ & $D_{CO_2}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion effective du CO & $D_{CO}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
+Vitesse moyenne de l'électrolyte & $v$ & m s$^{-1}$ & \\
+Coefficient de dispersion & $D_{\mathrm{disp}}$ & m$^2$ s$^{-1}$ & \\
+\hline
+\end{tabular}
+\caption{Paramètres de transport.}
+\end{table}
+
+\subsection{Conditions opératoires}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Paramètre & Symbole & Unité & Valeur \\
+\hline
+Température & $T$ & K & \\
+Pression & $P$ & Pa & \\
+Concentration en CO$_2$ dans le bulk & $C_{CO_2}^{bulk}$ & mol m$^{-3}$ & \\
+Concentration en CO dans le bulk & $C_{CO}^{bulk}$ & mol m$^{-3}$ & \\
+pH & -- & -- & \\
+Composition de l'électrolyte & -- & -- & \\
+\hline
+\end{tabular}
+\caption{Conditions expérimentales.}
+\end{table}
+
+\subsection{Paramètres électrochimiques}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Paramètre & Symbole & Unité & Valeur \\
+\hline
+Potentiel appliqué & $E$ & V & \\
+Potentiel d'équilibre & $E_{eq}$ & V & \\
+Densité de courant d'échange & $j_0$ & A m$^{-2}$ & \\
+Coefficient anodique & $\alpha_a$ & -- & \\
+Coefficient cathodique & $\alpha_c$ & -- & \\
+Nombre d'électrons & $n_e$ & -- & \\
+Conductivité du solide & $\sigma_s$ & S m$^{-1}$ & \\
+Conductivité effective & $\sigma^{eff}$ & S m$^{-1}$ & \\
+Capacité de double couche (si transitoire) & $C_{dl}$ & F m$^{-2}$ & \\
+\hline
+\end{tabular}
+\caption{Paramètres électrochimiques.}
+\end{table}
+
+\subsection{Réaction étudiée}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Paramètre & Symbole & Unité & Valeur \\
+\hline
+Constante cinétique simplifiée & $k(\eta)$ & m s$^{-1}$ & \\
+ou densité de courant d'échange & $j_0$ & A m$^{-2}$ & \\
+Constantes de vitesse (si disponibles) & -- & -- & \\
+Sélectivité CO & -- & \% & \\
+Densité de courant totale & $j$ & A m$^{-2}$ & \\
+\hline
+\end{tabular}
+\caption{Paramètres cinétiques.}
+\end{table}
+
+\subsection{Paramètres dérivés}
+
+À partir des paramètres précédents, les quantités suivantes seront calculées :
+
+\begin{itemize}
+\item nombre de Péclet ;
+\item nombre de Damköhler ;
+\item module de Thiele ;
+\item facteur d'efficacité ;
+\item coefficients effectifs de transport.
+\end{itemize}
+
+\vspace{0.5cm}
