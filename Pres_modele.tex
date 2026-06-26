@@ -63,7 +63,8 @@ concentrées. La migration déplace les espèces chargées sous l'effet du champ
 électrique. Enfin, la convection correspond au transport des espèces par le
 mouvement global du fluide.
 
-Ces contributions sont décrites par l'équation de Nernst--Planck :
+Ces contributions sont décrites par l'équation de Nernst--Planck~\cite{newmanElectrochemicalSystems} :
+% migration =1.16,diff=1.27, conv=1.32
 
 \begin{equation}
 N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \quad \text{dans } \Omega_l 
@@ -112,7 +113,7 @@ prochaine étape.
 Le transport des espèces est couplé au champ électrique par 
 le terme de migration de l'équation de Nernst--Planck. Dans 
 le modèle de base, l'électrolyte est supposé électroneutre, 
-de sorte que la somme des charges portées par les espèces dissoutes est nulle :
+de sorte que la somme des charges portées par les espèces dissoutes est nulle~\cite{newmanElectrochemicalSystems} :
 
 \begin{equation}
 \sum_i z_i C_i = 0
@@ -120,7 +121,7 @@ de sorte que la somme des charges portées par les espèces dissoutes est nulle 
 \end{equation}
 
 Cette hypothèse est valable lorsque la longueur de Debye
- est très inférieure à la taille caractéristique des pores. 
+ est très inférieure à la taille caractéristique des pores~\cite{dickinsonElectroneutralityApproximationElectrochemistry2011}. 
  Le potentiel électrolytique $\phi_l$ n'est alors pas obtenu 
  en résolvant explicitement l'équation de Poisson, mais est 
  déterminé indirectement à partir des équations de transport 
@@ -154,7 +155,7 @@ Le transport des électrons dans la phase solide
 est décrit par la loi d'Ohm, qui relie la densité de courant électronique
 au gradient du potentiel électrique. 
 En l'absence d'accumulation de charge dans le
-solide, la conservation du courant impose :
+solide, la conservation du courant impose~\cite{newmanTheoreticalAnalysisCurrent1962, newmanPorouselectrodeTheoryBattery1975} :
 
 \begin{equation}
 \nab(-\sigma_s \nab \varphi_s) = 0 \quad \text{dans } \Omega_s 
@@ -162,7 +163,7 @@ solide, la conservation du courant impose :
 
 À l'interface solide/fluide, la conservation du courant 
 impose que tout le courant quittant $\Omega_s$ 
-soit intégralement transféré à l'électrolyte par la réaction électrochimique:
+soit intégralement transféré à l'électrolyte par la réaction électrochimique~\cite{devidtsGoverningEquationsTransport1997} :
 
 \begin{equation}
 \mathbf{n}_s \sigma_s \nab \varphi_s = j \quad \text{sur } A_{sf}
@@ -181,7 +182,7 @@ la loi reliant la densité de courant interfaciale à ces potentiels.
 
 \subsection*{Loi de Butler-Volmer}
 
-La densité de courant interfaciale $j$ est donnée par la loi de Butler-Volmer :
+La densité de courant interfaciale $j$ est donnée par la loi de Butler-Volmer~\cite{dickinsonButlerVolmerEquationElectrochemical2020} :
 
 \begin{equation}
 j = j_0 \left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)-\exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right] \quad \text{sur } A_{sf}
@@ -197,10 +198,10 @@ La loi de Butler--Volmer est retenue ici comme modèle cinétique de
 référence. Largement utilisée en électrochimie, elle fournit une relation
 simple entre la densité de courant interfaciale et la surtension locale.
 Cependant, son application à la réduction du \ce{CO2} sur des particules
-catalytiques greffées reste une approximation. Les mécanismes réactionnels
+catalytiques greffées reste une approximation~\cite{adesinaButlerVolmerEquationCO22024}. Les mécanismes réactionnels
 mis en jeu sont complexes, font intervenir plusieurs intermédiaires
 réactionnels et ne sont pas nécessairement décrits de manière adéquate par
-une cinétique globale de type Butler--Volmer. L'objectif de ce travail est
+une cinétique globale de type Butler--Volmer~\cite{koperTheoryMultipleProton2013, gottleProtoncoupledElectronTransfer2017}. L'objectif de ce travail est
 avant tout de construire un cadre de modélisation cohérent ; l'introduction
 d'une loi cinétique plus adaptée constituera une étape ultérieure.
 
@@ -259,9 +260,6 @@ homogène, le flux électronique normal est nul à cette interface :
 \begin{subequations}
 \begin{equation}
 C_i = C_i^{\text{hom}}
-\end{equation}
-\begin{equation}
-N_i = N_i^{\text{hom}}
 \end{equation}
 \begin{equation}
 \varphi_l = \varphi_l^{\text{hom}}

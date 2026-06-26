@@ -12,7 +12,7 @@ extensions envisageables, classées selon leur nature physique.
 \subsubsection*{Réaction de dégagement d'hydrogène (HER)}
 
 La réduction du \ce{CO2} est généralement en compétition avec la
-réaction de dégagement d'hydrogène (HER) :
+réaction de dégagement d'hydrogène (HER)~\cite{goyalCompetitionCO2Reduction2020} :
 
 \begin{align*}
 2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
@@ -32,7 +32,7 @@ j_{\mathrm{HER}}
 Cette réaction concurrente consomme également des électrons et peut
 fortement affecter la sélectivité du système lorsque
 $j_{\mathrm{HER}}$ devient comparable à
-$j_{\mathrm{CO_2RR}}$.
+$j_{\mathrm{CO_2RR}}$~\cite{marcandalliElectrolyteEffectsCO22022}.
 
 \subsubsection*{Réactions homogènes en volume}
 
@@ -49,7 +49,7 @@ peuvent avoir lieu dans l'électrolyte :
 Ces réactions modifient localement le pH ainsi que la répartition des
 espèces carbonées dissoutes. Elles influencent donc la concentration
 effective en \ce{CO2} disponible à proximité des sites catalytiques et
-peuvent affecter significativement les performances de l'électrode.
+peuvent affecter significativement les performances de l'électrode~\cite{loffelholzModelingElectrochemicalCO2022}.
 
 % ============================================================
 \subsection*{Transport et description de l'électrolyte}
@@ -62,14 +62,14 @@ entre espèces deviennent importantes et les coefficients de diffusion
 ne peuvent plus être considérés indépendants. Une description plus
 rigoureuse du transport repose alors sur les équations de
 Maxwell--Stefan, qui prennent explicitement en compte les interactions
-entre espèces dissoutes.
+entre espèces dissoutes~\cite{psaltisComparisonNernstPlanckMaxwellStefan2010, newmanElectrochemicalSystems}.
 
 \subsubsection*{Prise en compte des charges d'espace}
 
 Le modèle présenté repose sur l'hypothèse d'électroneutralité.
  Lorsque la longueur de Debye devient comparable à la taille 
  caractéristique des pores, cette hypothèse n'est plus valable
-  et il devient nécessaire de résoudre explicitement l'équation de Poisson :
+  et il devient nécessaire de résoudre explicitement l'équation de Poisson~\cite{bazantDiffuseChargeDynamicsElectrochemical2004} :
 
 \begin{equation}
 -\varepsilon_0 \varepsilon_r \nabla^2 \phi_l
@@ -107,8 +107,33 @@ ajoutée au flux :
 \right)
 \end{equation}
 
-où $a_j$ représente la taille caractéristique de l'espèce $j$.
+où $a_j$ représente la taille caractéristique de l'espèce $j$~\cite{johnson<3PathwaysEnhance2023}.
 
+\subsubsection*{Chargement de la double couche}
+
+Le modèle ne considère que le courant faradique, décrit par la loi de
+Butler--Volmer~\eqref{eq:BV}, associé au transfert de charge de la
+réaction électrochimique. À l'interface solide--fluide, la double couche
+électrique se comporte toutefois également comme un condensateur, dont la
+charge et la décharge donnent naissance à un courant capacitif. Le courant
+interfacial total se décompose alors en une contribution faradique et une
+contribution capacitive :
+
+\begin{equation}
+j_{\mathrm{tot}}
+=
+j_{\mathrm{far}}
++
+C_{dl}\,\frac{\partial \eta}{\partial t},
+\end{equation}
+
+où $C_{dl}$ est la capacité surfacique de double couche et $\eta$ la
+surtension locale. Ce courant capacitif est proportionnel à la dérivée
+temporelle de la surtension : il s'annule donc en régime stationnaire, cadre
+retenu dans ce travail, et seul le courant faradique subsiste. Sa prise en
+compte deviendrait nécessaire pour décrire la réponse dynamique de
+l'électrode, par exemple lors de l'analyse de transitoires ou de mesures
+d'impédance électrochimique~\cite{bazantDiffuseChargeDynamicsElectrochemical2004, biesheuvelNonlinearDynamicsCapacitive2010}.
 
 % ============================================================
 \subsection*{Hypothèses thermodynamiques}
@@ -148,7 +173,7 @@ actuel. Pourtant, la production de \ce{CO} ou de \ce{H2} peut conduire à
 l'apparition de phases gazeuses dans le milieu poreux. Ces bulles
 modifient localement la porosité et la surface active disponible, et
 peuvent également limiter l'accès des réactifs aux sites catalytiques en
-perturbant le transport de matière.
+perturbant le transport de matière~\cite{saccoModelingGasBubbleinduced2019}.
 
 
 \bigskip

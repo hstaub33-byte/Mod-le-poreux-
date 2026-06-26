@@ -12,7 +12,7 @@ le couplage entre transport et réaction dans un milieu poreux hétérogène,
 ni de faire apparaître les coefficients effectifs de manière systématique. 
 L'homogénéisation spatiale permet de lever ces limitations en dérivant 
 le modèle macroscopique directement depuis les équations microscopiques, 
-sans hypothèse sur la forme du profil de concentration.
+sans hypothèse sur la forme du profil de concentration~\cite{whitakerMethodVolumeAveraging1999, leMultiscaleModelingDiffusion2017}.
 
 La démarche est illustrée schématiquement en figure~\ref{fig:homogeneisation} : 
 on part d'une description hétérogène 3D à l'échelle du pore, on applique 
@@ -23,7 +23,7 @@ puis on se ramène à un problème 1D selon la direction normale à l'électrode
 
 Pour cela, on applique une procédure de prise de moyenne volumique, 
 qui consiste à moyenner les équations locales sur un volume élémentaire 
-représentatif contenant les deux phases. Les grandeurs locales sont 
+représentatif contenant les deux phases~\cite{whitakerMethodVolumeAveraging1999, leMultiscaleModelingDiffusion2017}. Les grandeurs locales sont 
 ainsi remplacées par des grandeurs moyennées à l'échelle macroscopique, 
 et les effets de la microstructure sont incorporés dans des coefficients 
 effectifs. On rappelle d'abord les outils mathématiques nécessaires à 
@@ -251,7 +251,7 @@ Par linéarité, on cherche une solution de la forme :
 \tilde{C}_i = \mathbf{b}\cdot\nab\avg{C_i}^l
 \end{equation}
 
-où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant :
+où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant~\cite{whitakerMethodVolumeAveraging1999, korneevDataDrivenMultiscaleFramework2020} :
 
 \begin{align}
 \nab^2 \mathbf{b} &= 0 \quad \text{dans } V_l \\
@@ -276,7 +276,7 @@ En substituant dans l'expression du terme diffusif et en factorisant :
 \end{align}
 
 On définit le coefficient de diffusion effectif $D_{\text{eff}}$ qui tient compte 
-de la tortuosité du milieu poreux :
+de la tortuosité du milieu poreux~\cite{whitakerMethodVolumeAveraging1999} :
 
 \begin{equation}
 D_i^{\mathrm{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
@@ -471,7 +471,7 @@ on obtient :
 \,\nab \avg{C_i}^l.
 \end{align}
 
-On définit alors le tenseur de dispersion hydrodynamique :
+On définit alors le tenseur de dispersion hydrodynamique~\cite{whitakerMethodVolumeAveraging1999} :
 
 \begin{equation}
 D^{\mathrm{disp}}
@@ -780,7 +780,7 @@ On obtient finalement la loi d'Ohm homogénéisée :
 
 L'homogénéisation des équations de transport, de l'équation de Poisson
 et de la loi d'Ohm conduit ainsi à un système macroscopique décrivant
-les transferts de matière et de charge dans l'électrode poreuse. Les
+les transferts de matière et de charge dans l'électrode poreuse~\cite{mendez-vasquezUpscalingMassElectric2025}. Les
 effets de la microstructure sont incorporés dans les différents
 coefficients effectifs, ce qui permet de représenter leur influence sans
 résoudre explicitement la géométrie des pores.
