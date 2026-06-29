@@ -85,8 +85,9 @@ explicitement les phénomènes à l'échelle de chaque pore. L'objectif est
 au contraire d'obtenir une description moyenne du comportement de
 l'électrode.
 
-La réaction électrochimique est initialement localisée à l'interface
-solide--fluide $A_{sf}$ et décrite par le flux réactionnel :
+La réaction électrochimique est initialement localisée sur la partie catalytiquement
+active de l'interface
+solide--fluide $A_{sf}^{\mathrm{cat}}$ et décrite par le flux réactionnel :
 
 \begin{equation*}
 -\mathbf n \cdot N_i
@@ -100,14 +101,16 @@ En utilisant la forme simplifiée de la cinétique
 j=k(\eta)C_i,
 \end{equation*}
 
-et en introduisant l'aire interfaciale spécifique volumique $a_v$, ce
-flux surfacique peut être converti en une vitesse de réaction volumique
-moyenne :
+et en introduisant l'aire interfaciale catalytique spécifique volumique
+$a_v^{\mathrm{cat}}$ le catalyseur n'étant greffé que sur une partie de
+l'interface solide--fluide, seule cette fraction active contribue à la
+réaction, ce flux surfacique peut être converti en une vitesse de
+réaction volumique moyenne :
 
 \begin{equation}
 R_i
 =
--\frac{\nu_i a_v k(\eta)}{n_eF}C_i.
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}C_i.
 \end{equation}
 
 Le facteur $-\nu_i$, positif pour une espèce consommée, fait de $R_i$ la vitesse
@@ -124,7 +127,7 @@ diffusion--réaction :
 \begin{equation}
 D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
 =
--\frac{\nu_i a_v k(\eta)}{n_eF}\langle C_i\rangle^l.
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}\langle C_i\rangle^l.
 \end{equation}
 
 Le milieu poreux étant maintenant décrit par des grandeurs moyennées,
@@ -160,7 +163,7 @@ L'équation devient :
      {dz^{*2}}
 =
 \underbrace{
--\frac{\nu_i a_v k(\eta)l_e^2}
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)l_e^2}
      {n_eF D_i^{\mathrm{eff}}}
 }_{\phi^2}
 \left\langle C_i \right\rangle^{l,*}.
@@ -174,7 +177,7 @@ On définit alors le module de Thiele :
 =
 l_e
 \sqrt{-
-\frac{\nu_i a_v k(\eta)}
+\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}
      {n_eF D_i^{\mathrm{eff}}}
 }
 }
@@ -360,7 +363,7 @@ consommée :
 \begin{equation}
 k_v
 =-
-\frac{\nu_i a_v k(\eta)}
+\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}
      {n_eF}.
 \end{equation}
 

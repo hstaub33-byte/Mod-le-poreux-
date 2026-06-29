@@ -87,19 +87,27 @@ L'équation de conservation s'écrit alors :
 \end{equation}
 
 À l'interface solide/fluide, les espèces sont consommées ou produites par
-la réaction électrochimique. Le flux normal de l'espèce $i$ est alors relié
-à la densité de courant interfaciale par la loi de Faraday :
+la réaction électrochimique. Le catalyseur n'étant greffé que sur une
+partie de la surface des fibres, on distingue la partie catalytiquement
+active de l'interface, notée $A_{sf}^{\mathrm{cat}}$, du reste de
+l'interface où le carbone est nu. Le flux normal de l'espèce $i$ n'est relié
+à la densité de courant interfaciale par la loi de Faraday que sur la zone
+active :
 
-
-\begin{equation}
--\mathbf{n} \cdot N_i = \frac{\nu_i}{n_e F} j \quad \text{sur } A_{sf} 
-\label{eq:faraday}
-\end{equation}
+\begin{subequations}
+\begin{align}
+-\mathbf{n} \cdot N_i &= \frac{\nu_i}{n_e F}\, j 
+&& \text{sur } A_{sf}^{\mathrm{cat}}, \\
+-\mathbf{n} \cdot N_i &= 0 
+&& \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}},
+\end{align}
+\end{subequations}
 
 où l'on adopte la convention d'un courant de réduction compté positivement :
 $j > 0$ correspond à la réaction cathodique de réduction du \ce{CO2}. Le
 coefficient $\nu_i$ est négatif pour une espèce consommée et positif pour une
-espèce produite.
+espèce produite. Sur la partie non catalytique, l'interface
+se comporte comme une paroi imperméable aux espèces.
 
 Le transport des espèces est couplé au champ électrique par le terme de
 migration. La détermination du potentiel électrolytique constitue donc la
@@ -163,11 +171,15 @@ solide, la conservation du courant impose~\cite{newmanTheoreticalAnalysisCurrent
 
 À l'interface solide/fluide, la conservation du courant 
 impose que tout le courant quittant $\Omega_s$ 
-soit intégralement transféré à l'électrolyte par la réaction électrochimique~\cite{devidtsGoverningEquationsTransport1997} :
+soit intégralement transféré à l'électrolyte par la réaction
+électrochimique~\cite{devidtsGoverningEquationsTransport1997}, sur la seule zone catalytiquement active :
 
-\begin{equation}
-\mathbf{n}_s \sigma_s \nab \varphi_s = j \quad \text{sur } A_{sf}
-\end{equation}
+\begin{subequations}
+\begin{align}
+\mathbf{n}_s \sigma_s \nab \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
+\mathbf{n}_s \sigma_s \nab \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
+\end{align}
+\end{subequations}
 
 On a introduit ici la normale $n_s$ à l'interface $A_{sf}$, orientée vers 
 l'extérieur de la phase solide (du solide vers le fluide), de sorte que 
@@ -185,7 +197,7 @@ la loi reliant la densité de courant interfaciale à ces potentiels.
 La densité de courant interfaciale $j$ est donnée par la loi de Butler-Volmer~\cite{dickinsonButlerVolmerEquationElectrochemical2020} :
 
 \begin{equation}
-j = j_0 \left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)-\exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right] \quad \text{sur } A_{sf}
+j = j_0 \left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)-\exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right] \quad \text{sur } A_{sf}^{\mathrm{cat}}
 \label{eq:BV}
 \end{equation}
 

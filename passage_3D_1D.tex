@@ -107,10 +107,12 @@ de la moyenne spatiale \eqref{eq:moy_spatiale} :
 \frac{\partial \avg{C_i}}{\partial t} + \nab \cdot \avg{N_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = 0
 \end{equation}
 Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA$ 
-représente l'échange à l'interface fluide/solide. On introduit la vitesse de réaction interfaciale
- $R_i$ définie par :
+représente l'échange à l'interface fluide/solide. Le flux normal étant nul
+sur la partie non catalytique de l'interface, seule la zone active
+$A_{sf}^{\mathrm{cat}}$ contribue à cet échange. On introduit la vitesse de
+réaction interfaciale $R_i$ définie par :
 \begin{equation}
-\mathbf{n}\cdot \mathbf{N}_i = -R_i \quad \text{sur } A_{sf}
+\mathbf{n}\cdot \mathbf{N}_i = -R_i \quad \text{sur } A_{sf}^{\mathrm{cat}}
 \end{equation}
 Avec la convention adoptée pour $j$, le taux $R_i$ représente la vitesse de
 production algébrique de l'espèce $i$,
@@ -127,15 +129,22 @@ a_v = \frac{A_{sf}}{V}
 \end{equation} 
 où $A_{sf}$ est l’aire de l’interface fluide–solide contenue dans le volume de contrôle $V$.
 Cette grandeur caractérise la surface d’échange disponible par unité de volume et s’exprime en m$^{-1}$.
+Le catalyseur n'étant greffé que sur une partie de cette interface, on
+introduit l'aire interfaciale \emph{catalytique} spécifique volumique :
+\begin{equation}
+a_v^{\mathrm{cat}} = \frac{A_{sf}^{\mathrm{cat}}}{V} = \theta\, a_v,
+\qquad \theta = \frac{A_{sf}^{\mathrm{cat}}}{A_{sf}} \in [0,1],
+\end{equation}
+où $\theta$ représente la fraction catalytiquement active de l'interface.
 On a donc : %Faut se mettre d'accord sur une convention pour le signe
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = -a_v \avg{R_i}^{sf}
-\end{equation} 
+\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \mathbf{n} \cdot N_i\, dA = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
+\end{equation}
 On obtient 
 alors l'équation de conservation homogénéisée :
 \begin{equation}
 \varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \nab \cdot \avg{N_i} 
-= a_v \avg{R_i}^{sf}
+= a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:cons_homo}
 \end{equation}
 
@@ -151,6 +160,14 @@ N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
 où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante 
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
 $\varphi_l$ le potentiel électrique dans le fluide.
+
+La distinction entre interface géométrique et interface catalytique
+n'intervient que dans le terme source réactionnel. Pour le transport des
+espèces, l'interface complète $A_{sf}$ reste imperméable, qu'elle soit
+catalytique ou non : les problèmes de fermeture et les coefficients
+effectifs qui en découlent ($D_i^{\mathrm{eff}}$, $D_i^{\mathrm{eff,mig}}$,
+$\sigma^{\mathrm{eff}}$, $\varepsilon^{\mathrm{eff}}$) demeurent donc
+inchangés et continuent de porter sur $A_{sf}$.
 
 % ============================================================
 
@@ -716,7 +733,7 @@ fluide/solide, on obtient :
 \begin{equation}
 \nab \cdot \avg{i_s}
 =
--a_v \avg{j}^{sf}.
+-a_v^{\mathrm{cat}} \avg{j}^{sf}.
 \end{equation}
 
 où $\avg{j}^{sf}$ est la densité de courant échangée à l'interface
@@ -774,7 +791,7 @@ D'où :
 On obtient finalement la loi d'Ohm homogénéisée :
 
 \begin{equation}
-\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\varphi_s}^s\right) = a_v \avg{j}^{sf}}
+\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\varphi_s}^s\right) = a_v^{\mathrm{cat}} \avg{j}^{sf}}
 \label{eq:ohm_homo}
 \end{equation}
 

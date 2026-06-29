@@ -24,7 +24,7 @@ D_i^{\mathrm{tot}}\nab\avg{C_i}^l
 -
 \varepsilon_l \avg{C_i}^l \avg{v}^l
 \right]
-+ a_v R_i
++ a_v^{\mathrm{cat}} R_i
 \label{eq:sys1}
 \end{equation}
 
@@ -42,7 +42,7 @@ F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_q
 \left(\varepsilon_s \sigma^{\mathrm{eff}}
 \nab\avg{\varphi_s}^s\right)
 =
-a_v j
+a_v^{\mathrm{cat}} j
 \label{eq:sys3}
 \end{equation}
 
@@ -72,7 +72,7 @@ D_i^{\mathrm{tot}} \nab\avg{C_i}^l
 -
 \varepsilon_l \avg{C_i}^l \avg{v}^l
 \right]
-= -a_v R_i
+= -a_v^{\mathrm{cat}} R_i
 \end{equation}
 
 
@@ -93,7 +93,7 @@ D_i^{\mathrm{tot}} \nab\avg{C_i}^l
 \frac{z_i F}{RT}\varepsilon_l D_i^{\mathrm{eff,mig}}
 \avg{C_i}^l \nab\avg{\varphi_l}^l
 \right]
-= -a_v R_i
+= -a_v^{\mathrm{cat}} R_i
 \end{equation}
 
 En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
@@ -116,7 +116,7 @@ le transport des espèces. Le transport est alors gouverné uniquement
 par la diffusion et la réaction :
 
 \begin{equation}
-\nab\!\left(\varepsilon_l D_i^{\text{eff}} \nab\avg{C_i}^l\right) = -a_v R_i
+\nab\!\left(\varepsilon_l D_i^{\text{eff}} \nab\avg{C_i}^l\right) = -a_v^{\mathrm{cat}} R_i
 \label{eq:diff_reaction}
 \end{equation}
 
@@ -140,7 +140,7 @@ En supposant une réaction du premier ordre $R_i = k \avg{C_i}^l$ :
 \begin{equation}
 \frac{d^2 \avg{C_i}^{l,*}}{d \zeta^2}
 =
-\underbrace{\frac{a_v k l_e^2}{\varepsilon_l D_i^{\text{eff}}}}_{\phi^2}
+\underbrace{\frac{a_v^{\mathrm{cat}} k l_e^2}{\varepsilon_l D_i^{\text{eff}}}}_{\phi^2}
 \avg{C_i}^{l,*}
 \end{equation}
 
@@ -148,7 +148,7 @@ où $\phi$ est le \textbf{module de Thiele}, qui compare le temps
 caractéristique de diffusion au temps caractéristique de réaction :
 
 \begin{equation}
-\boxed{\phi^2 = \frac{a_v k l_e^2}{\varepsilon_l D_i^{\text{eff}}}}
+\boxed{\phi^2 = \frac{a_v^{\mathrm{cat}} k l_e^2}{\varepsilon_l D_i^{\text{eff}}}}
 \end{equation}
 
 \begin{itemize}
