@@ -10,15 +10,18 @@ un électrolyte contenant le \ce{CO2} dissous. Deux configurations sont
 envisageables pour l'apport en \ce{CO2} : soit par électrode à 
 diffusion gazeuse (GDE), soit par bullage direct dans la phase fluide. 
 
-Les espèces dissoutes sont transportées dans l'électrolyte tandis que 
-les électrons circulent dans la phase solide conductrice. Les deux 
-domaines sont séparés par une interface solide/fluide $A_{sf}$, 
-siège des réactions électrochimiques de réduction du \ce{CO2}.
+Les espèces dissoutes sont transportées dans l'électrolyte tandis que les
+électrons circulent dans la phase solide conductrice. Les deux domaines sont
+séparés par une interface solide/fluide $A_{sf}$. Le catalyseur n'étant
+greffé que sur une partie de cette interface, les réactions électrochimiques
+de réduction du \ce{CO2} ne se produisent que sur sa fraction
+catalytiquement active, notée $A_{sf}^{\mathrm{cat}}$.
 
 La géométrie du milieu poreux influence à la fois le transport 
 des espèces et l'intensité des échanges électrochimiques. Elle 
 sera caractérisée dans la suite par la porosité $\varepsilon_l$
-et l'aire interfaciale spécifique volumique $a_v$.
+et l'aire interfaciale spécifique volumique $a_v$. %Est ce que je met plus de paramètres ?
+%Je laisse av car c'est trop dur d'expliquer directement av cat
 
 L'électrode poreuse est en contact avec une phase fluide homogène située
 hors du milieu poreux. Cette région représente le volume d'électrolyte
@@ -30,10 +33,12 @@ condition aux limites pour le domaine poreux.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{figures/schema}
-    \caption{Représentation schématique de l'électrode poreuse : 
-    phase solide $\Omega_s$ (fibres de carbone avec catalyseur greffé), 
-    phase fluide $\Omega_l$ (électrolyte chargé en \ce{CO2} dissous) 
-    et interface $A_{sf}$ siège des réactions électrochimiques.}
+\caption{Représentation schématique de l'électrode poreuse : phase solide
+$\Omega_s$ (fibres de carbone portant le catalyseur greffé), phase fluide
+$\Omega_l$ (électrolyte chargé en \ce{CO2} dissous) et interface catalytique
+$A_{sf}^{\mathrm{cat}}$, siège des réactions électrochimiques. L'électrode
+est en contact, à sa base, avec une phase homogène d'électrolyte
+parfaitement agité qui sert de condition aux limites au domaine poreux.}
     \label{fig:systeme}
 \end{figure}
 
@@ -46,7 +51,7 @@ La réaction électrochimique visée est la réduction du \ce{CO2} en \ce{CO} :
 La modélisation de cette réaction nécessite de décrire le transport des
 espèces dans l'électrolyte, la circulation des électrons dans la phase
 solide conductrice ainsi que la cinétique électrochimique à l'interface
-$A_{sf}$.
+$A_{sf}$. % Je laisse Asf ? je pourrais mettre asf cat mais c'est lourd
 
 
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,14 +76,21 @@ N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \quad \tex
 \label{eq:nernst-planck}
 \end{equation}
 
+%La conservation de la masse de l'espèce $i$ dans $\Omega_l$ traduit le
+% bilan entre les flux
+%entrant et sortant d'un volume de contrôle. 
+%Dans le cas général, ce bilan
+%pourrait également faire intervenir un terme source associé à une réaction
+%chimique se produisant dans le volume. Cependant, les réactions
+%électrochimiques étant supposées localisées à l'interface solide/fluide
+%$A_{sf}$, aucun terme source volumique n'apparaît dans l'électrolyte.
+%L'équation de conservation s'écrit alors :
 La conservation de la masse de l'espèce $i$ dans $\Omega_l$ traduit le
-fait que la variation temporelle de $C_i$ résulte du bilan entre les flux
-entrant et sortant d'un volume de contrôle. Dans le cas général, ce bilan
-pourrait également faire intervenir un terme source associé à une réaction
-chimique se produisant dans le volume. Cependant, les réactions
-électrochimiques étant supposées localisées à l'interface solide/fluide
-$A_{sf}$, aucun terme source volumique n'apparaît dans l'électrolyte.
-L'équation de conservation s'écrit alors :
+bilan entre les flux
+entrant et sortant d'un volume de contrôle. Aucun terme source
+volumique n'apparaît dans l'électrolyte, les réactions électrochimiques étant
+localisées sur l'interface catalytique $A_{sf}^{\mathrm{cat}}$. L'équation de
+conservation s'écrit alors :
 
 
 \begin{equation}
@@ -97,7 +109,7 @@ active :
 \begin{subequations}
 \begin{align}
 -\mathbf{n} \cdot N_i &= \frac{\nu_i}{n_e F}\, j 
-&& \text{sur } A_{sf}^{\mathrm{cat}}, \\
+&& \text{sur } A_{sf}^{\mathrm{cat}}, \label{eq:faraday} \\
 -\mathbf{n} \cdot N_i &= 0 
 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}},
 \end{align}

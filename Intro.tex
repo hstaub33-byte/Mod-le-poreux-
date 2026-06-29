@@ -1,22 +1,20 @@
 \section*{Introduction}
 
-Ce document présente le développement d'un modèle de transport et de 
-réaction dans une électrode poreuse dédiée à la réduction électrochimique
- du CO$_2$. L'objectif est de construire un modèle homogénéisé 
- unidimensionnel à partir d'une description tridimensionnelle
-  à l'échelle du pore, tout en identifiant les hypothèses physiques
-   nécessaires à cette réduction de modèle.
+Construction d'un modèle 1D homogénéisé de transport
+et réaction dans une électrode poreuse (\ce{CO2RR}), à partir d'un modèle
+3D à l'échelle du pore.
 
-Le point de départ est un modèle 3D couplant le transport 
-des espèces par Nernst–Planck, le transport électronique 
-dans la phase solide, la cinétique interfaciale et la 
-description du potentiel électrique. Ce modèle sert de 
-cadre de référence pour analyser les hypothèses de 
-simplification et développer des modèles macroscopiques adaptés.
-
-Après la présentation du modèle microscopique et de ses hypothèses,
- une analyse adimensionnelle est menée afin d'identifier les régimes 
- physiques dominants. Deux approches de réduction sont ensuite présentées :
-  une première fondée sur le module de Thiele, puis une approche plus générale 
-  basée sur l'homogénéisation par prise de moyenne volumique. Le document se conclut 
-  par une discussion des simulations envisagées pour valider les modèles obtenus.
+\textbf{Contenu :}
+\begin{itemize}
+  \item Modèle 3D local : Nernst–Planck (espèces), Ohm (électrons),
+        Butler–Volmer (cinétique), électroneutralité / Poisson (potentiel).
+  \item Nombres adimensionnels : Péclet, Damköhler, Debye.
+  \item Limites et extensions du modèle de base.
+  \item Réduction 1D par deux voies :
+    \begin{itemize}
+      \item module de Thiele (simple, solution analytique) ;
+      \item homogénéisation par prise de moyenne volumique (générale,
+            coefficients effectifs) — Thiele en est un cas limite.
+    \end{itemize}
+  \item Cas test : diffusion–réaction \ce{CO2} $\to$ \ce{CO}.
+\end{itemize}

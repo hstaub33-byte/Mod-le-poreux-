@@ -85,7 +85,7 @@ Ce théorème permet d'échanger la moyenne et la dérivée temporelle,
 \left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
 \end{equation}
 
-\newpage
+\bigskip
 
 % ============================================================
 \subsection*{Équation de conservation}
@@ -106,17 +106,18 @@ de la moyenne spatiale \eqref{eq:moy_spatiale} :
 \begin{equation}
 \frac{\partial \avg{C_i}}{\partial t} + \nab \cdot \avg{N_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = 0
 \end{equation}
-Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA$ 
-représente l'échange à l'interface fluide/solide. Le flux normal étant nul
-sur la partie non catalytique de l'interface, seule la zone active
-$A_{sf}^{\mathrm{cat}}$ contribue à cet échange. On introduit la vitesse de
-réaction interfaciale $R_i$ définie par :
+Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n}\cdot N_i\, dA$
+représente l'échange de matière à l'interface fluide/solide. Comme le flux
+normal est nul sur la partie non catalytique, cet échange se réduit à une
+intégrale sur la seule zone active $A_{sf}^{\mathrm{cat}}$, où l'on introduit
+la vitesse de réaction interfaciale $R_i$ définie par :
 \begin{equation}
 \mathbf{n}\cdot \mathbf{N}_i = -R_i \quad \text{sur } A_{sf}^{\mathrm{cat}}
 \end{equation}
 Avec la convention adoptée pour $j$, le taux $R_i$ représente la vitesse de
-production algébrique de l'espèce $i$,
-dans le cas d’une réaction électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par la loi de Faraday :
+production algébrique de l'espèce $i$. Dans le cas d'une réaction
+électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par
+la loi de Faraday :
 \begin{equation}
 R_i =-\frac{\nu_i}{n_e F} j
 \end{equation}
@@ -130,7 +131,7 @@ a_v = \frac{A_{sf}}{V}
 où $A_{sf}$ est l’aire de l’interface fluide–solide contenue dans le volume de contrôle $V$.
 Cette grandeur caractérise la surface d’échange disponible par unité de volume et s’exprime en m$^{-1}$.
 Le catalyseur n'étant greffé que sur une partie de cette interface, on
-introduit l'aire interfaciale \emph{catalytique} spécifique volumique :
+introduit l'aire interfaciale catalytique spécifique volumique :
 \begin{equation}
 a_v^{\mathrm{cat}} = \frac{A_{sf}^{\mathrm{cat}}}{V} = \theta\, a_v,
 \qquad \theta = \frac{A_{sf}^{\mathrm{cat}}}{A_{sf}} \in [0,1],
@@ -161,35 +162,29 @@ où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et 
 $\varphi_l$ le potentiel électrique dans le fluide.
 
-La distinction entre interface géométrique et interface catalytique
-n'intervient que dans le terme source réactionnel. Pour le transport des
-espèces, l'interface complète $A_{sf}$ reste imperméable, qu'elle soit
-catalytique ou non : les problèmes de fermeture et les coefficients
-effectifs qui en découlent ($D_i^{\mathrm{eff}}$, $D_i^{\mathrm{eff,mig}}$,
-$\sigma^{\mathrm{eff}}$, $\varepsilon^{\mathrm{eff}}$) demeurent donc
-inchangés et continuent de porter sur $A_{sf}$.
+On notera que la distinction entre interface géométrique et interface
+catalytique n'intervient que dans le terme source réactionnel. Pour le
+transport des espèces, l'interface complète $A_{sf}$ reste imperméable,
+qu'elle soit catalytique ou non.
 
 % ============================================================
+\bigskip
 
 \subsubsection*{Terme diffusif}
 
 En appliquant la moyenne superficielle au terme diffusif :
-
 \begin{equation}
 \avg{-D_i \nab C_i}= \frac{1}{V}\int_{V_l} (-D_i \nab C_i)\, dV \notag
 \end{equation}
 
 En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
-
 \begin{equation}
 \avg{-D_i \nab C_i}= -D_i \left(\nab\avg{C_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right) \notag
 \end{equation}
 
 \noindent En utilisant la relation \eqref{eq:relation_moy}, 
-
 \noindent on a $\avg{C_i} = \varepsilon_l \avg{C_i}^l$, 
 donc $\nab\avg{C_i} = \nab(\varepsilon_l \avg{C_i}^l)$. En développant :
-
 \begin{equation}
 \avg{-D_i \nab C_i}= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \avg{C_i}^l \nab\varepsilon_l
 + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right)
@@ -199,7 +194,6 @@ On décompose ensuite $C_i$ en une moyenne intrinsèque et une fluctuation à l'
 % ============================================================
 % PAGE 2
 % ============================================================
-
 \begin{equation}
 C_i = \avg{C_i}^l + \tilde{C}_i
 \label{eq:decomp}
@@ -227,7 +221,6 @@ $\avg{C_i}^l$ varie à l'échelle macroscopique et peut sortir de l'intégrale :
 \end{equation}
 
 On obtient donc :
-
 \begin{equation}
 \avg{-D_i \nab C_i} = -D_i \varepsilon_l \nab\avg{C_i}^l
 - D_i \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
@@ -237,11 +230,11 @@ où le premier terme correspond à la diffusion macroscopique et le second
 à la correction due aux fluctuations de concentration à l'échelle du pore.
 
 L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$. 
-On suppose que le transport à l'échelle du pore est quasi-stationnaire, 
-c'est-à-dire que le temps caractéristique à l'échelle du pore $\ell_p$ 
-est très petit devant le temps caractéristique macroscopique $l_e$. 
-Cela revient à négliger les effets transitoires à l'échelle du pore, 
-ce qui donne :
+On suppose que le transport à l'échelle du pore est quasi-stationnaire. La
+longueur caractéristique du pore $\ell_p$ étant très petite devant la
+longueur macroscopique $l_e$, le transport s'y équilibre beaucoup plus
+rapidement qu'à l'échelle de l'électrode. On peut donc négliger les effets
+transitoires à l'échelle du pore, ce qui donne :
 
 \begin{equation}
 \nab^2 C_i = 0 \quad \text{dans } V_l
@@ -349,7 +342,6 @@ On développe chacun des quatre termes :
 \paragraph{Terme 1 :}
 $\avg{C_i}^l$ et $\nab\avg{\varphi_l}^l$ sont constants à l'échelle du pore 
 et peuvent sortir de l'intégrale :
-
 \begin{equation}
 \frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV
 = \avg{C_i}^l \nab\avg{\varphi_l}^l \frac{V_l}{V}
@@ -360,7 +352,6 @@ et peuvent sortir de l'intégrale :
 $\avg{C_i}^l$ est constant à l'échelle du pore et sort de l'intégrale. 
 En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} 
 et sachant que $\avg{\widetilde{\varphi}_l}^l = 0$ :
-
 \begin{equation}
 \frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV
 = \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA
@@ -369,7 +360,6 @@ et sachant que $\avg{\widetilde{\varphi}_l}^l = 0$ :
 \paragraph{Terme 3 :}
 $\nab\avg{\varphi_l}^l$ est constant à l'échelle du pore et sort de l'intégrale. 
 Or $\avg{\tilde{C}_i}^l = 0$ par définition de la fluctuation :
-
 \begin{equation}
 \frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV
 = \nab\avg{\varphi_l}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0} = 0
@@ -380,7 +370,6 @@ Ce terme est un produit de deux fluctuations à l'échelle du pore.
 Par hypothèse de faible corrélation entre les fluctuations de concentration
 et les fluctuations de potentiel à l'échelle du pore, ce terme est supposé
 négligeable devant les contributions du premier ordre :
-
 \begin{equation}
 \frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV \approx 0
 \end{equation}
@@ -403,8 +392,7 @@ représenter les fluctuations du potentiel à l'échelle du pore sous la forme
 Cette fermeture est introduite par analogie avec le problème diffusif.
 Elle constitue toutefois une approximation, puisque les fluctuations du
 potentiel sont en principe couplées aux fluctuations de concentration via
-l'équation de Poisson. On obtient ainsi :
-
+l'équation de Poisson. On obtient ainsi : %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
 \begin{align}
 \avg{C_i \nab\varphi_l}
 &= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
@@ -439,13 +427,11 @@ la dispersion hydrodynamique.
 De la même façon que pour les termes précédents, on applique la moyenne
 superficielle au terme convectif. On décompose la vitesse en une moyenne
 intrinsèque et une fluctuation à l'échelle du pore :
-
 \begin{equation}
 v = \avg{v}^l + \tilde{v}
 \end{equation}
 
 En injectant les décompositions de $C_i$ et $v$ :
-
 \begin{align}
 \avg{C_i v}
 &= \avg{(\avg{C_i}^l + \tilde{C}_i)(\avg{v}^l + \tilde{v})} \notag\\
@@ -475,7 +461,6 @@ En utilisant la fermeture obtenue précédemment,
 \end{equation}
 
 on obtient :
-
 \begin{align}
 \avg{\tilde{C}_i \tilde{v}}
 &=
@@ -535,7 +520,6 @@ En combinant les résultats obtenus pour les termes diffusif
 \eqref{eq:diff_eff}, migratoire \eqref{eq:mig_eff} et convectif
 \eqref{eq:conv_eff}, on obtient l'expression homogénéisée du flux de
 Nernst--Planck :
-
 \begin{align}
 \avg{N_i}
 &=
@@ -555,7 +539,6 @@ D^{\mathrm{disp}}
 \end{align}
 
 On définit alors le coefficient total de transport diffusif-dispersif :
-
 \begin{equation}
 D_i^{\mathrm{tot}}
 =
@@ -589,6 +572,16 @@ D_i^{\mathrm{tot}}
 l'équation de Poisson, qui permet de décrire explicitement les 
 effets de charge d'espace lorsque l'hypothèse d'électroneutralité n'est plus vérifiée.
 
+On réutilise ici, pour les fluctuations du potentiel $\widetilde{\varphi}_l$,
+la fermeture introduite pour le terme migratoire. Cette analogie constitue
+toutefois une approximation plus forte encore dans le cas de Poisson :
+le problème de fermeture y est en principe couplé aux fluctuations de
+concentration, puisque c'est précisément la distribution de charge qui
+source le potentiel. Traiter ce problème de fermeture de façon découplée,
+comme pour la diffusion ou la migration, revient à négliger ce couplage. La
+dérivation qui suit doit donc être comprise comme indicative, fournissant la
+structure du modèle homogénéisé plutôt qu'une fermeture rigoureuse.
+
 En appliquant la moyenne superficielle à l'équation de Poisson :
 
 \begin{equation}
@@ -617,7 +610,6 @@ En utilisant la fermeture introduite précédemment pour
 $\widetilde{\varphi}_l$, tout en gardant à l'esprit qu'elle constitue
 une approximation en présence du couplage avec l'équation de Poisson,
 on obtient :
-
 \begin{align}
 \avg{\nab\nab\varphi_l}
 &= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
@@ -692,7 +684,7 @@ d'Ohm, dont la forme homogénéisée est dérivée dans la section suivante.
 La loi d'Ohm décrit le transport du courant électrique dans la phase
 solide $\Omega_s$. Le traitement est analogue à celui du terme diffusif,
 mais appliqué à la phase solide : le problème de fermeture porte
-maintenant sur les fluctuations du potentiel $\widetilde{\Phi}_s$
+maintenant sur les fluctuations du potentiel $\widetilde{\varphi}_s$
 à l'échelle du pore.
 
 

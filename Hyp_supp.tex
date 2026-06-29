@@ -13,14 +13,12 @@ extensions envisageables, classées selon leur nature physique.
 
 La réduction du \ce{CO2} est généralement en compétition avec la
 réaction de dégagement d'hydrogène (HER)~\cite{goyalCompetitionCO2Reduction2020} :
-
 \begin{align*}
 2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
 2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
 \end{align*}
 
 Le courant total devient alors :
-
 \begin{equation}
 j_{\mathrm{tot}}
 =
@@ -29,10 +27,16 @@ j_{\mathrm{CO_2RR}}
 j_{\mathrm{HER}}
 \end{equation}
 
+La HER peut par ailleurs se produire non seulement sur les sites
+catalytiques, en compétition avec la réduction du \ce{CO2}, mais aussi sur
+le carbone nu du support, supposé inerte dans le modèle de base.
+%Hypothèse de moi donc a verifier avec les chimistes
+
 Cette réaction concurrente consomme également des électrons et peut
 fortement affecter la sélectivité du système lorsque
 $j_{\mathrm{HER}}$ devient comparable à
 $j_{\mathrm{CO_2RR}}$~\cite{marcandalliElectrolyteEffectsCO22022}.
+
 
 \subsubsection*{Réactions homogènes en volume}
 
@@ -45,6 +49,7 @@ peuvent avoir lieu dans l'électrolyte :
 \ce{HCO3-} &\rightleftharpoons \ce{H+ + CO3^{2-}} \\
 \ce{H2O} &\rightleftharpoons \ce{H+ + OH-}
 \end{align*}
+
 
 Ces réactions modifient localement le pH ainsi que la répartition des
 espèces carbonées dissoutes. Elles influencent donc la concentration
@@ -72,7 +77,7 @@ Le modèle présenté repose sur l'hypothèse d'électroneutralité.
   et il devient nécessaire de résoudre explicitement l'équation de Poisson~\cite{bazantDiffuseChargeDynamicsElectrochemical2004} :
 
 \begin{equation}
--\varepsilon_0 \varepsilon_r \nabla^2 \phi_l
+-\varepsilon_0 \varepsilon_r \nabla^2 \varphi_l
 =
 F \sum_i z_i C_i
 \qquad \text{dans } \Omega_l .
@@ -83,7 +88,7 @@ F \sum_i z_i C_i
 de charge surfacique associée à la double couche électrique impose la condition
 
 \begin{equation}
--\varepsilon_0 \varepsilon_r \, \mathbf{n}\cdot\nabla\phi_l
+-\varepsilon_0 \varepsilon_r \, \mathbf{n}\cdot\nabla\varphi_l
 =
 \sigma_q
 \qquad \text{sur } A_{sf}.
@@ -140,9 +145,9 @@ d'impédance électrochimique~\cite{bazantDiffuseChargeDynamicsElectrochemical20
 
 \subsubsection*{Température uniforme}
 
-La température est supposée uniforme et constante. Les effets liés aux
-gradients thermiques, à l'échauffement ohmique ou à la chaleur produite
-par les réactions électrochimiques ne sont pas pris en compte.
+La température est supposée uniforme et constante. Les effets liés à l'échauffement par effet Joule, à la chaleur produite par
+les réactions électrochimiques, ainsi qu'au couplage entre gradients
+thermiques et transport de matière (effet Soret), ne sont pas pris en compte.
 
 \subsubsection*{Pression uniforme}
 
@@ -163,7 +168,7 @@ limite $R_c \rightarrow 0$ dans la relation :
 
 
 \begin{equation}
-i_n = \frac{\phi^s - \phi^l}{R_c}
+i_n = \frac{\varphi_{s1} - \varphi_{s2}}{R_c}
 \end{equation}
 
 \subsubsection*{Formation de bulles}

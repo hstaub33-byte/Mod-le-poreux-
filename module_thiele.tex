@@ -12,7 +12,6 @@ l'électrode.
 Le modèle complet présenté précédemment couple :
 \begin{itemize}
 \item le transport des espèces par Nernst--Planck ;
-\item le potentiel électrolytique par Poisson ;
 \item le transport électronique par la loi d'Ohm ;
 \item la cinétique interfaciale par Butler--Volmer.
 \end{itemize}
@@ -33,13 +32,13 @@ devant les temps d'évolution du système. Les concentrations ne
 dépendent donc plus du temps :
 
 \begin{equation*}
-\frac{\partial C_i}{\partial t}=0.
+\frac{\partial C_i}{\partial t}=0
 \end{equation*}
 
 L'équation de conservation devient alors :
 
 \begin{equation*}
-\nabla\cdot N_i=0.
+\nabla\cdot N_i=0
 \end{equation*}
 
 \paragraph{2.Transport purement diffusif :}
@@ -48,7 +47,7 @@ On néglige les effets de migration électrique et de convection dans
 l'électrolyte. Le flux de matière se réduit alors à la loi de Fick :
 
 \begin{equation*}
-N_i=-D_i\nabla C_i.
+N_i=-D_i\nabla C_i
 \end{equation*}
 
 \paragraph{3. Surtension uniforme :}
@@ -57,7 +56,7 @@ solide et liquide sont suffisamment faibles pour considérer la
 surtension uniforme à l'échelle de l'électrode : 
 
 \begin{equation*}
-\eta = \mathrm{cste}.
+\eta = \mathrm{cste}
 \end{equation*}
 
 \paragraph{4. Cinétique du premier ordre :}
@@ -92,13 +91,13 @@ solide--fluide $A_{sf}^{\mathrm{cat}}$ et décrite par le flux réactionnel :
 \begin{equation*}
 -\mathbf n \cdot N_i
 =
-\frac{\nu_i}{n_eF}j.
+\frac{\nu_i}{n_eF}j
 \end{equation*}
 
-En utilisant la forme simplifiée de la cinétique
+En utilisant la forme simplifiée de la cinétique :
 
 \begin{equation*}
-j=k(\eta)C_i,
+j=k(\eta)C_i
 \end{equation*}
 
 et en introduisant l'aire interfaciale catalytique spécifique volumique
@@ -106,11 +105,12 @@ $a_v^{\mathrm{cat}}$ le catalyseur n'étant greffé que sur une partie de
 l'interface solide--fluide, seule cette fraction active contribue à la
 réaction, ce flux surfacique peut être converti en une vitesse de
 réaction volumique moyenne :
+%Mais j'uitlise avcat mais il est décrit après dans la partie homogénisation globale
 
 \begin{equation}
 R_i
 =
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}C_i.
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}C_i
 \end{equation}
 
 Le facteur $-\nu_i$, positif pour une espèce consommée, fait de $R_i$ la vitesse
@@ -127,7 +127,7 @@ diffusion--réaction :
 \begin{equation}
 D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
 =
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}\langle C_i\rangle^l.
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}\langle C_i\rangle^l
 \end{equation}
 
 Le milieu poreux étant maintenant décrit par des grandeurs moyennées,
@@ -153,7 +153,7 @@ référence $C^{\text{ref}}$ :
 \qquad
 z^*
 =
-\frac{z}{l_e}.
+\frac{z}{l_e}
 \end{equation}
 
 L'équation devient :
@@ -166,7 +166,7 @@ L'équation devient :
 -\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)l_e^2}
      {n_eF D_i^{\mathrm{eff}}}
 }_{\phi^2}
-\left\langle C_i \right\rangle^{l,*}.
+\left\langle C_i \right\rangle^{l,*}
 \end{equation}
 
 On définit alors le module de Thiele :
@@ -210,7 +210,7 @@ On note
 \begin{equation}
 \zeta = \frac{z}{l_e},
 \qquad
--1 \le \zeta \le 0.
+-1 \le \zeta \le 0
 \end{equation}
 
 Les conditions aux limites sont :
@@ -274,7 +274,7 @@ La solution générale peut être réécrite sous la forme :
 =
 C\cosh(\phi\zeta)
 +
-D\sinh(\phi\zeta).
+D\sinh(\phi\zeta)
 \end{equation*}
 
 \paragraph{D'après les conditions limites :}
@@ -292,7 +292,7 @@ La condition de flux nul à la base de l'électrode,
 conduit à
 
 \begin{equation*}
-D=C\tanh(\phi).
+D=C\tanh(\phi)
 \end{equation*}
 
 La condition de concentration imposée à l'interface,
@@ -336,7 +336,7 @@ où la dernière égalité résulte de l'identité :
 =
 \cosh(a)\cosh(b)
 +
-\sinh(a)\sinh(b).
+\sinh(a)\sinh(b)
 \end{equation*}
 
 La solution analytique permet d'obtenir explicitement le profil de
@@ -352,25 +352,22 @@ d'efficacité associé au module de Thiele.
 Le facteur d'efficacité est défini comme le rapport entre la vitesse 
 de réaction réelle et la vitesse de réaction si la concentration était 
 uniforme et égale à $C_i^{\text{ref}}$ partout dans l'électrode~\cite{wanPotentialDependentThiele} :
-
 \begin{equation}
 \eta_E = \frac{\dot{r}_{\text{réel}}}{\dot{r}_{\text{idéal}}}
 \end{equation}
 
 On introduit la constante de réaction volumique, définie positive pour une espèce
 consommée :
-
 \begin{equation}
 k_v
 =-
 \frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}
-     {n_eF}.
+     {n_eF}
 \end{equation}
 
 \paragraph{Calcul de la réaction réelle :}
 La vitesse réelle de réaction est obtenue en intégrant la vitesse
 locale sur l'épaisseur de l'électrode :
-
 \begin{align}
 \dot r_{\text{réel}}
 &=
@@ -389,7 +386,7 @@ k_v C_i^{\text{ref}}
 &=
 k_v C_i^{\text{ref}}
 \frac{\tanh(\phi)}
-     {\phi}.
+     {\phi}
 \end{align}
 
 \paragraph{Calcul du dénominateur :}
@@ -398,7 +395,7 @@ l'électrode :
 \begin{equation}
 \left\langle C_i \right\rangle^l
 =
-C_i^{\text{ref}}.
+C_i^{\text{ref}}
 \end{equation}
 
 On obtient alors :
@@ -410,7 +407,7 @@ On obtient alors :
 k_v C_i^{\text{ref}}
 \,d\zeta
 =
-k_v C_i^{\text{ref}}.
+k_v C_i^{\text{ref}}
 \end{equation}
 
 Le facteur d'efficacité vaut donc :
