@@ -6,7 +6,8 @@ Les équations homogénéisées obtenues précédemment peuvent maintenant
 les transferts de matière et de charge dans l'électrode poreuse.
 
 En combinant les équations de conservation \eqref{eq:cons_homo},
-de Nernst--Planck \eqref{eq:Ni_final}, de Poisson \eqref{eq:poisson_homo}
+de Nernst--Planck \eqref{eq:Ni_final}, de Poisson \eqref{eq:poisson_homo} %Poisson est réutilisé parce que je suis pas sûre qu'on puisse se débarasser de cette hypothèse
+%Faut quand même faire attnetion dans le sens ou l'homogéinisation avec poisson est très interdépendante
 et de la loi d'Ohm \eqref{eq:ohm_homo}, on obtient le système
 d'équations homogénéisées suivant~\cite{mendez-vasquezUpscalingMassElectric2025, bui<3ContinuumModeling2022} :
 
@@ -100,6 +101,8 @@ En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
 $D_i^{\mathrm{tot}} = \varepsilon_l D_i^{\mathrm{eff}}$.
 
 \paragraph{3. Électroneutralité :}
+%C'est dans le modèle initialement présenté, j'ai rajouté poisson dans
+ %le modèle homogène parce que je suis vraiment pas sûre de pouvoir le négligé
 On suppose que la charge électrique nette dans le fluide est nulle :
 
 \begin{equation}
@@ -186,7 +189,6 @@ $E$ :
 À l'interface entre l'électrode poreuse et l'électrolyte bulk, les
 concentrations et le potentiel électrique dans le fluide sont supposés
 continus :
-
 \begin{align*}
 \avg{C_i}^l &= C_i^{\text{bulk}}\\
 \avg{\varphi_l}^l &= \varphi_l^{\text{bulk}}
@@ -194,7 +196,6 @@ continus :
 
 Lorsque l'équation de Poisson est conservée, la continuité du
 déplacement électrique impose également :
-
 \begin{equation*}
 \varepsilon_l \varepsilon^{\text{eff}}
 \frac{\partial \avg{\varphi_l}^l}{\partial \zeta}
