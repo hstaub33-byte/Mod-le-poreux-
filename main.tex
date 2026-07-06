@@ -1,19 +1,24 @@
 \documentclass[12pt,a4paper,titlepage]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern} 
-\usepackage{babel}
-\usepackage{amsmath, amssymb}
-\usepackage{geometry}
-\usepackage{nomencl}        % <-- ajouter ici
-\usepackage{ifthen}
-\usepackage{tikz}
-\usepackage{microtype}
-\usepackage{parskip}
-\usepackage{titlesec}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage[version=4]{mhchem}   % pour \ce{CO2}
+\usepackage[utf8]{inputenc} %Permet d'écrire directement les caractères accentués (é, à, ç, etc.) dans le fichier source. Avec les distributions LaTeX récentes, ce package est souvent inutile car UTF-8 est le comportement par défaut.
+\usepackage[T1]{fontenc}%Utilise un encodage de police adapté aux langues européennes. Améliore la gestion des accents, la césure et le copier-coller du PDF.
+\usepackage{lmodern} %Utilise les polices Latin Modern, une version améliorée des polices par défaut de LaTeX (Computer Modern). Elles sont plus nettes, notamment dans les PDF.
+\usepackage{babel}%Adapte le document à une langue (français, anglais, etc.). Par exemple, avec \usepackage[french]{babel}, les dates, la typographie et la césure sont adaptées au français. Ici, aucune langue n'est précisée, donc il prend la langue par défaut.
+\usepackage{amsmath, amssymb}%Ajoute de nombreuses commandes pour écrire des formules mathématiques. C'est quasiment indispensable pour les documents scientifiques.
+\usepackage{geometry}%Permet de régler facilement les marges de la page (margin=2.5cm, par exemple).
+\usepackage{nomencl} %Permet de créer une liste des symboles ou une nomenclature dans le document.
+\usepackage{ifthen}%Ajoute des structures conditionnelles (if, then, else) dans le code LaTeX. Utile pour créer des documents plus complexes ou automatisés.
+\usepackage{tikz}%Permet de dessiner directement dans LaTeX : schémas, graphiques, organigrammes, figures géométriques, etc.
+\usepackage{microtype}%Améliore automatiquement la qualité de la typographie (espacement, justification, dépassement des ponctuations). Le texte paraît plus professionnel.
+\usepackage{parskip}%Modifie la mise en page des paragraphes : supprime généralement l'indentation et ajoute un espace vertical entre les paragraphes.
+\usepackage{titlesec}%Permet de personnaliser l'apparence des titres (\section, \subsection, etc.).
+\usepackage{graphicx}%Permet d'insérer des images avec \includegraphics. C'est le package standard pour les figures.
+\usepackage{float}%Ajoute de nouvelles options pour le placement des figures et tableaux, notamment le modificateur [H] qui force leur position exacte.
+\usepackage[version=4]{mhchem}   % Facilite l'écriture de formules chimiques
+\usepackage{enumitem}%Je veux un putain de point blanc
+\usepackage{caption}
+\captionsetup{
+    font={small,sl},
+    labelfont=bf}
 
 \titlespacing*{\section}
   {0pt}    % indentation gauche
@@ -50,13 +55,7 @@
 \input{Intro}
 \newpage
 \input{Pres_modele}
-\newpage
-\input{nombres_adimensionnels}
-\newpage
-\input{Hyp_supp}
-\newpage
-\input{Modele_cinetique}
-\newpage
+\newpage %Ici faudra que je rajoute réacteur piston phase homogène
 \input{module_thiele}
 \newpage
 \input{passage_3D_1D}
@@ -65,6 +64,14 @@
 \newpage
 \input{Mod_act}
 \newpage
+\input{Hyp_supp}
+\newpage
+\input{nombres_adimensionnels}
+%\newpage
+%\input{Modele_cinetique}
+\newpage
+
+
 \input{Conclusion}
 
 \newpage
@@ -73,5 +80,7 @@
 
 \newpage
 \appendix
+\input{Rapp_theo}
+\newpage
 \input{A_demander}
 \end{document} 

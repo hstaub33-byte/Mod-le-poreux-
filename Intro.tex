@@ -1,20 +1,34 @@
 \section*{Introduction}
 
+\textbf{Objectif :} 
 Construction d'un modèle 1D homogénéisé de transport
 et réaction dans une électrode poreuse (\ce{CO2RR}), à partir d'un modèle
-3D à l'échelle du pore.
-
+3D simple à l'échelle du pore. Des possibilités pour améliorer le modèle
+ de base sont également discutées. 
+ %Est ce qu'on dit qu'on vut un modèle qui donne des résultats cohérents 
+ %avec les expériences mais sans truc qui n'ajoute rien
+ 
 \textbf{Contenu :}
 \begin{itemize}
   \item Modèle 3D local : Nernst–Planck (espèces), Ohm (électrons),
         Butler–Volmer (cinétique), électroneutralité / Poisson (potentiel).
-  \item Nombres adimensionnels : Péclet, Damköhler, Debye.
-  \item Limites et extensions du modèle de base.
   \item Réduction 1D par deux voies :
-    \begin{itemize}
+    \begin{itemize}[label=$\circ$]
       \item module de Thiele (simple, solution analytique) ;
       \item homogénéisation par prise de moyenne volumique (générale,
-            coefficients effectifs) — Thiele en est un cas limite.
+            coefficients effectifs), Thiele en est un cas limite.
     \end{itemize}
   \item Cas test : diffusion–réaction \ce{CO2} $\to$ \ce{CO}.
+  \item Limites et extensions du modèle de base.
+  \item Nombres adimensionnels : Péclet, Damköhler, Debye.
 \end{itemize}
+
+\textbf{Annexes :}
+\begin{itemize}
+  \item Rappels théoriques : moyenne superficielle, théorème de la divergence de Gauss, théorème de la moyenne spatiale, théorème de transport.
+  \item Liste des grandeurs et paramètres utilisés dans le modèle.
+\end{itemize}
+
+%Je pourrais potentielement faire une vraie intro + une table des matièères
+%mais je ne suis pas sûre que ce soit pertinent ic
+%En effet, le but de ce document est de présenter le modèle et les résultats, pas de faire un mémoire complet sur le sujet.

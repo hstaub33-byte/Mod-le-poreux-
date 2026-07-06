@@ -32,62 +32,6 @@ transport et à la cinétique interfaciale.
 
 
 
-\subsection*{Rappels théoriques}
-
-\paragraph{Moyenne superficielle :}
-On considère une grandeur $g$ définie uniquement dans le volume fluide $V_l$.
-On définit sa moyenne sur le volume total $V$ (fluide + solide) par :
-
-\begin{equation}
-\avg{g} = \frac{1}{V}\int_{V_l} g\, dV \label{eq:moy_sup}
-\end{equation}
-Cette moyenne, dite superficielle, s’exprime comme la moyenne dans le fluide multipliée 
-par la porosité $\varepsilon_l = \frac{V_l}{V}$.\cite{le<3MultiscaleModelling2022}
-Elle ne correspond donc pas à la moyenne de g dans le fluide seul.
-La moyenne intrinsèque $\avgl{g}$ représente la vraie valeur moyenne de $g$ 
-dans le fluide seul. La relation entre moyenne superficielle et moyenne 
-intrinsèque est alors :
-
-\begin{equation}
-\avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avgl{g}  \label{eq:relation_moy}
-\end{equation}
-
-\paragraph{Théorème de la divergence de Gauss :}
-Ce théorème relie une intégrale de volume à une intégrale de surface. 
-Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
-
-\begin{equation}
-\int_V \nab g\, dV = \oint_A \mathbf{n}\, g\, dA
-\label{eq:gauss}
-\end{equation}
-
-où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
-
-\paragraph{Théorème de la moyenne spatiale :}
-Ce théorème découle du théorème de la divergence 
-de Gauss appliqué au volume fluide.
-Il relie la moyenne du gradient d'une quantité $g$ à son gradient 
-de moyenne, avec un terme de correction surfacique sur l'interface 
-$Asf$ entre le fluide et le solide :
-
-\begin{equation}
-\avg{\nab g} = \nab\avg{ g} + \frac{1}{V}\int_{Asf} \mathbf{n}\, g\, dA \label{eq:moy_spatiale}
-\end{equation}
-
-où $\mathbf{n}$ est le vecteur normal à l'interface $Asf$ 
-pointant du fluide vers le solide.
-
-\paragraph{Théorème de transport :}
-Ce théorème permet d'échanger la moyenne et la dérivée temporelle, 
-à condition que le volume $V_l$ ne dépende pas du temps :
-
-\begin{equation}
-\left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
-\end{equation}
-
-\bigskip
-
-% ============================================================
 \subsection*{Équation de conservation}
 
 L'équation de conservation en 3D pour l'espèce $i$ s'écrit :

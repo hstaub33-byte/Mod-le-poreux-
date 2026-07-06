@@ -87,7 +87,6 @@ l'électrode.
 La réaction électrochimique est initialement localisée sur la partie catalytiquement
 active de l'interface
 solide--fluide $A_{sf}^{\mathrm{cat}}$ et décrite par le flux réactionnel :
-
 \begin{equation*}
 -\mathbf n \cdot N_i
 =
@@ -95,7 +94,6 @@ solide--fluide $A_{sf}^{\mathrm{cat}}$ et décrite par le flux réactionnel :
 \end{equation*}
 
 En utilisant la forme simplifiée de la cinétique :
-
 \begin{equation*}
 j=k(\eta)C_i
 \end{equation*}
@@ -106,7 +104,6 @@ l'interface solide--fluide, seule cette fraction active contribue à la
 réaction, ce flux surfacique peut être converti en une vitesse de
 réaction volumique moyenne :
 %Mais j'uitlise avcat mais il est décrit après dans la partie homogénisation globale
-
 \begin{equation}
 R_i
 =
@@ -123,7 +120,6 @@ $\langle C_i\rangle^l$ dans la suite.
 
 La conservation de la matière conduit alors à une équation de
 diffusion--réaction :
-
 \begin{equation}
 D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
 =
@@ -198,7 +194,6 @@ $\phi \gg 1$, la réaction est limitée par le transport de matière.
 \subsection*{Solution analytique}
 
 On considère l'équation adimensionnée :
-
 \begin{equation}
 \frac{d^2\left\langle C_i \right\rangle^{l,*}}{d z^{*2}}
 =
@@ -206,7 +201,6 @@ On considère l'équation adimensionnée :
 \end{equation}
 
 On note
-
 \begin{equation}
 \zeta = \frac{z}{l_e},
 \qquad
@@ -214,11 +208,9 @@ On note
 \end{equation}
 
 Les conditions aux limites sont :
-
 \begin{itemize}
     \item flux nul au fond de l'électrode :
 \end{itemize}
-
 \begin{equation}
 \left.
 \frac{d\left\langle C_i \right\rangle^{l,*}}{d\zeta}
@@ -230,14 +222,12 @@ Les conditions aux limites sont :
 \begin{itemize}
     \item concentration imposée à l'interface avec l'électrolyte :
 \end{itemize}
-
 \begin{equation}
 \left\langle C_i \right\rangle^{l,*}(0)
 =1
 \end{equation}
 
 La résolution du problème conduit à :
-
 \begin{equation}
 \boxed{
 \left\langle C_i \right\rangle^{l}(\zeta)
@@ -257,7 +247,6 @@ C_i^{\text{ref}}
 \subsection*{Démonstration de la solution analytique}
 
 On cherche une solution de la forme $\left\langle C_i \right\rangle^{l,*} = e^{R\zeta}$, ce qui donne :
-
 \begin{equation*}
 R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi
 \end{equation*}
@@ -268,7 +257,6 @@ On a donc :
 \end{equation*}
 
 La solution générale peut être réécrite sous la forme :
-
 \begin{equation*}
 \left\langle C_i \right\rangle^{l,*}
 =
@@ -280,7 +268,6 @@ D\sinh(\phi\zeta)
 \paragraph{D'après les conditions limites :}
 
 La condition de flux nul à la base de l'électrode,
-
 \begin{equation*}
 \left.
 \frac{d\left\langle C_i \right\rangle^{l,*}}{d\zeta}
@@ -290,25 +277,21 @@ La condition de flux nul à la base de l'électrode,
 \end{equation*}
 
 conduit à
-
 \begin{equation*}
 D=C\tanh(\phi)
 \end{equation*}
 
 La condition de concentration imposée à l'interface,
-
 \begin{equation*}
 \left\langle C_i \right\rangle^{l,*}(0)=1
 \end{equation*}
 
 donne directement
-
 \begin{equation*}
 C=1
 \end{equation*}
 
 En reportant les constantes obtenues dans la solution générale, on trouve :
-
 \begin{align*}
 \left\langle C_i \right\rangle^{l,*}
 &=
@@ -330,7 +313,6 @@ En reportant les constantes obtenues dans la solution générale, on trouve :
 \end{align*}
 
 où la dernière égalité résulte de l'identité :
-
 \begin{equation*}
 \cosh(a+b)
 =
@@ -399,7 +381,6 @@ C_i^{\text{ref}}
 \end{equation}
 
 On obtient alors :
-
 \begin{equation}
 \dot r_{\text{idéal}}
 =
@@ -411,7 +392,6 @@ k_v C_i^{\text{ref}}
 \end{equation}
 
 Le facteur d'efficacité vaut donc :
-
 \begin{equation}
 \boxed{
 \eta_E
