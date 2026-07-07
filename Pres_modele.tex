@@ -112,6 +112,7 @@ densité de courant interfaciale par la loi de Faraday uniquement sur $A_{sf}^{\
 -\mathbf{n} \cdot N_i &= 0 
 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}},
 \end{align}
+\label{eq:interfaceliquide}
 \end{subequations}
 
 où l'on adopte la convention d'un courant de réduction compté positivement :
@@ -137,6 +138,7 @@ que la somme des charges portées par les espèces dissoutes est nulle~\cite{new
 \begin{equation}
 \sum_i z_i C_i = 0
 \qquad \text{dans } \Omega_l .
+\label{eq:electroneutre}
 \end{equation}
 
 La validité de cette approximation est discutée à la section "Limites du modèle et extensions possibles".
@@ -173,6 +175,7 @@ En l'absence d'accumulation de charge dans le
 solide, la conservation du courant impose~\cite{newmanTheoreticalAnalysisCurrent1962, newmanPorouselectrodeTheoryBattery1975} :
 \begin{equation}
 \nab(-\sigma_s \nab \varphi_s) = 0 \quad \text{dans } \Omega_s 
+\label{eq:ohm}
 \end{equation}
 
 À l'interface solide/fluide, la conservation du courant 
@@ -184,6 +187,7 @@ soit intégralement transféré à l'électrolyte par la réaction
 \mathbf{n}_s \sigma_s \nab \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
 \mathbf{n}_s \sigma_s \nab \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
 \end{align}
+\label{eq:intefacesolide}
 \end{subequations}
 
 On a introduit ici la normale $n_s$ à l'interface $A_{sf}$, orientée vers 
@@ -254,6 +258,7 @@ aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 \begin{equation}
 \varphi_s = E
 \end{equation}
+\label{eq:CLcollecteur}
 \end{subequations}
 
 
@@ -272,6 +277,7 @@ et ne permettent aucun transfert de charge :
 \begin{equation}
 \mathbf{n} \cdot \nabla \varphi_s = 0
 \end{equation}
+\label{eq:CLparois}
 \end{subequations}
 
 
@@ -292,11 +298,13 @@ C_i = C_i^{\text{hom}}
 \begin{equation}
 \mathbf{n}_s \sigma_s \nabla \varphi_s = 0
 \end{equation}
+\label{eq:CLinterfacehomogene}
 \end{subequations}
 
 Le modèle présenté constitue le cadre de référence de cette étude. 
-Avant d'introduire une procédure d'homogénéisation plus générale, 
-on considère un modèle simplifié fondé sur le module de Thiele. 
-Bien qu'il repose sur plusieurs hypothèses fortes, ce modèle permet 
-d'obtenir des solutions analytiques et de mettre en évidence la compétition 
-entre diffusion et réaction au sein de l'électrode poreuse.
+On introduit maintenant une procédure de passage du modèle local à un modèle
+macroscopique unidimensionnel, afin de relier les équations posées à l'échelle
+du pore à une description moyenne de l'électrode poreuse. Cette étape permet
+d'introduire les grandeurs effectives du modèle, telles que les concentrations
+moyennes, les coefficients de transport effectifs et l'aire interfaciale
+spécifique.

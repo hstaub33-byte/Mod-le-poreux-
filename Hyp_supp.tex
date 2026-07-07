@@ -18,6 +18,8 @@ réaction de dégagement d'hydrogène (HER)~\cite{goyalCompetitionCO2Reduction20
 2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
 \end{align*}
 
+La HER peut être introduite comme une réaction concurrente se
+produisant sur les sites catalytiques déjà considérés dans le modèle. 
 Le courant total devient alors :
 \begin{equation}
 j_{\mathrm{tot}}
@@ -27,9 +29,10 @@ j_{\mathrm{CO_2RR}}
 j_{\mathrm{HER}}
 \end{equation}
 
-La HER peut par ailleurs se produire non seulement sur les sites
-catalytiques, en compétition avec la réduction du \ce{CO2}, mais aussi sur
-le carbone nu du support, supposé inerte dans le modèle de base.
+Une extension supplémentaire consisterait à lever l'hypothèse d'inertie
+électrochimique du support carboné. Les zones de carbone non recouvertes de
+catalyseur pourraient alors également contribuer à des réactions parasites,
+notamment au dégagement d'hydrogène.
 %Hypothèse de moi donc a verifier avec les chimistes
 
 Cette réaction concurrente consomme également des électrons et peut
@@ -51,11 +54,11 @@ peuvent avoir lieu dans l'électrolyte :
 \end{align*}
 
 
-Ces réactions modifient localement le pH ainsi que la répartition des
+Ces réactions acido-basiques contrôlent localement la concentration en
+protons et en ions hydroxyde, et donc le pH, ainsi que la répartition des
 espèces carbonées dissoutes. Elles influencent donc la concentration
 effective en \ce{CO2} disponible à proximité des sites catalytiques et
 peuvent affecter significativement les performances de l'électrode~\cite{loffelholzModelingElectrochemicalCO2022}.
-
 % ============================================================
 \subsection*{Transport et description de l'électrolyte}
 
@@ -102,13 +105,15 @@ Cette formulation permet de décrire explicitement les
 L'équation de Nernst--Planck repose sur l'hypothèse d'espèces
 ponctuelles. Lorsque les concentrations deviennent élevées,
 notamment à proximité des interfaces chargées, le volume fini des ions
-peut devenir significatif. Une correction stérique peut alors être
+peut devenir significatif. Cette correction introduit un effet de volume exclu : chaque espèce occupe
+un volume fini, ce qui limite localement l'espace disponible pour les autres
+espèces lorsque la concentration totale devient élevée. Une correction stérique peut alors être
 ajoutée au flux :
 
 \begin{equation}
 -D_i C_i \left(
-\frac{N_a \displaystyle\sum_j a_j^3 \nabla C_j}
-{1 - N_a \displaystyle\sum_j a_j^3 C_j}
+\frac{N_\mathrm{A} \displaystyle\sum_j a_j^3 \nabla C_j}
+{1 - N_\mathrm{A} \displaystyle\sum_j a_j^3 C_j}
 \right)
 \end{equation}
 
@@ -116,18 +121,20 @@ où $a_j$ représente la taille caractéristique de l'espèce $j$~\cite{johnson<
 
 \subsubsection*{Chargement de la double couche}
 
-Le modèle ne considère que le courant faradique, décrit par la loi de
-Butler--Volmer~\eqref{eq:BV}, associé au transfert de charge de la
-réaction électrochimique. À l'interface solide--fluide, la double couche
-électrique se comporte toutefois également comme un condensateur, dont la
-charge et la décharge donnent naissance à un courant capacitif. Le courant
-interfacial total se décompose alors en une contribution faradique et une
-contribution capacitive :
+Le modèle de base ne considère que le courant faradique, associé au
+transfert de charge de la réaction électrochimique à l'interface
+solide--fluide. Ce courant est décrit par la loi cinétique choisie pour la
+réaction interfaciale.
+
+À l'interface solide--fluide, la double couche électrique se comporte
+toutefois également comme un condensateur, dont la charge et la décharge
+donnent naissance à un courant capacitif. Le courant interfacial total se
+décompose alors en une contribution faradique et une contribution capacitive :
 
 \begin{equation}
 j_{\mathrm{tot}}
 =
-j_{\mathrm{far}}
+j_{\mathrm{far}}%jfar c'est j en général
 +
 C_{dl}\,\frac{\partial \eta}{\partial t},
 \end{equation}
@@ -139,6 +146,33 @@ retenu dans ce travail, et seul le courant faradique subsiste. Sa prise en
 compte deviendrait nécessaire pour décrire la réponse dynamique de
 l'électrode, par exemple lors de l'analyse de transitoires ou de mesures
 d'impédance électrochimique~\cite{bazantDiffuseChargeDynamicsElectrochemical2004, biesheuvelNonlinearDynamicsCapacitive2010}.
+
+
+
+%=============================================================
+\subsection*{Transport électronique dans la phase solide}
+
+\subsubsection*{Résistance de contact}
+
+Le modèle de base décrit la phase solide comme un milieu conducteur continu,
+caractérisé par une conductivité effective. Cette description revient à
+supposer que le réseau carboné est parfaitement connecté, et donc à négliger
+les résistances de contact locales entre les différentes portions de la phase
+solide. Dans les milieux fibreux carbonés, ces résistances de contact peuvent
+néanmoins contribuer à la résistance électrique globale du réseau conducteur
+\cite{qiuElectricalResistanceMicrostructure2018}.
+
+Une extension possible consisterait à introduire une résistance de contact
+entre deux portions du réseau conducteur. Le courant normal traversant le
+contact pourrait alors être modélisé par une loi ohmique locale :
+\begin{equation}
+i_n =
+\frac{\varphi_{s,1}-\varphi_{s,2}}{R_c},
+\end{equation}
+
+où $R_c$ est une résistance de contact surfacique. La limite $R_c \to 0$
+correspond au cas d'un contact parfait, pour lequel le potentiel solide est
+continu à travers le contact.
 
 % ============================================================
 \subsection*{Hypothèses thermodynamiques}
@@ -159,18 +193,6 @@ donc négligés.
 % ============================================================
 \subsection*{Interfaces et morphologie}
 
-\subsubsection*{Résistance de contact}
-
-Le modèle suppose un transfert électronique parfait entre les différentes
-fibres constituant le réseau conducteur de l'électrode. Les résistances
-de contact locales sont donc négligées, ce qui revient à considérer la
-limite $R_c \rightarrow 0$ dans la relation :
-
-
-\begin{equation}
-i_n = \frac{\varphi_{s1} - \varphi_{s2}}{R_c}
-\end{equation}
-
 \subsubsection*{Formation de bulles}
 
 La formation de bulles gazeuses n'est pas prise en compte dans le modèle
@@ -180,11 +202,8 @@ modifient localement la porosité et la surface active disponible, et
 peuvent également limiter l'accès des réactifs aux sites catalytiques en
 perturbant le transport de matière~\cite{saccoModelingGasBubbleinduced2019}.
 
-
 \bigskip
-Ces extensions constituent des pistes d'amélioration du modèle présenté
-précédemment. Avant d'introduire une procédure d'homogénéisation plus
-rigoureuse, on considère d'abord une approche simplifiée fondée sur le
-module de Thiele. Bien que reposant sur des hypothèses fortes, cette
-approche permet d'obtenir des solutions analytiques et fournit une
-première compréhension des limitations par transport et par réaction.
+Ces extensions mettent en évidence les principales limites du modèle de base.
+La section suivante introduit plusieurs nombres adimensionnels afin de
+quantifier l'importance relative du transport, de la réaction et des effets
+électrostatiques.

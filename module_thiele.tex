@@ -1,19 +1,25 @@
 \section*{Approche par le module de Thiele}
 
-Avant d'introduire une procédure d'homogénéisation plus générale, il est
-utile de considérer une approche simplifiée fondée sur le module de
-Thiele~\cite{wanPotentialDependentThiele}. Cette approche repose sur des hypothèses fortes mais permet
-d'obtenir des solutions analytiques et de mettre en évidence les
-mécanismes de compétition entre diffusion et réaction au sein de
-l'électrode.
+À partir du modèle 3D présenté précédemment, on considère maintenant une
+réduction plus fortement simplifiée fondée sur le module de
+Thiele~\cite{wanPotentialDependentThiele}. Contrairement au passage 3D--1D
+plus général introduit auparavant, cette approche repose sur des hypothèses
+supplémentaires permettant d'obtenir une solution analytique. Elle permet
+ainsi de mettre en évidence la compétition entre diffusion et réaction au sein
+de l'électrode poreuse.
 
 \subsection*{Point de départ}
 
 Le modèle complet présenté précédemment couple :
 \begin{itemize}
-\item le transport des espèces par Nernst--Planck ;
-\item le transport électronique par la loi d'Ohm ;
-\item la cinétique interfaciale par Butler--Volmer.
+\item la conservation de la matière~\eqref{eq:conservation} ;
+\item le transport des espèces par Nernst--Planck~\eqref{eq:nernst-planck} ;
+\item l'électroneutralité de l'électrolyte~\eqref{eq:electroneutre} ;
+\item le transport électronique par la loi d'Ohm~\eqref{eq:ohm} ;
+\item les conditions de flux réactionnel à l'interface~\eqref{eq:interfaceliquide}, \eqref{eq:intefacesolide};
+\item la cinétique interfaciale par Butler--Volmer~\eqref{eq:BV} ;
+\item les conditions aux limites imposées aux frontières du domaine~
+\eqref{eq:CLcollecteur}, \eqref{eq:CLparois}, \eqref{eq:CLinterfacehomogene}.
 \end{itemize}
 
 L'objectif est maintenant d'obtenir un modèle simplifié permettant
@@ -30,7 +36,6 @@ module de Thiele, plusieurs hypothèses simplificatrices sont adoptées.
 On suppose que les temps caractéristiques de transport sont courts
 devant les temps d'évolution du système. Les concentrations ne
 dépendent donc plus du temps :
-
 \begin{equation*}
 \frac{\partial C_i}{\partial t}=0
 \end{equation*}
@@ -41,95 +46,75 @@ L'équation de conservation devient alors :
 \nabla\cdot N_i=0
 \end{equation*}
 
+Cette hypothèse est pertinente lorsque l'on s'intéresse à un régime établi,
+après disparition des phénomènes transitoires initiaux.
+
 \paragraph{2.Transport purement diffusif :}
 
 On néglige les effets de migration électrique et de convection dans
 l'électrolyte. Le flux de matière se réduit alors à la loi de Fick :
-
 \begin{equation*}
 N_i=-D_i\nabla C_i
 \end{equation*}
+
+Cette approximation est valable lorsque la convection et la migration
+électrique sont négligeables devant la diffusion pour l'espèce considérée.
 
 \paragraph{3. Surtension uniforme :}
 On suppose que les variations des potentiels électrique dans les phases
 solide et liquide sont suffisamment faibles pour considérer la
 surtension uniforme à l'échelle de l'électrode : 
-
 \begin{equation*}
 \eta = \mathrm{cste}
 \end{equation*}
+
+Cette hypothèse peut être retenue lorsque les variations spatiales des
+potentiels solide et électrolytique restent faibles à l'échelle de
+l'électrode.
 
 \paragraph{4. Cinétique du premier ordre :}
 La surtension étant supposée constante, les termes exponentiels de la
 loi de Butler--Volmer sont constants. La densité de courant
 interfaciale devient alors proportionnelle à la concentration locale :
-
 \begin{equation*}
 j = k(\eta)\,C_i,
 \end{equation*}
 
-avec
-
+avec :
 \begin{equation*}
 k(\eta) = \frac{j_0}{C^{\text{ref}}}
 \left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)
      - \exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right].
 \end{equation*}
 
+Cette forme linéaire est obtenue lorsque la surtension est supposée constante,
+de sorte que la dépendance en potentiel est regroupée dans le coefficient
+$k(\eta)$.
+
 \bigskip
 \subsection*{Passage à une description volumique}
 
-Sous les hypothèses précédentes, on ne cherche plus à décrire
-explicitement les phénomènes à l'échelle de chaque pore. L'objectif est
-au contraire d'obtenir une description moyenne du comportement de
-l'électrode.
+Dans le modèle 3D, la réaction électrochimique est décrite comme une
+condition de flux à l'interface catalytiquement active. Dans l'approche de
+Thiele, cette contribution interfaciale est remplacée par un terme de
+réaction volumique moyen, en utilisant l'aire interfaciale catalytique
+spécifique $a_v^{\mathrm{cat}}$ introduite précédemment.
 
-La réaction électrochimique est initialement localisée sur la partie catalytiquement
-active de l'interface
-solide--fluide $A_{sf}^{\mathrm{cat}}$ et décrite par le flux réactionnel :
-\begin{equation*}
--\mathbf n \cdot N_i
-=
-\frac{\nu_i}{n_eF}j
-\end{equation*}
-
-En utilisant la forme simplifiée de la cinétique :
-\begin{equation*}
-j=k(\eta)C_i
-\end{equation*}
-
-et en introduisant l'aire interfaciale catalytique spécifique volumique
-$a_v^{\mathrm{cat}}$ le catalyseur n'étant greffé que sur une partie de
-l'interface solide--fluide, seule cette fraction active contribue à la
-réaction, ce flux surfacique peut être converti en une vitesse de
-réaction volumique moyenne :
-%Mais j'uitlise avcat mais il est décrit après dans la partie homogénisation globale
+En partant de l'équation macroscopique de conservation de la matière
+\eqref{eq:Ni_homo}, et en appliquant les hypothèses du modèle de Thiele, on
+obtient l'équation de diffusion--réaction :
 \begin{equation}
-R_i
+D_i^{\mathrm{eff}}
+\nabla^2 \left\langle C_i \right\rangle^l
 =
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}C_i
+-\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}
+\left\langle C_i \right\rangle^l .
 \end{equation}
 
-Le facteur $-\nu_i$, positif pour une espèce consommée, fait de $R_i$ la vitesse
-de consommation volumique du \ce{CO2}, comptée positive.
-
-À partir de cette étape, les concentrations sont interprétées comme des
-grandeurs moyennées dans la phase fluide du milieu poreux. Par souci de
-cohérence avec la description macroscopique, elles seront notées
-$\langle C_i\rangle^l$ dans la suite.
-
-La conservation de la matière conduit alors à une équation de
-diffusion--réaction :
-\begin{equation}
-D_i^{\mathrm{eff}} \nabla^2 \langle C_i\rangle^l
-=
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)}{n_eF}\langle C_i\rangle^l
-\end{equation}
-
-Le milieu poreux étant maintenant décrit par des grandeurs moyennées,
-on se ramène à un problème 1D selon la direction normale à l'électrode.
-L'adimensionnement de cette équation à l'échelle macroscopique $l_e$
-fait alors apparaître naturellement le module de Thiele.
+Le milieu poreux étant décrit par des grandeurs moyennées, le problème est
+ensuite réduit à une dimension selon la direction normale à l'électrode.
+L'adimensionnement de cette équation à l'échelle macroscopique $l_e$ fait
+alors apparaître naturellement le module de Thiele.
 
 %--------------------------------------------------------------------------------------------------------------
 %-------------------------Calcul du module de Thiele -------------------------------------------------------
@@ -145,9 +130,9 @@ référence $C^{\text{ref}}$ :
 \left\langle C_i \right\rangle^{l,*}
 =
 \frac{\left\langle C_i \right\rangle^l}
-     {C^{\text{ref}}},
+     {C_i^{\text{ref}}},
 \qquad
-z^*
+\zeta
 =
 \frac{z}{l_e}
 \end{equation}
@@ -156,7 +141,7 @@ L'équation devient :
 
 \begin{equation}
 \frac{d^2\left\langle C_i \right\rangle^{l,*}}
-     {dz^{*2}}
+     {d\zeta^{2}}
 =
 \underbrace{
 -\frac{\nu_i a_v^{\mathrm{cat}} k(\eta)l_e^2}
@@ -179,10 +164,10 @@ l_e
 }
 \end{equation}
 
-Le facteur $-\nu_i$ (positif pour une espèce consommée) garantit $\Phi^2 > 0$.
+Le facteur $-\nu_i$ (positif pour une espèce consommée) garantit $\phi^2 > 0$ sous la convention choisie.
 
-Le module de Thiele compare la vitesse caractéristique de réaction à la
-vitesse caractéristique de diffusion dans l'électrode~\cite{wanPotentialDependentThiele}. Lorsque
+Le module de Thiele compare la vitesse de réaction à la
+vitesse de diffusion dans l'électrode~\cite{wanPotentialDependentThiele}. Lorsque
 $\phi \ll 1$, la diffusion est suffisamment rapide pour alimenter
 uniformément l'ensemble de l'électrode. À l'inverse, lorsque
 $\phi \gg 1$, la réaction est limitée par le transport de matière.
@@ -195,19 +180,11 @@ $\phi \gg 1$, la réaction est limitée par le transport de matière.
 
 On considère l'équation adimensionnée :
 \begin{equation}
-\frac{d^2\left\langle C_i \right\rangle^{l,*}}{d z^{*2}}
+\frac{d^2\left\langle C_i \right\rangle^{l,*}}{d\zeta^{2}}
 =
 \phi^2 \left\langle C_i \right\rangle^{l,*}.
 \end{equation}
-
-On note
-\begin{equation}
-\zeta = \frac{z}{l_e},
-\qquad
--1 \le \zeta \le 0
-\end{equation}
-
-Les conditions aux limites sont :
+où les conditions aux limites sont :
 \begin{itemize}
     \item flux nul au fond de l'électrode :
 \end{itemize}
@@ -402,13 +379,14 @@ Le facteur d'efficacité vaut donc :
 \end{equation}
 
 \bigskip
-L'approche fondée sur le module de Thiele fournit une première
+L'approche fondée sur le module de Thiele fournit ainsi une première
 description analytique du couplage entre diffusion et réaction dans
-l'électrode poreuse. Elle repose toutefois sur plusieurs hypothèses
-fortes, notamment la réduction à un transport purement diffusif, la
-linéarisation de la cinétique électrochimique et la représentation de
-la réaction par un terme volumique moyen. La validité de ces hypothèses
-n'est pas garantie dans les conditions de fonctionnement considérées.
-Il est donc nécessaire de développer une approche plus générale,
-permettant de conserver davantage d'informations sur la structure du
-milieu poreux et sur les mécanismes physiques mis en jeu.
+l'électrode poreuse. Elle repose toutefois sur des hypothèses restrictives,
+notamment un transport purement diffusif, une surtension uniforme, une
+cinétique linéarisée et la représentation de la réaction par un terme
+volumique moyen.
+
+Dans la section suivante, on adopte une démarche plus générale en repartant
+du modèle homogénéisé complet. Cette approche permet de conserver davantage
+de mécanismes physiques, puis de retrouver le modèle de Thiele comme un cas
+limite obtenu après simplifications successives.

@@ -1,16 +1,12 @@
 % !TEX root = main.tex
 \section*{Nombres adimensionnels}
 
-Avant de procéder aux simplifications du modèle, il est utile d'identifier 
-les régimes physiques en jeu et de hiérarchiser l'importance relative des 
-différents phénomènes de transport. On introduit pour cela trois nombres 
-adimensionnels, obtenus en adimensionnant les équations de conservation et 
-leurs conditions aux limites : le nombre de Péclet, qui compare convection 
-et diffusion, le nombre de Damköhler, qui compare la vitesse de réaction 
-interfaciale à la diffusion, et la longueur de Debye adimensionnée, qui 
-compare l'épaisseur de la double couche électrique à la taille caractéristique 
-du pore. Ces nombres permettront de justifier les hypothèses de simplification 
-retenues dans la suite.
+Les limites du modèle présentées ci-dessus peuvent être analysées 
+plus quantitativement à l'aide de nombres adimensionnels. Le nombre 
+de Péclet, le nombre de Damköhler et la longueur de Debye adimensionnée 
+permettent d'évaluer l'importance relative des principaux mécanismes de 
+transport et de réaction, et de préciser le domaine de validité de plusieurs 
+hypothèses simplificatrices.
 
 \subsection*{Péclet}
 
@@ -48,8 +44,8 @@ et l'équation de conservation adimensionnée :
 \end{equation*}
 %Je devrais sûrement enlevé la migration car là elle apparait aussi ou changé une phrase sans doute
 
-Le nombre de Péclet mesure ainsi l'importance relative de la convection
-par rapport à la diffusion.
+Le nombre de Péclet compare uniquement les contributions convective et diffusive, 
+il ne permet pas de quantifier l'importance du terme de migration.
 
 % ============================================================
 \subsection*{Damköhler}
@@ -64,13 +60,13 @@ En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
 %Faudrait faire attention car Damkoler c'est sur toute la surface pas que sur avcat
 
 \begin{equation*}
--N_i^* \cdot \hat{n} = Da \frac{\nu_i}{n_e}
+-N_i^* \cdot \mathbf{n} = Da \frac{\nu_i}{n_e}
 \end{equation*}
 
-Le nombre de Damköhler mesure l'importance relative de la réaction par
-rapport à la diffusion. Il constitue ainsi un précurseur naturel du
-module de Thiele~\cite{wanPotentialDependentThiele}, qui sera utilisé par la suite pour analyser les
-limitations réaction--transport dans l'électrode poreuse.
+Le nombre de Damköhler mesure l'importance relative de la réaction interfaciale 
+par rapport à la diffusion. Il est étroitement lié au module de Thiele ~\cite{wanPotentialDependentThiele} introduit 
+précédemment, qui décrit également la compétition entre réaction et diffusion dans 
+l'électrode poreuse.
 
 % ============================================================
 \subsection*{Longueur de Debye}
@@ -90,13 +86,16 @@ En partant de l'équation de Poisson~\eqref{eq:poisson}, on adimensionne :
 \quad \bar{\delta}^2 \nab^{*2} \varphi_l^* = -\frac{1}{2}\sum_i z_i c_i^*
 \end{equation}
 
+Lorsque la longueur de Debye est très inférieure à la taille caractéristique des pores, 
+les effets de la double couche électrique restent confinés au voisinage des interfaces. 
+L'approximation d'électroneutralité, introduite dans l'équation~\eqref{eq:electroneutre} lors de la 
+présentation du modèle, est alors justifiée.
+
 \bigskip
 
-L'analyse adimensionnelle permet ainsi d'identifier les phénomènes dominants dans 
-les régimes de fonctionnement étudiés et de justifier certaines hypothèses de 
-simplification. Le modèle présenté reste néanmoins une description 
-volontairement simplifiée du système réel. Plusieurs 
-phénomènes physiques susceptibles d'influencer 
-son comportement n'ont pas été pris en 
-compte et constituent autant de 
-pistes d'extension possibles.
+L'analyse adimensionnelle complète les développements précédents en précisant le 
+domaine de validité de plusieurs hypothèses du modèle. Elle met en évidence 
+les mécanismes susceptibles de gouverner le fonctionnement de l'électrode 
+poreuse selon les conditions opératoires considérées et fournit un cadre 
+d'interprétation des résultats qui seront présentés dans la suite du 
+manuscrit.
