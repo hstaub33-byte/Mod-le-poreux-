@@ -38,7 +38,9 @@
 % Commandes utiles
 \newcommand{\avg}[1]{\langle #1 \rangle}
 \newcommand{\avgl}[1]{\langle #1 \rangle^l}
-\newcommand{\circled}[1]{\text{\textcircled{\small #1}}}
+\newcommand{\circled}[1]{%
+\text{\raisebox{0.2ex}{\textcircled{\raisebox{-0.2ex}{\scriptsize #1}}}}%
+}
 \newcommand{\nab}{\nabla}
 \newcommand{\eps}{\varepsilon}
 
@@ -81,6 +83,8 @@
 \newpage
 \appendix
 \input{Rapp_theo}
+\newpage
+\input{homo_poisson}
 \newpage
 \input{A_demander}
 \end{document} 

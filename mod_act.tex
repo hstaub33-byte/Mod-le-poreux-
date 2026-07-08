@@ -12,6 +12,12 @@ est représentée sous la forme simplifiée :
 \mathrm{CO_2 \longrightarrow CO}.
 \end{equation}
 
+Dans cette section, les concentrations désignent les grandeurs moyennées
+dans la phase liquide du milieu poreux. On note donc
+$\left\langle C_{\ce{CO2}}\right\rangle^l$ et
+$\left\langle C_{\ce{CO}}\right\rangle^l$ les concentrations moyennes de
+\ce{CO2} et de \ce{CO}.
+
 Cette écriture ne décrit pas explicitement les espèces ioniques, l'eau,
 ni les intermédiaires réactionnels. Elle sert uniquement à construire un
 premier modèle diffusion--réaction pour les deux espèces carbonées.
@@ -19,14 +25,14 @@ premier modèle diffusion--réaction pour les deux espèces carbonées.
 Le système étudié est donc :
 \begin{equation}
 \begin{cases}
-\varepsilon_l D_{CO_2}^{\mathrm{eff}}
-\dfrac{d^2 C_{CO_2}}{dz^2}
+\varepsilon_l D_{\ce{CO2}}^{\mathrm{eff}}
+\dfrac{d^2 \left\langle C_{\ce{CO2}}\right\rangle^l}{dz^2}
 =
-a_v^{\mathrm{cat}} k C_{CO_2},\\[0.4cm]
-\varepsilon_l D_{CO}^{\mathrm{eff}}
-\dfrac{d^2 C_{CO}}{dz^2}
+a_v^{\mathrm{cat}} k \left\langle C_{\ce{CO2}}\right\rangle^l,\\[0.4cm]
+\varepsilon_l D_{\ce{CO}}^{\mathrm{eff}}
+\dfrac{d^2 \left\langle C_{\ce{CO}}\right\rangle^l}{dz^2}
 =
-- a_v^{\mathrm{cat}} k C_{CO_2}.
+- a_v^{\mathrm{cat}} k \left\langle C_{\ce{CO2}}\right\rangle^l.
 \end{cases}
 \end{equation}
 
@@ -34,29 +40,18 @@ Le signe positif au second membre de l'équation du \ce{CO2} traduit sa
 consommation, le signe négatif pour le \ce{CO} sa production, les deux espèces
 étant couplées par la stœchiométrie $1:1$ de la réaction.
 
-On introduit la coordonnée adimensionnée :
-\begin{equation}
-\zeta = \frac{z}{l_e},
-\end{equation}
-
-ainsi que le module de Thiele associé à la consommation du CO$_2$ :
-\begin{equation}
-\phi^2 =
-\frac{a_v^{\mathrm{cat}} k l_e^2}
-{\varepsilon_l D_{CO_2}^{\mathrm{eff}}}.
-\end{equation}
-
-Le problème devient alors :
+Avec la coordonnée adimensionnée $\zeta$ et le module de Thiele $\phi$
+définis précédemment, le système s'écrit :
 \begin{equation}
 \begin{cases}
-\dfrac{d^2 C_{CO_2}}{d\zeta^2}
+\dfrac{d^2 \left\langle C_{\ce{CO2}}\right\rangle^l}{d\zeta^2}
 =
-\phi^2 C_{CO_2},\\[0.4cm]
-\dfrac{d^2 C_{CO}}{d\zeta^2}
+\phi^2 \left\langle C_{\ce{CO2}}\right\rangle^l,\\[0.4cm]
+\dfrac{d^2 \left\langle C_{\ce{CO}}\right\rangle^l}{d\zeta^2}
 =
 -\dfrac{a_v^{\mathrm{cat}} k l_e^2}
-{\varepsilon_l D_{CO}^{\mathrm{eff}}}
-C_{CO_2}.
+{\varepsilon_l D_{\ce{CO}}^{\mathrm{eff}}}
+\left\langle C_{\ce{CO2}}\right\rangle^l.
 \end{cases}
 \end{equation}
 
@@ -64,21 +59,21 @@ On impose une concentration fixée à l'interface avec le bulk et un flux
 nul à la paroi :
 
 \begin{align}
-C_{CO_2}(0) &= C_{CO_2}^{\mathrm{bulk}},
+\left\langle C_{\ce{CO2}}\right\rangle^l(0) &= C_{\ce{CO2}}^{\mathrm{hom}},
 &
-\frac{d C_{CO_2}}{d\zeta}(-1) &= 0,\\
-C_{CO}(0) &= C_{CO}^{\mathrm{bulk}},
+\frac{d \left\langle C_{\ce{CO2}}\right\rangle^l}{d\zeta}(-1) &= 0,\\
+\left\langle C_{\ce{CO}}\right\rangle^l(0) &= C_{\ce{CO}}^{\mathrm{hom}},
 &
-\frac{d C_{CO}}{d\zeta}(-1) &= 0.
+\frac{d \left\langle C_{\ce{CO}}\right\rangle^l}{d\zeta}(-1) &= 0.
 \end{align}
 
 La solution analytique pour le CO$_2$ est :
 
 \begin{equation}
 \boxed{
-C_{CO_2}(\zeta)
+\left\langle C_{\ce{CO2}}\right\rangle^l(\zeta)
 =
-C_{CO_2}^{\mathrm{bulk}}
+C_{\ce{CO2}}^{\mathrm{hom}}
 \frac{
 \cosh\!\left[\phi(\zeta+1)\right]
 }
@@ -92,13 +87,13 @@ de conservation du CO. On obtient :
 
 \begin{equation}
 \boxed{
-C_{CO}(\zeta)
+\left\langle C_{\ce{CO}}\right\rangle^l(\zeta)
 =
-C_{CO}^{\mathrm{bulk}}
+C_{\ce{CO}}^{\mathrm{hom}}
 +
-\frac{D_{CO_2}^{\mathrm{eff}}}
-     {D_{CO}^{\mathrm{eff}}}
-C_{CO_2}^{\mathrm{bulk}}
+\frac{D_{\ce{CO2}}^{\mathrm{eff}}}
+     {D_{\ce{CO}}^{\mathrm{eff}}}
+C_{\ce{CO2}}^{\mathrm{hom}}
 \left[
 1-
 \frac{

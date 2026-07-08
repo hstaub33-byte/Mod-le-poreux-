@@ -4,15 +4,17 @@
 
 \section*{Approche par homogénéisation spatiale}
 % ============================================================
-L'approche par le module de Thiele, bien qu'utile pour une première 
-analyse, repose sur des hypothèses fortes (transport purement 
-diffusif, surtension uniforme, cinétique linéarisée) qui limitent 
-sa portée. En particulier, elle ne permet pas de traiter rigoureusement 
-le couplage entre transport et réaction dans un milieu poreux hétérogène, 
-ni de faire apparaître les coefficients effectifs de manière systématique. 
-L'homogénéisation spatiale permet de lever ces limitations en dérivant 
-le modèle macroscopique directement depuis les équations microscopiques, 
-sans hypothèse sur la forme du profil de concentration~\cite{whitakerMethodVolumeAveraging1999, leMultiscaleModelingDiffusion2017}.
+L'objectif est maintenant de passer du modèle local défini à l'échelle du
+pore à une description macroscopique de l'électrode poreuse. Pour cela, on
+utilise une approche d'homogénéisation spatiale fondée sur la prise de
+moyenne volumique~\cite{whitakerMethodVolumeAveraging1999,
+leMultiscaleModelingDiffusion2017}.
+
+Cette méthode permet de dériver les équations macroscopiques à partir des
+équations microscopiques posées dans les phases solide et fluide. Elle fait
+apparaître naturellement des grandeurs effectives, telles que les coefficients
+de transport effectifs et l'aire interfaciale spécifique, tout en conservant
+le lien avec la structure du milieu poreux.
 
 La démarche est illustrée schématiquement en figure~\ref{fig:homogeneisation} : 
 on part d'une description hétérogène 3D à l'échelle du pore, on applique 
@@ -26,13 +28,14 @@ qui consiste à moyenner les équations locales sur un volume élémentaire
 représentatif contenant les deux phases~\cite{whitakerMethodVolumeAveraging1999, leMultiscaleModelingDiffusion2017}. Les grandeurs locales sont 
 ainsi remplacées par des grandeurs moyennées à l'échelle macroscopique, 
 et les effets de la microstructure sont incorporés dans des coefficients 
-effectifs. On rappelle d'abord les outils mathématiques nécessaires à 
-cette démarche, avant de les appliquer successivement aux équations de 
-transport et à la cinétique interfaciale.
+effectifs. Les outils mathématiques de la prise de moyenne volumique étant rappelés en
+annexe, on se concentre ici sur leur application aux équations de transport
+et à la cinétique interfaciale.
 
 
 
 \subsection*{Équation de conservation}
+
 
 L'équation de conservation en 3D pour l'espèce $i$ s'écrit :
 \begin{equation}
@@ -94,7 +97,9 @@ alors l'équation de conservation homogénéisée :
 \end{equation}
 
 % ============================================================
+
 \subsection*{Flux de Nernst--Planck}
+
 
 Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst-Planck, 
 qui prend en compte trois contributions : diffusion, migration électrique et convection :
@@ -150,7 +155,6 @@ varie à l'échelle du pore $\ell_p$.
 
 \noindent En injectant la décomposition \eqref{eq:decomp} dans le terme surfacique, 
 on sépare la contribution de la moyenne et celle des fluctuations :
-
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA
 = \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA
@@ -159,7 +163,6 @@ on sépare la contribution de la moyenne et celle des fluctuations :
 
 En appliquant le théorème de Gauss au premier terme, sachant que 
 $\avg{C_i}^l$ varie à l'échelle macroscopique et peut sortir de l'intégrale :
-
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA = -\avg{C_i}^l \nab\varepsilon_l
 \end{equation}
@@ -179,7 +182,6 @@ longueur caractéristique du pore $\ell_p$ étant très petite devant la
 longueur macroscopique $l_e$, le transport s'y équilibre beaucoup plus
 rapidement qu'à l'échelle de l'électrode. On peut donc négliger les effets
 transitoires à l'échelle du pore, ce qui donne :
-
 \begin{equation}
 \nab^2 C_i = 0 \quad \text{dans } V_l
 \end{equation}
@@ -187,26 +189,22 @@ transitoires à l'échelle du pore, ce qui donne :
 En décomposant $C_i = \avg{C_i}^l + \tilde{C}_i$ et sachant que 
 $\avg{C_i}^l$ varie à l'échelle macroscopique $l_e \gg \ell_p$, 
 on a $\nab^2\avg{C_i}^l \approx 0$ à l'échelle du pore. On obtient donc :
-
 \begin{equation}
 \nab^2 \tilde{C}_i = 0 \quad \text{dans } V_l
 \end{equation}
 
 avec la condition limite sur $A_{sf}$ :
-
 \begin{equation}
 -\mathbf{n} \cdot \nab\tilde{C}_i = \mathbf{n} \cdot \nab\avg{C_i}^l \quad \text{sur } A_{sf}
 \end{equation}
 
 L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$.
 Par linéarité, on cherche une solution de la forme :
-
 \begin{equation}
 \tilde{C}_i = \mathbf{b}\cdot\nab\avg{C_i}^l
 \end{equation}
 
 où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant~\cite{whitakerMethodVolumeAveraging1999, korneevDataDrivenMultiscaleFramework2020} :
-
 \begin{align}
 \nab^2 \mathbf{b} &= 0 \quad \text{dans } V_l \\
 -\mathbf{n}\cdot\nab\mathbf{b} &= \mathbf{n} \quad \text{sur } A_{sf}\\
@@ -214,14 +212,12 @@ où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant~
 \end{align}
 
 En substituant cette expression dans le terme de correction surfacique, on obtient :
-
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
 = \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot\nab\avg{C_i}^l
 \end{equation}
 
 En substituant dans l'expression du terme diffusif et en factorisant :
-
 \begin{align}
 \avg{-D_i \nab C_i}
 &= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot \nab\avg{C_i}^l \right) \notag\\
@@ -231,13 +227,11 @@ En substituant dans l'expression du terme diffusif et en factorisant :
 
 On définit le coefficient de diffusion effectif $D_{\text{eff}}$ qui tient compte 
 de la tortuosité du milieu poreux~\cite{whitakerMethodVolumeAveraging1999} :
-
 \begin{equation}
 D_i^{\mathrm{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
 \end{equation}
 
 Ce qui donne finalement :
-
 \begin{equation}
 \boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_i^{\mathrm{eff}} \nab\avg{C_i}^l}
 \label{eq:diff_eff}
@@ -254,12 +248,16 @@ Ce qui donne finalement :
 
 Le terme migratoire fait intervenir le produit $C_i \nabla \varphi_l$, 
 dont la moyenne ne se réduit pas simplement au produit des moyennes. 
-On applique donc la même décomposition que pour le terme diffusif, 
-en introduisant une fluctuation du potentiel électrique à l'échelle 
-du pore :
-
+La concentration
+ayant déjà été décomposée sous la forme
+$C_i=\langle C_i\rangle^l+\tilde C_i$, on introduit de manière analogue une
+décomposition du potentiel électrolytique :
 \begin{equation}
-\varphi_l = \avg{\varphi_l}^l + \widetilde{\varphi}_l
+\varphi_l
+=
+\langle \varphi_l \rangle^l
++
+\tilde{\varphi}_l .
 \end{equation}
 
 En injectant les décompositions de $C_i$ et $\varphi_l$ dans le 
@@ -310,13 +308,17 @@ Or $\avg{\tilde{C}_i}^l = 0$ par définition de la fluctuation :
 \end{equation}
 
 \paragraph{Terme 4 :}
-Ce terme est un produit de deux fluctuations à l'échelle du pore. 
-Par hypothèse de faible corrélation entre les fluctuations de concentration
-et les fluctuations de potentiel à l'échelle du pore, ce terme est supposé
-négligeable devant les contributions du premier ordre :
+Ce terme correspond à une corrélation entre fluctuations locales de
+concentration et de potentiel. Il n'est pas nul en général. Dans la fermeture
+simplifiée retenue ici, il est négligé afin d'obtenir un modèle macroscopique
+fermé au premier ordre. Cette approximation revient à supposer que les
+corrélations entre fluctuations de concentration et de potentiel restent
+faibles à l'échelle du pore :
 \begin{equation}
 \frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV \approx 0
 \end{equation}
+Cette hypothèse devrait être réexaminée si les gradients locaux de potentiel
+ou de concentration deviennent importants.
 
 En regroupant les termes non nuls :
 
@@ -333,10 +335,10 @@ représenter les fluctuations du potentiel à l'échelle du pore sous la forme
 =
 \mathbf d\cdot\nabla\langle\varphi_l\rangle^l.
 \]
-Cette fermeture est introduite par analogie avec le problème diffusif.
-Elle constitue toutefois une approximation, puisque les fluctuations du
-potentiel sont en principe couplées aux fluctuations de concentration via
-l'équation de Poisson. On obtient ainsi : %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
+Cette fermeture est introduite par analogie avec le problème diffusif. Elle
+constitue toutefois une approximation, car les fluctuations du potentiel
+électrolytique peuvent être corrélées aux fluctuations de concentration à
+l'échelle du pore. On obtient ainsi : %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
 \begin{align}
 \avg{C_i \nab\varphi_l}
 &= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
@@ -511,119 +513,24 @@ D_i^{\mathrm{tot}}
 \label{eq:Ni_final}
 \end{equation}
 
-% ============================================================
-\subsection*{Équation de Poisson}
-À titre d'extension, on présente également l'homogénéisation de 
-l'équation de Poisson, qui permet de décrire explicitement les 
-effets de charge d'espace lorsque l'hypothèse d'électroneutralité n'est plus vérifiée.
-
-On réutilise ici, pour les fluctuations du potentiel $\widetilde{\varphi}_l$,
-la fermeture introduite pour le terme migratoire. Cette analogie constitue
-toutefois une approximation plus forte encore dans le cas de Poisson :
-le problème de fermeture y est en principe couplé aux fluctuations de
-concentration, puisque c'est précisément la distribution de charge qui
-source le potentiel. Traiter ce problème de fermeture de façon découplée,
-comme pour la diffusion ou la migration, revient à négliger ce couplage. La
-dérivation qui suit doit donc être comprise comme indicative, fournissant la
-structure du modèle homogénéisé plutôt qu'une fermeture rigoureuse.
-
-En appliquant la moyenne superficielle à l'équation de Poisson :
-
-\begin{equation}
--\varepsilon_0 \varepsilon_r \avg{\nab^2 \varphi_l} = F\sum_i z_i \avg{C_i}
-\end{equation}
-
-\subsubsection*{Membre de gauche}
-
-En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
-
-\begin{equation}
-\avg{\nab\nab\varphi_l} = \nab\avg{\nab\varphi_l} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\nab\varphi_l\, dA
-\end{equation}
-
-La condition limite à l'interface $A_{sf}$ traduit la présence d'une 
-charge de surface $\sigma_q$ :
-
-\begin{equation}
--\varepsilon_0 \varepsilon_r \nab\varphi_l \cdot \mathbf{n} = \sigma_q 
-\quad \text{sur } A_{sf}
-\quad \Rightarrow \quad 
-\mathbf{n}\cdot\nab\varphi_l = -\frac{\sigma_q}{\varepsilon_0 \varepsilon_r}
-\end{equation}
-
-En utilisant la fermeture introduite précédemment pour
-$\widetilde{\varphi}_l$, tout en gardant à l'esprit qu'elle constitue
-une approximation en présence du couplage avec l'équation de Poisson,
-on obtient :
-\begin{align}
-\avg{\nab\nab\varphi_l}
-&= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
-&= \nab\!\left(\nab\avg{\varphi_l}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\varphi_l\, dA\right) 
-- \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
-&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
-+ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
-+ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA\right] \notag\\
-&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
-+ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
-\left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)\right] \notag\\
-&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
-+ \nab\!\left[\varepsilon_l \frac{\varepsilon^{\text{eff}}}{\varepsilon_r} \nab\avg{\varphi_l}^l\right]
-\end{align}
-
-où $\varepsilon^{\text{eff}}$ est la permittivité effective du milieu poreux, 
-définie de façon analogue à $D_{\text{eff}}$ :
-
-\begin{equation}
-\varepsilon^{\text{eff}} = \varepsilon_r \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)
-\end{equation}
-
-\subsubsection*{Membre de droite}
-
-En utilisant la relation entre moyenne superficielle et moyenne intrinsèque 
-\eqref{eq:relation_moy} :
-
-\begin{equation}
-F\sum_i z_i \avg{C_i} = F\sum_i z_i \varepsilon_l \avg{C_i}^l
-\end{equation}
-
-\subsubsection*{Réunification}
-
-En combinant les membres de gauche et de droite, on obtient l'équation 
-de Poisson homogénéisée :
-
-\begin{equation}
-\boxed{
--\varepsilon_0 \nab\!\left(\varepsilon_l \varepsilon^{\text{eff}} \nab\avg{\varphi_l}^l\right)
-= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_q
-}
-\label{eq:poisson_homo}
-\end{equation}
-
-\subsubsection*{Hypothèse d'électroneutralité}
-
-Une alternative à l'équation de Poisson consiste à supposer 
-l'électroneutralité du milieu, c'est-à-dire que la charge électrique 
-nette dans le fluide est nulle :
-
+\subsection*{Hypothèse d'électroneutralité}
+Dans le modèle homogénéisé retenu, l'électrolyte est supposé électroneutre.
+La charge volumique moyenne dans la phase liquide est donc négligée, ce qui
+conduit à :
 \begin{equation}
 \sum_i z_i \avg{C_i}^l = 0
+\label{eq:electroneutre_homo}
 \end{equation}
 
-Cette hypothèse est justifiée lorsque la longueur de Debye reste
-petite devant la taille caractéristique des pores, de sorte que les
-effets de charge d'espace sont confinés au voisinage immédiat des
-interfaces.
-Sous cette hypothèse, la charge volumique moyenne dans l'électrolyte
-est supposée négligeable. Le potentiel électrique n'est alors plus
-déterminé par la résolution explicite de l'équation de Poisson, mais
-par les équations de conservation du courant et les conditions aux
-limites du problème.
-
+Lorsque cette hypothèse n'est plus valable, une description plus générale
+nécessite de prendre en compte explicitement les effets de charge d'espace.
+L'homogénéisation de l'équation correspondante (Poisson)best présentée en annexe.
 Le potentiel dans la phase solide est quant à lui gouverné par la loi 
 d'Ohm, dont la forme homogénéisée est dérivée dans la section suivante.
 % ============================================================
 % PAGE 6
 % ============================================================
+
 \subsection*{Loi d'Ohm}
 
 La loi d'Ohm décrit le transport du courant électrique dans la phase
@@ -635,7 +542,6 @@ maintenant sur les fluctuations du potentiel $\widetilde{\varphi}_s$
 
 En appliquant la moyenne superficielle à l'équation de conservation du
 courant dans le solide :
-
 \begin{equation}
 \avg{\nab \cdot (\sigma_s \nab\varphi_s)} = 0
 \end{equation}
@@ -645,14 +551,12 @@ En notant
 i_s = -\sigma_s \nab\varphi_s
 \end{equation}
 la densité de courant dans le solide, on obtient :
-
 \begin{equation}
 \avg{\nab \cdot i_s}=0.
 \end{equation}
 
 En appliquant le théorème de la moyenne spatiale
 \eqref{eq:moy_spatiale} :
-
 \begin{equation}
 \avg{\nab \cdot i_s}
 =
@@ -665,8 +569,17 @@ En appliquant le théorème de la moyenne spatiale
 0.
 \end{equation}
 
-En identifiant le terme surfacique au courant échangé à l'interface
-fluide/solide, on obtient :
+En supposant que le courant faradique n'est échangé que sur la partie
+catalytiquement active de l'interface, on a :
+\begin{equation}
+\frac{1}{V}\int_{A_{sf}} \mathbf n_s \cdot i_s\, dA
+=
+\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \mathbf n_s \cdot i_s\, dA
+=
+a_v^{\mathrm{cat}} \avg{j}^{sf}.
+\end{equation}
+
+On obtient donc :
 \begin{equation}
 \nab \cdot \avg{i_s}
 =
@@ -680,68 +593,170 @@ On cherche maintenant à relier $\avg{i_s}$ au potentiel moyen dans la
 phase solide. En développant
 $\avg{i_s} = -\sigma_s \avg{\nab\varphi_s}$ et en appliquant le théorème
 de la moyenne spatiale :
-
 \begin{align}
 \avg{\nab\varphi_s}
 &= \nab\avg{\varphi_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA \notag\\
 &= \varepsilon_s \nab\avg{\varphi_s}^s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA
 \end{align}
 
-Comme pour le terme diffusif, les fluctuations du potentiel solide sont
-représentées à l'aide d'un vecteur de fermeture $e$ défini par
+Comme pour le terme diffusif, on décompose le potentiel solide en une moyenne
+intrinsèque dans la phase solide et une fluctuation à l'échelle du pore :
+\begin{equation}
+\varphi_s
+=
+\left\langle \varphi_s \right\rangle^s
++
+\widetilde{\varphi}_s .
+\end{equation}
 
+où $\left\langle \varphi_s \right\rangle^s$ désigne le potentiel solide
+moyen dans la phase solide et $\widetilde{\varphi}_s$ sa fluctuation locale.
+
+La fluctuation $\widetilde{\varphi}_s$ est ensuite reliée au gradient
+macroscopique du potentiel solide par un vecteur de fermeture $\mathbf e$ :
 \begin{equation}
 \widetilde{\varphi}_s
 =
-e\cdot\nab\avg{\varphi_s}^s.
+\mathbf e \cdot \nabla \left\langle \varphi_s \right\rangle^s .
 \end{equation}
 
-Le vecteur de fermeture $e$ satisfait alors le problème local :
-\begin{align}
-\nab^2 e &= 0 && \text{dans } V_s,\\
--\mathbf n_s\cdot\nab e &= \mathbf n_s && \text{sur } A_{sf},\\
-\avg e^s &=0,
-\end{align}
-complété par des conditions de périodicité sur les frontières de la cellule élémentaire.
-
 En substituant dans l'expression de $\avg{\nab\varphi_s}$ :
-
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s \widetilde{\varphi}_s\, dA
-= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, e\, dA\, \nab\avg{\varphi_s}^s
+= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA\, \nab\avg{\varphi_s}^s
 \end{equation}
 
 On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
-
 \begin{equation}
-\sigma^{\text{eff}} = \sigma_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right)
+\sigma^{\text{eff}} = \sigma_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right)
 \end{equation}
 
 D'où :
-
 \begin{equation}
 \avg{\nab\varphi_s}
-= \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, e\, dA \right) \nab\avg{\varphi_s}^s
+= \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right) \nab\avg{\varphi_s}^s
 = \varepsilon_s \frac{\sigma^{\text{eff}}}{\sigma_s} \nab\avg{\varphi_s}^s
 \end{equation}
 
 On obtient finalement la loi d'Ohm homogénéisée :
-
 \begin{equation}
-\boxed{\nab\!\left(\varepsilon_s \sigma^{\text{eff}} \nab\avg{\varphi_s}^s\right) = a_v^{\mathrm{cat}} \avg{j}^{sf}}
+\boxed{
+\nab\cdot\left(
+\varepsilon_s \sigma^{\text{eff}}
+\nab\avg{\varphi_s}^s
+\right)
+=
+a_v^{\mathrm{cat}} \avg{j}^{sf}
+}
 \label{eq:ohm_homo}
 \end{equation}
 
-L'homogénéisation des équations de transport, de l'équation de Poisson
+L'homogénéisation des équations de transport, de l'électroneutralité
 et de la loi d'Ohm conduit ainsi à un système macroscopique décrivant
 les transferts de matière et de charge dans l'électrode poreuse~\cite{mendez-vasquezUpscalingMassElectric2025}. Les
 effets de la microstructure sont incorporés dans les différents
 coefficients effectifs, ce qui permet de représenter leur influence sans
 résoudre explicitement la géométrie des pores.
 
-Ce système constitue le cadre général de la modélisation 1D. Différentes
-hypothèses simplificatrices peuvent ensuite être introduites selon les
-échelles caractéristiques du problème et les phénomènes physiques que
-l'on souhaite décrire. Les conséquences de ces hypothèses sur les
-équations gouvernantes seront examinées dans la section suivante.
+\subsection*{Système}
+Les équations homogénéisées obtenues précédemment sont donc regroupées afin
+de former un système macroscopique général décrivant les transferts de matière
+et de charge dans l'électrode poreuse.
 
+En combinant les équations de conservation \eqref{eq:cons_homo},
+de Nernst--Planck \eqref{eq:Ni_final}, d'électroneutralité
+\eqref{eq:electroneutre_homo} et de la loi d'Ohm homogénéisée
+\eqref{eq:ohm_homo}, on obtient le système d'équations homogénéisées
+suivant~\cite{mendez-vasquezUpscalingMassElectric2025,
+bui<3ContinuumModeling2022} :
+
+\begin{equation}
+\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t}
+=
+\nab\!\cdot
+\left[
+D_i^{\mathrm{tot}}\nab\avg{C_i}^l
++
+\frac{z_iF}{RT}
+\varepsilon_l D_i^{\mathrm{eff,mig}}
+\avg{C_i}^l
+\nab\avg{\varphi_l}^l
+-
+\varepsilon_l \avg{C_i}^l \avg{v}^l
+\right]
++ a_v^{\mathrm{cat}} R_i
+\label{eq:sys1}
+\end{equation}
+
+\begin{equation}
+\sum_i z_i \avg{C_i}^l = 0
+\label{eq:sys2}
+\end{equation}
+
+\begin{equation}
+\nab\!\cdot
+\left(\varepsilon_s \sigma^{\mathrm{eff}}
+\nab\avg{\varphi_s}^s\right)
+=
+a_v^{\mathrm{cat}} j
+\label{eq:sys3}
+\end{equation}
+\subsection*{Conditions limites}
+
+Le système homogénéisé \eqref{eq:sys1}--\eqref{eq:sys3} doit être complété
+par des conditions limites traduisant les échanges avec le milieu extérieur
+et les contraintes imposées aux frontières de l'électrode poreuse.
+On considère ici une géométrie unidimensionnelle selon la direction
+normale à l'électrode.
+
+\paragraph{Collecteur de courant.}
+
+Au niveau du collecteur, le potentiel de la phase solide est imposé. Aucun
+échange de matière avec l'extérieur n'est autorisé pour les espèces dissoutes,
+et aucun courant ionique ne traverse cette frontière :
+\begin{align}
+\left\langle N_i \right\rangle^l \cdot \mathbf n &= 0, \\
+\mathbf n \cdot \nabla \left\langle \varphi_l \right\rangle^l &= 0, \\
+\left\langle \varphi_s \right\rangle^s &= E .
+\end{align}
+
+\paragraph{Interface pore / milieu homogène.}
+
+À l'interface entre l'électrode poreuse et le milieu homogène extérieur, les
+concentrations et le potentiel électrolytique sont imposés par la phase
+homogène :
+\begin{align}
+\left\langle C_i \right\rangle^l &= C_i^{\mathrm{hom}}, \\
+\left\langle \varphi_l \right\rangle^l &= \varphi_l^{\mathrm{hom}} .
+\end{align}
+
+La phase solide ne se prolongeant pas dans le milieu homogène, le courant
+électronique normal est nul à cette frontière :
+\begin{equation}
+\mathbf n \cdot
+\left(
+\varepsilon_s \sigma^{\mathrm{eff}}
+\nabla \left\langle \varphi_s \right\rangle^s
+\right)
+=0 .
+\end{equation}
+
+%Lorsque l'équation de Poisson est conservée, la continuité du
+%déplacement électrique impose également :
+%\begin{equation*}
+%\varepsilon_l \varepsilon^{\text{eff}}
+%\frac{\partial \avg{\varphi_l}^l}{\partial \zeta}
+%=
+%\varepsilon_0
+%\frac{\partial \varphi_l}{\partial \zeta}.
+%\end{equation*}
+\bigskip
+Ce système constitue le cadre homogénéisé général de la modélisation. Il
+conserve les principaux couplages entre transport de matière, transport de
+charge et réaction interfaciale, tout en intégrant l'effet de la microstructure
+à travers des coefficients effectifs.
+
+Dans la section suivante, on considère une réduction plus fortement simplifiée
+de ce cadre, fondée sur le module de Thiele. Cette approche permettra
+d'obtenir une solution analytique et d'analyser plus directement la
+compétition entre diffusion et réaction dans l'électrode poreuse.

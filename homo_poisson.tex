@@ -1,0 +1,86 @@
+\section*{Homogénéisation de l'équation de Poisson}
+À titre d'extension, on présente également l'homogénéisation de 
+l'équation de Poisson, qui permet de décrire explicitement les 
+effets de charge d'espace lorsque l'hypothèse d'électroneutralité n'est plus vérifiée.
+
+On réutilise ici, pour les fluctuations du potentiel $\widetilde{\varphi}_l$,
+la fermeture introduite pour le terme migratoire. Cette analogie constitue
+toutefois une approximation plus forte encore dans le cas de Poisson :
+le problème de fermeture y est en principe couplé aux fluctuations de
+concentration, puisque c'est précisément la distribution de charge qui
+source le potentiel. Traiter ce problème de fermeture de façon découplée,
+comme pour la diffusion ou la migration, revient à négliger ce couplage. La
+dérivation qui suit doit donc être comprise comme indicative, fournissant la
+structure du modèle homogénéisé plutôt qu'une fermeture rigoureuse.
+
+En appliquant la moyenne superficielle à l'équation de Poisson :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \avg{\nab^2 \varphi_l} = F\sum_i z_i \avg{C_i}
+\end{equation}
+
+\subsubsection*{Membre de gauche}
+
+En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
+
+\begin{equation}
+\avg{\nab\nab\varphi_l} = \nab\avg{\nab\varphi_l} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\nab\varphi_l\, dA
+\end{equation}
+
+La condition limite à l'interface $A_{sf}$ traduit la présence d'une 
+charge de surface $\sigma_q$ :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \nab\varphi_l \cdot \mathbf{n} = \sigma_q 
+\quad \text{sur } A_{sf}
+\quad \Rightarrow \quad 
+\mathbf{n}\cdot\nab\varphi_l = -\frac{\sigma_q}{\varepsilon_0 \varepsilon_r}
+\end{equation}
+
+En utilisant la fermeture introduite précédemment pour
+$\widetilde{\varphi}_l$, tout en gardant à l'esprit qu'elle constitue
+une approximation en présence du couplage avec l'équation de Poisson,
+on obtient :
+\begin{align}
+\avg{\nab\nab\varphi_l}
+&= \nab\avg{\nab\varphi_l} - \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
+&= \nab\!\left(\nab\avg{\varphi_l}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\varphi_l\, dA\right) 
+- \frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r} \notag\\
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
++ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA\right] \notag\\
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \nab\avg{\varphi_l}^l
+\left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)\right] \notag\\
+&= -\frac{a_v \sigma_q}{\varepsilon_0 \varepsilon_r}
++ \nab\!\left[\varepsilon_l \frac{\varepsilon^{\text{eff}}}{\varepsilon_r} \nab\avg{\varphi_l}^l\right]
+\end{align}
+
+où $\varepsilon^{\text{eff}}$ est la permittivité effective du milieu poreux, 
+définie de façon analogue à $D_{\text{eff}}$ :
+
+\begin{equation}
+\varepsilon^{\text{eff}} = \varepsilon_r \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\right)
+\end{equation}
+
+\subsubsection*{Membre de droite}
+
+En utilisant la relation entre moyenne superficielle et moyenne intrinsèque 
+\eqref{eq:relation_moy} :
+
+\begin{equation}
+F\sum_i z_i \avg{C_i} = F\sum_i z_i \varepsilon_l \avg{C_i}^l
+\end{equation}
+
+\subsubsection*{Réunification}
+
+En combinant les membres de gauche et de droite, on obtient l'équation 
+de Poisson homogénéisée :
+
+\begin{equation}
+\boxed{
+-\varepsilon_0 \nab\!\left(\varepsilon_l \varepsilon^{\text{eff}} \nab\avg{\varphi_l}^l\right)
+= F\sum_i z_i \varepsilon_l \avg{C_i}^l + a_v \sigma_q
+}
+\label{eq:poisson_homo}
+\end{equation}
