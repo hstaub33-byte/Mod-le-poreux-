@@ -1,14 +1,16 @@
 % ============================================================
 \subsection*{Modèle homogénéisé et hypothèses de réduction}
 
-Après avoir présenté l'approche de Thiele, on revient au modèle homogénéisé
-général afin d'identifier les hypothèses qui conduisent aux modèles réduits.
-L'objectif n'est pas uniquement de retrouver une formulation simplifiée, mais
-aussi de disposer d'un cadre permettant de lever progressivement certaines
-hypothèses si les résultats obtenus avec le modèle réduit ne sont pas
-cohérents avec le comportement attendu du système.
+On part du modèle homogénéisé général établi précédemment afin 
+d'identifier les hypothèses simplificatrices qui conduisent à 
+des modèles réduits. L'objectif n'est pas uniquement d'obtenir 
+une formulation plus simple, mais aussi de disposer d'un cadre 
+permettant de lever progressivement certaines hypothèses si les 
+résultats obtenus avec le modèle réduit ne sont pas cohérents 
+avec le comportement attendu du système.
 
-On étudie maintenant l'effet de différentes hypothèses simplificatrices sur ce système.
+On étudie donc l'effet de différentes hypothèses simplificatrices 
+appliquées successivement à ce système.
 
 \subsubsection*{Simplifications du système}
 
@@ -83,32 +85,40 @@ le potentiel solide peut être considéré comme uniforme :
 La loi d'Ohm homogénéisée est alors automatiquement satisfaite et
 le potentiel solide devient un paramètre uniforme du problème.
 
-\paragraph{5. Module de Thiele :}
+\paragraph{5. Cinétique du premier ordre et module de Thiele :}
 
-On adimensionne l'équation \eqref{eq:diff_reaction} en posant 
-\[
-\avg{C_i}^{l,*} = \frac{\avg{C_i}^l}{C_i^{\text{ref}}},
-\qquad 
-\zeta = \frac{z}{l_e},
-\]
-où $l_e$ est la longueur caractéristique macroscopique.
-
-En supposant une cinétique du premier ordre pour le courant interfacial,
+La surtension étant supposée uniforme (hypothèse 4), les termes exponentiels
+de la loi de Butler--Volmer~\eqref{eq:BV} sont constants. La densité
+de courant interfaciale devient alors proportionnelle à la concentration locale :
 \begin{equation}
 j = k(\eta)\avg{C_i}^l ,
+\qquad
+k(\eta) = \frac{j_0}{C^{\text{ref}}}
+\left[
+\exp\!\left(-\frac{\alpha_c F\eta}{RT}\right)
+- \exp\!\left(\frac{\alpha_a F\eta}{RT}\right)
+\right],
 \end{equation}
-et en utilisant la relation
+où la dépendance en potentiel est entièrement regroupée dans le coefficient
+$k(\eta)$ (A\,m\,mol$^{-1}$).
+
+En reportant cette forme dans la relation
 \begin{equation}
-R_i =
--\frac{\nu_i}{n_eF}j ,
+R_i = -\frac{\nu_i}{n_eF}\,j ,
 \end{equation}
-on obtient :
+on obtient un terme de réaction linéaire en concentration :
 \begin{equation}
-R_i =
--\frac{\nu_i k(\eta)}{n_eF}\avg{C_i}^l .
+R_i = -\frac{\nu_i k(\eta)}{n_eF}\avg{C_i}^l .
 \end{equation}
 
-L'équation de diffusion--réaction devient alors, en 1D :
+On adimensionne alors l'équation~\eqref{eq:diff_reaction} en posant
+\[
+\avg{C_i}^{l,*} = \frac{\avg{C_i}^l}{C_i^{\text{ref}}},
+\qquad
+\zeta = \frac{z}{l_e},
+\]
+où $l_e$ est la longueur caractéristique macroscopique. L'équation de
+diffusion--réaction s'écrit alors, en 1D :
 \begin{equation}
 \frac{d^2 \avg{C_i}^{l,*}}{d \zeta^2}
 =
@@ -117,9 +127,10 @@ L'équation de diffusion--réaction devient alors, en 1D :
 {n_eF\,\varepsilon_l D_i^{\mathrm{eff}}}
 }_{\phi^2}
 \avg{C_i}^{l,*}.
+\label{eq:diff_react_1D}
 \end{equation}
 
-On retrouve donc le module de Thiele :
+On définit ainsi le module de Thiele :
 \begin{equation}
 \boxed{
 \phi^2
@@ -128,22 +139,23 @@ On retrouve donc le module de Thiele :
 {n_eF\,\varepsilon_l D_i^{\mathrm{eff}}}
 }
 \end{equation}
+Le facteur $-\nu_i$ (positif pour une espèce consommée) garantit $\phi^2 > 0$
+sous la convention adoptée.
 
 \begin{itemize}
-    \item $\phi \ll 1$ : la diffusion est rapide devant la réaction, 
+    \item $\phi \ll 1$ : la diffusion est rapide devant la réaction,
     la concentration est uniforme dans l'électrode.
-    \item $\phi \gg 1$ : la réaction est rapide devant la diffusion, 
+    \item $\phi \gg 1$ : la réaction est rapide devant la diffusion,
     la concentration chute rapidement près de l'interface.
 \end{itemize}
 
-La solution analytique de cette équation ainsi que l'interprétation
-physique du module de Thiele ont été présentées dans la section
-consacrée à l'approche de Thiele.
+La solution analytique de cette équation ainsi que le facteur d'efficacité
+associé sont présentés dans la section suivante.
 
 
 \bigskip
 Les différentes hypothèses introduites permettent de relier le système
-homogénéisé général à des modèles réduits plus simples~\cite{dao3SimplificationOrder2012, schmidtUnderstandingDeviationsSpatially2021}. En particulier,
-le modèle de Thiele apparaît comme un cas limite du formalisme obtenu
-par homogénéisation lorsque seuls les phénomènes de diffusion et de
-réaction sont conservés.
+homogénéisé général à des modèles réduits plus simples~\cite{dao3SimplificationOrder2012, schmidtUnderstandingDeviationsSpatially2021}. 
+En particulier, le modèle classique fondé sur le module de Thiele apparaît
+comme un cas limite du formalisme obtenu par homogénéisation, lorsque seuls
+les phénomènes de diffusion et de réaction sont conservés.
