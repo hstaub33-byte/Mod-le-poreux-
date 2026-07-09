@@ -66,7 +66,7 @@ production algébrique de l'espèce $i$. Dans le cas d'une réaction
 électrochimique, $R_i$ est relié à la densité de courant interfacial $j$ par
 la loi de Faraday :
 \begin{equation}
-R_i =-\frac{\nu_i}{n_e F} j
+R_i =\frac{\nu_i}{n_e F} j
 \end{equation}
 où $n_e$ est le nombre d’électrons échangés et $F$ la constante de Faraday.
 $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est 
@@ -411,20 +411,20 @@ on obtient :
 \avg{\tilde{C}_i \tilde{v}}
 &=
 \avg{
-(\mathbf b \cdot \nab \avg{C_i}^l)\tilde v
+\tilde v \, (\mathbf b \cdot \nab \avg{C_i}^l)
 }
 \notag\\
 &=
-\avg{\mathbf b \cdot \tilde v}
-\,\nab \avg{C_i}^l.
+\avg{\tilde v \otimes \mathbf b}
+\cdot \nab \avg{C_i}^l.
 \end{align}
 
 On définit alors le tenseur de dispersion hydrodynamique~\cite{whitakerMethodVolumeAveraging1999} :
 
 \begin{equation}
-D^{\mathrm{disp}}
+{D}^{\mathrm{disp}}
 =
--\avg{\mathbf b \cdot \tilde v},
+-\avg{\tilde v \otimes \mathbf b},
 \end{equation}
 
 ce qui conduit à :
