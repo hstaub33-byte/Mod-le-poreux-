@@ -87,60 +87,140 @@ le potentiel solide devient un paramètre uniforme du problème.
 
 \paragraph{5. Cinétique du premier ordre et module de Thiele :}
 
-La surtension étant supposée uniforme (hypothèse 4), les termes exponentiels
-de la loi de Butler--Volmer~\eqref{eq:BV} sont constants. La densité
-de courant interfaciale devient alors proportionnelle à la concentration locale :
+On considère un régime fortement cathodique, correspondant à la limite
+de Tafel cathodique. Dans ce régime, la branche anodique associée à
+l'oxydation du \ce{CO} est supposée négligeable devant la branche
+cathodique associée à la réduction du \ce{CO2}. La loi de
+Butler--Volmer~\eqref{eq:BV} se réduit alors à :
+
 \begin{equation}
-j = k(\eta)\avg{C_i}^l ,
-\qquad
-k(\eta) = \frac{j_0}{C^{\text{ref}}}
-\left[
-\exp\!\left(-\frac{\alpha_c F\eta}{RT}\right)
-- \exp\!\left(\frac{\alpha_a F\eta}{RT}\right)
-\right],
+j
+\simeq
+j_{0,\mathrm{ref}}
+\frac{C_{\mathrm{CO_2}}}
+     {C_{\mathrm{CO_2}}^{\mathrm{ref}}}
+\exp\!\left(
+-\frac{\alpha_c F\eta_{\mathrm{ref}}}{RT}
+\right).
 \end{equation}
-où la dépendance en potentiel est entièrement regroupée dans le coefficient
-$k(\eta)$ (A\,m\,mol$^{-1}$).
+
+Afin d'obtenir un modèle homogénéisé fermé, on suppose que la
+concentration interfaciale en \ce{CO2} peut être approchée par sa
+concentration moyenne intrinsèque dans la phase liquide :
+
+\begin{equation}
+C_{\mathrm{CO_2}}
+\big|_{A_{sf}^{\mathrm{cat}}}
+\simeq
+\avg{C_{\mathrm{CO_2}}}^l.
+\end{equation}
+
+La surtension étant supposée uniforme dans le modèle réduit, on introduit
+le coefficient cinétique cathodique apparent :
+
+\begin{equation}
+k_r(\eta_{\mathrm{ref}})
+=
+\frac{j_{0,\mathrm{ref}}}
+     {n_e F C_{\mathrm{CO_2}}^{\mathrm{ref}}}
+\exp\!\left(
+-\frac{\alpha_c F\eta_{\mathrm{ref}}}{RT}
+\right),
+\end{equation}
+
+de sorte que la densité de courant interfaciale s'écrit :
+
+\begin{equation}
+j
+=
+n_e F
+k_r(\eta_{\mathrm{ref}})
+\avg{C_{\mathrm{CO_2}}}^l.
+\end{equation}
+
+Bien que la
+surtension et le coefficient cinétique soient supposés uniformes,
+la densité de courant reste variable dans l'électrode en raison des
+variations locales de la concentration en \ce{CO2}.
 
 En reportant cette forme dans la relation
+
 \begin{equation}
 R_i = \frac{\nu_i}{n_eF}\,j ,
 \end{equation}
-on obtient un terme de réaction linéaire en concentration :
+
+on obtient :
+
 \begin{equation}
-R_i = \frac{\nu_i k(\eta)}{n_eF}\avg{C_i}^l .
+R_i
+=
+\nu_i
+k_r(\eta_{\mathrm{ref}})
+\avg{C_{\mathrm{CO_2}}}^l.
 \end{equation}
 
-On adimensionne alors l'équation~\eqref{eq:diff_reaction} en posant
+Pour le \ce{CO2}, consommé par la réaction et pour lequel
+$\nu_{\mathrm{CO_2}}=-1$, cette relation devient :
+
+\begin{equation}
+R_{\mathrm{CO_2}}
+=
+-
+k_r(\eta_{\mathrm{ref}})
+\avg{C_{\mathrm{CO_2}}}^l.
+\end{equation}
+
+On adimensionne alors l'équation~\eqref{eq:diff_reaction} appliquée au
+\ce{CO2} en posant
+
 \[
-\avg{C_i}^{l,*} = \frac{\avg{C_i}^l}{C_i^{\text{ref}}},
+\avg{C_{\mathrm{CO_2}}}^{l,*}
+=
+\frac{\avg{C_{\mathrm{CO_2}}}^l}
+     {C_{\mathrm{CO_2}}^{\mathrm{ref}}},
 \qquad
 \zeta = \frac{z}{l_e},
 \]
+
 où $l_e$ est la longueur caractéristique macroscopique. L'équation de
 diffusion--réaction s'écrit alors, en 1D :
+
 \begin{equation}
-\frac{d^2 \avg{C_i}^{l,*}}{d \zeta^2}
+\frac{d^2 \avg{C_{\mathrm{CO_2}}}^{l,*}}
+     {d \zeta^2}
 =
 \underbrace{
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta) l_e^2}
-{n_eF\,\varepsilon_l D_i^{\mathrm{eff}}}
+\frac{
+a_v^{\mathrm{cat}}
+k_r(\eta_{\mathrm{ref}})
+l_e^2
+}{
+\varepsilon_l
+D_{\mathrm{CO_2}}^{\mathrm{eff}}
+}
 }_{\phi^2}
-\avg{C_i}^{l,*}.
+\avg{C_{\mathrm{CO_2}}}^{l,*}.
 \label{eq:diff_react_1D}
 \end{equation}
 
 On définit ainsi le module de Thiele :
+
 \begin{equation}
 \boxed{
 \phi^2
 =
--\frac{\nu_i a_v^{\mathrm{cat}} k(\eta) l_e^2}
-{n_eF\,\varepsilon_l D_i^{\mathrm{eff}}}
+\frac{
+a_v^{\mathrm{cat}}
+k_r(\eta_{\mathrm{ref}})
+l_e^2
+}{
+\varepsilon_l
+D_{\mathrm{CO_2}}^{\mathrm{eff}}
+}
 }
 \end{equation}
-Le facteur $-\nu_i$ (positif pour une espèce consommée) garantit $\phi^2 > 0$
-sous la convention adoptée.
+
+Cette expression est positive et sans dimension.
 
 \begin{itemize}
     \item $\phi \ll 1$ : la diffusion est rapide devant la réaction,
@@ -152,10 +232,8 @@ sous la convention adoptée.
 La solution analytique de cette équation ainsi que le facteur d'efficacité
 associé sont présentés dans la section suivante.
 
-
-\bigskip
-Les différentes hypothèses introduites permettent de relier le système
-homogénéisé général à des modèles réduits plus simples~\cite{dao3SimplificationOrder2012, schmidtUnderstandingDeviationsSpatially2021}. 
-En particulier, le modèle classique fondé sur le module de Thiele apparaît
-comme un cas limite du formalisme obtenu par homogénéisation, lorsque seuls
-les phénomènes de diffusion et de réaction sont conservés.
+\bigskip 
+Les différentes hypothèses introduites permettent de relier le système homogénéisé général à des modèles réduits 
+plus simples~\cite{dao3SimplificationOrder2012, schmidtUnderstandingDeviationsSpatially2021}. En particulier, le
+ modèle classique fondé sur le module de Thiele apparaît comme un cas limite du formalisme obtenu par homogénéisation,
+  lorsque seuls les phénomènes de diffusion et de réaction sont conservés.
