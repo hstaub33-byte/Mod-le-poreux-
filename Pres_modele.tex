@@ -205,40 +205,92 @@ la loi reliant la densité de courant interfaciale à ces potentiels.
 %--------------------------------------------------------BV$-----------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-\subsection*{Loi de Butler-Volmer}
+\subsection*{Loi de Butler--Volmer}
 
-La densité de courant interfaciale $j$ est donnée par la loi de Butler-Volmer~\cite{dickinsonButlerVolmerEquationElectrochemical2020} :
+La densité de courant interfaciale $j$ est décrite par une forme
+simplifiée de la loi de Butler--Volmer tenant compte des concentrations
+interfaciales en \ce{CO2} et en \ce{CO}%
+~\cite{dickinsonButlerVolmerEquationElectrochemical2020} :
 
 \begin{equation}
-j = j_0 \left[\exp\!\left(-\frac{\alpha_c F \eta}{RT}\right)-\exp\!\left(\frac{\alpha_a F \eta}{RT}\right)\right] \quad \text{sur } A_{sf}^{\mathrm{cat}}
+j =
+j_{0,\mathrm{ref}}
+\left[
+\frac{C_{\mathrm{CO_2}}}
+     {C_{\mathrm{CO_2}}^{\mathrm{ref}}}
+\exp\!\left(
+-\frac{\alpha_c F \eta_{\mathrm{ref}}}{RT}
+\right)
+-
+\frac{C_{\mathrm{CO}}}
+     {C_{\mathrm{CO}}^{\mathrm{ref}}}
+\exp\!\left(
+\frac{\alpha_a F \eta_{\mathrm{ref}}}{RT}
+\right)
+\right]
+\qquad
+\text{sur } A_{sf}^{\mathrm{cat}},
 \label{eq:BV}
 \end{equation}
 
-où $\eta = \varphi_s - \varphi_l - E_{eq}$ est la surtension locale, 
-$j_0$ la densité de courant d'échange, $\alpha_a$ et $\alpha_c$ les
- coefficients de transfert anodique et cathodique. En régime
-cathodique $\eta < 0$, de sorte que $j > 0$.
+où la surtension est définie par rapport à un état de référence :
+
+\begin{equation}
+\eta_{\mathrm{ref}}
+=
+\varphi_s
+-
+\varphi_l
+-
+E_{\mathrm{eq}}^{\mathrm{ref}}.
+\label{eq:surtension_ref}
+\end{equation}
+
+Le potentiel $E_{\mathrm{eq}}^{\mathrm{ref}}$ correspond au potentiel
+d'équilibre évalué pour les concentrations de référence
+$C_{\mathrm{CO_2}}^{\mathrm{ref}}$ et
+$C_{\mathrm{CO}}^{\mathrm{ref}}$.
+La grandeur $j_{0,\mathrm{ref}}$ désigne la densité de courant d'échange
+associée à cet état de référence, tandis que $\alpha_a$ et $\alpha_c$
+sont les coefficients de transfert anodique et cathodique.
+
+Avec la convention adoptée, le courant de réduction est compté
+positivement. En régime cathodique,
+$\eta_{\mathrm{ref}} < 0$, la contribution cathodique augmente et la
+densité de courant vérifie $j>0$.
+
+Dans cette description simplifiée, les concentrations en protons,
+l'activité de l'eau et les concentrations des éventuels intermédiaires
+réactionnels ne sont pas décrites explicitement. Leur influence est
+absorbée dans le paramètre $j_{0,\mathrm{ref}}$. Cette approximation
+suppose notamment que le pH et les activités des espèces non modélisées
+restent suffisamment uniformes dans l'électrode. Elle devra être
+réexaminée si les réactions acido-basiques homogènes et les variations
+locales de pH sont introduites dans le modèle.
 
 La loi de Butler--Volmer est retenue ici comme modèle cinétique de
-référence. Largement utilisée en électrochimie, elle fournit une relation
-simple entre la densité de courant interfaciale et la surtension locale.
-Cependant, son application à la réduction du \ce{CO2} sur des particules
-catalytiques greffées reste une approximation~\cite{adesinaButlerVolmerEquationCO22024}. Les mécanismes réactionnels
+référence. Largement utilisée en électrochimie, elle fournit une
+relation simple entre la densité de courant interfaciale, les
+concentrations locales et la surtension. Cependant, son application à
+la réduction du \ce{CO2} sur des particules catalytiques greffées reste
+une approximation%
+~\cite{adesinaButlerVolmerEquationCO22024}. Les mécanismes réactionnels
 mis en jeu sont complexes, font intervenir plusieurs intermédiaires
-réactionnels et ne sont pas nécessairement décrits de manière adéquate par
-une cinétique globale de type Butler--Volmer~\cite{koperTheoryMultipleProton2013, gottleProtoncoupledElectronTransfer2017}. L'objectif de ce travail est
-avant tout de construire un cadre de modélisation cohérent ; l'introduction
-d'une loi cinétique plus adaptée constituera une étape ultérieure.
+réactionnels et ne sont pas nécessairement décrits de manière adéquate
+par une cinétique globale de type Butler--Volmer%
+~\cite{koperTheoryMultipleProton2013,gottleProtoncoupledElectronTransfer2017}.
+L'objectif de ce travail est avant tout de construire un cadre de
+modélisation cohérent ; l'introduction d'une loi cinétique plus adaptée
+constituera une étape ultérieure.
 
-Des travaux récents montrent toutefois que les réactions de transfert couplé 
-électron–proton (PCET) peuvent être décrites de manière plus rigoureuse par 
-une approche fondée sur la théorie de Marcus–Gerischer étendue au PCET, qui 
-tient explicitement compte des états vibroniques et des énergies de réorganisation.
- Une telle description constitue une perspective d'amélioration naturelle du 
- présent modèle. \cite{kessingerReorganizationEnergiesInterfacial2022}
-%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-%--------------------------------------------------------CL-----------------------------------------------------------------------------------
-%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Des travaux récents montrent toutefois que les réactions de transfert
+couplé électron--proton (PCET) peuvent être décrites de manière plus
+rigoureuse par une approche fondée sur la théorie de
+Marcus--Gerischer étendue au PCET, qui tient explicitement compte des
+états vibroniques et des énergies de réorganisation%
+~\cite{kessingerReorganizationEnergiesInterfacial2022}.
+Une telle description constitue une perspective d'amélioration
+naturelle du présent modèle.
 
 \subsection*{Conditions aux limites externes}
 
