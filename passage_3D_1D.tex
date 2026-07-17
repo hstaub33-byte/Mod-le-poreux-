@@ -161,8 +161,10 @@ on sépare la contribution de la moyenne et celle des fluctuations :
 + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
 \end{equation}
 
-En appliquant le théorème de Gauss au premier terme, sachant que 
-$\avg{C_i}^l$ varie à l'échelle macroscopique et peut sortir de l'intégrale :
+En sortant $\langle C_i\rangle^l$ de l'intégrale (elle varie à l'échelle 
+macroscopique et est donc constante à l'échelle du pore) et en appliquant le 
+théorème de la moyenne spatiale~\eqref{eq:moy_spatiale} à la fonction 
+constante $g = 1$, qui donne $\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, dA = -\nabla\varepsilon_l$ :
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA = -\avg{C_i}^l \nab\varepsilon_l
 \end{equation}
@@ -180,7 +182,10 @@ L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$.
 On suppose que le transport à l'échelle du pore est quasi-stationnaire. La
 longueur caractéristique du pore $\ell_p$ étant très petite devant la
 longueur macroscopique $l_e$, le transport s'y équilibre beaucoup plus
-rapidement qu'à l'échelle de l'électrode. On peut donc négliger les effets
+rapidement qu'à l'échelle de l'électrode. De plus, le problème de fermeture 
+ne portant que sur la partie diffusive du flux (les termes de migration et de 
+convection étant traités séparément), le transport à l'échelle du pore se 
+réduit ici à de la diffusion pure. On peut donc négliger les effets
 transitoires à l'échelle du pore, ce qui donne :
 \begin{equation}
 \nab^2 C_i = 0 \quad \text{dans } V_l
@@ -211,13 +216,19 @@ où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant~
 \avg{\mathbf{b}}^l &= 0 \quad \text{et périodicité} : \quad b(\mathbf{r}) = b(\mathbf{r} + l_i \mathbf{e}_i)
 \end{align}
 
+où $\mathbf{e}_i$ désignent les vecteurs de base et $l_i$ les périodes du volume 
+élémentaire représentatif dans chaque direction. La condition de moyenne nulle 
+$\avg{\mathbf{b}}^l = 0$ fixe la constante d'intégration, et la périodicité traduit 
+l'hypothèse d'une microstructure localement périodique à l'échelle du pore.
+
 En substituant cette expression dans le terme de correction surfacique, on obtient :
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
 = \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot\nab\avg{C_i}^l
 \end{equation}
 
-En substituant dans l'expression du terme diffusif et en factorisant :
+En substituant dans l'expression du terme diffusif, puis en factorisant 
+$\varepsilon_l$ à l'aide de $\varepsilon_l = V_l/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_l}{V_l}$) :
 \begin{align}
 \avg{-D_i \nab C_i}
 &= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot \nab\avg{C_i}^l \right) \notag\\
@@ -338,7 +349,10 @@ représenter les fluctuations du potentiel à l'échelle du pore sous la forme
 Cette fermeture est introduite par analogie avec le problème diffusif. Elle
 constitue toutefois une approximation, car les fluctuations du potentiel
 électrolytique peuvent être corrélées aux fluctuations de concentration à
-l'échelle du pore. On obtient ainsi : %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
+l'échelle du pore. %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
+En substituant la fermeture $\tilde\varphi_l = \mathbf{d}\cdot\nab\avg{\varphi_l}^l$ 
+dans le terme de surface, puis en factorisant $\varepsilon_l$ à l'aide de 
+$\varepsilon_l = V_l/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_l}{V_l}$) :
 \begin{align}
 \avg{C_i \nab\varphi_l}
 &= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
@@ -494,6 +508,12 @@ D_i^{\mathrm{tot}}
 D^{\mathrm{disp}}.
 \end{equation}
 
+La moyenne $\langle \tilde{v} \otimes b \rangle$ définissant $D^{\mathrm{disp}}$
+étant une moyenne superficielle, elle intègre déjà la porosité $\varepsilon_l$ :
+c'est ce qui justifie l'absence de facteur $\varepsilon_l$ explicite devant
+$D^{\mathrm{disp}}$, là où le terme diffusif $\varepsilon_l D^{\mathrm{eff}}_i$
+le porte explicitement.
+
 Le flux homogénéisé s'écrit finalement :
 
 \begin{equation}
@@ -631,7 +651,8 @@ On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
 \sigma^{\text{eff}} = \sigma_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right)
 \end{equation}
 
-D'où :
+En reportant dans l'expression de $\avg{\nab\varphi_s}$ et en factorisant 
+$\varepsilon_s = V_s/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_s}{V_s}$), on obtient :
 \begin{equation}
 \avg{\nab\varphi_s}
 = \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right) \nab\avg{\varphi_s}^s
@@ -671,20 +692,11 @@ suivant~\cite{mendez-vasquezUpscalingMassElectric2025,
 bui<3ContinuumModeling2022} :
 
 \begin{equation}
-\varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t}
-=
-\nab\!\cdot
-\left[
-D_i^{\mathrm{tot}}\nab\avg{C_i}^l
-+
-\frac{z_iF}{RT}
-\varepsilon_l D_i^{\mathrm{eff,mig}}
-\avg{C_i}^l
-\nab\avg{\varphi_l}^l
--
-\varepsilon_l \avg{C_i}^l \avg{v}^l
-\right]
-+ a_v^{\mathrm{cat}} R_i
+    \varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t} 
+    = \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l 
+    + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l 
+    - \varepsilon_l \avg{C_i}^l \avg{v}^l \right) 
+    + a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:sys1}
 \end{equation}
 
@@ -694,13 +706,18 @@ D_i^{\mathrm{tot}}\nab\avg{C_i}^l
 \end{equation}
 
 \begin{equation}
-\nab\!\cdot
-\left(\varepsilon_s \sigma^{\mathrm{eff}}
-\nab\avg{\varphi_s}^s\right)
-=
--a_v^{\mathrm{cat}} j
+    \nab\cdot\left( \varepsilon_s \sigma^{\mathrm{eff}}\nab\avg{\varphi_s}^s \right) 
+    = -a_v^{\mathrm{cat}} \avg{j}^{sf}
 \label{eq:sys3}
 \end{equation}
+
+Les coefficients effectifs $D^{\mathrm{eff}}_i$, $D^{\mathrm{eff,mig}}_i$, 
+$D^{\mathrm{disp}}$ et $\sigma^{\mathrm{eff}}$ introduits ci-dessus sont en 
+toute généralité des tenseurs d'ordre deux, reflétant l'anisotropie éventuelle 
+de la microstructure poreuse. Dans la géométrie unidimensionnelle considérée 
+par la suite, seule leur composante selon la direction normale à l'électrode 
+intervient ; on les notera alors comme des grandeurs scalaires.
+
 \subsection*{Conditions limites}
 
 Le système homogénéisé \eqref{eq:sys1}--\eqref{eq:sys3} doit être complété

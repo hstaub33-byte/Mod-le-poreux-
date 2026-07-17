@@ -3,7 +3,7 @@
 \textbf{Objectif :} 
 Construction d'un modèle 1D homogénéisé de transport
 et réaction dans une électrode poreuse (\ce{CO2RR}), à partir d'un modèle
-3D simple à l'échelle du pore. Des possibilités pour améliorer le modèle
+3D local à l'échelle du pore. Des possibilités pour améliorer le modèle
  de base sont également discutées. 
  %Est ce qu'on dit qu'on vut un modèle qui donne des résultats cohérents 
  %avec les expériences mais sans truc qui n'ajoute rien
@@ -11,18 +11,23 @@ et réaction dans une électrode poreuse (\ce{CO2RR}), à partir d'un modèle
 \textbf{Contenu :}
 \begin{itemize}
     \item Modèle 3D local : Nernst--Planck (espèces), Ohm (électrons),
-    Butler--Volmer (cinétique), électroneutralité / Poisson (potentiel).
+    Butler--Volmer (cinétique), électroneutralité pour le potentiel
+    électrolytique (Poisson traité en annexe).
     \item Réduction 1D par homogénéisation (prise de moyenne volumique,
     coefficients effectifs), dont le modèle de Thiele est obtenu comme cas
-    limite (solution analytique, facteur d'efficacité).
-    \item Cas test : diffusion--réaction \ce{CO2} $\rightarrow$ \ce{CO}.
+    limite purement diffusif à cinétique du premier ordre (solution
+    analytique, facteur d'efficacité).
+    \item Cas test : diffusion--réaction \ce{CO2} $\rightarrow$ \ce{CO},
+    en régime diffusif stationnaire.
     \item Limites et extensions du modèle de base.
-    \item Nombres adimensionnels : Péclet, Damköhler, Debye.
+    \item Nombres adimensionnels : Péclet, Damköhler (relié au module de
+    Thiele), Debye.
 \end{itemize}
 
 \textbf{Annexes :}
 \begin{itemize}
   \item Rappels théoriques : moyenne superficielle, théorème de la divergence de Gauss, théorème de la moyenne spatiale, théorème de transport.
+  \item Homogénéisation de l'équation de Poisson.
   \item Liste des grandeurs et paramètres utilisés dans le modèle.
 \end{itemize}
 

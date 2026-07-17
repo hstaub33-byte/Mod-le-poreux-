@@ -53,7 +53,7 @@ il ne permet pas de quantifier l'importance du terme de migration.
 Le nombre de Damköhler compare la vitesse de réaction surfacique à la diffusion :
 
 \begin{equation}
-Da = \frac{j_n l_e}{F D_i C_{\text{ref}}}
+Da = \frac{j l_e}{F D_i C_{\text{ref}}}
 \end{equation}
 
 En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
@@ -63,10 +63,12 @@ En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
 -N_i^* \cdot \mathbf{n} = Da \frac{\nu_i}{n_e}
 \end{equation*}
 
-Le nombre de Damköhler mesure l'importance relative de la réaction interfaciale 
-par rapport à la diffusion. Il est étroitement lié au module de Thiele ~\cite{wanPotentialDependentThiele} introduit 
-précédemment, qui décrit également la compétition entre réaction et diffusion dans 
-l'électrode poreuse.
+le flux normal étant nul sur le reste de l'interface. Ainsi défini, $Da$ caractérise 
+la compétition entre réaction interfaciale et diffusion à l'échelle de la surface 
+catalytique. Il est étroitement lié au module de Thiele~\cite{wanPotentialDependentThiele} 
+introduit précédemment, qui décrit la même compétition à l'échelle de l'électrode, 
+la couverture catalytique $\theta$ intervenant alors via l'aire spécifique active 
+$a_v^{\text{cat}} = \theta\, a_v$.
 
 % ============================================================
 \subsection*{Longueur de Debye}
@@ -93,9 +95,8 @@ présentation du modèle, est alors justifiée.
 
 \bigskip
 
-L'analyse adimensionnelle complète les développements précédents en précisant le 
-domaine de validité de plusieurs hypothèses du modèle. Elle met en évidence 
-les mécanismes susceptibles de gouverner le fonctionnement de l'électrode 
-poreuse selon les conditions opératoires considérées et fournit un cadre 
-d'interprétation des résultats qui seront présentés dans la suite du 
-manuscrit.
+Cette analyse adimensionnelle complète les développements précédents en précisant le domaine 
+de validité des principales hypothèses du modèle. Elle permet d’identifier, selon les conditions
+ opératoires, les mécanismes susceptibles de gouverner le fonctionnement de l’électrode poreuse. 
+ Les nombres de Péclet et de Damköhler, ainsi que la longueur de Debye adimensionnée, constitueront ainsi
+  une grille de lecture pour les simulations numériques à venir et pour l’évaluation du domaine de validité des modèles réduits.

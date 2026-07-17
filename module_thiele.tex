@@ -40,9 +40,8 @@ où les conditions aux limites sont :
 La résolution du problème conduit à :
 \begin{equation}
 \boxed{
-\left\langle C_i \right\rangle^{l}(\zeta)
+\left\langle C_i \right\rangle^{l,*}(\zeta)
 =
-C_i^{\text{ref}}
 \frac{
 \cosh\!\left(\phi(\zeta+1)\right)
 }{
@@ -138,7 +137,6 @@ d'efficacité associé au module de Thiele.
 %--------------------------------------------------------------------------------------------------------------
 %-------------------------Facteur d'efficacité -------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------
-
 \subsection*{Facteur d'efficacité}
 
 Le facteur d'efficacité est défini comme le rapport entre la vitesse de
@@ -159,15 +157,16 @@ espèce consommée :
     \label{eq:kv}
 \end{equation}
 
-La vitesse réelle de réaction est obtenue en intégrant la vitesse locale sur
-l'épaisseur de l'électrode :
+La vitesse réelle de réaction est obtenue en moyennant la vitesse locale
+$k_v \avg{C_i}^{l}$ sur l'électrode, en variable adimensionnée $\zeta$ :
 \begin{equation}
 \dot{r}_{\text{réel}}
 = \int_{-1}^{0} k_v \avg{C_i}^{l}(\zeta)\, d\zeta
 = k_v C_i^{\text{ref}} \int_{-1}^{0}
 \frac{\cosh\!\big(\phi(\zeta+1)\big)}{\cosh(\phi)}\, d\zeta
-= k_v C_i^{\text{ref}}\,\frac{\tanh(\phi)}{\phi} .
+= k_v C_i^{\text{ref}}\,\frac{\tanh(\phi)}{\phi} ,
 \end{equation}
+où l'on a utilisé $\avg{C_i}^{l} = C_i^{\text{ref}}\avg{C_i}^{l,*}$.
 
 Dans le cas idéal, la concentration est uniforme dans toute l'électrode,
 $\avg{C_i}^{l} = C_i^{\text{ref}}$, d'où :
@@ -177,7 +176,8 @@ $\avg{C_i}^{l} = C_i^{\text{ref}}$, d'où :
 = k_v C_i^{\text{ref}} .
 \end{equation}
 
-Le facteur d'efficacité vaut donc :
+Le facteur d'efficacité vaut donc, après simplification de $k_v C_i^{\text{ref}}$
+entre le numérateur et le dénominateur :
 \begin{equation}
 \boxed{\;\eta_E = \frac{\tanh(\phi)}{\phi}\;}
 \end{equation}

@@ -27,16 +27,10 @@ c'est-à-dire que les concentrations ne varient plus dans le temps :
 \eqref{eq:sys1} se réduit alors à :
 
 \begin{equation}
-\nab\!\cdot
-\left[
-D_i^{\mathrm{tot}} \nab\avg{C_i}^l
-+
-\frac{z_i F}{RT}\varepsilon_l D_i^{\mathrm{eff,mig}}
-\avg{C_i}^l \nab\avg{\varphi_l}^l
--
-\varepsilon_l \avg{C_i}^l \avg{v}^l
-\right]
-= -a_v^{\mathrm{cat}} R_i
+     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l 
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l 
+     - \varepsilon_l \avg{C_i}^l \avg{v}^l \right) 
+     = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
 
@@ -50,14 +44,9 @@ On suppose que la vitesse du fluide est négligeable :
 \eqref{eq:sys1} se réduit alors à :
 
 \begin{equation}
-\nab\!\cdot
-\left[
-D_i^{\mathrm{tot}} \nab\avg{C_i}^l
-+
-\frac{z_i F}{RT}\varepsilon_l D_i^{\mathrm{eff,mig}}
-\avg{C_i}^l \nab\avg{\varphi_l}^l
-\right]
-= -a_v^{\mathrm{cat}} R_i
+     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l 
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l \right) 
+     = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
 En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
@@ -70,7 +59,8 @@ le transport des espèces. Le transport est alors gouverné uniquement
 par la diffusion et la réaction :
 
 \begin{equation}
-\nab \cdot \!\left(\varepsilon_l D_i^{\text{eff}} \nab\avg{C_i}^l\right) = -a_v^{\mathrm{cat}} R_i
+     \nab\cdot\left( \varepsilon_l D^{\mathrm{eff}}_i \nab\avg{C_i}^l \right) 
+     = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:diff_reaction}
 \end{equation}
 
@@ -128,10 +118,10 @@ k_r(\eta_{\mathrm{ref}})
 \right),
 \end{equation}
 
-de sorte que la densité de courant interfaciale s'écrit :
+de sorte que la densité de courant interfaciale moyenne s'écrit :
 
 \begin{equation}
-j
+\avg{j}^{sf}
 =
 n_e F
 k_r(\eta_{\mathrm{ref}})
@@ -146,13 +136,13 @@ variations locales de la concentration en \ce{CO2}.
 En reportant cette forme dans la relation
 
 \begin{equation}
-R_i = \frac{\nu_i}{n_eF}\,j ,
+\avg{R_i}^{sf} = \frac{\nu_i}{n_eF}\,\avg{j}^{sf} ,
 \end{equation}
 
 on obtient :
 
 \begin{equation}
-R_i
+\avg{R_i}^{sf}
 =
 \nu_i
 k_r(\eta_{\mathrm{ref}})
@@ -163,7 +153,7 @@ Pour le \ce{CO2}, consommé par la réaction et pour lequel
 $\nu_{\mathrm{CO_2}}=-1$, cette relation devient :
 
 \begin{equation}
-R_{\mathrm{CO_2}}
+\avg{R_{\mathrm{CO_2}}}^{sf}
 =
 -
 k_r(\eta_{\mathrm{ref}})

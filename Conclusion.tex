@@ -1,31 +1,42 @@
 \section*{Conclusion}
 
-Ce travail a permis d'établir un modèle homogénéisé décrivant le
-transport de matière et de charge au sein d'une électrode poreuse.
-À partir des équations locales de conservation, de Nernst--Planck,
-de Poisson et d'Ohm, une procédure d'homogénéisation spatiale a été
-mise en œuvre afin de remplacer la géométrie complexe du milieu poreux
-par un milieu homogène équivalent caractérisé par des propriétés
-effectives.
+Ce document a établi un modèle homogénéisé du transport de matière et de charge
+dans une électrode poreuse dédiée à la réduction électrochimique du \ce{CO2}.
+Partant des équations locales à l'échelle du pore --- conservation des espèces,
+Nernst--Planck, électroneutralité et loi d'Ohm --- une procédure de prise de
+moyenne volumique a permis de substituer à la géométrie complexe du milieu poreux
+un milieu homogène équivalent, dont l'influence de la microstructure est portée
+par un jeu de coefficients effectifs (diffusion, migration, dispersion,
+conductivité) et par l'aire interfaciale spécifique.
 
-L'analyse des différentes hypothèses simplificatrices a ensuite montré
-comment ce modèle général pouvait être réduit à des formulations plus
-simples selon les phénomènes retenus. En particulier, le modèle
-classique fondé sur le module de Thiele apparaît comme un cas limite
-correspondant à un transport purement diffusif couplé à une réaction
-du premier ordre.
+L'analyse des hypothèses simplificatrices a montré comment ce système général se
+réduit progressivement à des formulations plus économiques. En particulier, le
+modèle classique fondé sur le module de Thiele apparaît comme un cas limite du
+formalisme homogénéisé, obtenu lorsque le transport est purement diffusif et la
+cinétique linéarisée au premier ordre. Ce cas limite admet une solution analytique
+et un facteur d'efficacité explicites, qui fournissent un premier point de
+comparaison et un test de cohérence pour les développements ultérieurs.
 
-Le cadre obtenu reste cependant plus général que l'approche de Thiele,
-car il permet de conserver les effets de migration électrique,
-de convection, de transport électronique et de structure poreuse.
-Il constitue ainsi une base de travail pour l'étude de situations où
-les hypothèses habituellement utilisées deviennent insuffisantes.
+L'intérêt du cadre proposé est de rester plus général que l'approche de Thiele :
+il conserve les termes de migration, de convection, de transport électronique dans
+la phase solide et l'effet de la structure poreuse, tout en offrant une voie
+systématique pour lever une à une les hypothèses lorsque le comportement observé
+s'écarte des prédictions du modèle réduit. Plusieurs de ces hypothèses ont
+d'ailleurs été identifiées et discutées : électroneutralité, fermetures découplées
+pour les fluctuations de potentiel, cinétique de Butler--Volmer globale, absence de
+réactions homogènes et de réaction concurrente de dégagement d'hydrogène.
 
-Plusieurs perspectives peuvent être envisagées pour la suite de ce
-travail. La première consiste à résoudre numériquement le système
-homogénéisé complet afin d'évaluer l'influence relative des différents
-mécanismes de transport. Une autre perspective concerne l'amélioration
-de la description des réactions électrochimiques, notamment en
-remettant en question certaines hypothèses cinétiques utilisées dans
-ce document et en introduisant des modèles plus adaptés aux conditions
-de fonctionnement considérées.
+La suite de ce travail se concentrera sur la résolution numérique du système
+homogénéisé complet, afin de quantifier l'influence relative des différents
+mécanismes de transport au-delà du régime purement diffusif et de délimiter le
+domaine de validité effectif du modèle de Thiele. Les nombres adimensionnels
+introduits (Péclet, Damköhler, longueur de Debye) fourniront la grille de lecture
+de ces résultats. Une autre étape consistera à modéliser explicitement la phase
+homogène, jusqu'ici réduite à une condition aux limites de type réacteur piston
+fournissant concentrations et potentiel à l'interface de l'électrode : la coupler
+au domaine poreux permettra de décrire l'évolution du bulk et de fermer le bilan
+à l'échelle de la cellule. À plus long terme, l'introduction d'une description
+cinétique mieux adaptée à la réduction du \ce{CO2} --- par exemple une approche de
+type Marcus--Gerischer étendue au transfert couplé électron--proton --- et la prise
+en compte des réactions acido-basiques homogènes constituent les extensions les
+plus directes du présent cadre.
