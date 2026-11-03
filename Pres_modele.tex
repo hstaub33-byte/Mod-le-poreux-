@@ -2,16 +2,16 @@
 
 \subsection*{Système étudié}
 
-L'électrode poreuse considérée est représentée schématiquement en 
+L'électrode poreuse considérée est représentée schématiquement en
 figure~\ref{fig:systeme}. Elle est constituée d'une phase solide conductrice
 $\Omega_s$ formée de fibres de carbone sur lesquelles sont greffés des catalyseurs moléculaires,
- et d'une phase fluide $\Omega_l$ dans laquelle circule 
-un électrolyte contenant le \ce{CO2} dissous. Deux configurations sont 
-envisageables pour l'apport en \ce{CO2} : soit par électrode à 
-diffusion gazeuse (GDE), soit par bullage direct dans la phase fluide homogène.  
-Le modèle développé dans ce travail est limité au cas où les pores sont 
-entièrement remplis d'électrolyte. La configuration GDE, dans laquelle 
-les pores contiennent simultanément une phase gazeuse et une phase liquide, 
+ et d'une phase fluide $\Omega_l$ dans laquelle circule
+un électrolyte contenant le \ce{CO2} dissous. Deux configurations sont
+envisageables pour l'apport en \ce{CO2} : soit par électrode à
+diffusion gazeuse (GDE), soit par bullage direct dans la phase fluide homogène.
+Le modèle développé dans ce travail est limité au cas où les pores sont
+entièrement remplis d'électrolyte. La configuration GDE, dans laquelle
+les pores contiennent simultanément une phase gazeuse et une phase liquide,
 nécessiterait une description diphasique du transport et n'est donc pas considérée ici \cite{bernardiMathematicalModelGas1991}.
 
 Les espèces dissoutes sont transportées dans l'électrolyte tandis que les
@@ -21,13 +21,13 @@ greffé que sur une partie de cette interface, les réactions électrochimiques
 de réduction du \ce{CO2} ne se produisent que sur sa fraction
 catalytiquement active, notée $A_{sf}^{\mathrm{cat}}$.
 
-La géométrie du milieu poreux influence à la fois le transport 
-des espèces et la vitesse des réactions électrochimiques. Les paramètres 
-géométriques pertinents seront introduits ultérieurement lors de l'homogénéisation 
+La géométrie du milieu poreux influence à la fois le transport
+des espèces et la vitesse des réactions électrochimiques. Les paramètres
+géométriques pertinents seront introduits ultérieurement lors de l'homogénéisation
 du modèle.
 
-L'électrode poreuse est en contact avec une phase fluide située hors du milieu poreux, constituée du même électrolyte. 
-Dans la suite, cette région est modélisée comme un réacteur piston et fournira les 
+L'électrode poreuse est en contact avec une phase fluide située hors du milieu poreux, constituée du même électrolyte.
+Dans la suite, cette région est modélisée comme un réacteur piston et fournira les
 conditions aux limites du domaine poreux. %La suite est pas encore faite et ce sera une autre partie
 
 \begin{figure}[H]
@@ -50,7 +50,7 @@ espèces dans l'électrolyte, la circulation des électrons dans la phase
 solide conductrice ainsi que la cinétique électrochimique à l'interface
 $A_{sf}$. % Je laisse Asf ? je pourrais mettre asf cat mais c'est lourd
 
-%J'ajoute pas la membrane sur le scéma car je l'ajouterai dans la partie homogène dans un autre schéma 
+%J'ajoute pas la membrane sur le scéma car je l'ajouterai dans la partie homogène dans un autre schéma
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------Transport des espèces liquide-----------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,11 +65,11 @@ concentrées. La migration déplace les espèces chargées sous l'effet du champ
 électrique. Enfin, la convection correspond au transport des espèces par le
 mouvement global du fluide.
 
-Dans le cadre du modèle de base, l'électrolyte est supposé suffisamment 
+Dans le cadre du modèle de base, l'électrolyte est supposé suffisamment
 dilué pour que ces mécanismes soient décrits par l'équation de Nernst--Planck~\cite{newmanElectrochemicalSystems} :
 % migration =1.16,diff=1.27, conv=1.32
 \begin{equation}
-N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \quad \text{dans } \Omega_l 
+N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \quad \text{dans } \Omega_l
 \label{eq:nernst-planck}
 \end{equation}
 où $v$ désigne la vitesse locale de l'électrolyte. Elle peut être
@@ -79,7 +79,7 @@ régimes où la convection est faible.
 
 %La conservation de la masse de l'espèce $i$ dans $\Omega_l$ traduit le
 % bilan entre les flux
-%entrant et sortant d'un volume de contrôle. 
+%entrant et sortant d'un volume de contrôle.
 %Dans le cas général, ce bilan
 %pourrait également faire intervenir un terme source associé à une réaction
 %chimique se produisant dans le volume. Cependant, les réactions
@@ -88,14 +88,14 @@ régimes où la convection est faible.
 %L'équation de conservation s'écrit alors :
 La conservation de la masse de l'espèce $i$ dans $\Omega_l$ traduit le
 bilan entre les flux
-entrant et sortant d'un volume de contrôle. 
-Dans le modèle de base, les réactions homogènes en solution sont négligées. 
-Les seuls termes sources considérés proviennent des réactions électrochimiques, 
-supposées localisées sur l'interface $A_{sf}$, conformément à l'approche classique 
-de la théorie des électrodes poreuses \cite{newmanElectrochemicalSystems,newmanTheoreticalAnalysisCurrent1962,mendez-vasquezUpscalingMassElectric2025}. 
+entrant et sortant d'un volume de contrôle.
+Dans le modèle de base, les réactions homogènes en solution sont négligées.
+Les seuls termes sources considérés proviennent des réactions électrochimiques,
+supposées localisées sur l'interface $A_{sf}$, conformément à l'approche classique
+de la théorie des électrodes poreuses \cite{newmanElectrochemicalSystems,newmanTheoreticalAnalysisCurrent1962,mendez-vasquezUpscalingMassElectric2025}.
 L'équation de conservation s'écrit alors :
 \begin{equation}
-\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_l 
+\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_l
 \label{eq:conservation}
 \end{equation}
 
@@ -104,16 +104,16 @@ la réaction électrochimique. Le catalyseur n'étant greffé que sur une
 partie de la surface des fibres, on distingue la partie catalytiquement
 active de l'interface, notée $A_{sf}^{\mathrm{cat}}$, du reste de
 l'interface où le carbone est nu. Dans le modèle retenu, seules les
-zones de l'interface portant le catalyseur sont supposées électrochimiquement 
-actives \cite{leMultiscaleModelingDiffusion2017,le<3MultiscaleModelling2022}. De plus, la réduction du CO$_2$ en CO est considérée comme l'unique 
-réaction électrochimique prise en compte, les réactions parasites telles que le dégagement 
-d'hydrogène étant négligées \cite{goyalCompetitionCO2Reduction2020,marcandalliElectrolyteEffectsCO22022}. Le flux normal de l'espèce i est alors relié à la 
+zones de l'interface portant le catalyseur sont supposées électrochimiquement
+actives \cite{leMultiscaleModelingDiffusion2017,le<3MultiscaleModelling2022}. De plus, la réduction du CO$_2$ en CO est considérée comme l'unique
+réaction électrochimique prise en compte, les réactions parasites telles que le dégagement
+d'hydrogène étant négligées \cite{goyalCompetitionCO2Reduction2020,marcandalliElectrolyteEffectsCO22022}. Le flux normal de l'espèce $i$ est alors relié à la
 densité de courant interfaciale par la loi de Faraday uniquement sur $A_{sf}^{\mathrm{cat}}$ \cite{newmanElectrochemicalSystems,newmanTheoreticalAnalysisCurrent1962} :
 \begin{subequations}
 \begin{align}
--\mathbf{n} \cdot N_i &= \frac{\nu_i}{n_e F}\, j 
+-\mathbf{n} \cdot N_i &= \frac{\nu_i}{n_e F}\, j
 && \text{sur } A_{sf}^{\mathrm{cat}}, \label{eq:faraday} \\
--\mathbf{n} \cdot N_i &= 0 
+-\mathbf{n} \cdot N_i &= 0
 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}},
 \end{align}
 \label{eq:interfaceliquide}
@@ -125,11 +125,12 @@ coefficient $\nu_i$ est négatif pour une espèce consommée et positif pour une
 espèce produite. Sur la partie non catalytique, l'interface
 se comporte comme une paroi imperméable aux espèces.
 
-On notera que cette distinction entre interface catalytique $A_{sf}^{\mathrm{cat}}$ 
-et interface complète $A_{sf}$ n'intervient que dans le terme source réactionnel : 
-vis-à-vis du transport des espèces, l'ensemble de l'interface solide/fluide $A_{sf}$ 
-reste géométriquement imperméable, qu'elle porte ou non le catalyseur. Seule la 
-condition de flux~\eqref{eq:faraday} distingue la zone active du reste de la surface.
+On notera que cette distinction entre interface catalytique $A_{sf}^{\mathrm{cat}}$
+et interface complète $A_{sf}$ n'intervient que dans les conditions de flux. Pour
+l'écoulement, l'ensemble de l'interface $A_{sf}$ reste une paroi solide (non-glissement,
+$v = 0$), qu'elle porte ou non le catalyseur. En revanche, le flux de matière n'y est nul
+qu'en dehors de $A_{sf}^{\mathrm{cat}}$ : c'est la condition~\eqref{eq:faraday} qui
+distingue la zone active du reste de la surface.
 
 Le transport des espèces est couplé au champ électrique par le terme de
 migration. La détermination du potentiel électrolytique constitue donc la
@@ -140,10 +141,10 @@ prochaine étape.
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \subsection*{Potentiel électrolytique dans $\Omega_l$}
-Le transport des espèces est couplé au champ électrique par 
-le terme de migration de l'équation de Nernst--Planck. La détermination 
-du potentiel électrolytique nécessite donc une relation supplémentaire. 
-Dans le modèle de base, l'électrolyte est supposé électroneutre, de sorte 
+Le transport des espèces est couplé au champ électrique par
+le terme de migration de l'équation de Nernst--Planck. La détermination
+du potentiel électrolytique nécessite donc une relation supplémentaire.
+Dans le modèle de base, l'électrolyte est supposé électroneutre, de sorte
 que la somme des charges portées par les espèces dissoutes est nulle~\cite{newmanElectrochemicalSystems} :
 \begin{equation}
 \sum_i z_i C_i = 0
@@ -151,20 +152,20 @@ que la somme des charges portées par les espèces dissoutes est nulle~\cite{new
 \label{eq:electroneutre}
 \end{equation}
 
-La validité de cette approximation est discutée à la section "Limites du modèle et extensions possibles".
+La validité de cette approximation est discutée à la section \og Limites du modèle et extensions possibles\fg{}.
 % Le champ électrique dans l'électrolyte résulte de la distribution des charges dans le fluide. L'équation de Poisson relie le laplacien du potentiel électrolytique à la densité volumique de charges libres portées par les ions en solution :
 
 % \begin{equation}
-% -\varepsilon_0 \varepsilon_r \nab^2 \varphi_l = F\sum_i z_i C_i \quad \text{dans } \Omega_l 
+% -\varepsilon_0 \varepsilon_r \nab^2 \varphi_l = F\sum_i z_i C_i \quad \text{dans } \Omega_l
 % \label{eq:poisson}
 % \end{equation}
 
 % À l'interface solide/fluide, la présence d'une densité de charge
 % surfacique associée à la double couche électrique impose une condition
-% sur le gradient normal du potentiel 
+% sur le gradient normal du potentiel
 
 % \begin{equation}
-% -\varepsilon_0 \varepsilon_r \mathbf{n} \cdot \nab \varphi_l = \sigma_q \quad \text{sur } A_{sf} 
+% -\varepsilon_0 \varepsilon_r \mathbf{n} \cdot \nab \varphi_l = \sigma_q \quad \text{sur } A_{sf}
 % \label{eq:boundary_potential}
 % \end{equation}
 
@@ -177,32 +178,40 @@ la phase solide conductrice.
 
 \subsection*{Transport électronique dans $\Omega_s$}
 
-Dans le modèle de base, la phase solide est supposée ohmique. 
-Le transport des électrons est alors décrit par la loi d'Ohm, 
+Dans le modèle de base, la phase solide est supposée ohmique.
+Le transport des électrons est alors décrit par la loi d'Ohm,
 qui relie la densité de courant électronique
-au gradient du potentiel électrique, avec $\sigma_s$ la conductivité du solide. 
+au gradient du potentiel électrique, avec $\sigma_s$ la conductivité du solide.
 En l'absence d'accumulation de charge dans le
 solide, la conservation du courant impose~\cite{newmanTheoreticalAnalysisCurrent1962, newmanPorouselectrodeTheoryBattery1975} :
 \begin{equation}
-\nab \cdot (-\sigma_s \nab \varphi_s) = 0 \quad \text{dans } \Omega_s 
+\nab \cdot (-\sigma_s \nab \varphi_s) = 0 \quad \text{dans } \Omega_s
 \label{eq:ohm}
 \end{equation}
 
-À l'interface solide/fluide, la conservation du courant 
-impose que tout le courant quittant $\Omega_s$ 
+À l'interface solide/fluide, la conservation du courant
+impose que tout le flux d'électrons quittant $\Omega_s$
 soit intégralement transféré à l'électrolyte par la réaction
 électrochimique~\cite{devidtsGoverningEquationsTransport1997}, sur la seule zone catalytiquement active :
 \begin{subequations}
 \begin{align}
-\mathbf{n}_s \sigma_s \nab \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
-\mathbf{n}_s \sigma_s \nab \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
+\mathbf{n}_s \cdot \sigma_s \nab \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
+\mathbf{n}_s \cdot \sigma_s \nab \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
 \end{align}
 \label{eq:intefacesolide}
 \end{subequations}
 
-On a introduit ici la normale $\mathbf{n}_s$ à l'interface $A_{sf}$, orientée vers 
+On a introduit ici la normale $\mathbf{n}_s$ à l'interface $A_{sf}$, orientée vers
 l'extérieur de la phase solide (du solide vers le fluide), de sorte que :
-$\mathbf{n}_s = -\mathbf{n}$
+$\mathbf{n}_s = -\mathbf{n}$.
+
+Ces conditions sont cohérentes avec~\eqref{eq:faraday}. En sommant cette dernière sur
+toutes les espèces, le courant ionique $i_l = F\sum_i z_i N_i$ vérifie
+$\mathbf{n}\cdot i_l = -\frac{\sum_i z_i \nu_i}{n_e}\, j$. Pour la réaction étudiée,
+$\sum_i z_i \nu_i = -n_e$, à condition de compter \ce{H+} ou \ce{OH-} parmi les espèces.
+On a donc $\mathbf{n}\cdot i_l = j = \mathbf{n}\cdot i_s$, avec
+$i_s = -\sigma_s\nab\varphi_s$ : le courant est continu à l'interface, et aucune condition
+supplémentaire n'est nécessaire pour $\varphi_l$ sur $A_{sf}$.
 
 Les potentiels dans les phases fluide et solide sont couplés à
 l'interface par la réaction électrochimique. Il reste donc à préciser
@@ -258,7 +267,9 @@ $C_{\mathrm{CO_2}}^{\mathrm{ref}}$ et
 $C_{\mathrm{CO}}^{\mathrm{ref}}$.
 La grandeur $j_{0,\mathrm{ref}}$ désigne la densité de courant d'échange
 associée à cet état de référence, tandis que $\alpha_a$ et $\alpha_c$
-sont les coefficients de transfert anodique et cathodique.
+sont les coefficients de transfert anodique et cathodique. La double couche
+n'étant pas résolue dans ce modèle, les concentrations et le potentiel
+$\varphi_l$ sont évalués à sa limite extérieure.
 
 Avec la convention adoptée, le courant de réduction est compté
 positivement. En régime cathodique,
@@ -278,7 +289,7 @@ La loi de Butler--Volmer est retenue ici comme modèle cinétique de
 référence. Largement utilisée en électrochimie, elle fournit une
 relation simple entre la densité de courant interfaciale, les
 concentrations locales et la surtension. Cependant, son application à
-la réduction du \ce{CO2} sur des particules catalytiques greffées reste
+la réduction du \ce{CO2} sur des catalyseurs moléculaires greffés reste
 une approximation%
 ~\cite{adesinaButlerVolmerEquationCO22024}. Les mécanismes réactionnels
 mis en jeu sont complexes, font intervenir plusieurs intermédiaires
@@ -303,12 +314,18 @@ naturelle du présent modèle.
 Les conditions aux limites retenues correspondent aux hypothèses
 classiquement utilisées dans les modèles d'électrodes poreuses
 \cite{newmanElectrochemicalSystems,
-mendez-vasquezUpscalingMassElectric2025}.
+mendez-vasquezUpscalingMassElectric2025}. Dans cette section, $\mathbf{n}$ désigne la
+normale à la frontière considérée. Lorsque la convection est prise en compte, la vitesse
+vérifie la condition de non-glissement $v = 0$ sur $A_{sf}$, sur le collecteur et sur les
+parois. L'équation~\eqref{eq:conservation} est complétée par une condition initiale
+$C_i(t=0) = C_i^0$ dans $\Omega_l$. Le courant capacitif n'étant pas inclus dans le modèle
+de base, le régime transitoire n'est décrit que pour des variations lentes de la double
+couche.
 
 \subsubsection*{Collecteur de courant}
-Le collecteur de courant assure l'alimentation électronique de la phase 
-solide. Le potentiel de la phase solide y est imposé. Bien qu'il soit 
-en contact avec l'électrolyte, le collecteur est supposé électrochimiquement inerte : 
+Le collecteur de courant assure l'alimentation électronique de la phase
+solide. Le potentiel de la phase solide y est imposé. Bien qu'il soit
+en contact avec l'électrolyte, le collecteur est supposé électrochimiquement inerte :
 aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 \begin{subequations}
 \begin{equation}
@@ -322,6 +339,12 @@ aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 \end{equation}
 \label{eq:CLcollecteur}
 \end{subequations}
+
+Les deux premières conditions s'appliquent à la frontière du fluide, la troisième au
+contact entre le métal et les fibres, la résistance de ce contact étant négligée. La
+condition sur $\varphi_l$ n'est pas indépendante : avec $\mathbf{n}\cdot v = 0$, elle
+découle de $\mathbf{n}\cdot N_i = 0$ et de l'électroneutralité. Il en va de même pour les
+parois inertes ci-dessous.
 
 
 
@@ -346,9 +369,10 @@ et ne permettent aucun transfert de charge :
 
 \subsubsection*{Interface électrode poreuse/phase homogène}
 
-À l'interface entre l'électrode poreuse et la phase homogène, on impose 
-la continuité des concentrations, des flux de matière et du potentiel 
-électrolytique. La phase solide ne se prolongeant pas dans la phase 
+Les valeurs fournies par la phase homogène sont supposées connues dans ce travail :
+les concentrations et le potentiel électrolytique sont donc imposés à l'interface.
+Une résolution couplée de la phase homogène demanderait en plus d'écrire la continuité
+des flux de matière. La phase solide ne se prolongeant pas dans la phase
 homogène, le flux électronique normal est nul à cette interface :
 \begin{subequations}
 \begin{equation}
@@ -358,12 +382,12 @@ C_i = C_i^{\text{hom}}
 \varphi_l = \varphi_l^{\text{hom}}
 \end{equation}
 \begin{equation}
-\mathbf{n}_s \sigma_s \nabla \varphi_s = 0
+\mathbf{n}_s \cdot \sigma_s \nabla \varphi_s = 0
 \end{equation}
 \label{eq:CLinterfacehomogene}
 \end{subequations}
 
-Le modèle présenté constitue le cadre de référence de cette étude. 
+Le modèle présenté constitue le cadre de référence de cette étude.
 On introduit maintenant une procédure de passage du modèle local à un modèle
 macroscopique unidimensionnel, afin de relier les équations posées à l'échelle
 du pore à une description moyenne de l'électrode poreuse. Cette étape permet

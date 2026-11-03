@@ -11,7 +11,9 @@ la compétition entre diffusion et réaction~\cite{wanPotentialDependentThiele}.
 
 \subsection*{Solution analytique}
 
-On considère l'équation adimensionnée :
+On considère l'équation adimensionnée du réactif ($i = \ce{CO2}$), en prenant
+comme état de référence celui de la phase homogène,
+$C_i^{\mathrm{ref}} = C_i^{\mathrm{hom}}$ :
 \begin{equation}
 \frac{d^2\left\langle C_i \right\rangle^{l,*}}{d\zeta^{2}}
 =
@@ -30,7 +32,7 @@ où les conditions aux limites sont :
 \end{equation}
 
 \begin{itemize}
-    \item concentration imposée à l'interface avec l'électrolyte :
+    \item concentration imposée à l'interface avec la phase homogène :
 \end{itemize}
 \begin{equation}
 \left\langle C_i \right\rangle^{l,*}(0)
@@ -55,23 +57,23 @@ La résolution du problème conduit à :
 
 \subsection*{Démonstration de la solution analytique}
 
-On cherche une solution de la forme $\left\langle C_i \right\rangle^{l,*} = e^{R\zeta}$, ce qui donne :
+On cherche une solution de la forme $\left\langle C_i \right\rangle^{l,*} = e^{r\zeta}$, ce qui donne :
 \begin{equation*}
-R^2 e^{R\zeta} = \phi^2 e^{R\zeta} \quad \Rightarrow \quad R^2 = \phi^2 \quad \Rightarrow \quad R = \pm\phi
+r^2 e^{r\zeta} = \phi^2 e^{r\zeta} \quad \Rightarrow \quad r^2 = \phi^2 \quad \Rightarrow \quad r = \pm\phi
 \end{equation*}
 
 On a donc :
 \begin{equation*}
-\left\langle C_i \right\rangle^{l,*} = A e^{\phi\zeta} + B e^{-\phi\zeta}
+\left\langle C_i \right\rangle^{l,*} = K_1 e^{\phi\zeta} + K_2 e^{-\phi\zeta}
 \end{equation*}
 
 La solution générale peut être réécrite sous la forme :
 \begin{equation*}
 \left\langle C_i \right\rangle^{l,*}
 =
-C\cosh(\phi\zeta)
+K_3\cosh(\phi\zeta)
 +
-D\sinh(\phi\zeta)
+K_4\sinh(\phi\zeta)
 \end{equation*}
 
 \paragraph{D'après les conditions limites :}
@@ -87,7 +89,7 @@ La condition de flux nul à la base de l'électrode,
 
 conduit à
 \begin{equation*}
-D=C\tanh(\phi)
+K_4=K_3\tanh(\phi)
 \end{equation*}
 
 La condition de concentration imposée à l'interface,
@@ -97,7 +99,7 @@ La condition de concentration imposée à l'interface,
 
 donne directement
 \begin{equation*}
-C=1
+K_3=1
 \end{equation*}
 
 En reportant les constantes obtenues dans la solution générale, on trouve :

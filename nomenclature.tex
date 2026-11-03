@@ -14,13 +14,17 @@
 \nomenclature[ACdl]{$C_{dl}$}{Capacité surfacique de double couche ($\text{F m}^{-2}$)}
 \nomenclature[AChom]{$C_i^{\mathrm{hom}}$}{Concentration de l'espèce $i$ dans la phase homogène ($\text{mol m}^{-3}$)}
 \nomenclature[ACi]{$C_i$}{Concentration de l'espèce $i$ ($\text{mol m}^{-3}$)}
-\nomenclature[ACref]{$C_\text{ref}$}{Concentration de référence ($\text{mol m}^{-3}$)}
+\nomenclature[ACi0]{$C_i^0$}{Concentration initiale de l'espèce $i$ ($\text{mol m}^{-3}$)}
+\nomenclature[ACiref]{$C_i^{\mathrm{ref}}$}{Concentration de l'espèce $i$ à l'état de référence de la cinétique ($\text{mol m}^{-3}$)}
+\nomenclature[ACref]{$C_\text{ref}$}{Concentration de référence pour l'adimensionnement ($\text{mol m}^{-3}$)}
+\nomenclature[Aaj]{$a_j$}{Taille caractéristique de l'espèce $j$ (m)}
+\nomenclature[Adp]{$d_p$}{Diamètre moyen des pores (m)}
 \nomenclature[Ad]{$\mathbf{d}$}{Vecteur de fermeture pour le potentiel électrique (m)}
 \nomenclature[ADa]{$Da$}{Nombre de Damköhler $= j\,l_e / (F D_i C_\text{ref})$}
 \nomenclature[ADi]{$D_i$}{Coefficient de diffusion de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADei]{$D^{eff}_i$}{Coefficient de diffusion effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADmig]{$D^{eff,\text{mig}}_i$}{Coefficient de migration effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
-\nomenclature[ADdisp]{$D_\text{disp}$}{Coefficient de dispersion ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADei]{$D^{\mathrm{eff}}_i$}{Coefficient de diffusion effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADmig]{$D^{\mathrm{eff,mig}}_i$}{Coefficient de migration effectif de l'espèce $i$ ($\text{m}^2\text{s}^{-1}$)}
+\nomenclature[ADdisp]{$D^{\mathrm{disp}}$}{Tenseur de dispersion hydrodynamique ($\text{m}^2\text{s}^{-1}$)}
 \nomenclature[ADtot]{$D^\text{tot}_i$}{Coefficient de diffusion total, diffusion et dispersion ($\text{m}^2\text{s}^{-1}$)}
 \nomenclature[ADref]{$D_\text{ref}$}{Coefficient de diffusion de référence ($\text{m}^2\text{s}^{-1}$)}
 \nomenclature[Ae]{$\mathbf{e}$}{Vecteur de fermeture pour le potentiel solide (m)}
@@ -28,7 +32,9 @@
 \nomenclature[AE]{$E$}{Potentiel imposé au collecteur de courant (V)}
 \nomenclature[AF]{$F$}{Constante de Faraday $= 96\,485$ C mol$^{-1}$}
 \nomenclature[Ag]{$g$}{Grandeur physique quelconque définie dans le fluide}
-\nomenclature[Aj]{$j$}{Densité de courant interfacial ($\text{A m}^{-2}$)}
+\nomenclature[AI]{$I$}{Tenseur identité}
+\nomenclature[Ais]{$i_s$, $i_l$}{Densités de courant dans le solide et dans le fluide ($\text{A m}^{-2}$)}
+\nomenclature[Aj]{$j$}{Densité de courant interfaciale ($\text{A m}^{-2}$)}
 \nomenclature[Aj0ref]{$j_{0,\mathrm{ref}}$}{Densité de courant d'échange à l'état de référence ($\text{A m}^{-2}$)}
 \nomenclature[Akr]{$k_r(\eta_{\mathrm{ref}})$}{Coefficient cinétique cathodique apparent ($\text{m s}^{-1}$)}
 \nomenclature[Akv]{$k_v$}{Constante de réaction volumique, définie positive pour une espèce consommée, $k_v=-\nu_i a_v^{\mathrm{cat}}k_r(\eta_{\mathrm{ref}})$ ($\text{s}^{-1}$)}
@@ -39,8 +45,10 @@
 \nomenclature[Anb]{$\mathbf{n}_s$}{Vecteur normal unitaire sortant de la phase solide ; $\mathbf{n}_s = -\mathbf{n}$}
 \nomenclature[Ane]{$n_e$}{Nombre d'électrons échangés lors de la réaction}
 \nomenclature[ANi]{$N_i$}{Flux molaire de l'espèce $i$ ($\text{mol m}^{-2}\text{s}^{-1}$)}
-\nomenclature[APe]{$Pe$}{Nombre de Péclet $= v\,l_e/D_\text{ref}$}
-\nomenclature[AR]{$R$}{Constante des gaz parfaits $= 8.314$ J mol$^{-1}$ K$^{-1}$}
+\nomenclature[APe]{$Pe$}{Nombre de Péclet $= \|v\|\,l_e/D_\text{ref}$}
+\nomenclature[ANA]{$N_\mathrm{A}$}{Constante d'Avogadro ($\text{mol}^{-1}$)}
+\nomenclature[ARc]{$R_c$}{Résistance de contact surfacique ($\Omega\,\text{m}^2$)}
+\nomenclature[AR]{$R$}{Constante des gaz parfaits $= 8{,}314$ J mol$^{-1}$ K$^{-1}$}
 \nomenclature[ARi]{$R_i$}{Taux de réaction interfaciale de l'espèce $i$ ($\text{mol m}^{-2}\text{s}^{-1}$)}
 \nomenclature[AT]{$T$}{Température (K)}
 \nomenclature[Av]{$v$}{Vitesse du fluide ($\text{m s}^{-1}$)}
@@ -58,19 +66,19 @@
 \nomenclature[Bepss]{$\varepsilon_s$}{Fraction volumique du solide $= V_s/V$}
 \nomenclature[Bepse]{$\varepsilon^{\mathrm{eff}}$}{Permittivité effective du milieu poreux}
 \nomenclature[Bepsr]{$\varepsilon_r$}{Permittivité relative du fluide}
-\nomenclature[Beps0]{$\varepsilon_0$}{Permittivité du vide $= 8.854\times10^{-12}$ F m$^{-1}$}
+\nomenclature[Beps0]{$\varepsilon_0$}{Permittivité du vide $= 8{,}854\times10^{-12}$ F m$^{-1}$}
 \nomenclature[BetaE]{$\eta_E$}{Facteur d'efficacité}
-\nomenclature[Beta]{$\eta$}{Surtension (V)}
 \nomenclature[Betaref]{$\eta_{\mathrm{ref}}$}{Surtension définie par rapport au potentiel d'équilibre de référence, $\eta_{\mathrm{ref}}=\varphi_s-\varphi_l-E_{\mathrm{eq}}^{\mathrm{ref}}$ (V)}
 \nomenclature[Blambda]{$\lambda_0$}{Longueur de Debye (m)}
 \nomenclature[Bnu]{$\nu_i$}{Coefficient stœchiométrique de l'espèce $i$}
-\nomenclature[Bphi]{$\varphi$}{Module de Thiele}
+\nomenclature[Bphi]{$\phi$}{Module de Thiele}
 %\nomenclature[Bphimacro]{$\varphi_\text{macro}$}{Module de Thiele macroscopique}
 \nomenclature[Bphil]{$\varphi_l$}{Potentiel électrique dans le fluide (V)}
 \nomenclature[Bphilhom]{$\varphi_l^{\mathrm{hom}}$}{Potentiel électrolytique dans la phase homogène (V)}
 \nomenclature[Bphis]{$\varphi_s$}{Potentiel électrique dans le solide (V)}
 \nomenclature[Bsigmas]{$\sigma_s$}{Conductivité électrique du solide ($\text{S m}^{-1}$)}
-\nomenclature[Bsigmaq]{$\sigma_q$}{Densité de charge surfacique à l'interface ($\text{C m}^{-2}$)}
+\nomenclature[Bsigmaq]{$\sigma_q$}{Densité de charge surfacique portée par le solide à l'interface ($\text{C m}^{-2}$)}
+\nomenclature[Btau]{$\tau$}{Tortuosité}
 \nomenclature[Btheta]{$\theta$}{Fraction catalytiquement active de l'interface $= a_v^{\mathrm{cat}}/a_v$}
 
 
@@ -79,4 +87,6 @@
 % ------------------------------------------------------------
 \nomenclature[Cavg]{$\langle g \rangle$}{Moyenne superficielle de $g$}
 \nomenclature[Cavgl]{$\langle g \rangle^l$}{Moyenne intrinsèque de $g$ dans le fluide}
+\nomenclature[Cavgs]{$\langle g \rangle^s$}{Moyenne intrinsèque de $g$ dans le solide}
+\nomenclature[Cavgsf]{$\langle g \rangle^{sf}$}{Moyenne surfacique de $g$ sur $A_{sf}^{\mathrm{cat}}$}
 \nomenclature[Ctilde]{$\tilde{g}$}{Fluctuation de $g$ à l'échelle du pore}

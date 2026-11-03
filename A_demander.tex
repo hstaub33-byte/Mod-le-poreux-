@@ -1,6 +1,4 @@
-\appendix
-
-\section*{Paramètres nécessaires aux simulations}
+\section{Paramètres nécessaires aux simulations}
 
 Cette annexe rassemble les paramètres physiques nécessaires à la mise en œuvre des
 différents modèles présentés dans ce document. Les tableaux suivants ont également
@@ -36,14 +34,14 @@ Couverture catalytique & $\theta$ & -- & \\
 \hline
 Paramètre & Symbole & Unité & Valeur \\
 \hline
-Diffusion du CO$_2$ & $D_{CO_2}$ & m$^2$ s$^{-1}$ & \\
-Diffusion du CO & $D_{CO}$ & m$^2$ s$^{-1}$ & \\
-Diffusion de l'$H_2$ & $D_{H_2}$ & m$^2$ s$^{-1}$ & \\
-Diffusion effective du CO$_2$ & $D_{CO_2}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
-Diffusion effective du CO & $D_{CO}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
-Diffusion effective de l'$H_2$ & $D_{H_2}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion du \ce{CO2} & $D_{\ce{CO2}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion du \ce{CO} & $D_{\ce{CO}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion de \ce{H2} & $D_{\ce{H2}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion effective du \ce{CO2} & $D_{\ce{CO2}}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion effective du \ce{CO} & $D_{\ce{CO}}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
+Diffusion effective de \ce{H2} & $D_{\ce{H2}}^{\mathrm{eff}}$ & m$^2$ s$^{-1}$ & \\
 Vitesse moyenne de l'électrolyte & $v$ & m s$^{-1}$ & \\
-Coefficient de dispersion & $D_{\mathrm{disp}}$ & m$^2$ s$^{-1}$ & \\
+Coefficient de dispersion & $D^{\mathrm{disp}}$ & m$^2$ s$^{-1}$ & \\
 \hline
 \end{tabular}
 \caption{Paramètres de transport.}
@@ -59,8 +57,8 @@ Paramètre & Symbole & Unité & Valeur \\
 \hline
 Température & $T$ & K & \\
 Pression & $P$ & Pa & \\
-Concentration en CO$_2$ dans la phase homogène & $C_{CO_2}^{hom}$ & mol m$^{-3}$ & \\
-Concentration en CO dans la phase homogène & $C_{CO}^{hom}$ & mol m$^{-3}$ & \\
+Concentration en \ce{CO2} dans la phase homogène & $C_{\ce{CO2}}^{\mathrm{hom}}$ & mol m$^{-3}$ & \\
+Concentration en \ce{CO} dans la phase homogène & $C_{\ce{CO}}^{\mathrm{hom}}$ & mol m$^{-3}$ & \\
 pH & -- & -- & \\
 Composition de l'électrolyte & -- & -- & \\
 \hline
@@ -77,13 +75,14 @@ Composition de l'électrolyte & -- & -- & \\
 Paramètre & Symbole & Unité & Valeur \\
 \hline
 Potentiel appliqué & $E$ & V & \\
-Potentiel d'équilibre & $E_{eq}$ & V & \\
-Densité de courant d'échange & $j_0$ & A m$^{-2}$ & \\
+Potentiel d'équilibre de référence & $E_{\mathrm{eq}}^{\mathrm{ref}}$ & V & \\
+Densité de courant d'échange de référence & $j_{0,\mathrm{ref}}$ & A m$^{-2}$ & \\
+Concentrations de référence & $C_{\ce{CO2}}^{\mathrm{ref}}$, $C_{\ce{CO}}^{\mathrm{ref}}$ & mol m$^{-3}$ & \\
 Coefficient anodique & $\alpha_a$ & -- & \\
 Coefficient cathodique & $\alpha_c$ & -- & \\
 Nombre d'électrons & $n_e$ & -- & \\
 Conductivité du solide & $\sigma_s$ & S m$^{-1}$ & \\
-Conductivité effective & $\sigma^{eff}$ & S m$^{-1}$ & \\
+Conductivité effective & $\sigma^{\mathrm{eff}}$ & S m$^{-1}$ & \\
 Capacité de double couche (si transitoire) & $C_{dl}$ & F m$^{-2}$ & \\
 \hline
 \end{tabular}
@@ -98,8 +97,8 @@ Capacité de double couche (si transitoire) & $C_{dl}$ & F m$^{-2}$ & \\
 \hline
 Paramètre & Symbole & Unité & Valeur \\
 \hline
-Constante cinétique simplifiée & $k(\eta)$ & m s$^{-1}$ & \\
-ou densité de courant d'échange & $j_0$ & A m$^{-2}$ & \\
+Coefficient cinétique cathodique apparent & $k_r(\eta_{\mathrm{ref}})$ & m s$^{-1}$ & \\
+ou densité de courant d'échange de référence & $j_{0,\mathrm{ref}}$ & A m$^{-2}$ & \\
 Constantes de vitesse (si disponibles) & -- & -- & \\
 Sélectivité CO & -- & \% & \\
 Densité de courant totale & $j$ & A m$^{-2}$ & \\

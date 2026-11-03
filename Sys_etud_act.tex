@@ -1,15 +1,15 @@
 % ============================================================
 \subsection*{Modèle homogénéisé et hypothèses de réduction}
 
-On part du modèle homogénéisé général établi précédemment afin 
-d'identifier les hypothèses simplificatrices qui conduisent à 
-des modèles réduits. L'objectif n'est pas uniquement d'obtenir 
-une formulation plus simple, mais aussi de disposer d'un cadre 
-permettant de lever progressivement certaines hypothèses si les 
-résultats obtenus avec le modèle réduit ne sont pas cohérents 
+On part du modèle homogénéisé général établi précédemment afin
+d'identifier les hypothèses simplificatrices qui conduisent à
+des modèles réduits. L'objectif n'est pas uniquement d'obtenir
+une formulation plus simple, mais aussi de disposer d'un cadre
+permettant de lever progressivement certaines hypothèses si les
+résultats obtenus avec le modèle réduit ne sont pas cohérents
 avec le comportement attendu du système.
 
-On étudie donc l'effet de différentes hypothèses simplificatrices 
+On étudie donc l'effet de différentes hypothèses simplificatrices
 appliquées successivement à ce système.
 
 \subsubsection*{Simplifications du système}
@@ -17,19 +17,19 @@ appliquées successivement à ce système.
 On applique successivement les hypothèses suivantes :
 
 \paragraph{1. Régime stationnaire :}
-On suppose que le système a atteint un état stationnaire, 
+On suppose que le système a atteint un état stationnaire,
 c'est-à-dire que les concentrations ne varient plus dans le temps :
 
 \begin{equation}
 \frac{\partial \avg{C_i}^l}{\partial t} = 0
 \end{equation}
 
-\eqref{eq:sys1} se réduit alors à :
+L'équation~\eqref{eq:sys1} se réduit alors à :
 
 \begin{equation}
-     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l 
-     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l 
-     - \varepsilon_l \avg{C_i}^l \avg{v}^l \right) 
+     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l
+     - \varepsilon_l \avg{C_i}^l \avg{v}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
@@ -41,11 +41,11 @@ On suppose que la vitesse du fluide est négligeable :
 \avg{v}^l = 0
 \end{equation}
 
-\eqref{eq:sys1} se réduit alors à :
+L'équation~\eqref{eq:sys1}, en régime stationnaire, se réduit alors à :
 
 \begin{equation}
-     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l 
-     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l \right) 
+     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
@@ -59,21 +59,29 @@ le transport des espèces. Le transport est alors gouverné uniquement
 par la diffusion et la réaction :
 
 \begin{equation}
-     \nab\cdot\left( \varepsilon_l D^{\mathrm{eff}}_i \nab\avg{C_i}^l \right) 
+     \nab\cdot\left( \varepsilon_l D^{\mathrm{eff}}_i \nab\avg{C_i}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:diff_reaction}
 \end{equation}
 
-\paragraph{4. Potentiel solide uniforme :}
-Lorsque la chute de potentiel dans la phase solide est négligeable,
-le potentiel solide peut être considéré comme uniforme :
+Pour les espèces neutres comme le \ce{CO2} et le \ce{CO}, $z_i = 0$ et le terme
+migratoire est nul par construction.
+
+\paragraph{4. Potentiels uniformes :}
+Lorsque les chutes de potentiel dans la phase solide et dans l'électrolyte
+sont négligeables, les deux potentiels peuvent être considérés comme uniformes :
 
 \begin{equation}
-\nab\avg{\varphi_s}^s = 0
+\nab\avg{\varphi_s}^s = 0,
+\qquad
+\nab\avg{\varphi_l}^l = 0
 \end{equation}
 
-La loi d'Ohm homogénéisée est alors automatiquement satisfaite et
-le potentiel solide devient un paramètre uniforme du problème.
+Cette hypothèse correspond à des conductivités effectives suffisamment grandes :
+le courant reste fini alors que le gradient de potentiel devient négligeable.
+La loi d'Ohm homogénéisée n'est alors plus résolue, et les potentiels deviennent
+des paramètres uniformes du problème. Comme $E_{\mathrm{eq}}^{\mathrm{ref}}$ est
+constant, la surtension $\eta_{\mathrm{ref}}$ est elle aussi uniforme.
 
 \paragraph{5. Cinétique du premier ordre et module de Thiele :}
 
@@ -105,7 +113,7 @@ C_{\mathrm{CO_2}}
 \avg{C_{\mathrm{CO_2}}}^l.
 \end{equation}
 
-La surtension étant supposée uniforme dans le modèle réduit, on introduit
+La surtension étant uniforme d'après l'hypothèse 4, on introduit
 le coefficient cinétique cathodique apparent :
 
 \begin{equation}
@@ -216,14 +224,14 @@ Cette expression est positive et sans dimension.
     \item $\phi \ll 1$ : la diffusion est rapide devant la réaction,
     la concentration est uniforme dans l'électrode.
     \item $\phi \gg 1$ : la réaction est rapide devant la diffusion,
-    la concentration chute rapidement près de l'interface.
+    la concentration chute rapidement près de l'interface avec la phase homogène.
 \end{itemize}
 
 La solution analytique de cette équation ainsi que le facteur d'efficacité
 associé sont présentés dans la section suivante.
 
-\bigskip 
-Les différentes hypothèses introduites permettent de relier le système homogénéisé général à des modèles réduits 
+\bigskip
+Les différentes hypothèses introduites permettent de relier le système homogénéisé général à des modèles réduits
 plus simples~\cite{dao3SimplificationOrder2012, schmidtUnderstandingDeviationsSpatially2021}. En particulier, le
  modèle classique fondé sur le module de Thiele apparaît comme un cas limite du formalisme obtenu par homogénéisation,
   lorsque seuls les phénomènes de diffusion et de réaction sont conservés.

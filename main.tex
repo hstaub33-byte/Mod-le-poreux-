@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc} %Permet d'écrire directement les caractères accentués (é, à, ç, etc.) dans le fichier source. Avec les distributions LaTeX récentes, ce package est souvent inutile car UTF-8 est le comportement par défaut.
 \usepackage[T1]{fontenc}%Utilise un encodage de police adapté aux langues européennes. Améliore la gestion des accents, la césure et le copier-coller du PDF.
 \usepackage{lmodern} %Utilise les polices Latin Modern, une version améliorée des polices par défaut de LaTeX (Computer Modern). Elles sont plus nettes, notamment dans les PDF.
-\usepackage{babel}%Adapte le document à une langue (français, anglais, etc.). Par exemple, avec \usepackage[french]{babel}, les dates, la typographie et la césure sont adaptées au français. Ici, aucune langue n'est précisée, donc il prend la langue par défaut.
+\usepackage[french]{babel}%Adapte le document au français : dates, typographie, césure, espaces avant les deux-points, titres (Références, Tableau).
 \usepackage{amsmath, amssymb}%Ajoute de nombreuses commandes pour écrire des formules mathématiques. C'est quasiment indispensable pour les documents scientifiques.
 \usepackage{geometry}%Permet de régler facilement les marges de la page (margin=2.5cm, par exemple).
 \usepackage{nomencl} %Permet de créer une liste des symboles ou une nomenclature dans le document.
@@ -15,6 +15,8 @@
 \usepackage{float}%Ajoute de nouvelles options pour le placement des figures et tableaux, notamment le modificateur [H] qui force leur position exacte.
 \usepackage[version=4]{mhchem}   % Facilite l'écriture de formules chimiques
 \usepackage{enumitem}%Je veux un putain de point blanc
+\frenchsetup{StandardLists=true}% garde les puces (babel-french mettrait des tirets)
+\addto\captionsfrench{\renewcommand{\tablename}{Tableau}}
 \usepackage{caption}
 \captionsetup{
     font={small,sl},
@@ -24,8 +26,8 @@
   {0pt}    % indentation gauche
   {1.5em}  % espace AVANT le titre
   {1.5em}  % espace APRÈS le titre
-  
-\usetikzlibrary{arrows.meta, positioning, fit, backgrounds, decorations.pathreplacing}
+
+\usetikzlibrary{babel, arrows.meta, positioning, fit, backgrounds, decorations.pathreplacing}
 \makenomenclature            % <-- et ici
 \renewcommand{\nomgroup}[1]{%
   \ifthenelse{\equal{#1}{A}}{\item[\textbf{Lettres latines}]}{%
@@ -64,7 +66,7 @@
 \newpage
 \input{module_thiele}
 \newpage
-\input{Mod_act}
+\input{mod_act}
 \newpage
 \input{Hyp_supp}
 \newpage
@@ -87,5 +89,4 @@
 \input{homo_poisson}
 \newpage
 \input{A_demander}
-\end{document} 
-
+\end{document}
