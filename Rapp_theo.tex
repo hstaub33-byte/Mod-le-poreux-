@@ -2,60 +2,123 @@
 
 \subsection*{Rappels théoriques}
 
-\paragraph{Moyenne superficielle :}
+Les outils mathématiques de la prise de moyenne volumique utilisés dans ce
+document sont rappelés ci-dessous~\cite{whitakerMethodVolumeAveraging1999}.
+On considère un volume de prise de moyenne $V$, fixe dans l'espace et
+contenant les deux phases : $V = V_l + V_s$. L'interface solide/fluide
+contenue dans $V$ est notée $A_{sf}$, et $\vec{n}$ désigne sa normale unitaire,
+orientée du fluide vers le solide.
+
+\paragraph{Moyennes volumiques :}
 On considère une grandeur $g$ définie uniquement dans le volume fluide $V_l$.
 On définit sa moyenne sur le volume total $V$ (fluide + solide) par :
 
 \begin{equation}
 \avg{g} = \frac{1}{V}\int_{V_l} g\, dV \label{eq:moy_sup}
 \end{equation}
-Cette moyenne, dite superficielle, s’exprime comme la moyenne dans le fluide multipliée 
-par la porosité $\varepsilon_l = \frac{V_l}{V}$.\cite{le<3MultiscaleModelling2022}
-Elle ne correspond donc pas à la moyenne de g dans le fluide seul.
-La moyenne intrinsèque $\avgl{g}$ représente la vraie valeur moyenne de $g$ 
-dans le fluide seul. La relation entre moyenne superficielle et moyenne 
-intrinsèque est alors :
+Cette moyenne est dite superficielle. Elle ne correspond pas à la moyenne de $g$
+dans le fluide seul, puisque l'intégrale porte sur $V_l$ mais est rapportée au
+volume total $V$. La valeur moyenne de $g$ dans le fluide est donnée par la
+moyenne intrinsèque :
+
+\begin{equation}
+\avgl{g} = \frac{1}{V_l}\int_{V_l} g\, dV \label{eq:moy_intr}
+\end{equation}
+
+Les deux moyennes sont reliées par la porosité
+$\varepsilon_l = V_l/V$~\cite{le<3MultiscaleModelling2022} :
 
 \begin{equation}
 \avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avgl{g}  \label{eq:relation_moy}
 \end{equation}
 
-\paragraph{Théorème de la divergence de Gauss :}
-Ce théorème relie une intégrale de volume à une intégrale de surface. 
-Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
+On définit de la même façon, pour une grandeur définie dans le solide, la moyenne
+intrinsèque $\avg{g}^s = \frac{1}{V_s}\int_{V_s} g\, dV$, avec
+$\avg{g} = \varepsilon_s \avg{g}^s$ et $\varepsilon_s = V_s/V$.
+
+\paragraph{Moyenne surfacique :}
+Pour une grandeur $g$ définie sur la partie catalytique de l'interface, on
+définit sa moyenne surfacique par :
+
+\begin{equation}
+\avg{g}^{sf} = \frac{1}{A_{sf}^{\mathrm{cat}}}\int_{A_{sf}^{\mathrm{cat}}} g\, dA
+\label{eq:moy_surf}
+\end{equation}
+
+\paragraph{Théorème de Green--Ostrogradski (théorème de la divergence) :}
+Ce théorème relie une intégrale de volume à une intégrale de surface. Pour un
+champ vectoriel $\vec{g}$ défini dans un volume $V$ délimité par une surface
+fermée $A$, de normale unitaire sortante $\vec{n}$ :
+
+\begin{equation}
+\int_V \Div\vec{g}\, dV = \oint_A \vec{g}\cdot\vec{n}\, dA
+\label{eq:gauss_div}
+\end{equation}
+
+Appliqué au champ $g\,\vec{c}$, où $\vec{c}$ est un vecteur constant
+quelconque, il conduit à la formule du gradient, valable pour un champ
+scalaire $g$ :
 
 \begin{equation}
 \int_V \Grad g\, dV = \oint_A g\,\vec{n}\, dA
 \label{eq:gauss}
 \end{equation}
 
-où $\vec{n}$ est le vecteur normal sortant à la surface $A$.
-
 \paragraph{Théorème de la moyenne spatiale :}
-Ce théorème découle du théorème de la divergence 
-de Gauss appliqué au volume fluide.
-Il relie la moyenne du gradient d'une quantité $g$ à son gradient 
-de moyenne, avec un terme de correction surfacique sur l'interface 
-$A_{sf}$ entre le fluide et le solide :
+Ce théorème relie la moyenne du gradient d'une grandeur $g$ au gradient de sa
+moyenne, avec un terme de correction sur l'interface $A_{sf}$ entre le fluide
+et le solide :
 
 \begin{equation}
 \avg{\Grad g} = \Grad\avg{g} + \frac{1}{V}\int_{A_{sf}} g\,\vec{n}\, dA \label{eq:moy_spatiale}
 \end{equation}
 
-où $\vec{n}$ est le vecteur normal à l'interface $A_{sf}$ 
-pointant du fluide vers le solide. Pour un champ vectoriel $\vec{g}$,
-le même théorème s'écrit sous forme de divergence :
+où $\vec{n}$ est la normale à l'interface $A_{sf}$, orientée du fluide vers le
+solide. Pour un champ vectoriel $\vec{g}$, il s'écrit sous forme de divergence :
 
 \begin{equation}
-\avg{\Div\vec{g}} = \Div\avg{\vec{g}} + \frac{1}{V}\int_{A_{sf}} \vec{n}\cdot\vec{g}\, dA \label{eq:moy_spatiale_div}
+\avg{\Div\vec{g}} = \Div\avg{\vec{g}} + \frac{1}{V}\int_{A_{sf}} \vec{g}\cdot\vec{n}\, dA \label{eq:moy_spatiale_div}
 \end{equation}
 
-\paragraph{Théorème de transport :}
-Ce théorème permet d'échanger la moyenne et la dérivée temporelle, 
-à condition que le volume $V_l$ ne dépende pas du temps :
+Ce théorème s'obtient en appliquant le théorème de Green--Ostrogradski au
+volume fluide $V_l$, dont la frontière est formée de l'interface $A_{sf}$ et des
+surfaces d'entrée et de sortie de $V$. L'intégrale sur ces dernières est
+ensuite identifiée au gradient (ou à la divergence) de la moyenne, à l'aide
+d'une règle de dérivation de type Leibniz pour une intégrale sur un domaine qui
+se déplace dans l'espace~\cite{whitakerMethodVolumeAveraging1999}.
+
+Appliqué à la fonction constante $g = 1$, le théorème~\eqref{eq:moy_spatiale}
+donne la relation géométrique suivante, utilisée à plusieurs reprises dans ce
+document :
 
 \begin{equation}
-\left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
+\frac{1}{V}\int_{A_{sf}} \vec{n}\, dA = -\Grad\varepsilon_l
+\label{eq:grad_porosite}
+\end{equation}
+
+Les mêmes relations s'appliquent à la phase solide, en remplaçant $V_l$ par
+$V_s$, $\varepsilon_l$ par $\varepsilon_s$ et $\vec{n}$ par
+$\vec{n}_s = -\vec{n}$.
+
+\paragraph{Théorème de transport (règle de Leibniz) :}
+Ce théorème permet d'échanger la moyenne et la dérivée temporelle. Le volume de
+prise de moyenne $V$ étant fixe, seule l'interface $A_{sf}$ peut se déplacer,
+à une vitesse notée $\vec{w}$. Le théorème de transport de Reynolds, appliqué
+au volume fluide, donne alors :
+
+\begin{equation}
+\left\langle \frac{\partial g}{\partial t} \right\rangle
+= \frac{\partial \avg{g}}{\partial t}
+- \frac{1}{V}\int_{A_{sf}} g\,\vec{n}\cdot\vec{w}\, dA
+\label{eq:transport_gen}
+\end{equation}
+
+Lorsque l'interface solide/fluide est immobile ($\vec{w} = \vec{0}$), ce qui est
+le cas pour un réseau de fibres rigides, le terme de surface s'annule et la
+moyenne commute avec la dérivée temporelle :
+
+\begin{equation}
+\left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial \avg{g}}{\partial t} \label{eq:transport}
 \end{equation}
 
 \bigskip
