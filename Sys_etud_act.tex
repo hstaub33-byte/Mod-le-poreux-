@@ -27,9 +27,9 @@ c'est-à-dire que les concentrations ne varient plus dans le temps :
 L'équation~\eqref{eq:sys1} se réduit alors à :
 
 \begin{equation}
-     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l
-     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l
-     - \varepsilon_l \avg{C_i}^l \avg{v}^l \right)
+     \Div\left( \tens{D}^{\mathrm{tot}}_i \cdot\Grad\avg{C_i}^l
+     + \frac{z_i F}{RT}\varepsilon_l \avg{C_i}^l\, \tens{D}^{\mathrm{eff,mig}}_i \cdot\Grad\avg{\varphi_l}^l
+     - \varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
@@ -38,19 +38,19 @@ L'équation~\eqref{eq:sys1} se réduit alors à :
 On suppose que la vitesse du fluide est négligeable :
 
 \begin{equation}
-\avg{v}^l = 0
+\avg{\vec{v}}^l = \vec{0}
 \end{equation}
 
 L'équation~\eqref{eq:sys1}, en régime stationnaire, se réduit alors à :
 
 \begin{equation}
-     \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l
-     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l \right)
+     \Div\left( \tens{D}^{\mathrm{tot}}_i \cdot\Grad\avg{C_i}^l
+     + \frac{z_i F}{RT}\varepsilon_l \avg{C_i}^l\, \tens{D}^{\mathrm{eff,mig}}_i \cdot\Grad\avg{\varphi_l}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
 En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
-$D_i^{\mathrm{tot}} = \varepsilon_l D_i^{\mathrm{eff}}$.
+$\tens{D}_i^{\mathrm{tot}} = \varepsilon_l \tens{D}_i^{\mathrm{eff}}$.
 
 \paragraph{3. Pas de migration :}
 On suppose que le terme migratoire est négligeable devant le terme
@@ -59,7 +59,7 @@ le transport des espèces. Le transport est alors gouverné uniquement
 par la diffusion et la réaction :
 
 \begin{equation}
-     \nab\cdot\left( \varepsilon_l D^{\mathrm{eff}}_i \nab\avg{C_i}^l \right)
+     \Div\left( \varepsilon_l \tens{D}^{\mathrm{eff}}_i \cdot\Grad\avg{C_i}^l \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:diff_reaction}
 \end{equation}
@@ -72,9 +72,9 @@ Lorsque les chutes de potentiel dans la phase solide et dans l'électrolyte
 sont négligeables, les deux potentiels peuvent être considérés comme uniformes :
 
 \begin{equation}
-\nab\avg{\varphi_s}^s = 0,
+\Grad\avg{\varphi_s}^s = \vec{0},
 \qquad
-\nab\avg{\varphi_l}^l = 0
+\Grad\avg{\varphi_l}^l = \vec{0}
 \end{equation}
 
 Cette hypothèse correspond à des conductivités effectives suffisamment grandes :

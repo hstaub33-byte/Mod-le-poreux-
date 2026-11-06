@@ -38,27 +38,27 @@ et à la cinétique interfaciale.
 
 L'équation de conservation en 3D pour l'espèce $i$ s'écrit :
 \begin{equation}
-\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0
+\frac{\partial C_i}{\partial t} + \Div \vec{N}_i = 0
 \label{eq:cons3D}
 \end{equation}
-où $C_i$ est la concentration de l'espèce $i$ et $N_i$ est le flux molaire.
+où $C_i$ est la concentration de l'espèce $i$ et $\vec{N}_i$ est le flux molaire.
 En appliquant la moyenne superficielle à l'équation \eqref{eq:cons3D} :
 \begin{equation}
-\left\langle \frac{\partial C_i}{\partial t} \right\rangle + \avg{\nab \cdot N_i} = 0
+\left\langle \frac{\partial C_i}{\partial t} \right\rangle + \avg{\Div \vec{N}_i} = 0
 \label{eq:cons1D}
 \end{equation}
 En utilisant le théorème de transport \eqref{eq:transport} et le théorème
-de la moyenne spatiale \eqref{eq:moy_spatiale} :
+de la moyenne spatiale sous forme de divergence \eqref{eq:moy_spatiale_div} :
 \begin{equation}
-\frac{\partial \avg{C_i}}{\partial t} + \nab \cdot \avg{N_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n} \cdot N_i\, dA = 0
+\frac{\partial \avg{C_i}}{\partial t} + \Div \avg{\vec{N}_i} + \frac{1}{V}\int_{A_{sf}} \vec{n} \cdot \vec{N}_i\, dA = 0
 \end{equation}
-Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \mathbf{n}\cdot N_i\, dA$
+Le terme surfacique $\frac{1}{V}\int_{A_{sf}} \vec{n}\cdot \vec{N}_i\, dA$
 représente l'échange de matière à l'interface fluide/solide. Comme le flux
 normal est nul sur la partie non catalytique, cet échange se réduit à une
 intégrale sur la seule zone active $A_{sf}^{\mathrm{cat}}$, où l'on introduit
 la vitesse de réaction interfaciale $R_i$ définie par :
 \begin{equation}
-\mathbf{n}\cdot N_i = -R_i \quad \text{sur } A_{sf}^{\mathrm{cat}}
+\vec{n}\cdot \vec{N}_i = -R_i \quad \text{sur } A_{sf}^{\mathrm{cat}}
 \end{equation}
 Avec la convention adoptée pour $j$, le taux $R_i$ représente la vitesse de
 production algébrique de l'espèce $i$. Dans le cas d'une réaction
@@ -85,13 +85,13 @@ a_v^{\mathrm{cat}} = \frac{A_{sf}^{\mathrm{cat}}}{V} = \theta\, a_v,
 où $\theta$ représente la fraction catalytiquement active de l'interface.
 On a donc : %Faut se mettre d'accord sur une convention pour le signe
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \mathbf{n} \cdot N_i\, dA = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
+\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \vec{n} \cdot \vec{N}_i\, dA = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 où $\avg{\cdot}^{sf}$ désigne la moyenne surfacique sur $A_{sf}^{\mathrm{cat}}$.
 On obtient 
 alors l'équation de conservation homogénéisée :
 \begin{equation}
-\varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \nab \cdot \avg{N_i}
+\varepsilon_l \frac{\partial \avgl{C_i}}{\partial t} + \Div \avg{\vec{N}_i}
 = a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:cons_homo}
 \end{equation}
@@ -104,7 +104,7 @@ alors l'équation de conservation homogénéisée :
 Le flux molaire de l'espèce $i$ est décrit par l'équation de Nernst--Planck,
 qui prend en compte trois contributions : diffusion, migration électrique et convection :
 \begin{equation}
-N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v
+\vec{N}_i = -D_i \Grad C_i - \frac{z_i F}{RT} D_i C_i \Grad \varphi_l + C_i \vec{v}
 \label{eq:NP3D}
 \end{equation}
 où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante
@@ -122,20 +122,20 @@ source réactionnel.
 
 En appliquant la moyenne superficielle au terme diffusif :
 \begin{equation}
-\avg{-D_i \nab C_i}= \frac{1}{V}\int_{V_l} (-D_i \nab C_i)\, dV \notag
+\avg{-D_i \Grad C_i}= \frac{1}{V}\int_{V_l} (-D_i \Grad C_i)\, dV \notag
 \end{equation}
 
-En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale} :
+En appliquant le théorème de la moyenne spatiale sous forme de divergence \eqref{eq:moy_spatiale_div} :
 \begin{equation}
-\avg{-D_i \nab C_i}= -D_i \left(\nab\avg{C_i} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right) \notag
+\avg{-D_i \Grad C_i}= -D_i \left(\Grad\avg{C_i} + \frac{1}{V}\int_{A_{sf}} C_i\,\vec{n}\, dA \right) \notag
 \end{equation}
 
 \noindent En utilisant la relation \eqref{eq:relation_moy},
 \noindent on a $\avg{C_i} = \varepsilon_l \avg{C_i}^l$,
-donc $\nab\avg{C_i} = \nab(\varepsilon_l \avg{C_i}^l)$. En développant :
+donc $\Grad\avg{C_i} = \Grad(\varepsilon_l \avg{C_i}^l)$. En développant :
 \begin{equation}
-\avg{-D_i \nab C_i}= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \avg{C_i}^l \nab\varepsilon_l
-+ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA \right)
+\avg{-D_i \Grad C_i}= -D_i \left(\varepsilon_l \Grad\avg{C_i}^l + \avg{C_i}^l \Grad\varepsilon_l
++ \frac{1}{V}\int_{A_{sf}} C_i\,\vec{n}\, dA \right)
 \end{equation}
 
 On décompose ensuite $C_i$ en une moyenne intrinsèque et une fluctuation à l'échelle du pore :
@@ -155,23 +155,23 @@ varie à l'échelle du pore $\ell_p$.
 \noindent En injectant la décomposition \eqref{eq:decomp} dans le terme surfacique,
 on sépare la contribution de la moyenne et celle des fluctuations :
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, C_i\, dA
-= \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA
-+ \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
+\frac{1}{V}\int_{A_{sf}} C_i\,\vec{n}\, dA
+= \frac{1}{V}\int_{A_{sf}} \avg{C_i}^l\,\vec{n}\, dA
++ \frac{1}{V}\int_{A_{sf}} \tilde{C}_i\,\vec{n}\, dA
 \end{equation}
 
 En sortant $\langle C_i\rangle^l$ de l'intégrale (elle varie à l'échelle
 macroscopique et est donc constante à l'échelle du pore) et en appliquant le
 théorème de la moyenne spatiale~\eqref{eq:moy_spatiale} à la fonction
-constante $g = 1$, qui donne $\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, dA = -\nabla\varepsilon_l$ :
+constante $g = 1$, qui donne $\frac{1}{V}\int_{A_{sf}} \vec{n}\, dA = -\Grad\varepsilon_l$ :
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \avg{C_i}^l\, dA = -\avg{C_i}^l \nab\varepsilon_l
+\frac{1}{V}\int_{A_{sf}} \avg{C_i}^l\,\vec{n}\, dA = -\avg{C_i}^l \Grad\varepsilon_l
 \end{equation}
 
 On obtient donc :
 \begin{equation}
-\avg{-D_i \nab C_i} = -D_i \varepsilon_l \nab\avg{C_i}^l
-- D_i \frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
+\avg{-D_i \Grad C_i} = -D_i \varepsilon_l \Grad\avg{C_i}^l
+- D_i \frac{1}{V}\int_{A_{sf}} \tilde{C}_i\,\vec{n}\, dA
 \end{equation}
 
 où le premier terme correspond à la diffusion macroscopique et le second
@@ -186,19 +186,19 @@ convection étant traités séparément), le transport à l'échelle du pore se
 réduit ici à de la diffusion pure. On peut donc négliger les effets
 transitoires à l'échelle du pore, ce qui donne :
 \begin{equation}
-\nab^2 C_i = 0 \quad \text{dans } V_l
+\Div\left(\Grad C_i\right) = 0 \quad \text{dans } V_l
 \end{equation}
 
 En décomposant $C_i = \avg{C_i}^l + \tilde{C}_i$ et sachant que
 $\avg{C_i}^l$ varie à l'échelle macroscopique $l_e \gg \ell_p$,
-on a $\nab^2\avg{C_i}^l \approx 0$ à l'échelle du pore. On obtient donc :
+on a $\Div\left(\Grad\avg{C_i}^l\right) \approx 0$ à l'échelle du pore. On obtient donc :
 \begin{equation}
-\nab^2 \tilde{C}_i = 0 \quad \text{dans } V_l
+\Div\left(\Grad \tilde{C}_i\right) = 0 \quad \text{dans } V_l
 \end{equation}
 
 avec la condition limite sur $A_{sf}$ :
 \begin{equation}
--\mathbf{n} \cdot \nab\tilde{C}_i = \mathbf{n} \cdot \nab\avg{C_i}^l \quad \text{sur } A_{sf}
+-\vec{n} \cdot \Grad\tilde{C}_i = \vec{n} \cdot \Grad\avg{C_i}^l \quad \text{sur } A_{sf}
 \end{equation}
 
 Cette condition de flux nul est appliquée sur toute l'interface, y compris sur
@@ -207,48 +207,48 @@ diffusif local, ce qui revient à supposer un nombre de Damköhler faible à l'�
 ($j\,\ell_p/(F D_i C_{\text{ref}}) \ll 1$). La réaction n'intervient alors que par le
 terme source du bilan macroscopique.
 
-L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\nab\avg{C_i}^l$.
+L'équation sur $\tilde{C}_i$ est linéaire et sa source est $\Grad\avg{C_i}^l$.
 Par linéarité, on cherche une solution de la forme :
 \begin{equation}
-\tilde{C}_i = \mathbf{b}\cdot\nab\avg{C_i}^l
+\tilde{C}_i = \vec{b}\cdot\Grad\avg{C_i}^l
 \end{equation}
 
-où $\mathbf{b}$ est un vecteur de fermeture qui satisfait le problème suivant~\cite{whitakerMethodVolumeAveraging1999, korneevDataDrivenMultiscaleFramework2020} :
+où $\vec{b}$ est un vecteur de fermeture qui satisfait le problème suivant~\cite{whitakerMethodVolumeAveraging1999, korneevDataDrivenMultiscaleFramework2020} :
 \begin{align}
-\nab^2 \mathbf{b} &= 0 \quad \text{dans } V_l \\
--\mathbf{n}\cdot\nab\mathbf{b} &= \mathbf{n} \quad \text{sur } A_{sf}\\
-\avg{\mathbf{b}}^l &= 0 \quad \text{et périodicité} : \quad \mathbf{b}(\mathbf{r}) = \mathbf{b}(\mathbf{r} + l_i \mathbf{e}_i)
+\Div\left(\Gradt \vec{b}\right) &= \vec{0} \quad \text{dans } V_l \\
+-\vec{n}\cdot\Gradt\vec{b} &= \vec{n} \quad \text{sur } A_{sf}\\
+\avg{\vec{b}}^l &= \vec{0} \quad \text{et périodicité} : \quad \vec{b}(\vec{r}) = \vec{b}(\vec{r} + l_i \vec{e}_i)
 \end{align}
 
-où $\mathbf{e}_i$ désignent les vecteurs de base et $l_i$ les périodes du volume
+où $\vec{e}_i$ désignent les vecteurs de base et $l_i$ les périodes du volume
 élémentaire représentatif dans chaque direction. La condition de moyenne nulle
-$\avg{\mathbf{b}}^l = 0$ fixe la constante d'intégration, et la périodicité traduit
+$\avg{\vec{b}}^l = \vec{0}$ fixe la constante d'intégration, et la périodicité traduit
 l'hypothèse d'une microstructure localement périodique à l'échelle du pore.
 
 En substituant cette expression dans le terme de correction surfacique, on obtient :
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n}\, \tilde{C}_i\, dA
-= \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot\nab\avg{C_i}^l
+\frac{1}{V}\int_{A_{sf}} \tilde{C}_i\,\vec{n}\, dA
+= \left(\frac{1}{V}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA\right)\cdot\Grad\avg{C_i}^l
 \end{equation}
 
 En substituant dans l'expression du terme diffusif, puis en factorisant
 $\varepsilon_l$ à l'aide de $\varepsilon_l = V_l/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_l}{V_l}$) :
 \begin{align}
-\avg{-D_i \nab C_i}
-&= -D_i \left(\varepsilon_l \nab\avg{C_i}^l + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA\cdot \nab\avg{C_i}^l \right) \notag\\
-&= -D_i \nab\avg{C_i}^l \left[\varepsilon_l I + \frac{1}{V}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right] \notag\\
-&= -\varepsilon_l D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right] \nab\avg{C_i}^l
+\avg{-D_i \Grad C_i}
+&= -D_i \left(\varepsilon_l \Grad\avg{C_i}^l + \left(\frac{1}{V}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA\right)\cdot \Grad\avg{C_i}^l \right) \notag\\
+&= -D_i \left[\varepsilon_l \tens{I} + \frac{1}{V}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA \right]\cdot\Grad\avg{C_i}^l \notag\\
+&= -\varepsilon_l D_i \left[ \tens{I} + \frac{1}{V_l}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA \right]\cdot\Grad\avg{C_i}^l
 \end{align}
 
-On définit le coefficient de diffusion effectif $D_i^{\mathrm{eff}}$ qui tient compte
+On définit le tenseur de diffusion effectif $\tens{D}_i^{\mathrm{eff}}$ qui tient compte
 de la tortuosité du milieu poreux~\cite{whitakerMethodVolumeAveraging1999} :
 \begin{equation}
-D_i^{\mathrm{eff}} = D_i \left[ I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\mathbf{b}\, dA \right]
+\tens{D}_i^{\mathrm{eff}} = D_i \left[ \tens{I} + \frac{1}{V_l}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA \right]
 \end{equation}
 
 Ce qui donne finalement :
 \begin{equation}
-\boxed{\avg{-D_i \nab C_i} = -\varepsilon_l D_i^{\mathrm{eff}} \nab\avg{C_i}^l}
+\boxed{\avg{-D_i \Grad C_i} = -\varepsilon_l \tens{D}_i^{\mathrm{eff}}\cdot\Grad\avg{C_i}^l}
 \label{eq:diff_eff}
 \end{equation}
 
@@ -261,7 +261,7 @@ Ce qui donne finalement :
 % ============================================================
 \subsubsection*{Terme migratoire}
 
-Le terme migratoire fait intervenir le produit $C_i \nabla \varphi_l$,
+Le terme migratoire fait intervenir le produit $C_i \Grad \varphi_l$,
 dont la moyenne ne se réduit pas simplement au produit des moyennes.
 La concentration
 ayant déjà été décomposée sous la forme
@@ -280,29 +280,29 @@ terme migratoire et en développant le produit, on fait apparaître
 quatre contributions :
 
 \begin{align}
-\left\langle -\frac{z_i F}{RT} D_i C_i \nab\varphi_l \right\rangle
-&= -\frac{z_i F}{RT} D_i \avg{C_i \nab\varphi_l}
-= -\frac{z_i F}{RT} D_i \frac{1}{V}\int_{V_l} C_i \nab\varphi_l\, dV \notag\\
+\left\langle -\frac{z_i F}{RT} D_i C_i \Grad\varphi_l \right\rangle
+&= -\frac{z_i F}{RT} D_i \avg{C_i \Grad\varphi_l}
+= -\frac{z_i F}{RT} D_i \frac{1}{V}\int_{V_l} C_i \Grad\varphi_l\, dV \notag\\
 &= -\frac{z_i F}{RT} D_i
 \left[
-\underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV}_{\circled{1}}
-+ \underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV}_{\circled{2}}
+\underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\avg{\varphi_l}^l\, dV}_{\circled{1}}
++ \underbrace{\frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\widetilde{\varphi}_l\, dV}_{\circled{2}}
 \right. \notag\\
 &\quad\quad\left.
-+ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV}_{\circled{3}}
-+ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV}_{\circled{4}}
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \Grad\avg{\varphi_l}^l\, dV}_{\circled{3}}
++ \underbrace{\frac{1}{V}\int_{V_l} \tilde{C}_i \Grad\widetilde{\varphi}_l\, dV}_{\circled{4}}
 \right]
 \end{align}
 
 On développe chacun des quatre termes :
 
 \paragraph{Terme 1 :}
-$\avg{C_i}^l$ et $\nab\avg{\varphi_l}^l$ sont constants à l'échelle du pore
+$\avg{C_i}^l$ et $\Grad\avg{\varphi_l}^l$ sont constants à l'échelle du pore
 et peuvent sortir de l'intégrale :
 \begin{equation}
-\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\avg{\varphi_l}^l\, dV
-= \avg{C_i}^l \nab\avg{\varphi_l}^l \frac{V_l}{V}
-= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
+\frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\avg{\varphi_l}^l\, dV
+= \avg{C_i}^l \Grad\avg{\varphi_l}^l \frac{V_l}{V}
+= \varepsilon_l \avg{C_i}^l \Grad\avg{\varphi_l}^l
 \end{equation}
 
 \paragraph{Terme 2 :}
@@ -310,16 +310,16 @@ $\avg{C_i}^l$ est constant à l'échelle du pore et sort de l'intégrale.
 En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale}
 et sachant que $\avg{\widetilde{\varphi}_l}^l = 0$ :
 \begin{equation}
-\frac{1}{V}\int_{V_l} \avg{C_i}^l \nab\widetilde{\varphi}_l\, dV
-= \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA
+\frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\widetilde{\varphi}_l\, dV
+= \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_l\,\vec{n}\, dA
 \end{equation}
 
 \paragraph{Terme 3 :}
-$\nab\avg{\varphi_l}^l$ est constant à l'échelle du pore et sort de l'intégrale.
+$\Grad\avg{\varphi_l}^l$ est constant à l'échelle du pore et sort de l'intégrale.
 Or $\avg{\tilde{C}_i}^l = 0$ par définition de la fluctuation :
 \begin{equation}
-\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\avg{\varphi_l}^l\, dV
-= \varepsilon_l \nab\avg{\varphi_l}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0} = 0
+\frac{1}{V}\int_{V_l} \tilde{C}_i \Grad\avg{\varphi_l}^l\, dV
+= \varepsilon_l \Grad\avg{\varphi_l}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0} = \vec{0}
 \end{equation}
 
 \paragraph{Terme 4 :}
@@ -330,7 +330,7 @@ fermé au premier ordre. Cette approximation revient à supposer que les
 corrélations entre fluctuations de concentration et de potentiel restent
 faibles à l'échelle du pore :
 \begin{equation}
-\frac{1}{V}\int_{V_l} \tilde{C}_i \nab\widetilde{\varphi}_l\, dV \approx 0
+\frac{1}{V}\int_{V_l} \tilde{C}_i \Grad\widetilde{\varphi}_l\, dV \approx \vec{0}
 \end{equation}
 Cette hypothèse devrait être réexaminée si les gradients locaux de potentiel
 ou de concentration deviennent importants.
@@ -338,52 +338,52 @@ ou de concentration deviennent importants.
 En regroupant les termes non nuls :
 
 \begin{equation}
-\avg{C_i \nab\varphi_l}
-= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
-+ \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\widetilde{\varphi}_l\, dA
+\avg{C_i \Grad\varphi_l}
+= \varepsilon_l \avg{C_i}^l \Grad\avg{\varphi_l}^l
++ \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_l\,\vec{n}\, dA
 \end{equation}
 
-On introduit un vecteur de fermeture $\mathbf d$ permettant de
+On introduit un vecteur de fermeture $\vec{d}$ permettant de
 représenter les fluctuations du potentiel à l'échelle du pore sous la forme
 \[
 \widetilde{\varphi}_l
 =
-\mathbf d\cdot\nabla\langle\varphi_l\rangle^l.
+\vec{d}\cdot\Grad\langle\varphi_l\rangle^l.
 \]
 Cette fermeture est introduite par analogie avec le problème diffusif. Elle
 constitue toutefois une approximation, car les fluctuations du potentiel
 électrolytique peuvent être corrélées aux fluctuations de concentration à
 l'échelle du pore. %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
 Si l'on retient pour $\widetilde{\varphi}_l$ le même problème de fermeture que pour
-$\tilde{C}_i$, on a $\mathbf{d} = \mathbf{b}$ et donc $D_i^{\text{eff,mig}} = D_i^{\mathrm{eff}}$.
+$\tilde{C}_i$, on a $\vec{d} = \vec{b}$ et donc $\tens{D}_i^{\text{eff,mig}} = \tens{D}_i^{\mathrm{eff}}$.
 
-En substituant la fermeture $\tilde\varphi_l = \mathbf{d}\cdot\nab\avg{\varphi_l}^l$ 
+En substituant la fermeture $\tilde\varphi_l = \vec{d}\cdot\Grad\avg{\varphi_l}^l$ 
 dans le terme de surface, puis en factorisant $\varepsilon_l$ à l'aide de
 $\varepsilon_l = V_l/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_l}{V_l}$) :
 \begin{align}
-\avg{C_i \nab\varphi_l}
-&= \varepsilon_l \avg{C_i}^l \nab\avg{\varphi_l}^l
-+ \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA\, \nab\avg{\varphi_l}^l \notag\\
-&= \varepsilon_l \avg{C_i}^l \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right) \nab\avg{\varphi_l}^l
+\avg{C_i \Grad\varphi_l}
+&= \varepsilon_l \avg{C_i}^l \Grad\avg{\varphi_l}^l
++ \avg{C_i}^l \left(\frac{1}{V}\int_{A_{sf}} \vec{n}\otimes\vec{d}\, dA\right)\cdot \Grad\avg{\varphi_l}^l \notag\\
+&= \varepsilon_l \avg{C_i}^l \left(\tens{I} + \frac{1}{V_l}\int_{A_{sf}} \vec{n}\otimes\vec{d}\, dA \right)\cdot \Grad\avg{\varphi_l}^l
 \end{align}
 
-En définissant le coefficient de migration effectif $D_i^{\text{eff,mig}}$
-de façon analogue à $D_i^{\mathrm{eff}}$ :
+En définissant le tenseur de migration effectif $\tens{D}_i^{\text{eff,mig}}$
+de façon analogue à $\tens{D}_i^{\mathrm{eff}}$ :
 
 \begin{equation}
-D_i^{\text{eff,mig}} = D_i \left(I + \frac{1}{V_l}\int_{A_{sf}} \mathbf{n}\,\mathbf{d}\, dA \right)
+\tens{D}_i^{\text{eff,mig}} = D_i \left(\tens{I} + \frac{1}{V_l}\int_{A_{sf}} \vec{n}\otimes\vec{d}\, dA \right)
 \end{equation}
 
 On obtient finalement :
 
 \begin{equation}
-\boxed{-\frac{z_i F}{RT} D_i \avg{C_i \nab\varphi_l}
-= -\frac{z_i F}{RT} \varepsilon_l D_i^{\text{eff,mig}} \avg{C_i}^l \nab\avg{\varphi_l}^l}
+\boxed{-\frac{z_i F}{RT} D_i \avg{C_i \Grad\varphi_l}
+= -\frac{z_i F}{RT} \varepsilon_l \avg{C_i}^l\, \tens{D}_i^{\text{eff,mig}}\cdot\Grad\avg{\varphi_l}^l}
 \label{eq:mig_eff}
 \end{equation}
 
 Le terme migratoire homogénéisé a ainsi la même structure que le terme
-diffusif, avec un coefficient effectif de migration $D^{\text{eff,mig}}$
+diffusif, avec un tenseur effectif de migration $\tens{D}_i^{\text{eff,mig}}$
 qui tient compte de l'influence de la microstructure poreuse
 (tortuosité, connectivité et géométrie locale des pores). On traite maintenant
 le terme convectif, qui introduit un phénomène supplémentaire :
@@ -395,52 +395,52 @@ De la même façon que pour les termes précédents, on applique la moyenne
 superficielle au terme convectif. On décompose la vitesse en une moyenne
 intrinsèque et une fluctuation à l'échelle du pore :
 \begin{equation}
-v = \avg{v}^l + \tilde{v}
+\vec{v} = \avg{\vec{v}}^l + \tilde{\vec{v}}
 \end{equation}
 
-En injectant les décompositions de $C_i$ et $v$ :
+En injectant les décompositions de $C_i$ et $\vec{v}$ :
 \begin{align}
-\avg{C_i v}
-&= \avg{(\avg{C_i}^l + \tilde{C}_i)(\avg{v}^l + \tilde{v})} \notag\\
-&= \avg{\avg{C_i}^l \avg{v}^l}
-+ \avg{\avg{C_i}^l \tilde{v}}
-+ \avg{\tilde{C}_i \avg{v}^l}
-+ \avg{\tilde{C}_i \tilde{v}} \notag\\
-&= \varepsilon_l \avg{C_i}^l \avg{v}^l
-+ \varepsilon_l \avg{C_i}^l \underbrace{\avg{\tilde{v}}^l}_{=0}
-+ \varepsilon_l \avg{v}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0}
-+ \avg{\tilde{C}_i \tilde{v}} \notag\\
-&= \varepsilon_l \avg{C_i}^l \avg{v}^l
-+ \avg{\tilde{C}_i \tilde{v}}.
+\avg{C_i \vec{v}}
+&= \avg{(\avg{C_i}^l + \tilde{C}_i)(\avg{\vec{v}}^l + \tilde{\vec{v}})} \notag\\
+&= \avg{\avg{C_i}^l \avg{\vec{v}}^l}
++ \avg{\avg{C_i}^l \tilde{\vec{v}}}
++ \avg{\tilde{C}_i \avg{\vec{v}}^l}
++ \avg{\tilde{C}_i \tilde{\vec{v}}} \notag\\
+&= \varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l
++ \varepsilon_l \avg{C_i}^l \underbrace{\avg{\tilde{\vec{v}}}^l}_{=\vec{0}}
++ \varepsilon_l \avg{\vec{v}}^l \underbrace{\avg{\tilde{C}_i}^l}_{=0}
++ \avg{\tilde{C}_i \tilde{\vec{v}}} \notag\\
+&= \varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l
++ \avg{\tilde{C}_i \tilde{\vec{v}}}.
 \end{align}
 
-Les termes $\avg{\tilde{v}}^l = 0$ et $\avg{\tilde{C}_i}^l = 0$
+Les termes $\avg{\tilde{\vec{v}}}^l = \vec{0}$ et $\avg{\tilde{C}_i}^l = 0$
 sont nuls par définition des fluctuations.
 
-Le dernier terme $\avg{\tilde{C}_i \tilde{v}}$ représente la dispersion
+Le dernier terme $\avg{\tilde{C}_i \tilde{\vec{v}}}$ représente la dispersion
 hydrodynamique induite par les fluctuations de vitesse à l'échelle du pore.
 En utilisant la fermeture obtenue précédemment,
 
 \begin{equation}
 \tilde{C}_i
 =
-\mathbf b \cdot \nab \avg{C_i}^l,
+\vec{b} \cdot \Grad \avg{C_i}^l,
 \end{equation}
 
 on obtient :
 \begin{align}
-\avg{\tilde{C}_i \tilde{v}}
+\avg{\tilde{C}_i \tilde{\vec{v}}}
 &=
 \avg{
-\tilde v \, (\mathbf b \cdot \nab \avg{C_i}^l)
+\tilde{\vec{v}} \, (\vec{b} \cdot \Grad \avg{C_i}^l)
 }
 \notag\\
 &=
-\avg{\tilde v \otimes \mathbf b}
-\cdot \nab \avg{C_i}^l.
+\avg{\tilde{\vec{v}} \otimes \vec{b}}
+\cdot \Grad \avg{C_i}^l.
 \end{align}
 
-Cette expression réutilise le vecteur $\mathbf b$ issu du problème purement diffusif.
+Cette expression réutilise le vecteur $\vec{b}$ issu du problème purement diffusif.
 C'est une approximation, valable pour un nombre de Péclet faible à l'échelle du pore :
 lorsque la convection y devient importante, le problème de fermeture doit lui-même
 inclure la vitesse~\cite{whitakerMethodVolumeAveraging1999}.
@@ -448,31 +448,31 @@ inclure la vitesse~\cite{whitakerMethodVolumeAveraging1999}.
 On définit alors le tenseur de dispersion hydrodynamique~\cite{whitakerMethodVolumeAveraging1999} :
 
 \begin{equation}
-{D}^{\mathrm{disp}}
+\tens{D}^{\mathrm{disp}}
 =
--\avg{\tilde v \otimes \mathbf b},
+-\avg{\tilde{\vec{v}} \otimes \vec{b}},
 \end{equation}
 
 ce qui conduit à :
 
 \begin{equation}
-\avg{\tilde{C}_i \tilde{v}}
+\avg{\tilde{C}_i \tilde{\vec{v}}}
 =
 -
-D^{\mathrm{disp}}
-\nab \avg{C_i}^l.
+\tens{D}^{\mathrm{disp}}
+\cdot\Grad \avg{C_i}^l.
 \end{equation}
 
 On obtient finalement :
 
 \begin{equation}
 \boxed{
-\avg{C_i v}
+\avg{C_i \vec{v}}
 =
-\varepsilon_l \avg{C_i}^l \avg{v}^l
+\varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l
 -
-D^{\mathrm{disp}}
-\nab \avg{C_i}^l
+\tens{D}^{\mathrm{disp}}
+\cdot\Grad \avg{C_i}^l
 }
 \label{eq:conv_eff}
 \end{equation}
@@ -493,54 +493,56 @@ En combinant les résultats obtenus pour les termes diffusif
 \eqref{eq:conv_eff}, on obtient l'expression homogénéisée du flux de
 Nernst--Planck :
 \begin{align}
-\avg{N_i}
+\avg{\vec{N}_i}
 &=
-\varepsilon_l \avg{C_i}^l \avg{v}^l
+\varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l
 -
 \left(
-\varepsilon_l D_i^{\mathrm{eff}}
+\varepsilon_l \tens{D}_i^{\mathrm{eff}}
 +
-D^{\mathrm{disp}}
+\tens{D}^{\mathrm{disp}}
 \right)
-\nab\avg{C_i}^l
+\cdot\Grad\avg{C_i}^l
 -
 \frac{z_iF}{RT}
-\varepsilon_l D_i^{\mathrm{eff,mig}}
-\avg{C_i}^l
-\nab\avg{\varphi_l}^l .
+\varepsilon_l
+\avg{C_i}^l\,
+\tens{D}_i^{\mathrm{eff,mig}}
+\cdot\Grad\avg{\varphi_l}^l .
 \label{eq:Ni_homo}
 \end{align}
 
-On définit alors le coefficient total de transport diffusif-dispersif :
+On définit alors le tenseur total de transport diffusif-dispersif :
 \begin{equation}
-D_i^{\mathrm{tot}}
+\tens{D}_i^{\mathrm{tot}}
 =
-\varepsilon_l D_i^{\mathrm{eff}}
+\varepsilon_l \tens{D}_i^{\mathrm{eff}}
 +
-D^{\mathrm{disp}}.
+\tens{D}^{\mathrm{disp}}.
 \end{equation}
 
-La moyenne $\langle \tilde{v} \otimes \mathbf{b} \rangle$ définissant $D^{\mathrm{disp}}$
+La moyenne $\langle \tilde{\vec{v}} \otimes \vec{b} \rangle$ définissant $\tens{D}^{\mathrm{disp}}$
 étant une moyenne superficielle, elle intègre déjà la porosité $\varepsilon_l$ :
 c'est ce qui justifie l'absence de facteur $\varepsilon_l$ explicite devant
-$D^{\mathrm{disp}}$, là où le terme diffusif $\varepsilon_l D^{\mathrm{eff}}_i$
+$\tens{D}^{\mathrm{disp}}$, là où le terme diffusif $\varepsilon_l \tens{D}^{\mathrm{eff}}_i$
 le porte explicitement.
 
 Le flux homogénéisé s'écrit finalement :
 
 \begin{equation}
 \boxed{
-\avg{N_i}
+\avg{\vec{N}_i}
 =
-\varepsilon_l \avg{C_i}^l \avg{v}^l
+\varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l
 -
-D_i^{\mathrm{tot}}
-\nab\avg{C_i}^l
+\tens{D}_i^{\mathrm{tot}}
+\cdot\Grad\avg{C_i}^l
 -
 \frac{z_iF}{RT}
-\varepsilon_l D_i^{\mathrm{eff,mig}}
-\avg{C_i}^l
-\nab\avg{\varphi_l}^l
+\varepsilon_l
+\avg{C_i}^l\,
+\tens{D}_i^{\mathrm{eff,mig}}
+\cdot\Grad\avg{\varphi_l}^l
 }
 \label{eq:Ni_final}
 \end{equation}
@@ -571,34 +573,34 @@ mais appliqué à la phase solide : le problème de fermeture porte
 maintenant sur les fluctuations du potentiel $\widetilde{\varphi}_s$
 à l'échelle du pore. Dans cette section, la moyenne superficielle porte sur le
 solide, $\avg{g} = \frac{1}{V}\int_{V_s} g\, dV = \varepsilon_s \avg{g}^s$, et le
-théorème de la moyenne spatiale s'applique avec la normale $\mathbf{n}_s$.
+théorème de la moyenne spatiale s'applique avec la normale $\vec{n}_s$.
 
 
 En appliquant la moyenne superficielle à l'équation de conservation du
 courant dans le solide :
 \begin{equation}
-\avg{\nab \cdot (\sigma_s \nab\varphi_s)} = 0
+\avg{\Div\left(\sigma_s \Grad\varphi_s\right)} = 0
 \end{equation}
 
 En notant
 \begin{equation}
-i_s = -\sigma_s \nab\varphi_s
+\vec{i}_s = -\sigma_s \Grad\varphi_s
 \end{equation}
 la densité de courant dans le solide, on obtient :
 \begin{equation}
-\avg{\nab \cdot i_s}=0.
+\avg{\Div \vec{i}_s}=0.
 \end{equation}
 
-En appliquant le théorème de la moyenne spatiale
-\eqref{eq:moy_spatiale} :
+En appliquant le théorème de la moyenne spatiale sous forme de divergence
+\eqref{eq:moy_spatiale_div} :
 \begin{equation}
-\avg{\nab \cdot i_s}
+\avg{\Div \vec{i}_s}
 =
-\nab \cdot \avg{i_s}
+\Div \avg{\vec{i}_s}
 +
 \frac{1}{V}
 \int_{A_{sf}}
-\mathbf n_s \cdot i_s\, dA
+\vec{n}_s \cdot \vec{i}_s\, dA
 =
 0.
 \end{equation}
@@ -606,16 +608,16 @@ En appliquant le théorème de la moyenne spatiale
 En supposant que le courant faradique n'est échangé que sur la partie
 catalytiquement active de l'interface, on a :
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf n_s \cdot i_s\, dA
+\frac{1}{V}\int_{A_{sf}} \vec{n}_s \cdot \vec{i}_s\, dA
 =
-\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \mathbf n_s \cdot i_s\, dA
+\frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \vec{n}_s \cdot \vec{i}_s\, dA
 =
 -a_v^{\mathrm{cat}} \avg{j}^{sf}.
 \end{equation}
 
 On obtient donc :
 \begin{equation}
-\nab \cdot \avg{i_s}
+\Div \avg{\vec{i}_s}
 =
 a_v^{\mathrm{cat}} \avg{j}^{sf},
 \end{equation}
@@ -623,14 +625,14 @@ a_v^{\mathrm{cat}} \avg{j}^{sf},
 où $\avg{j}^{sf}$ est la densité de courant échangée à l'interface
 fluide/solide, moyennée sur $A_{sf}^{\mathrm{cat}}$.
 
-On cherche maintenant à relier $\avg{i_s}$ au potentiel moyen dans la
+On cherche maintenant à relier $\avg{\vec{i}_s}$ au potentiel moyen dans la
 phase solide. En développant
-$\avg{i_s} = -\sigma_s \avg{\nab\varphi_s}$ et en appliquant le théorème
+$\avg{\vec{i}_s} = -\sigma_s \avg{\Grad\varphi_s}$ et en appliquant le théorème
 de la moyenne spatiale :
 \begin{align}
-\avg{\nab\varphi_s}
-&= \nab\avg{\varphi_s} + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA \notag\\
-&= \varepsilon_s \nab\avg{\varphi_s}^s + \avg{\varphi_s}^s \nab\varepsilon_s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \varphi_s\, dA
+\avg{\Grad\varphi_s}
+&= \Grad\avg{\varphi_s} + \frac{1}{V}\int_{A_{sf}} \varphi_s\,\vec{n}_s\, dA \notag\\
+&= \varepsilon_s \Grad\avg{\varphi_s}^s + \avg{\varphi_s}^s \Grad\varepsilon_s + \frac{1}{V}\int_{A_{sf}} \varphi_s\,\vec{n}_s\, dA
 \end{align}
 
 Comme pour le terme diffusif, on décompose le potentiel solide en une moyenne
@@ -646,46 +648,46 @@ intrinsèque dans la phase solide et une fluctuation à l'échelle du pore :
 où $\left\langle \varphi_s \right\rangle^s$ désigne le potentiel solide
 moyen dans la phase solide et $\widetilde{\varphi}_s$ sa fluctuation locale.
 
-Comme pour le terme diffusif, $\frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, dA = -\nab\varepsilon_s$,
-de sorte que le terme en $\nab\varepsilon_s$ se simplifie :
+Comme pour le terme diffusif, $\frac{1}{V}\int_{A_{sf}} \vec{n}_s\, dA = -\Grad\varepsilon_s$,
+de sorte que le terme en $\Grad\varepsilon_s$ se simplifie :
 \begin{equation}
-\avg{\nab\varphi_s}
-= \varepsilon_s \nab\avg{\varphi_s}^s + \frac{1}{V}\int_{A_{sf}} \mathbf{n}_s\, \widetilde{\varphi}_s\, dA
+\avg{\Grad\varphi_s}
+= \varepsilon_s \Grad\avg{\varphi_s}^s + \frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_s\,\vec{n}_s\, dA
 \end{equation}
 
 La fluctuation $\widetilde{\varphi}_s$ est ensuite reliée au gradient
-macroscopique du potentiel solide par un vecteur de fermeture $\mathbf e$ :
+macroscopique du potentiel solide par un vecteur de fermeture $\vec{e}$ :
 \begin{equation}
 \widetilde{\varphi}_s
 =
-\mathbf e \cdot \nabla \left\langle \varphi_s \right\rangle^s .
+\vec{e} \cdot \Grad \left\langle \varphi_s \right\rangle^s .
 \end{equation}
 
-En substituant dans l'expression de $\avg{\nab\varphi_s}$ :
+En substituant dans l'expression de $\avg{\Grad\varphi_s}$ :
 \begin{equation}
-\frac{1}{V}\int_{A_{sf}} \mathbf{n}_s \widetilde{\varphi}_s\, dA
-= \varepsilon_s \frac{1}{V_s} \int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA\, \nab\avg{\varphi_s}^s
+\frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_s\,\vec{n}_s\, dA
+= \varepsilon_s \left(\frac{1}{V_s} \int_{A_{sf}} \vec{n}_s\otimes\vec{e}\, dA\right)\cdot\Grad\avg{\varphi_s}^s
 \end{equation}
 
-On définit la conductivité effective $\sigma^{\text{eff}}$ du milieu poreux :
+On définit le tenseur de conductivité effective $\tens{\sigma}^{\text{eff}}$ du milieu poreux :
 \begin{equation}
-\sigma^{\text{eff}} = \sigma_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right)
+\tens{\sigma}^{\text{eff}} = \sigma_s \left(\tens{I} + \frac{1}{V_s}\int_{A_{sf}} \vec{n}_s\otimes\vec{e}\, dA \right)
 \end{equation}
 
-En reportant dans l'expression de $\avg{\nab\varphi_s}$ et en factorisant
+En reportant dans l'expression de $\avg{\Grad\varphi_s}$ et en factorisant
 $\varepsilon_s = V_s/V$ (soit $\tfrac{1}{V} = \tfrac{\varepsilon_s}{V_s}$), on obtient :
 \begin{equation}
-\avg{\nab\varphi_s}
-= \varepsilon_s \left(I + \frac{1}{V_s}\int_{A_{sf}} \mathbf{n}_s\, \mathbf e\, dA \right) \nab\avg{\varphi_s}^s
-= \varepsilon_s \frac{\sigma^{\text{eff}}}{\sigma_s} \nab\avg{\varphi_s}^s
+\avg{\Grad\varphi_s}
+= \varepsilon_s \left(\tens{I} + \frac{1}{V_s}\int_{A_{sf}} \vec{n}_s\otimes\vec{e}\, dA \right)\cdot\Grad\avg{\varphi_s}^s
+= \varepsilon_s \frac{\tens{\sigma}^{\text{eff}}}{\sigma_s}\cdot\Grad\avg{\varphi_s}^s
 \end{equation}
 
 On obtient finalement la loi d'Ohm homogénéisée :
 \begin{equation}
 \boxed{
-\nab\cdot\left(
-\varepsilon_s \sigma^{\text{eff}}
-\nab\avg{\varphi_s}^s
+\Div\left(
+\varepsilon_s \tens{\sigma}^{\text{eff}}
+\cdot\Grad\avg{\varphi_s}^s
 \right)
 =
 -a_v^{\mathrm{cat}} \avg{j}^{sf}
@@ -714,9 +716,9 @@ bui<3ContinuumModeling2022} :
 
 \begin{equation}
     \varepsilon_l \frac{\partial \avg{C_i}^l}{\partial t}
-    = \nab\cdot\left( D^{\mathrm{tot}}_i \nab\avg{C_i}^l
-    + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \nab\avg{\varphi_l}^l
-    - \varepsilon_l \avg{C_i}^l \avg{v}^l \right)
+    = \Div\left( \tens{D}^{\mathrm{tot}}_i \cdot\Grad\avg{C_i}^l
+    + \frac{z_i F}{RT}\varepsilon_l \avg{C_i}^l\, \tens{D}^{\mathrm{eff,mig}}_i \cdot\Grad\avg{\varphi_l}^l
+    - \varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l \right)
     + a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:sys1}
 \end{equation}
@@ -727,13 +729,13 @@ bui<3ContinuumModeling2022} :
 \end{equation}
 
 \begin{equation}
-    \nab\cdot\left( \varepsilon_s \sigma^{\mathrm{eff}}\nab\avg{\varphi_s}^s \right)
+    \Div\left( \varepsilon_s \tens{\sigma}^{\mathrm{eff}}\cdot\Grad\avg{\varphi_s}^s \right)
     = -a_v^{\mathrm{cat}} \avg{j}^{sf}
 \label{eq:sys3}
 \end{equation}
 
-Les coefficients effectifs $D^{\mathrm{eff}}_i$, $D^{\mathrm{eff,mig}}_i$,
-$D^{\mathrm{disp}}$ et $\sigma^{\mathrm{eff}}$ introduits ci-dessus sont en
+Les coefficients effectifs $\tens{D}^{\mathrm{eff}}_i$, $\tens{D}^{\mathrm{eff,mig}}_i$,
+$\tens{D}^{\mathrm{disp}}$ et $\tens{\sigma}^{\mathrm{eff}}$ introduits ci-dessus sont en
 toute généralité des tenseurs d'ordre deux, reflétant l'anisotropie éventuelle
 de la microstructure poreuse. Dans la géométrie unidimensionnelle considérée
 par la suite, seule leur composante selon la direction normale à l'électrode
@@ -753,8 +755,8 @@ Au niveau du collecteur, le potentiel de la phase solide est imposé. Aucun
 échange de matière avec l'extérieur n'est autorisé pour les espèces dissoutes,
 et aucun courant ionique ne traverse cette frontière :
 \begin{align}
-\left\langle N_i \right\rangle \cdot \mathbf n &= 0, \\
-\mathbf n \cdot \nabla \left\langle \varphi_l \right\rangle^l &= 0, \\
+\left\langle \vec{N}_i \right\rangle \cdot \vec{n} &= 0, \\
+\vec{n} \cdot \Grad \left\langle \varphi_l \right\rangle^l &= 0, \\
 \left\langle \varphi_s \right\rangle^s &= E .
 \end{align}
 
@@ -771,10 +773,10 @@ homogène :
 La phase solide ne se prolongeant pas dans la phase homogène, le courant
 électronique normal est nul à cette frontière :
 \begin{equation}
-\mathbf n \cdot
+\vec{n} \cdot
 \left(
-\varepsilon_s \sigma^{\mathrm{eff}}
-\nabla \left\langle \varphi_s \right\rangle^s
+\varepsilon_s \tens{\sigma}^{\mathrm{eff}}
+\cdot\Grad \left\langle \varphi_s \right\rangle^s
 \right)
 =0 .
 \end{equation}

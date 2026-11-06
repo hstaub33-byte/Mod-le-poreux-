@@ -1,104 +1,212 @@
-% !TEX root = main.tex
-\section*{Nombres adimensionnels}
+\section*{Limites du modèle et extensions possibles}
 
-Les limites du modèle présentées ci-dessus peuvent être analysées
-plus quantitativement à l'aide de nombres adimensionnels. Le nombre
-de Péclet, le nombre de Damköhler et la longueur de Debye adimensionnée
-permettent d'évaluer l'importance relative des principaux mécanismes de
-transport et de réaction, et de préciser le domaine de validité de plusieurs
-hypothèses simplificatrices.
-
-\subsection*{Péclet}
-
-Le nombre de Péclet compare la convection et la diffusion :
-
-\begin{equation}
-Pe = \frac{\|v\|\, l_e}{D_{\text{ref}}}
-\end{equation}
-
-En partant des équations~\eqref{eq:nernst-planck},~\eqref{eq:conservation}, et en posant :
-
-\begin{equation*}
-c^* = \frac{C_i}{C_{\text{ref}}}, \quad
-\varphi_l^* = \frac{\varphi_l F}{RT}, \quad
-\nabla^* = l_e\nabla, \quad
-t^* = \frac{t D_{\text{ref}}}{l_e^2}
-\end{equation*}
-
-En introduisant le flux adimensionné
-
-\[
-N_i^*=\frac{N_i l_e}{D_iC_{\rm ref}},
-\]
-
-on obtient :
-
-\begin{equation*}
-N_i^* = -\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + \frac{D_{\text{ref}}}{D_i}\, Pe\, c^* v^*
-\end{equation*}
-
-où $v^* = v/\|v\|$ est le vecteur unitaire de la vitesse, et l'équation de conservation adimensionnée :
-
-\begin{equation*}
-\frac{\partial c^*}{\partial t^*} + \frac{D_i}{D_{\text{ref}}} \nabla^* \cdot \left(-\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + \frac{D_{\text{ref}}}{D_i}\, Pe\, c^* v^*\right) = 0
-\end{equation*}
-%Je devrais sûrement enlevé la migration car là elle apparait aussi ou changé une phrase sans doute
-
-Le nombre de Péclet compare uniquement les contributions convective et diffusive,
-il ne permet pas de quantifier l'importance du terme de migration.
+Le modèle présenté constitue une première description de la réduction
+électrochimique du \ce{CO2} dans une électrode poreuse. Plusieurs
+hypothèses simplificatrices ont été retenues afin de conserver un cadre
+de modélisation exploitable. Cette section présente les principales
+extensions envisageables, classées selon leur nature physique.
 
 % ============================================================
-\subsection*{Damköhler}
+\subsection*{Réactions supplémentaires}
 
-Le nombre de Damköhler compare la vitesse de réaction surfacique à la diffusion :
+\subsubsection*{Réaction de dégagement d'hydrogène (HER)}
 
+La réduction du \ce{CO2} est généralement en compétition avec la
+réaction de dégagement d'hydrogène (HER)~\cite{goyalCompetitionCO2Reduction2020} :
+\begin{align*}
+2\mathrm{H}^+ + 2e^- &\longrightarrow \mathrm{H}_2 \\
+2\mathrm{H_2O} + 2e^- &\longrightarrow \mathrm{H}_2 + 2\mathrm{OH}^-
+\end{align*}
+
+La HER peut être introduite comme une réaction concurrente se
+produisant sur les sites catalytiques déjà considérés dans le modèle.
+Le courant total devient alors :
 \begin{equation}
-Da = \frac{j l_e}{F D_i C_{\text{ref}}}
+j_{\mathrm{tot}}
+=
+j_{\mathrm{CO_2RR}}
++
+j_{\mathrm{HER}}
 \end{equation}
 
-En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
-%Faudrait faire attention car Damkoler c'est sur toute la surface pas que sur avcat
+Une extension supplémentaire consisterait à lever l'hypothèse d'inertie
+électrochimique du support carboné. Les zones de carbone non recouvertes de
+catalyseur pourraient alors également contribuer à des réactions parasites,
+notamment au dégagement d'hydrogène.
+%Hypothèse de moi donc a verifier avec les chimistes
 
-\begin{equation*}
--N_i^* \cdot \mathbf{n} = Da \frac{\nu_i}{n_e}
-\end{equation*}
+Cette réaction concurrente consomme également des électrons et peut
+fortement affecter la sélectivité du système lorsque
+$j_{\mathrm{HER}}$ devient comparable à
+$j_{\mathrm{CO_2RR}}$~\cite{marcandalliElectrolyteEffectsCO22022}.
 
-le flux normal étant nul sur le reste de l'interface. Ainsi défini, $Da$ caractérise
-la compétition entre réaction interfaciale et diffusion à l'échelle de la surface
-catalytique. Il est étroitement lié au module de Thiele~\cite{wanPotentialDependentThiele}
-introduit précédemment, qui décrit la même compétition à l'échelle de l'électrode,
-la couverture catalytique $\theta$ intervenant alors via l'aire spécifique active
-$a_v^{\text{cat}} = \theta\, a_v$.
+
+\subsubsection*{Réactions homogènes en volume}
+
+Le modèle actuel suppose que toutes les réactions se produisent à
+l'interface solide--fluide. En pratique, plusieurs réactions acido-basiques
+peuvent avoir lieu dans l'électrolyte :
+
+\begin{align*}
+\ce{CO2 + H2O} &\rightleftharpoons \ce{H+ + HCO3-} \\
+\ce{HCO3-} &\rightleftharpoons \ce{H+ + CO3^{2-}} \\
+\ce{H2O} &\rightleftharpoons \ce{H+ + OH-}
+\end{align*}
+
+
+Ces réactions acido-basiques contrôlent localement la concentration en
+protons et en ions hydroxyde, et donc le pH, ainsi que la répartition des
+espèces carbonées dissoutes. Elles influencent donc la concentration
+effective en \ce{CO2} disponible à proximité des sites catalytiques et
+peuvent affecter significativement les performances de l'électrode~\cite{loffelholzModelingElectrochemicalCO2022}.
+% ============================================================
+\subsection*{Transport et description de l'électrolyte}
+
+\subsubsection*{Milieu concentré}
+
+Le modèle présenté repose sur l'équation de Nernst--Planck, adaptée aux
+électrolytes dilués. Dans un électrolyte concentré, les interactions
+entre espèces deviennent importantes et les coefficients de diffusion
+ne peuvent plus être considérés indépendants. Une description plus
+rigoureuse du transport repose alors sur les équations de
+Maxwell--Stefan, qui prennent explicitement en compte les interactions
+entre espèces dissoutes~\cite{psaltisComparisonNernstPlanckMaxwellStefan2010, newmanElectrochemicalSystems}.
+
+\subsubsection*{Prise en compte des charges d'espace}
+
+Le modèle présenté repose sur l'hypothèse d'électroneutralité.
+ Lorsque la longueur de Debye devient comparable à la taille
+ caractéristique des pores, cette hypothèse n'est plus valable
+  et il devient nécessaire de résoudre explicitement l'équation de Poisson~\cite{bazantDiffuseChargeDynamicsElectrochemical2004} :
+
+\begin{equation}
+-\varepsilon_0 \varepsilon_r \Div\left(\Grad \varphi_l\right)
+=
+F \sum_i z_i C_i
+\qquad \text{dans } \Omega_l .
+\label{eq:poisson}
+\end{equation}
+
+À l'interface solide--fluide, la présence d'une densité
+de charge surfacique associée à la double couche électrique impose la condition
+
+\begin{equation}
+\varepsilon_0 \varepsilon_r \, \vec{n}\cdot\Grad\varphi_l
+=
+\sigma_q
+\qquad \text{sur } A_{sf},
+\end{equation}
+
+où $\sigma_q$ est la charge portée par le solide et $\vec{n}$ est orienté du fluide vers le solide.
+
+Cette formulation permet de décrire explicitement les
+ effets de charge d'espace et de double couche électrique, au prix d'un modèle plus complexe.
+
+\subsubsection*{Effets stériques}
+
+L'équation de Nernst--Planck repose sur l'hypothèse d'espèces
+ponctuelles. Lorsque les concentrations deviennent élevées,
+notamment à proximité des interfaces chargées, le volume fini des ions
+peut devenir significatif. Cette correction introduit un effet de volume exclu : chaque espèce occupe
+un volume fini, ce qui limite localement l'espace disponible pour les autres
+espèces lorsque la concentration totale devient élevée. Une correction stérique peut alors être
+ajoutée au flux :
+
+\begin{equation}
+-D_i C_i \left(
+\frac{N_\mathrm{A} \displaystyle\sum_j a_j^3 \Grad C_j}
+{1 - N_\mathrm{A} \displaystyle\sum_j a_j^3 C_j}
+\right)
+\end{equation}
+
+où $a_j$ représente la taille caractéristique de l'espèce $j$~\cite{johnson<3PathwaysEnhance2023}.
+
+\subsubsection*{Chargement de la double couche}
+
+Le modèle de base ne considère que le courant faradique, associé au
+transfert de charge de la réaction électrochimique à l'interface
+solide--fluide. Ce courant est décrit par la loi cinétique choisie pour la
+réaction interfaciale.
+
+À l'interface solide--fluide, la double couche électrique se comporte
+toutefois également comme un condensateur, dont la charge et la décharge
+donnent naissance à un courant capacitif. Le courant interfacial total se
+décompose alors en une contribution faradique et une contribution capacitive :
+
+\begin{equation}
+j_{\mathrm{tot}}
+=
+j_{\mathrm{far}}%jfar c'est j en général
+-
+C_{dl}\,\frac{\partial \eta_{\mathrm{ref}}}{\partial t},
+\end{equation}
+
+où $C_{dl}$ est la capacité surfacique de double couche et $\eta_{\mathrm{ref}}$ la
+surtension locale. Le signe moins vient de la convention $j > 0$ en réduction :
+lorsque la surtension devient plus négative, le courant capacitif est cathodique. Ce courant capacitif est proportionnel à la dérivée
+temporelle de la surtension : il s'annule donc en régime stationnaire, cadre
+retenu dans ce travail, et seul le courant faradique subsiste. Sa prise en
+compte deviendrait nécessaire pour décrire la réponse dynamique de
+l'électrode, par exemple lors de l'analyse de transitoires ou de mesures
+d'impédance électrochimique~\cite{bazantDiffuseChargeDynamicsElectrochemical2004, biesheuvelNonlinearDynamicsCapacitive2010}.
+
+
+
+%=============================================================
+\subsection*{Transport électronique dans la phase solide}
+
+\subsubsection*{Résistance de contact}
+
+Le modèle de base décrit la phase solide comme un milieu conducteur continu,
+caractérisé par une conductivité effective. Cette description revient à
+supposer que le réseau carboné est parfaitement connecté, et donc à négliger
+les résistances de contact locales entre les différentes portions de la phase
+solide. Dans les milieux fibreux carbonés, ces résistances de contact peuvent
+néanmoins contribuer à la résistance électrique globale du réseau conducteur
+\cite{qiuElectricalResistanceMicrostructure2018}.
+
+Une extension possible consisterait à introduire une résistance de contact
+entre deux portions du réseau conducteur. Le courant normal traversant le
+contact pourrait alors être modélisé par une loi ohmique locale :
+\begin{equation}
+i_n =
+\frac{\varphi_{s,1}-\varphi_{s,2}}{R_c},
+\end{equation}
+
+où $R_c$ est une résistance de contact surfacique. La limite $R_c \to 0$
+correspond au cas d'un contact parfait, pour lequel le potentiel solide est
+continu à travers le contact.
 
 % ============================================================
-\subsection*{Longueur de Debye}
+\subsection*{Hypothèses thermodynamiques}
 
-La longueur de Debye compare l'épaisseur caractéristique de la double
-couche électrique à la taille caractéristique d'un pore $\ell_p$~\cite{dickinsonElectroneutralityApproximationElectrochemistry2011} :
+\subsubsection*{Température uniforme}
 
-\begin{equation}
-\bar{\delta} = \frac{\lambda_0}{\ell_p}
-= \frac{1}{\ell_p}
-\sqrt{\frac{\varepsilon_0 \varepsilon_r RT}{2F^2 C_{\text{ref}}}}
-\end{equation}
+La température est supposée uniforme et constante. Les effets liés à l'échauffement par effet Joule, à la chaleur produite par
+les réactions électrochimiques, ainsi qu'au couplage entre gradients
+thermiques et transport de matière (effet Soret), ne sont pas pris en compte \cite{bui<3ContinuumModeling2022}.
 
-Cette expression correspond à un électrolyte $1{:}1$ de concentration $C_{\text{ref}}$. En partant de
-l'équation de Poisson~\eqref{eq:poisson}, on adimensionne à l'échelle du pore, avec
-$\nabla_p^* = \ell_p \nabla$ et $c_i^* = C_i/C_{\text{ref}}$ :
+\subsubsection*{Pression uniforme}
 
-\begin{equation}
-\bar{\delta}^2 \nabla_p^{*2} \varphi_l^* = -\frac{1}{2}\sum_i z_i c_i^*
-\end{equation}
+La pression est supposée uniforme dans l'ensemble du domaine. Les
+effets liés aux gradients de pression, aux variations de densité du
+fluide et aux modifications locales de la solubilité du \ce{CO2} sont
+donc négligés.
 
-Lorsque la longueur de Debye est très inférieure à la taille caractéristique des pores,
-les effets de la double couche électrique restent confinés au voisinage des interfaces.
-L'approximation d'électroneutralité, introduite dans l'équation~\eqref{eq:electroneutre} lors de la
-présentation du modèle, est alors justifiée.
+% ============================================================
+\subsection*{Interfaces et morphologie}
+
+\subsubsection*{Formation de bulles}
+
+La formation de bulles gazeuses n'est pas prise en compte dans le modèle
+actuel. Pourtant, la production de \ce{CO} ou de \ce{H2} peut conduire à
+l'apparition de phases gazeuses dans le milieu poreux. Ces bulles
+modifient localement la porosité et la surface active disponible, et
+peuvent également limiter l'accès des réactifs aux sites catalytiques en
+perturbant le transport de matière~\cite{saccoModelingGasBubbleinduced2019}.
 
 \bigskip
-
-Cette analyse adimensionnelle complète les développements précédents en précisant le domaine
-de validité des principales hypothèses du modèle. Elle permet d’identifier, selon les conditions
- opératoires, les mécanismes susceptibles de gouverner le fonctionnement de l’électrode poreuse.
- Les nombres de Péclet et de Damköhler, ainsi que la longueur de Debye adimensionnée, constitueront ainsi
-  une grille de lecture pour les simulations numériques à venir et pour l’évaluation du domaine de validité des modèles réduits.
+Ces extensions mettent en évidence les principales limites du modèle de base.
+La section suivante introduit plusieurs nombres adimensionnels afin de
+quantifier l'importance relative du transport, de la réaction et des effets
+électrostatiques.

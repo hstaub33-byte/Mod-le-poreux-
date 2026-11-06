@@ -69,10 +69,10 @@ Dans le cadre du modèle de base, l'électrolyte est supposé suffisamment
 dilué pour que ces mécanismes soient décrits par l'équation de Nernst--Planck~\cite{newmanElectrochemicalSystems} :
 % migration =1.16,diff=1.27, conv=1.32
 \begin{equation}
-N_i = -D_i \nab C_i - \frac{z_i F}{RT} D_i C_i \nab \varphi_l + C_i v \quad \text{dans } \Omega_l
+\vec{N}_i = -D_i \Grad C_i - \frac{z_i F}{RT} D_i C_i \Grad \varphi_l + C_i \vec{v} \quad \text{dans } \Omega_l
 \label{eq:nernst-planck}
 \end{equation}
-où $v$ désigne la vitesse locale de l'électrolyte. Elle peut être
+où $\vec{v}$ désigne la vitesse locale de l'électrolyte. Elle peut être
 déterminée à partir d'un modèle hydrodynamique, par exemple les équations de
 Navier--Stokes ou une approximation simplifiée, ou être négligée dans les
 régimes où la convection est faible.
@@ -95,7 +95,7 @@ supposées localisées sur l'interface $A_{sf}$, conformément à l'approche cla
 de la théorie des électrodes poreuses \cite{newmanElectrochemicalSystems,newmanTheoreticalAnalysisCurrent1962,mendez-vasquezUpscalingMassElectric2025}.
 L'équation de conservation s'écrit alors :
 \begin{equation}
-\frac{\partial C_i}{\partial t} + \nab \cdot N_i = 0 \quad \text{dans } \Omega_l
+\frac{\partial C_i}{\partial t} + \Div \vec{N}_i = 0 \quad \text{dans } \Omega_l
 \label{eq:conservation}
 \end{equation}
 
@@ -111,9 +111,9 @@ d'hydrogène étant négligées \cite{goyalCompetitionCO2Reduction2020,marcandal
 densité de courant interfaciale par la loi de Faraday uniquement sur $A_{sf}^{\mathrm{cat}}$ \cite{newmanElectrochemicalSystems,newmanTheoreticalAnalysisCurrent1962} :
 \begin{subequations}
 \begin{align}
--\mathbf{n} \cdot N_i &= \frac{\nu_i}{n_e F}\, j
+-\vec{n} \cdot \vec{N}_i &= \frac{\nu_i}{n_e F}\, j
 && \text{sur } A_{sf}^{\mathrm{cat}}, \label{eq:faraday} \\
--\mathbf{n} \cdot N_i &= 0
+-\vec{n} \cdot \vec{N}_i &= 0
 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}},
 \end{align}
 \label{eq:interfaceliquide}
@@ -128,7 +128,7 @@ se comporte comme une paroi imperméable aux espèces.
 On notera que cette distinction entre interface catalytique $A_{sf}^{\mathrm{cat}}$
 et interface complète $A_{sf}$ n'intervient que dans les conditions de flux. Pour
 l'écoulement, l'ensemble de l'interface $A_{sf}$ reste une paroi solide (non-glissement,
-$v = 0$), qu'elle porte ou non le catalyseur. En revanche, le flux de matière n'y est nul
+$\vec{v} = \vec{0}$), qu'elle porte ou non le catalyseur. En revanche, le flux de matière n'y est nul
 qu'en dehors de $A_{sf}^{\mathrm{cat}}$ : c'est la condition~\eqref{eq:faraday} qui
 distingue la zone active du reste de la surface.
 
@@ -156,7 +156,7 @@ La validité de cette approximation est discutée à la section \og Limites du m
 % Le champ électrique dans l'électrolyte résulte de la distribution des charges dans le fluide. L'équation de Poisson relie le laplacien du potentiel électrolytique à la densité volumique de charges libres portées par les ions en solution :
 
 % \begin{equation}
-% -\varepsilon_0 \varepsilon_r \nab^2 \varphi_l = F\sum_i z_i C_i \quad \text{dans } \Omega_l
+% -\varepsilon_0 \varepsilon_r \Div\left(\Grad \varphi_l\right) = F\sum_i z_i C_i \quad \text{dans } \Omega_l
 % \label{eq:poisson}
 % \end{equation}
 
@@ -165,7 +165,7 @@ La validité de cette approximation est discutée à la section \og Limites du m
 % sur le gradient normal du potentiel
 
 % \begin{equation}
-% -\varepsilon_0 \varepsilon_r \mathbf{n} \cdot \nab \varphi_l = \sigma_q \quad \text{sur } A_{sf}
+% -\varepsilon_0 \varepsilon_r \vec{n} \cdot \Grad \varphi_l = \sigma_q \quad \text{sur } A_{sf}
 % \label{eq:boundary_potential}
 % \end{equation}
 
@@ -185,7 +185,7 @@ au gradient du potentiel électrique, avec $\sigma_s$ la conductivité du solide
 En l'absence d'accumulation de charge dans le
 solide, la conservation du courant impose~\cite{newmanTheoreticalAnalysisCurrent1962, newmanPorouselectrodeTheoryBattery1975} :
 \begin{equation}
-\nab \cdot (-\sigma_s \nab \varphi_s) = 0 \quad \text{dans } \Omega_s
+\Div\left(-\sigma_s \Grad \varphi_s\right) = 0 \quad \text{dans } \Omega_s
 \label{eq:ohm}
 \end{equation}
 
@@ -195,22 +195,22 @@ soit intégralement transféré à l'électrolyte par la réaction
 électrochimique~\cite{devidtsGoverningEquationsTransport1997}, sur la seule zone catalytiquement active :
 \begin{subequations}
 \begin{align}
-\mathbf{n}_s \cdot \sigma_s \nab \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
-\mathbf{n}_s \cdot \sigma_s \nab \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
+\vec{n}_s \cdot \sigma_s \Grad \varphi_s &= j && \text{sur } A_{sf}^{\mathrm{cat}}, \\
+\vec{n}_s \cdot \sigma_s \Grad \varphi_s &= 0 && \text{sur } A_{sf} \setminus A_{sf}^{\mathrm{cat}}.
 \end{align}
 \label{eq:intefacesolide}
 \end{subequations}
 
-On a introduit ici la normale $\mathbf{n}_s$ à l'interface $A_{sf}$, orientée vers
+On a introduit ici la normale $\vec{n}_s$ à l'interface $A_{sf}$, orientée vers
 l'extérieur de la phase solide (du solide vers le fluide), de sorte que :
-$\mathbf{n}_s = -\mathbf{n}$.
+$\vec{n}_s = -\vec{n}$.
 
 Ces conditions sont cohérentes avec~\eqref{eq:faraday}. En sommant cette dernière sur
-toutes les espèces, le courant ionique $i_l = F\sum_i z_i N_i$ vérifie
-$\mathbf{n}\cdot i_l = -\frac{\sum_i z_i \nu_i}{n_e}\, j$. Pour la réaction étudiée,
+toutes les espèces, le courant ionique $\vec{i}_l = F\sum_i z_i \vec{N}_i$ vérifie
+$\vec{n}\cdot \vec{i}_l = -\frac{\sum_i z_i \nu_i}{n_e}\, j$. Pour la réaction étudiée,
 $\sum_i z_i \nu_i = -n_e$, à condition de compter \ce{H+} ou \ce{OH-} parmi les espèces.
-On a donc $\mathbf{n}\cdot i_l = j = \mathbf{n}\cdot i_s$, avec
-$i_s = -\sigma_s\nab\varphi_s$ : le courant est continu à l'interface, et aucune condition
+On a donc $\vec{n}\cdot \vec{i}_l = j = \vec{n}\cdot \vec{i}_s$, avec
+$\vec{i}_s = -\sigma_s\Grad\varphi_s$ : le courant est continu à l'interface, et aucune condition
 supplémentaire n'est nécessaire pour $\varphi_l$ sur $A_{sf}$.
 
 Les potentiels dans les phases fluide et solide sont couplés à
@@ -314,9 +314,9 @@ naturelle du présent modèle.
 Les conditions aux limites retenues correspondent aux hypothèses
 classiquement utilisées dans les modèles d'électrodes poreuses
 \cite{newmanElectrochemicalSystems,
-mendez-vasquezUpscalingMassElectric2025}. Dans cette section, $\mathbf{n}$ désigne la
+mendez-vasquezUpscalingMassElectric2025}. Dans cette section, $\vec{n}$ désigne la
 normale à la frontière considérée. Lorsque la convection est prise en compte, la vitesse
-vérifie la condition de non-glissement $v = 0$ sur $A_{sf}$, sur le collecteur et sur les
+vérifie la condition de non-glissement $\vec{v} = \vec{0}$ sur $A_{sf}$, sur le collecteur et sur les
 parois. L'équation~\eqref{eq:conservation} est complétée par une condition initiale
 $C_i(t=0) = C_i^0$ dans $\Omega_l$. Le courant capacitif n'étant pas inclus dans le modèle
 de base, le régime transitoire n'est décrit que pour des variations lentes de la double
@@ -329,10 +329,10 @@ en contact avec l'électrolyte, le collecteur est supposé électrochimiquement 
 aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 \begin{subequations}
 \begin{equation}
-\mathbf{n} \cdot N_i = 0
+\vec{n} \cdot \vec{N}_i = 0
 \end{equation}
 \begin{equation}
-\mathbf{n} \cdot \nabla \varphi_l = 0
+\vec{n} \cdot \Grad \varphi_l = 0
 \end{equation}
 \begin{equation}
 \varphi_s = E
@@ -342,8 +342,8 @@ aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 
 Les deux premières conditions s'appliquent à la frontière du fluide, la troisième au
 contact entre le métal et les fibres, la résistance de ce contact étant négligée. La
-condition sur $\varphi_l$ n'est pas indépendante : avec $\mathbf{n}\cdot v = 0$, elle
-découle de $\mathbf{n}\cdot N_i = 0$ et de l'électroneutralité. Il en va de même pour les
+condition sur $\varphi_l$ n'est pas indépendante : avec $\vec{n}\cdot \vec{v} = 0$, elle
+découle de $\vec{n}\cdot \vec{N}_i = 0$ et de l'électroneutralité. Il en va de même pour les
 parois inertes ci-dessous.
 
 
@@ -354,13 +354,13 @@ Les frontières correspondant aux parois isolantes du domaine
 et ne permettent aucun transfert de charge :
 \begin{subequations}
 \begin{equation}
-\mathbf{n} \cdot N_i = 0
+\vec{n} \cdot \vec{N}_i = 0
 \end{equation}
 \begin{equation}
-\mathbf{n} \cdot \nabla \varphi_l = 0
+\vec{n} \cdot \Grad \varphi_l = 0
 \end{equation}
 \begin{equation}
-\mathbf{n} \cdot \nabla \varphi_s = 0
+\vec{n} \cdot \Grad \varphi_s = 0
 \end{equation}
 \label{eq:CLparois}
 \end{subequations}
@@ -382,7 +382,7 @@ C_i = C_i^{\text{hom}}
 \varphi_l = \varphi_l^{\text{hom}}
 \end{equation}
 \begin{equation}
-\mathbf{n}_s \cdot \sigma_s \nabla \varphi_s = 0
+\vec{n}_s \cdot \sigma_s \Grad \varphi_s = 0
 \end{equation}
 \label{eq:CLinterfacehomogene}
 \end{subequations}

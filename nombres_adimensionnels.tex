@@ -13,7 +13,7 @@ hypothèses simplificatrices.
 Le nombre de Péclet compare la convection et la diffusion :
 
 \begin{equation}
-Pe = \frac{vl_e}{D_{\text{ref}}}
+Pe = \frac{\|\vec{v}\|\,l_e}{D_{\text{ref}}}
 \end{equation}
 
 En partant des équations~\eqref{eq:nernst-planck},~\eqref{eq:conservation}, et en posant :
@@ -21,26 +21,30 @@ En partant des équations~\eqref{eq:nernst-planck},~\eqref{eq:conservation}, et 
 \begin{equation*}
 c^* = \frac{C_i}{C_{\text{ref}}}, \quad 
 \varphi_l^* = \frac{\varphi_l F}{RT}, \quad 
-\nabla^* = l_e\nabla, \quad
+\Grad^* = l_e\Grad, \quad
+\Div^* = l_e\Div, \quad
+\vec{u} = \frac{\vec{v}}{\|\vec{v}\|}, \quad
 t^* = \frac{t D_{\text{ref}}}{l_e^2}
 \end{equation*}
+où $\vec{u}$ est le vecteur unitaire porté par la vitesse : le nombre de Péclet,
+scalaire, en donne l'intensité, et $\vec{u}$ sa direction.
 
 En introduisant le flux adimensionné
 
 \[
-N_i^*=\frac{N_i l_e}{D_iC_{\rm ref}},
+\vec{N}_i^*=\frac{\vec{N}_i\, l_e}{D_iC_{\rm ref}},
 \]
 
 on obtient :
 
 \begin{equation*}
-N_i^* = -\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + c^* Pe
+\vec{N}_i^* = -\Grad^* c^* - z_i c^* \Grad^* \varphi_l^* + Pe\, c^* \vec{u}
 \end{equation*}
 
 et l'équation de conservation adimensionnée :
 
 \begin{equation*}
-\frac{\partial c^*}{\partial t^*} + \nabla^* \cdot \left(-\nabla^* c^* - z_i c^* \nabla^* \varphi_l^* + c^* Pe\right) = 0
+\frac{\partial c^*}{\partial t^*} + \Div^* \left(-\Grad^* c^* - z_i c^* \Grad^* \varphi_l^* + Pe\, c^* \vec{u}\right) = 0
 \end{equation*}
 %Je devrais sûrement enlevé la migration car là elle apparait aussi ou changé une phrase sans doute
 
@@ -60,7 +64,7 @@ En adimensionnant la condition limite~\eqref{eq:faraday}, on obtient :
 %Faudrait faire attention car Damkoler c'est sur toute la surface pas que sur avcat
 
 \begin{equation*}
--N_i^* \cdot \mathbf{n} = Da \frac{\nu_i}{n_e}
+-\vec{N}_i^* \cdot \vec{n} = Da \frac{\nu_i}{n_e}
 \end{equation*}
 
 le flux normal étant nul sur le reste de l'interface. Ainsi défini, $Da$ caractérise 
@@ -85,7 +89,7 @@ couche électrique à la taille caractéristique d'un pore $\ell_p$~\cite{dickin
 En partant de l'équation de Poisson~\eqref{eq:poisson}, on adimensionne :
 
 \begin{equation}
-\quad \bar{\delta}^2 \nab^{*2} \varphi_l^* = -\frac{1}{2}\sum_i z_i c_i^*
+\quad \bar{\delta}^2 \Div^*\left(\Grad^* \varphi_l^*\right) = -\frac{1}{2}\sum_i z_i c_i^*
 \end{equation}
 
 Lorsque la longueur de Debye est très inférieure à la taille caractéristique des pores, 

@@ -25,25 +25,30 @@ Ce théorème relie une intégrale de volume à une intégrale de surface.
 Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
 
 \begin{equation}
-\int_V \nab g\, dV = \oint_A \mathbf{n}\, g\, dA
+\int_V \Grad g\, dV = \oint_A g\,\vec{n}\, dA
 \label{eq:gauss}
 \end{equation}
 
-où $\mathbf{n}$ est le vecteur normal sortant à la surface $A$.
+où $\vec{n}$ est le vecteur normal sortant à la surface $A$.
 
 \paragraph{Théorème de la moyenne spatiale :}
 Ce théorème découle du théorème de la divergence 
 de Gauss appliqué au volume fluide.
 Il relie la moyenne du gradient d'une quantité $g$ à son gradient 
 de moyenne, avec un terme de correction surfacique sur l'interface 
-$Asf$ entre le fluide et le solide :
+$A_{sf}$ entre le fluide et le solide :
 
 \begin{equation}
-\avg{\nab g} = \nab\avg{ g} + \frac{1}{V}\int_{Asf} \mathbf{n}\, g\, dA \label{eq:moy_spatiale}
+\avg{\Grad g} = \Grad\avg{g} + \frac{1}{V}\int_{A_{sf}} g\,\vec{n}\, dA \label{eq:moy_spatiale}
 \end{equation}
 
-où $\mathbf{n}$ est le vecteur normal à l'interface $Asf$ 
-pointant du fluide vers le solide.
+où $\vec{n}$ est le vecteur normal à l'interface $A_{sf}$ 
+pointant du fluide vers le solide. Pour un champ vectoriel $\vec{g}$,
+le même théorème s'écrit sous forme de divergence :
+
+\begin{equation}
+\avg{\Div\vec{g}} = \Div\avg{\vec{g}} + \frac{1}{V}\int_{A_{sf}} \vec{n}\cdot\vec{g}\, dA \label{eq:moy_spatiale_div}
+\end{equation}
 
 \paragraph{Théorème de transport :}
 Ce théorème permet d'échanger la moyenne et la dérivée temporelle, 

@@ -45,6 +45,12 @@
 }
 \newcommand{\nab}{\nabla}
 \newcommand{\eps}{\varepsilon}
+% Opérateurs différentiels (notation div / grad)
+\newcommand{\Div}{\operatorname{div}}                      % divergence
+\newcommand{\Grad}{\mathop{\overrightarrow{\operatorname{grad}}}\nolimits}   % gradient d'un scalaire (vecteur)
+\newcommand{\tens}[1]{\overline{\overline{#1}}}            % tenseur d'ordre 2
+\newcommand{\Gradt}{\mathop{\tens{\operatorname{grad}}}\nolimits}            % gradient d'un vecteur (tenseur)
+% Pour revenir à des tenseurs sans double barre : \renewcommand{\tens}[1]{#1}
 
 \title{Modélisation d'une électrode poreuse pour la réduction électrochimique du CO$_2$ : du modèle microscopique au modèle homogénéisé}
 \author{STAUB Hélène}
