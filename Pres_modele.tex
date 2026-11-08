@@ -132,10 +132,6 @@ $\vec{v} = \vec{0}$), qu'elle porte ou non le catalyseur. En revanche, le flux d
 qu'en dehors de $A_{sf}^{\mathrm{cat}}$ : c'est la condition~\eqref{eq:faraday} qui
 distingue la zone active du reste de la surface.
 
-Le transport des espèces est couplé au champ électrique par le terme de
-migration. La détermination du potentiel électrolytique constitue donc la
-prochaine étape.
-
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------Potentiel électrolytique dans $\Omega_l$-----------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -152,7 +148,20 @@ que la somme des charges portées par les espèces dissoutes est nulle~\cite{new
 \label{eq:electroneutre}
 \end{equation}
 
+Cette relation remplace l'équation de Poisson lorsque la longueur de Debye
+est petite devant la taille des pores. Dans l'équation de Poisson
+adimensionnée, le terme $\Div(\Grad\varphi_l)$ est en effet multiplié par le
+carré de la longueur de Debye adimensionnée (voir section
+\og Nombres adimensionnels\fg{}), très petit : ce produit est
+quasiment nul, et la densité de charge l'est donc aussi, ce qui donne
+l'électroneutralité. Attention : c'est ce produit qui est négligeable, et non
+$\Div(\Grad\varphi_l)$ lui-même ; l'électroneutralité n'implique donc pas
+$\Div(\Grad\varphi_l) = 0$. La relation~\eqref{eq:electroneutre} ne contient
+pas $\varphi_l$ : le potentiel prend la valeur qui maintient
+l'électroneutralité ; il est déterminé par la conservation du courant ionique.
+
 La validité de cette approximation est discutée à la section \og Limites du modèle et extensions possibles\fg{}.
+
 % Le champ électrique dans l'électrolyte résulte de la distribution des charges dans le fluide. L'équation de Poisson relie le laplacien du potentiel électrolytique à la densité volumique de charges libres portées par les ions en solution :
 
 % \begin{equation}
@@ -205,12 +214,16 @@ On a introduit ici la normale $\vec{n}_s$ à l'interface $A_{sf}$, orientée ver
 l'extérieur de la phase solide (du solide vers le fluide), de sorte que :
 $\vec{n}_s = -\vec{n}$.
 
-Ces conditions sont cohérentes avec~\eqref{eq:faraday}. En sommant cette dernière sur
-toutes les espèces, le courant ionique $\vec{i}_l = F\sum_i z_i \vec{N}_i$ vérifie
-$\vec{n}\cdot \vec{i}_l = -\frac{\sum_i z_i \nu_i}{n_e}\, j$. Pour la réaction étudiée,
-$\sum_i z_i \nu_i = -n_e$, à condition de compter \ce{H+} ou \ce{OH-} parmi les espèces.
-On a donc $\vec{n}\cdot \vec{i}_l = j = \vec{n}\cdot \vec{i}_s$, avec
-$\vec{i}_s = -\sigma_s\Grad\varphi_s$ : le courant est continu à l'interface, et aucune condition
+Les conditions~\eqref{eq:interfaceliquide} et~\eqref{eq:intefacesolide} décrivent le
+même transfert de charge, vu respectivement depuis l'électrolyte et depuis le
+solide : il reste à vérifier qu'elles sont compatibles. En sommant la
+condition~\eqref{eq:faraday} pondérée par $z_iF$ sur toutes les espèces, on
+obtient $\vec{n}\cdot\vec{i}_l = j$, avec $\vec{i}_l = F\sum_i z_i\vec{N}_i$ le
+courant ionique, puisque $\sum_i z_i\nu_i = -n_e$ pour la réaction étudiée
+(à condition de compter \ce{H+} ou \ce{OH-} parmi les espèces). Le courant est
+donc continu à l'interface, $\vec{n}\cdot\vec{i}_l = \vec{n}\cdot\vec{i}_s = j$
+avec $\vec{i}_s = -\sigma_s\Grad\varphi_s$, et cette relation fournit la
+condition associée à l'équation du potentiel électrolytique : aucune condition
 supplémentaire n'est nécessaire pour $\varphi_l$ sur $A_{sf}$.
 
 Les potentiels dans les phases fluide et solide sont couplés à
@@ -276,10 +289,10 @@ positivement. En régime cathodique,
 $\eta_{\mathrm{ref}} < 0$, la contribution cathodique augmente et la
 densité de courant vérifie $j>0$.
 
-Dans cette description simplifiée, les concentrations en protons,
-l'activité de l'eau et les concentrations des éventuels intermédiaires
-réactionnels ne sont pas décrites explicitement. Leur influence est
-absorbée dans le paramètre $j_{0,\mathrm{ref}}$. Cette approximation
+Dans cette description simplifiée, la dépendance de la cinétique vis-à-vis
+de la concentration en protons, de l'activité de l'eau et des concentrations
+des éventuels intermédiaires réactionnels n'est pas décrite explicitement.
+Leur influence est absorbée dans le paramètre $j_{0,\mathrm{ref}}$. Cette approximation
 suppose notamment que le pH et les activités des espèces non modélisées
 restent suffisamment uniformes dans l'électrode. Elle devra être
 réexaminée si les réactions acido-basiques homogènes et les variations
@@ -317,8 +330,9 @@ classiquement utilisées dans les modèles d'électrodes poreuses
 mendez-vasquezUpscalingMassElectric2025}. Dans cette section, $\vec{n}$ désigne la
 normale à la frontière considérée. Lorsque la convection est prise en compte, la vitesse
 vérifie la condition de non-glissement $\vec{v} = \vec{0}$ sur $A_{sf}$, sur le collecteur et sur les
-parois. L'équation~\eqref{eq:conservation} est complétée par une condition initiale
-$C_i(t=0) = C_i^0$ dans $\Omega_l$. Le courant capacitif n'étant pas inclus dans le modèle
+parois.  L'équation~\eqref{eq:conservation} est complétée par une condition initiale
+$C_i(t=0) = C_i^0$ dans $\Omega_l$, les concentrations initiales vérifiant
+l'électroneutralité, $\sum_i z_i C_i^0 = 0$. Le courant capacitif n'étant pas inclus dans le modèle
 de base, le régime transitoire n'est décrit que pour des variations lentes de la double
 couche.
 
@@ -332,20 +346,22 @@ aucun transfert d'espèces ni de charge ionique n'a lieu à cette frontière.
 \vec{n} \cdot \vec{N}_i = 0
 \end{equation}
 \begin{equation}
-\vec{n} \cdot \Grad \varphi_l = 0
-\end{equation}
-\begin{equation}
 \varphi_s = E
 \end{equation}
 \label{eq:CLcollecteur}
 \end{subequations}
 
-Les deux premières conditions s'appliquent à la frontière du fluide, la troisième au
-contact entre le métal et les fibres, la résistance de ce contact étant négligée. La
-condition sur $\varphi_l$ n'est pas indépendante : avec $\vec{n}\cdot \vec{v} = 0$, elle
-découle de $\vec{n}\cdot \vec{N}_i = 0$ et de l'électroneutralité. Il en va de même pour les
-parois inertes ci-dessous.
+La première condition s'applique à la frontière du fluide, la seconde au
+contact entre le métal et les fibres, la résistance de ce contact étant
+négligée. Aucune condition n'est imposée sur $\varphi_l$ : la combinaison
+des conditions de flux nul, $F\sum_i z_i\,\vec{n}\cdot\vec{N}_i = \vec{n}\cdot\vec{i}_l = 0$,
+fournit déjà la condition associée à l'équation du potentiel. Il en va de même
+pour les parois inertes ci-dessous.
 
+On peut vérifier que ces conditions entraînent
+$\vec{n}\cdot\Grad\varphi_l = 0$ : avec $\vec{n}\cdot\vec{v}=0$, le flux nul de
+chaque espèce et l'électroneutralité imposent en effet
+$\left(\sum_i z_i^2 C_i\right)\vec{n}\cdot\Grad\varphi_l = 0$.
 
 
 \subsubsection*{Parois inertes}
@@ -355,9 +371,6 @@ et ne permettent aucun transfert de charge :
 \begin{subequations}
 \begin{equation}
 \vec{n} \cdot \vec{N}_i = 0
-\end{equation}
-\begin{equation}
-\vec{n} \cdot \Grad \varphi_l = 0
 \end{equation}
 \begin{equation}
 \vec{n} \cdot \Grad \varphi_s = 0
@@ -386,6 +399,52 @@ C_i = C_i^{\text{hom}}
 \end{equation}
 \label{eq:CLinterfacehomogene}
 \end{subequations}
+
+Les concentrations imposées doivent elles-mêmes respecter l'électroneutralité,
+$\sum_i z_i C_i^{\text{hom}} = 0$ : elles ne fournissent donc que $N-1$ conditions
+indépendantes ($N$ désignant le nombre d'espèces), et la condition sur $\varphi_l$ est nécessaire pour compléter le problème.
+C'est par cette frontière que le courant ionique quitte l'électrode poreuse.
+
+
+\subsection*{Remarque sur la résolution numérique}
+
+Dans l'électrolyte, le modèle comporte $N+1$ équations, les $N$ équations de
+conservation~\eqref{eq:conservation} et la relation
+d'électroneutralité~\eqref{eq:electroneutre}, pour $N+1$ inconnues, les
+concentrations $C_i$ et le potentiel $\varphi_l$. Ce système est complet, mais
+il ne se prête pas directement à une résolution numérique : le potentiel
+n'apparaît que dans le terme de migration des flux, et aucune équation ne le
+détermine explicitement. Si l'on faisait évoluer les $N$ concentrations à
+l'aide des seules équations de conservation, rien ne garantirait que
+l'électroneutralité reste vérifiée au cours du temps. Le potentiel doit être
+choisi de sorte qu'elle le soit, c'est-à-dire de sorte que
+$\sum_i z_i\, \partial_t C_i = 0$. En remplaçant chaque dérivée temporelle par
+$-\Div\vec{N}_i$, cette condition devient la conservation du courant ionique :
+\begin{equation}
+\Div\vec{i}_l = 0 .
+\label{eq:conservation_courant}
+\end{equation}
+Cette équation n'est pas indépendante des précédentes : elle est obtenue en
+sommant les équations de conservation pondérées par $z_iF$. Elle contient en
+revanche explicitement $\varphi_l$, à travers le terme de migration de
+$\vec{i}_l$. La situation est analogue à celle de la pression dans un
+écoulement incompressible, qui n'apparaît pas dans la contrainte
+$\Div\vec{v} = 0$ mais est déterminée par elle.
+
+Deux stratégies sont alors possibles. La première consiste à résoudre
+simultanément les $N$ équations de conservation et
+l'électroneutralité. Elle est possible, mais numériquement délicate, car la
+contrainte ne fait pas intervenir le potentiel qu'elle détermine. La seconde,
+la plus courante, consiste à remplacer l'une des équations de conservation
+d'une espèce chargée par~\eqref{eq:conservation_courant} ; la concentration de
+cette espèce se déduit alors de l'électroneutralité. Les conditions limites
+associées à~\eqref{eq:conservation_courant} découlent de celles déjà
+posées : $\vec{n}\cdot\vec{i}_l = 0$ au collecteur et sur les parois,
+$\vec{n}\cdot\vec{i}_l = j$ sur $A_{sf}^{\mathrm{cat}}$, et
+$\varphi_l = \varphi_l^{\mathrm{hom}}$ à l'interface avec la phase homogène.
+Aucune condition supplémentaire ne doit être imposée sur $\varphi_l$, sous
+peine de surdéterminer le système.
+
 
 Le modèle présenté constitue le cadre de référence de cette étude.
 On introduit maintenant une procédure de passage du modèle local à un modèle
