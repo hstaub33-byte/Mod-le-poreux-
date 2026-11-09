@@ -1,0 +1,353 @@
+% !TEX root = main.tex
+\section*{Modélisation}
+
+Cette partie décrit la résolution du modèle homogénéisé unidimensionnel. On
+présente d'abord la solution analytique obtenue dans le cas réduit
+diffusion--réaction, qui sert de solution de référence. On détaille ensuite la
+discrétisation du modèle 1D général, puis la résolution du système non
+linéaire obtenu.
+
+% ============================================================
+\subsection*{Solution analytique de référence}
+
+Dans le cas réduit étudié précédemment (régime stationnaire, transport
+purement diffusif, potentiels uniformes et cinétique du premier ordre), le
+système admet une solution analytique. Pour le \ce{CO2} et le \ce{CO}, avec
+$\zeta = (z - L_m)/l_e \in [0, 1]$, le collecteur en $\zeta = 0$ et
+l'interface avec la phase homogène en $\zeta = 1$ :
+\begin{align}
+\avg{C_{\ce{CO2}}}^l(\zeta)
+&= C_{\ce{CO2}}^{\mathrm{hom}}\,
+\frac{\cosh(\phi\zeta)}{\cosh(\phi)},
+\label{eq:ref_CO2}\\
+\avg{C_{\ce{CO}}}^l(\zeta)
+&= C_{\ce{CO}}^{\mathrm{hom}}
++ \frac{D_{\ce{CO2}}^{\mathrm{eff}}}{D_{\ce{CO}}^{\mathrm{eff}}}\,
+C_{\ce{CO2}}^{\mathrm{hom}}
+\left[1 - \frac{\cosh(\phi\zeta)}{\cosh(\phi)}\right],
+\label{eq:ref_CO}
+\end{align}
+et le facteur d'efficacité vaut $\eta_E = \tanh(\phi)/\phi$.
+
+Cette solution joue deux rôles dans la suite.
+\begin{itemize}
+    \item \textbf{Vérification du code.} Le modèle numérique général doit
+    redonner exactement \eqref{eq:ref_CO2}--\eqref{eq:ref_CO} lorsqu'on y
+    impose les mêmes hypothèses : espèces neutres, conductivités très grandes
+    et cinétique linéarisée. L'écart entre solution numérique et solution
+    analytique permet de mesurer l'erreur de discrétisation et de vérifier
+    l'ordre de convergence du schéma lorsque le maillage est raffiné.
+    \item \textbf{Choix du maillage.} Pour $\phi \gg 1$, la réaction est
+    confinée dans une couche d'épaisseur $l_e/\phi$ près de l'interface avec
+    la phase homogène, où la concentration varie fortement. Le maillage doit
+    résoudre cette couche, ce qui justifie un raffinement près de $z = L_b$.
+\end{itemize}
+
+% ============================================================
+\subsection*{Discrétisation du modèle 1D}
+
+\subsubsection*{Système à discrétiser}
+
+On discrétise le système unidimensionnel~\eqref{eq:proj_flux}--\eqref{eq:proj_ohm}
+obtenu par projection sur la direction normale à l'électrode, sur
+$z \in [L_m, L_b]$. La vitesse superficielle $u$ y est une donnée, uniforme
+dans l'épaisseur ; une valeur non nulle correspond à un électrolyte qui
+traverse l'électrode. On retient la fermeture $\vec{d} = \vec{b}$, qui donne
+$D_i^{\mathrm{eff,mig}} = D_i^{\mathrm{eff}}$. Pour alléger l'écriture, on
+note $C_i$ la concentration moyenne intrinsèque $\avg{C_i}^l$, $\varphi_l$ et
+$\varphi_s$ les potentiels moyens, $j$ la densité de courant
+$\avg{j}^{sf}$ et $a = a_v^{\mathrm{cat}}$. On introduit le potentiel
+électrolytique adimensionné $\varphi_l^* = F\varphi_l/(RT)$.
+
+Le flux de l'espèce $i$ s'écrit alors :
+\begin{equation}
+N_i = u\,C_i
+- D_i^{\mathrm{tot}}\,\frac{\partial C_i}{\partial z}
+- \varepsilon_l D_i^{\mathrm{eff}}\, z_i C_i\,\frac{\partial \varphi_l^*}{\partial z},
+\label{eq:flux1D}
+\end{equation}
+et le système à résoudre est :
+\begin{align}
+\varepsilon_l\frac{\partial C_i}{\partial t} + \frac{\partial N_i}{\partial z}
+&= a\,\frac{\nu_i}{n_eF}\,j,
+\label{eq:bilan1D}\\
+\sum_i z_i C_i &= 0,
+\label{eq:EN1D}\\
+\frac{\partial}{\partial z}\left(\varepsilon_s\sigma^{\mathrm{eff}}\,
+\frac{\partial \varphi_s}{\partial z}\right) &= -a\,j,
+\label{eq:ohm1D}
+\end{align}
+avec $j = j\left(C_{\ce{CO2}},\, C_{\ce{CO}},\,
+\varphi_s - \varphi_l - E_{\mathrm{eq}}^{\mathrm{ref}}\right)$ donné par la
+loi de Butler--Volmer.
+
+Les conditions limites sont :
+\begin{itemize}
+    \item au collecteur, $z = L_m$ : $N_i = 0$ et $\varphi_s = E$. Lorsque
+    $u \neq 0$, cette condition porte sur le flux total, convection comprise ;
+    elle devra être revue si l'électrolyte entre ou sort réellement par le
+    collecteur ;
+    \item à l'interface avec la phase homogène, $z = L_b$ :
+    $C_i = C_i^{\mathrm{hom}}$, $\varphi_l = \varphi_l^{\mathrm{hom}}$ et
+    $\partial\varphi_s/\partial z = 0$.
+\end{itemize}
+
+Comme dans le modèle local, l'électroneutralité ne contient pas
+$\varphi_l$. On remplace donc l'équation~\eqref{eq:bilan1D} d'une espèce
+chargée $q$, choisie parmi les ions qui ne réagissent pas, par la conservation
+du courant ionique, obtenue en sommant les bilans pondérés par $z_iF$ :
+\begin{equation}
+\frac{\partial i_l}{\partial z} = -a\,j,
+\qquad i_l = F\sum_i z_i N_i ,
+\label{eq:charge1D}
+\end{equation}
+et la concentration $C_q$ se déduit de~\eqref{eq:EN1D}. Le terme
+d'accumulation a disparu par électroneutralité : cette équation ne contient
+pas de dérivée temporelle. Les inconnues en chaque point sont ainsi les $N-1$
+concentrations restantes, $\varphi_l$ et $\varphi_s$, soit $N+1$ inconnues
+pour $N+1$ équations.
+
+\subsubsection*{Maillage et volumes finis}
+
+On utilise une méthode des volumes finis, qui écrit les bilans sur des
+volumes de contrôle et conserve donc exactement la matière et la charge au
+niveau discret. On reprend les notations du modèle du semi-conducteur. Le domaine
+$[L_m, L_b]$ est discrétisé en $M$ nœuds de positions
+\begin{equation}
+L_m = z_0 < z_1 < \dots < z_{M-1} = L_b ,
+\end{equation}
+la lettre $N$ étant ici réservée au nombre d'espèces. Le maillage n'est pas
+nécessairement uniforme : il est raffiné près de $z = L_b$, où se concentre
+la réaction lorsque le module de Thiele est grand. On note
+$h_k = z_{k+1} - z_k$ le pas entre deux nœuds consécutifs. La méthode des
+volumes finis associe à chaque nœud un volume de contrôle $\omega_k$, défini
+comme la demi-distance aux voisins :
+\begin{equation}
+\omega_k = \frac{z_{k+1} - z_{k-1}}{2}
+\quad\text{(nœud intérieur)},
+\qquad
+\omega_0 = \frac{h_0}{2},
+\qquad
+\omega_{M-1} = \frac{h_{M-2}}{2},
+\label{eq:omega_ec}
+\end{equation}
+les volumes des deux nœuds de bord étant des demi-volumes. Le volume de
+contrôle du nœud $k$ s'étend de $z_k - h_{k-1}/2$ à $z_k + h_k/2$ : ses faces
+sont situées au milieu des intervalles. On note $N_{i,k+1/2}$ le flux de
+l'espèce $i$ à travers la face située au milieu de l'intervalle
+$[z_k, z_{k+1}]$, c'est-à-dire la face droite du volume de contrôle du
+nœud $k$ ; $N_{i,k-1/2}$ est le flux à travers sa face gauche.
+
+\subsubsection*{Bilans discrets}
+
+On intègre chaque équation sur le volume de contrôle du nœud $k$. Pour
+l'espèce $i$, la variation de la quantité contenue dans le volume est égale
+au flux entrant par la face gauche, moins le flux sortant par la face droite,
+plus la production par la réaction :
+\begin{equation}
+\varepsilon_l\, \omega_k\, \frac{C_{i,k}^{n+1} - C_{i,k}^{n}}{\Delta t}
++ N_{i,k+1/2} - N_{i,k-1/2}
+= a\, \omega_k\, \frac{\nu_i}{n_eF}\, j_k ,
+\label{eq:bilan_discret}
+\end{equation}
+où l'exposant $n$ désigne le pas de temps. Tous les termes de droite et les
+flux sont évalués au pas $n+1$ (schéma d'Euler implicite), ce qui rend le
+schéma stable quel que soit $\Delta t$. Pour un calcul stationnaire, le terme
+temporel est simplement supprimé. La densité de courant est évaluée au nœud :
+$j_k = j\left(C_{\ce{CO2},k},\, C_{\ce{CO},k},\,
+\varphi_{s,k} - \varphi_{l,k} - E_{\mathrm{eq}}^{\mathrm{ref}}\right)$.
+
+La conservation du courant ionique s'écrit de même, sans terme temporel :
+\begin{equation}
+F\sum_i z_i\left(N_{i,k+1/2} - N_{i,k-1/2}\right) = -a\, \omega_k\, j_k ,
+\label{eq:charge_discret}
+\end{equation}
+ce qui est exactement la combinaison des bilans
+discrets~\eqref{eq:bilan_discret} pondérés par $z_iF$. Le système discret
+conserve donc la même structure que le système continu.
+
+La loi d'Ohm est discrétisée par des différences centrées, le courant
+électronique à travers une face étant proportionnel à la différence de
+potentiel entre les deux nœuds voisins :
+\begin{equation}
+\varepsilon_s\sigma^{\mathrm{eff}}
+\left(
+\frac{\varphi_{s,k+1} - \varphi_{s,k}}{h_k}
+-
+\frac{\varphi_{s,k} - \varphi_{s,k-1}}{h_{k-1}}
+\right)
+= -a\, \omega_k\, j_k .
+\label{eq:ohm_discret}
+\end{equation}
+
+\subsubsection*{Flux aux faces : différences centrées}
+
+Il reste à exprimer le flux $N_{i,k+1/2}$ à la face entre les nœuds $k$ et
+$k+1$. On utilise des différences centrées : les dérivées sont remplacées par
+la différence des valeurs aux deux nœuds divisée par leur distance, et les
+concentrations qui multiplient la vitesse ou le champ sont prises égales à la
+moyenne des deux nœuds :
+\begin{equation}
+N_{i,k+1/2} =
+u\,\bar{C}_{i,k+1/2}
+- D_i^{\mathrm{tot}}\,\frac{C_{i,k+1} - C_{i,k}}{h_k}
+- \varepsilon_l D_i^{\mathrm{eff}}\, z_i\, \bar{C}_{i,k+1/2}\,
+\frac{\varphi_{l,k+1}^* - \varphi_{l,k}^*}{h_k},
+\label{eq:flux_centre}
+\end{equation}
+où $\bar{C}_{i,k+1/2} = (C_{i,k} + C_{i,k+1})/2$. Ce schéma est précis au
+second ordre sur un maillage uniforme et simple à dériver, ce qui facilite la
+construction de la jacobienne. Pour les espèces neutres sans écoulement, il
+se réduit à la diffusion pure et traite le \ce{CO2} et le \ce{CO} exactement
+comme dans le cas analytique.
+
+\paragraph{Condition de validité.} Le schéma centré n'est fiable que si la
+diffusion reste prépondérante à l'échelle d'une maille. On mesure
+l'importance relative de la convection et de la migration par le nombre de
+Péclet de maille :
+\begin{equation}
+\mathrm{Pe}_{i,k+1/2} = z_i\,\frac{\varepsilon_l D_i^{\mathrm{eff}}}{D_i^{\mathrm{tot}}}
+\left(\varphi_{l,k+1}^* - \varphi_{l,k}^*\right)
+- \frac{u\,h_k}{D_i^{\mathrm{tot}}} .
+\label{eq:peclet_maille}
+\end{equation}
+Il faut $|\mathrm{Pe}_{i,k+1/2}| < 2$ sur chaque maille et pour chaque espèce.
+Au-delà, le transport par dérive l'emporte sur la diffusion à l'échelle de
+la maille : dans l'équation discrète, le coefficient qui relie un nœud à son
+voisin change de signe, et la solution peut présenter des oscillations non
+physiques, voire des concentrations négatives. En pratique, on calcule
+$\max|\mathrm{Pe}_{i,k+1/2}|$ après chaque résolution. Si la condition n'est pas
+respectée, on raffine le maillage là où elle est violée, ou l'on passe au
+schéma de Scharfetter--Gummel décrit ci-dessous.
+
+Pour fixer les ordres de grandeur, la migration impose une chute de
+potentiel inférieure à environ $2RT/F \approx 50$~mV entre deux nœuds, ce qui
+est en général largement vérifié dans l'électrolyte. La convection est plus
+contraignante : pour $u \approx 1$~mm\,s$^{-1}$ et
+$D_i^{\mathrm{tot}} \approx 10^{-9}$~m$^2$\,s$^{-1}$, il faut des mailles plus
+petites que $2~\mu$m environ.
+
+\subsubsection*{Option : schéma de Scharfetter--Gummel}
+
+Lorsque la convection ou la migration deviennent importantes, il est plus
+efficace de changer de schéma que de raffiner fortement le maillage. Le
+schéma de Scharfetter--Gummel, déjà employé pour le solveur de
+dérive--diffusion des semi-conducteurs, s'applique directement : le flux de
+Nernst--Planck a la même structure, la convection s'ajoutant à la migration
+comme un second terme de transport par « dérive ».
+
+Pour le voir, on réécrit le flux~\eqref{eq:flux1D} sous la forme
+\begin{equation}
+N_i = -D_i^{\mathrm{tot}}\left(\frac{\partial C_i}{\partial z}
++ C_i\,\frac{\partial g_i}{\partial z}\right),
+\qquad
+\frac{\partial g_i}{\partial z} =
+z_i\,\frac{\varepsilon_l D_i^{\mathrm{eff}}}{D_i^{\mathrm{tot}}}\,
+\frac{\partial \varphi_l^*}{\partial z} - \frac{u}{D_i^{\mathrm{tot}}} ,
+\end{equation}
+où $g_i$ regroupe l'effet du champ électrique et celui de l'écoulement. Le
+principe du schéma est de supposer, sur l'intervalle $[z_k, z_{k+1}]$, que le
+flux $N_i$ est constant, que les coefficients sont constants et que le
+potentiel varie linéairement. L'équation du flux devient alors une équation
+différentielle du premier ordre en $C_i$, que l'on intègre exactement. On
+obtient :
+\begin{equation}
+N_{i,k+1/2} =
+\frac{D_i^{\mathrm{tot}}}{h_k}
+\left[
+C_{i,k}\,\mathcal{B}(\mathrm{Pe}_{i,k+1/2}) - C_{i,k+1}\,\mathcal{B}(-\mathrm{Pe}_{i,k+1/2})
+\right],
+\label{eq:SG}
+\end{equation}
+où $\mathrm{Pe}_{i,k+1/2}$ est le nombre de Péclet de maille
+défini en~\eqref{eq:peclet_maille}, et $\mathcal{B}$ la fonction de Bernoulli :
+\begin{equation}
+\mathcal{B}(x) = \frac{x}{e^{x} - 1}, \qquad \mathcal{B}(0) = 1 .
+\end{equation}
+
+Ce flux possède les bonnes limites physiques :
+\begin{itemize}
+    \item en l'absence de migration et d'écoulement ($\mathrm{Pe}_{i,k+1/2} = 0$), il se réduit
+    à la différence centrée
+    $D_i^{\mathrm{tot}}\,(C_{i,k} - C_{i,k+1})/h_k$ : on retrouve
+    la diffusion pure, et le \ce{CO2} et le \ce{CO} sont traités exactement
+    comme dans le cas analytique ;
+    \item pour une concentration uniforme, il redonne la somme des flux de
+    convection et de migration,
+    $u\,C_i - \varepsilon_l D_i^{\mathrm{eff}}\, z_i C_i\,
+    (\varphi_{l,k+1}^* - \varphi_{l,k}^*)/h_k$ ;
+    \item lorsque la convection ou la migration dominent ($|\mathrm{Pe}_{i,k+1/2}| \gg 1$), il
+    devient un schéma décentré amont : la concentration utilisée est celle du
+    nœud d'où viennent les espèces, ce qui garantit des concentrations
+    positives. Par exemple, pour une espèce neutre transportée par un
+    écoulement rapide vers les $z$ croissants, $N_{i,k+1/2} \simeq u\,C_{i,k}$.
+\end{itemize}
+En pratique, $\mathcal{B}(x)$ est évaluée par un développement limité,
+$\mathcal{B}(x) \simeq 1 - x/2 + x^2/12$, lorsque $|x|$ est petit, afin d'éviter la
+division $0/0$.
+
+Le schéma centré~\eqref{eq:flux_centre} correspond au développement de
+\eqref{eq:SG} au premier ordre en $\mathrm{Pe}_{i,k+1/2}$ : les deux schémas coïncident lorsque
+la diffusion domine, et Scharfetter--Gummel reste valable sans condition sur
+$|\mathrm{Pe}_{i,k+1/2}|$. Il est en revanche plus coûteux à dériver pour la jacobienne, en raison
+de la fonction de Bernoulli.
+
+\subsubsection*{Conditions limites discrètes}
+
+Les conditions limites s'intègrent naturellement dans les volumes de bord :
+\begin{itemize}
+    \item au collecteur ($k = 0$), le flux d'espèces à travers la face externe
+    est nul : on pose $N_{i,-1/2} = 0$ dans~\eqref{eq:bilan_discret}
+    et~\eqref{eq:charge_discret}, et le potentiel solide est fixé,
+    $\varphi_{s,0} = E$ ;
+    \item à l'interface avec la phase homogène ($k = M-1$), les concentrations
+    et le potentiel électrolytique sont imposés,
+    $C_{i,M-1} = C_i^{\mathrm{hom}}$ et
+    $\varphi_{l,M-1} = \varphi_l^{\mathrm{hom}}$ : les équations
+    correspondantes sont remplacées par ces valeurs. Le courant électronique
+    à travers la face externe est nul, si bien que l'équation~\eqref{eq:ohm_discret}
+    au nœud $M-1$ ne conserve que le flux de la face gauche.
+\end{itemize}
+
+\subsubsection*{Système non linéaire}
+
+En rassemblant les inconnues de tous les nœuds dans un vecteur $U$, les
+équations~\eqref{eq:bilan_discret}, \eqref{eq:charge_discret},
+\eqref{eq:ohm_discret} et les conditions limites forment, à chaque pas de
+temps, un système de $(N+1)M$ équations algébriques, noté
+\begin{equation}
+\mathcal{F}(U) = 0 .
+\end{equation}
+La solution analytique de référence ayant été obtenue sans écoulement, la
+vérification du code par comparaison avec celle-ci se fait avec $u = 0$.
+
+Ce système est non linéaire, pour deux raisons : le flux de migration fait
+intervenir le produit de la concentration et du gradient de potentiel, et la
+loi de Butler--Volmer dépend exponentiellement de la surtension. Avec le
+schéma de Scharfetter--Gummel, le flux dépend en outre du potentiel de façon
+exponentielle. Il est résolu par
+la méthode de Newton, qui nécessite la matrice jacobienne
+$\partial\mathcal{F}/\partial U$. Comme chaque équation ne fait intervenir
+que le nœud $k$ et ses deux voisins, cette matrice est tridiagonale par blocs,
+chaque bloc étant de taille $(N+1)\times(N+1)$.
+
+% ============================================================
+\subsection*{Construction de la jacobienne}
+
+% À compléter
+
+\subsection*{Résolution par la méthode de Newton}
+
+% À compléter
+
+\subsection*{Initialisation et continuation en potentiel}
+
+% À compléter
+
+\subsection*{Vérification du code}
+
+% À compléter
+
+\subsection*{Résultats}
+
+% À compléter

@@ -12,6 +12,107 @@ avec le comportement attendu du système.
 On étudie donc l'effet de différentes hypothèses simplificatrices
 appliquées successivement à ce système.
 
+\subsubsection*{Projection du modèle sur la direction normale à l'électrode}
+
+Le modèle homogénéisé~\eqref{eq:sys1}--\eqref{eq:sys3} est écrit en
+trois dimensions. On le ramène à un problème unidimensionnel selon la
+direction normale à l'électrode.
+
+\paragraph{Hypothèse de projection.} L'électrode est supposée plane, et ses
+dimensions latérales sont grandes devant son épaisseur $l_e$. Sa
+microstructure (porosité, aire catalytique, tortuosité) et les conditions
+imposées sur chacune de ses faces sont uniformes dans le plan de l'électrode.
+Les effets de bord latéraux sont négligés. Dans ces conditions, rien ne
+distingue deux points situés à la même profondeur : les grandeurs moyennes ne
+dépendent que de la coordonnée normale $z$ et du temps,
+\begin{equation}
+\avg{C_i}^l = \avg{C_i}^l(z,t), \qquad
+\avg{\varphi_l}^l = \avg{\varphi_l}^l(z,t), \qquad
+\avg{\varphi_s}^s = \avg{\varphi_s}^s(z,t),
+\end{equation}
+avec $z \in [L_m, L_b]$ défini en~\eqref{eq:domaine1D}. On note
+$(\vec{e}_x, \vec{e}_y, \vec{e}_z)$ la base orthonormée associée, $\vec{e}_z$
+étant normal à l'électrode et orienté du collecteur vers la phase homogène.
+La normale sortante vaut donc $\vec{n} = -\vec{e}_z$ au collecteur
+($z = L_m$) et $\vec{n} = \vec{e}_z$ à l'interface avec la phase homogène
+($z = L_b$).
+
+\paragraph{Projection des opérateurs.} Les grandeurs ne variant que selon $z$,
+le gradient d'une grandeur scalaire $f$ et la divergence d'un vecteur
+$\vec{A}$ se réduisent à
+\begin{equation}
+\Grad f = \frac{\partial f}{\partial z}\,\vec{e}_z ,
+\qquad
+\Div\vec{A} = \frac{\partial A_z}{\partial z} ,
+\end{equation}
+où $A_z = \vec{A}\cdot\vec{e}_z$ est la composante normale de $\vec{A}$.
+
+\paragraph{Projection des tenseurs.} Pour un tenseur effectif $\tens{T}$
+(diffusion, migration, dispersion ou conductivité), la composante normale du
+flux $\tens{T}\cdot\Grad f$ vaut $T_{zz}\,\partial f/\partial z$. Seule la
+composante $T_{zz}$ intervient donc dans les équations. Ce résultat ne
+suppose pas que $\vec{e}_z$ soit une direction principale du tenseur : les
+composantes croisées, comme $T_{xz}$, produisent bien un flux dans le plan de
+l'électrode, mais celui-ci est uniforme dans le plan, et sa divergence est
+nulle. Physiquement, une microstructure anisotrope peut dévier latéralement
+une partie du flux, sans que cela modifie le bilan dans l'épaisseur. Dans la
+suite, on note simplement $D_i^{\mathrm{eff}}$, $D_i^{\mathrm{eff,mig}}$,
+$D^{\mathrm{disp}}$, $D_i^{\mathrm{tot}}$ et $\sigma^{\mathrm{eff}}$ les
+composantes $zz$ des tenseurs correspondants.
+
+\paragraph{Vitesse.} On note $u = \varepsilon_l\avg{v_z}^l$ la vitesse
+superficielle normale à l'électrode. La conservation de la masse du fluide,
+$\Div\avg{\vec{v}} = 0$, se réduit à $\partial u/\partial z = 0$ : la vitesse
+superficielle est uniforme dans l'épaisseur. Dans la configuration étudiée,
+le collecteur est une plaque métallique pleine, que l'électrolyte ne peut pas
+traverser : $u = 0$ au collecteur, et donc dans toute l'électrode. Le liquide
+n'est pas immobile pour autant : l'agitation produite par le bullage dans la
+phase homogène peut induire un écoulement parallèle à l'électrode. Cet
+écoulement latéral n'intervient dans le modèle 1D que de deux façons : à
+travers les conditions imposées à l'interface avec la phase homogène, et
+éventuellement par une dispersion transverse, qui mélange le liquide dans
+l'épaisseur et contribue à la composante $D^{\mathrm{disp}}$ même lorsque
+$u = 0$. Les termes en $u$ sont néanmoins conservés dans les équations, afin
+de pouvoir traiter une électrode à écoulement traversant (collecteur
+perméable) comme extension du modèle.
+
+\paragraph{Système unidimensionnel.} La composante normale du flux
+homogénéisé~\eqref{eq:Ni_final} s'écrit
+\begin{equation}
+\avg{N_i}_z
+= u\,\avg{C_i}^l
+- D_i^{\mathrm{tot}}\,\frac{\partial \avg{C_i}^l}{\partial z}
+- \frac{z_iF}{RT}\,\varepsilon_l D_i^{\mathrm{eff,mig}}\,\avg{C_i}^l\,
+\frac{\partial \avg{\varphi_l}^l}{\partial z} ,
+\label{eq:proj_flux}
+\end{equation}
+et le système homogénéisé devient :
+\begin{align}
+\varepsilon_l\,\frac{\partial \avg{C_i}^l}{\partial t}
++ \frac{\partial \avg{N_i}_z}{\partial z}
+&= a_v^{\mathrm{cat}}\,\avg{R_i}^{sf},
+\label{eq:proj_bilan}\\
+\sum_i z_i\avg{C_i}^l &= 0,
+\label{eq:proj_EN}\\
+\frac{\partial}{\partial z}\left(\varepsilon_s\,\sigma^{\mathrm{eff}}\,
+\frac{\partial \avg{\varphi_s}^s}{\partial z}\right)
+&= -a_v^{\mathrm{cat}}\,\avg{j}^{sf},
+\label{eq:proj_ohm}
+\end{align}
+avec $\avg{R_i}^{sf} = \frac{\nu_i}{n_eF}\avg{j}^{sf}$ et $\avg{j}^{sf}$
+donné par~\eqref{eq:j_homo}. Les conditions limites s'écrivent :
+\begin{itemize}
+    \item au collecteur ($z = L_m$) : $\avg{N_i}_z = 0$ et
+    $\avg{\varphi_s}^s = E$ ;
+    \item à l'interface avec la phase homogène ($z = L_b$) :
+    $\avg{C_i}^l = C_i^{\mathrm{hom}}$,
+    $\avg{\varphi_l}^l = \varphi_l^{\mathrm{hom}}$ et
+    $\partial\avg{\varphi_s}^s/\partial z = 0$.
+\end{itemize}
+Ce système unidimensionnel constitue le modèle de référence auquel sont
+appliquées les hypothèses de réduction suivantes. Pour la configuration
+étudiée, on y prend $u = 0$.
+
 \subsubsection*{Simplifications du système}
 
 On applique successivement les hypothèses suivantes :
@@ -24,33 +125,34 @@ c'est-à-dire que les concentrations ne varient plus dans le temps :
 \frac{\partial \avg{C_i}^l}{\partial t} = 0
 \end{equation}
 
-L'équation~\eqref{eq:sys1} se réduit alors à :
+L'équation~\eqref{eq:proj_bilan} se réduit alors à :
 
 \begin{equation}
-     \Div\left( \tens{D}^{\mathrm{tot}}_i \cdot\Grad\avg{C_i}^l
-     + \frac{z_i F}{RT}\varepsilon_l \avg{C_i}^l\, \tens{D}^{\mathrm{eff,mig}}_i \cdot\Grad\avg{\varphi_l}^l
-     - \varepsilon_l \avg{C_i}^l \avg{\vec{v}}^l \right)
+     \frac{d}{dz}\left( D^{\mathrm{tot}}_i \frac{d\avg{C_i}^l}{dz}
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \frac{d\avg{\varphi_l}^l}{dz}
+     \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
 
 
-\paragraph{2. Pas de convection :}
-On suppose que la vitesse du fluide est négligeable :
+\paragraph{2. Dispersion négligeable :}
+La vitesse normale étant nulle, la seule dispersion possible est la
+dispersion transverse due à un éventuel écoulement latéral dans les pores.
+On suppose qu'elle est négligeable devant la diffusion :
 
 \begin{equation}
-\avg{\vec{v}}^l = \vec{0}
+D^{\mathrm{disp}} = 0,
+\qquad
+D_i^{\mathrm{tot}} = \varepsilon_l D_i^{\mathrm{eff}} .
 \end{equation}
 
-L'équation~\eqref{eq:sys1}, en régime stationnaire, se réduit alors à :
+L'équation de bilan, en régime stationnaire, se réduit alors à :
 
 \begin{equation}
-     \Div\left( \tens{D}^{\mathrm{tot}}_i \cdot\Grad\avg{C_i}^l
-     + \frac{z_i F}{RT}\varepsilon_l \avg{C_i}^l\, \tens{D}^{\mathrm{eff,mig}}_i \cdot\Grad\avg{\varphi_l}^l \right)
+     \frac{d}{dz}\left( \varepsilon_l D^{\mathrm{eff}}_i \frac{d\avg{C_i}^l}{dz}
+     + \frac{z_i F}{RT}\varepsilon_l D^{\mathrm{eff,mig}}_i \avg{C_i}^l \frac{d\avg{\varphi_l}^l}{dz} \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
-
-En l'absence d'écoulement, la dispersion hydrodynamique disparaît et
-$\tens{D}_i^{\mathrm{tot}} = \varepsilon_l \tens{D}_i^{\mathrm{eff}}$.
 
 \paragraph{3. Pas de migration :}
 On suppose que le terme migratoire est négligeable devant le terme
@@ -59,7 +161,7 @@ le transport des espèces. Le transport est alors gouverné uniquement
 par la diffusion et la réaction :
 
 \begin{equation}
-     \Div\left( \varepsilon_l \tens{D}^{\mathrm{eff}}_i \cdot\Grad\avg{C_i}^l \right)
+     \frac{d}{dz}\left( \varepsilon_l D^{\mathrm{eff}}_i \frac{d\avg{C_i}^l}{dz} \right)
      = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \label{eq:diff_reaction}
 \end{equation}
@@ -72,9 +174,9 @@ Lorsque les chutes de potentiel dans la phase solide et dans l'électrolyte
 sont négligeables, les deux potentiels peuvent être considérés comme uniformes :
 
 \begin{equation}
-\Grad\avg{\varphi_s}^s = \vec{0},
+\frac{d\avg{\varphi_s}^s}{dz} = 0,
 \qquad
-\Grad\avg{\varphi_l}^l = \vec{0}
+\frac{d\avg{\varphi_l}^l}{dz} = 0
 \end{equation}
 
 Cette hypothèse correspond à des conductivités effectives suffisamment grandes :
@@ -177,11 +279,12 @@ On adimensionne alors l'équation~\eqref{eq:diff_reaction} appliquée au
 \frac{\avg{C_{\mathrm{CO_2}}}^l}
      {C_{\mathrm{CO_2}}^{\mathrm{ref}}},
 \qquad
-\zeta = \frac{z}{l_e},
+\zeta = \frac{z - L_m}{l_e} \in [0,\,1],
 \]
 
-où $l_e$ est la longueur caractéristique macroscopique. L'équation de
-diffusion--réaction s'écrit alors, en 1D :
+où $l_e = L_b - L_m$ est l'épaisseur de l'électrode : $\zeta = 0$ au
+collecteur et $\zeta = 1$ à l'interface avec la phase homogène. L'équation de
+diffusion--réaction s'écrit alors, sous forme adimensionnée :
 
 \begin{equation}
 \frac{d^2 \avg{C_{\mathrm{CO_2}}}^{l,*}}

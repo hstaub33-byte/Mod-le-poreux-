@@ -73,12 +73,12 @@ On impose une concentration fixée à l'interface avec la phase homogène et un 
 nul à la paroi :
 
 \begin{align}
-\left\langle C_{\ce{CO2}}\right\rangle^l(0) &= C_{\ce{CO2}}^{\mathrm{hom}},
+\left\langle C_{\ce{CO2}}\right\rangle^l(1) &= C_{\ce{CO2}}^{\mathrm{hom}},
 &
-\frac{d \left\langle C_{\ce{CO2}}\right\rangle^l}{d\zeta}(-1) &= 0,\\
-\left\langle C_{\ce{CO}}\right\rangle^l(0) &= C_{\ce{CO}}^{\mathrm{hom}},
+\frac{d \left\langle C_{\ce{CO2}}\right\rangle^l}{d\zeta}(0) &= 0,\\
+\left\langle C_{\ce{CO}}\right\rangle^l(1) &= C_{\ce{CO}}^{\mathrm{hom}},
 &
-\frac{d \left\langle C_{\ce{CO}}\right\rangle^l}{d\zeta}(-1) &= 0.
+\frac{d \left\langle C_{\ce{CO}}\right\rangle^l}{d\zeta}(0) &= 0.
 \end{align}
 
 La solution analytique pour le CO$_2$ est :
@@ -89,7 +89,7 @@ La solution analytique pour le CO$_2$ est :
 =
 C_{\ce{CO2}}^{\mathrm{hom}}
 \frac{
-\cosh\!\left[\phi(\zeta+1)\right]
+\cosh(\phi\zeta)
 }
 {\cosh(\phi)}
 }
@@ -111,7 +111,7 @@ C_{\ce{CO2}}^{\mathrm{hom}}
 \left[
 1-
 \frac{
-\cosh\!\left[\phi(\zeta+1)\right]
+\cosh(\phi\zeta)
 }
 {\cosh(\phi)}
 \right]
