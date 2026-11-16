@@ -109,7 +109,11 @@ R_i =\frac{\nu_i}{n_e F} j
 où $n_e$ est le nombre d’électrons échangés et $F$ la constante de Faraday.
 $R_i$ porte le signe de la réaction : $R_i < 0$ si l'espèce $i$ est
 consommée à l'interface et $R_i > 0$ si elle y est produite.
- L’aire interfaciale spécifique volumique est quant à elle définie par :
+Avec cette convention, $j > 0$ correspond à une réduction : pour le
+\ce{CO2}, $\nu_{\mathrm{CO_2}} = -1$ donne $R_{\mathrm{CO_2}} < 0$, le
+réactif est consommé.
+
+L’aire interfaciale spécifique volumique est quant à elle définie par :
 \begin{equation}
 a_v = \frac{A_{sf}}{V}
 \end{equation}
@@ -122,7 +126,7 @@ a_v^{\mathrm{cat}} = \frac{A_{sf}^{\mathrm{cat}}}{V} = \theta\, a_v,
 \qquad \theta = \frac{A_{sf}^{\mathrm{cat}}}{A_{sf}} \in [0,1],
 \end{equation}
 où $\theta$ représente la fraction catalytiquement active de l'interface.
-On a donc : %Faut se mettre d'accord sur une convention pour le signe
+On a donc :
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}^{\mathrm{cat}}} \vec{n} \cdot \vec{N}_i\, dA = -a_v^{\mathrm{cat}} \avg{R_i}^{sf}
 \end{equation}
@@ -151,7 +155,9 @@ volume. À l'échelle macroscopique, on ne distingue plus les fibres de
 l'électrolyte : chaque point de l'électrode contient à la fois du liquide et
 de la surface catalytique, en proportions $\varepsilon_l$ et
 $a_v^{\mathrm{cat}}$. Plus l'électrode offre de surface active par unité de
-volume, plus la réaction y est intense.
+volume, plus la réaction y est intense. La distinction entre interface
+géométrique et interface catalytique n'intervient, dans le bilan
+macroscopique, que par ce terme source.
 
 % ============================================================
 
@@ -167,10 +173,6 @@ qui prend en compte trois contributions : diffusion, migration électrique et co
 où $D_i$ est le coefficient de diffusion, $z_i$ la valence, $F$ la constante
 de Faraday, $R$ la constante des gaz parfaits, $T$ la température et
 $\varphi_l$ le potentiel électrique dans le fluide.
-
-On notera que la distinction entre interface géométrique et interface
-catalytique n'intervient, dans le bilan macroscopique, que par le terme
-source réactionnel.
 
 % ============================================================
 \bigskip
@@ -265,19 +267,32 @@ cette déformation, vue de loin, modifie le flux moyen. Pour la calculer, il
 faut déterminer $\tilde{C}_i$, c'est-à-dire résoudre un problème local à
 l'échelle d'un pore : c'est le problème de fermeture.
 
-On suppose que le transport à l'échelle du pore est quasi-stationnaire. La
-longueur caractéristique du pore $\ell_p$ étant très petite devant la
-longueur macroscopique $l_e$, le transport s'y équilibre beaucoup plus
-rapidement qu'à l'échelle de l'électrode : le temps de diffusion varie comme
-le carré de la longueur, $\ell_p^2/D_i$ contre $l_e^2/D_i$. Pour des pores de
-$10~\mu$m et une électrode de $300~\mu$m, avec $D_i \approx 2\times10^{-9}$
-m$^2$\,s$^{-1}$, ces temps valent respectivement environ $0{,}05$~s et
-$45$~s : un pore s'adapte presque instantanément aux variations de
-l'électrode. De plus, le problème de fermeture
-ne portant que sur la partie diffusive du flux (les termes de migration et de
-convection étant traités séparément), le transport à l'échelle du pore se
-réduit ici à de la diffusion pure. On peut donc négliger les effets
-transitoires à l'échelle du pore, ce qui donne :
+On suppose d'abord que le transport à l'échelle du pore est
+quasi-stationnaire. La longueur caractéristique du pore $\ell_p$ étant très
+petite devant la longueur macroscopique $l_e$, le transport s'y équilibre
+beaucoup plus rapidement qu'à l'échelle de l'électrode : le temps de diffusion
+varie comme le carré de la longueur, $\ell_p^2/D_i$ contre $l_e^2/D_i$. Pour
+des pores de $10~\mu$m et une électrode de $300~\mu$m, avec
+$D_i \approx 2\times10^{-9}$~m$^2$\,s$^{-1}$, ces temps valent
+respectivement environ $0{,}05$~s et $45$~s : un pore s'adapte presque
+instantanément aux variations de l'électrode, et les effets transitoires à
+l'échelle du pore peuvent être négligés.
+
+On suppose ensuite qu'à l'échelle du pore la diffusion domine les autres
+mécanismes de transport. Cela ne signifie pas que la migration et la
+convection disparaissent du modèle : elles sont moyennées séparément et
+restent présentes dans le flux homogénéisé. L'hypothèse porte seulement sur
+la forme des fluctuations $\tilde{C}_i$, que l'on calcule comme si, à
+l'intérieur d'un pore, seule la diffusion déformait le champ de
+concentration. Elle est justifiée lorsque le nombre de Péclet de pore
+$\|\vec{v}\|\,\ell_p/D_i$ est petit devant~1, et lorsque la variation du
+potentiel électrolytique à travers un pore reste petite devant le potentiel
+thermique $RT/F \approx 25$~mV. Pour des pores d'une dizaine de micromètres et
+$D_i \approx 2\times10^{-9}$~m$^2$\,s$^{-1}$, la première condition impose une
+vitesse très inférieure à $0{,}2$~mm\,s$^{-1}$. Pour les espèces neutres comme
+le \ce{CO2} et le \ce{CO}, la migration est nulle et la seconde condition est
+automatiquement vérifiée. Le transport à l'échelle du pore se réduit alors à
+de la diffusion pure, ce qui donne :
 \begin{equation}
 \Div\left(\Grad C_i\right) = 0 \quad \text{dans } V_l
 \end{equation}
@@ -321,10 +336,26 @@ où $\vec{b}$ est un vecteur de fermeture qui satisfait le problème suivant~\ci
 \avg{\vec{b}}^l &= \vec{0} \quad \text{et périodicité} : \quad \vec{b}(\vec{r}) = \vec{b}(\vec{r} + l_i \vec{e}_i)
 \end{align}
 
-où $\vec{e}_i$ désignent les vecteurs de base et $l_i$ les périodes du volume
-élémentaire représentatif dans chaque direction. La condition de moyenne nulle
-$\avg{\vec{b}}^l = \vec{0}$ fixe la constante d'intégration, et la périodicité traduit
-l'hypothèse d'une microstructure localement périodique à l'échelle du pore.
+Les deux premières équations ne font intervenir que des dérivées de
+$\vec{b}$ : elles ne le déterminent qu'à un vecteur constant près, puisque
+$\vec{b} + \vec{c}$ en est aussi solution pour tout vecteur constant
+$\vec{c}$. La condition $\avg{\vec{b}}^l = \vec{0}$ fixe cette constante.
+Elle découle directement de la définition de la fluctuation : $\tilde{C}_i$
+étant l'écart à la moyenne, sa moyenne intrinsèque est nulle, ce qui impose
+$\avg{\vec{b}}^l\cdot\Grad\avg{C_i}^l = 0$ quel que soit le gradient moyen.
+
+Le problème de fermeture est résolu sur une cellule de quelques pores, et non
+sur toute l'électrode. Sur les faces de cette cellule, qui ne sont pas des
+parois physiques, aucune condition n'est imposée par la physique. On suppose
+que la microstructure est localement périodique : l'électrode est vue comme
+la répétition d'un motif de fibres. Le gradient moyen étant pratiquement
+uniforme sur plusieurs cellules voisines (séparation des échelles), la
+déformation de la concentration est la même autour de chaque motif, d'où la
+condition de périodicité
+$\vec{b}(\vec{r}) = \vec{b}(\vec{r} + l_i \vec{e}_i)$, où $\vec{e}_i$ désignent
+les vecteurs de base et $l_i$ les périodes de la cellule dans chaque
+direction. Une électrode réelle n'étant pas périodique, cette hypothèse
+revient à choisir une cellule représentative de la microstructure.
 
 Physiquement, $\vec{b}$ décrit la manière dont un gradient de concentration
 imposé à grande échelle est déformé par la présence des fibres : les molécules
@@ -332,9 +363,19 @@ doivent contourner les obstacles, et la concentration locale s'écarte de la
 moyenne d'une quantité proportionnelle au gradient moyen. Le vecteur $\vec{b}$
 ne dépend que de la géométrie des pores, et non de l'espèce considérée.
 
-En substituant cette expression dans le terme de correction surfacique, on
-exprime la correction due aux fibres à l'aide du seul gradient moyen, la
-géométrie étant entièrement contenue dans l'intégrale de $\vec{n}\otimes\vec{b}$ :
+En substituant cette expression dans le terme de correction surfacique,
+on obtient sous l'intégrale le produit du scalaire
+$\vec{b}\cdot\Grad\avg{C_i}^l$ par le vecteur $\vec{n}$. On le réécrit à
+l'aide du produit tensoriel, défini par
+$(\vec{n}\otimes\vec{b})_{jk} = n_j\, b_k$ :
+\begin{equation}
+\left(\vec{b}\cdot\Grad\avg{C_i}^l\right)\vec{n}
+= \left(\vec{n}\otimes\vec{b}\right)\cdot\Grad\avg{C_i}^l
+\end{equation}
+Le gradient moyen variant à l'échelle de l'électrode, il est constant sur
+$A_{sf}$ et sort de l'intégrale. La correction due aux fibres s'exprime
+alors à l'aide du seul gradient moyen, la géométrie étant entièrement
+contenue dans l'intégrale de $\vec{n}\otimes\vec{b}$ :
 \begin{equation}
 \frac{1}{V}\int_{A_{sf}} \tilde{C}_i\,\vec{n}\, dA
 = \left(\frac{1}{V}\int_{A_{sf}} \vec{n}\otimes\vec{b}\, dA\right)\cdot\Grad\avg{C_i}^l
@@ -458,17 +499,45 @@ pour la diffusion, le fait que seule la fraction liquide transporte des ions.
 
 \paragraph{Terme 2 :}
 $\avg{C_i}^l$ est constant à l'échelle du pore et sort de l'intégrale.
-En appliquant le théorème de la moyenne spatiale \eqref{eq:moy_spatiale}
-et sachant que $\avg{\widetilde{\varphi}_l}^l = 0$ :
+Il reste la moyenne superficielle du gradient de la fluctuation :
+\begin{equation}
+\frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\widetilde{\varphi}_l\, dV
+= \avg{C_i}^l \avg{\Grad\widetilde{\varphi}_l}
+\end{equation}
+
+On applique le théorème de la moyenne spatiale~\eqref{eq:moy_spatiale}
+avec $g = \widetilde{\varphi}_l$. Ce théorème découle de la formule de
+Green--Ostrogradski : l'intégrale d'un gradient sur le volume de liquide
+$V_l$ se ramène à une intégrale sur son bord. Ce bord est formé de deux
+parties : les faces du volume de prise de moyenne, que le liquide
+traverse, et la surface des fibres $A_{sf}$, où le liquide est
+interrompu par le solide. La première donne le gradient de la moyenne,
+la seconde un terme de surface :
+\begin{equation}
+\avg{\Grad\widetilde{\varphi}_l}
+= \Grad\avg{\widetilde{\varphi}_l}
++ \frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_l\,\vec{n}\, dA
+\end{equation}
+
+Une fluctuation étant de moyenne nulle par définition,
+$\avg{\widetilde{\varphi}_l} = \varepsilon_l\avg{\widetilde{\varphi}_l}^l = 0$
+d'après~\eqref{eq:relation_moy}. Son gradient est donc nul, et seul le
+terme de surface subsiste :
 \begin{equation}
 \frac{1}{V}\int_{V_l} \avg{C_i}^l \Grad\widetilde{\varphi}_l\, dV
 = \avg{C_i}^l \frac{1}{V}\int_{A_{sf}} \widetilde{\varphi}_l\,\vec{n}\, dA
 \end{equation}
-Les fibres, qui ne conduisent pas le courant ionique, déforment le champ
-électrique dans l'électrolyte : les lignes de champ doivent les contourner.
-Ce terme traduit l'effet de cette déformation sur le flux moyen. Comme pour
-la diffusion, il s'exprime à l'aide de la valeur du potentiel au contact des
-fibres.
+
+Physiquement, une fluctuation oscille autour de zéro : dans un liquide
+qui remplirait tout l'espace, ses variations se compenseraient et son
+gradient moyen serait nul. Mais les fibres, qui ne conduisent pas le
+courant ionique, interrompent le liquide et déforment le champ
+électrique : les lignes de champ doivent les contourner, si bien que la
+fluctuation de potentiel n'est pas la même de part et d'autre d'une
+fibre. C'est ce déséquilibre au contact des fibres qui produit une
+contribution non nulle au flux moyen, et il s'exprime naturellement
+comme une intégrale sur leur surface. On retrouve le même mécanisme que
+pour la diffusion avec $\tilde{C}_i$.
 
 \paragraph{Terme 3 :}
 $\Grad\avg{\varphi_l}^l$ est constant à l'échelle du pore et sort de l'intégrale.
@@ -515,22 +584,46 @@ potentiel à l'échelle du pore sous la forme
 \vec{d}\cdot\Grad\langle\varphi_l\rangle^l.
 \]
 Cette fermeture peut être justifiée physiquement. À l'échelle du pore,
-l'électroneutralité impose la conservation du courant ionique. Si les
-fluctuations de concentration sont faibles, la conductivité de l'électrolyte
-est quasiment uniforme à cette échelle, et le potentiel y vérifie le même
-problème que la concentration : les lignes de courant contournent les fibres
-comme le font les lignes de diffusion. Si, de plus, le courant faradique est
-négligeable devant le courant ionique local, ce qui correspond à la même
-hypothèse de nombre de Damköhler faible que pour la diffusion, la surface des
-fibres se comporte à cette échelle comme une paroi isolante. Lorsque ces
-conditions ne sont pas vérifiées, les fluctuations du potentiel sont couplées
-à celles de la concentration, et $\vec{d}$ doit être déterminé par un problème
-de fermeture couplé. %MLais en fait poissson je l'ai plus là donc je le laisse mais en vrrai on sait que je peux pas garder cette hypothèse d'electroneutralité
-Sous ces hypothèses, le problème de fermeture pour $\widetilde{\varphi}_l$ est
-identique à celui de $\tilde{C}_i$, ce qui donne $\vec{d} = \vec{b}$ et donc
-$\tens{D}_i^{\text{eff,mig}} = \tens{D}_i^{\mathrm{eff}}$ : les ions sont
-freinés par la microstructure de la même façon, qu'ils diffusent ou qu'ils
-migrent.
+l'électroneutralité impose la conservation du courant ionique.
+L'électroneutralité n'y est mise en défaut que dans la double couche
+électrique, d'épaisseur de l'ordre de la longueur de Debye (quelques
+nanomètres), très inférieure à la taille des pores ; cette couche est
+incluse dans la condition d'interface, à travers la loi de
+Butler--Volmer. Si les fluctuations de concentration sont faibles, la
+conductivité de l'électrolyte est quasiment uniforme à cette échelle, et
+la conservation du courant se réduit à
+$\Div\left(\Grad\varphi_l\right) = 0$ dans $V_l$. Si, de plus, le courant
+faradique est négligeable devant le courant ionique local, ce qui
+correspond à la même hypothèse de nombre de Damköhler faible que pour la
+diffusion, aucun courant ionique ne traverse la surface des fibres : vue
+depuis l'électrolyte, elle se comporte comme une paroi isolante,
+$\vec{n}\cdot\Grad\varphi_l = 0$ sur $A_{sf}$. C'est l'équivalent, pour le
+courant, de l'imperméabilité des fibres pour la matière.
+
+En décomposant $\varphi_l = \avg{\varphi_l}^l + \widetilde{\varphi}_l$, et
+comme $\Div\left(\Grad\avg{\varphi_l}^l\right) \approx 0$ à l'échelle du
+pore, la fluctuation vérifie :
+\begin{align}
+\Div\left(\Grad\widetilde{\varphi}_l\right) &= 0 \quad \text{dans } V_l \\
+-\vec{n}\cdot\Grad\widetilde{\varphi}_l &= \vec{n}\cdot\Grad\avg{\varphi_l}^l \quad \text{sur } A_{sf}
+\end{align}
+Le vecteur $\vec{d}$ vérifie donc le problème de fermeture :
+\begin{align}
+\Div\left(\Gradt \vec{d}\right) &= \vec{0} \quad \text{dans } V_l \\
+-\vec{n}\cdot\Gradt\vec{d} &= \vec{n} \quad \text{sur } A_{sf}\\
+\avg{\vec{d}}^l &= \vec{0} \quad \text{et périodicité}
+\end{align}
+La condition de moyenne nulle découle, comme pour $\vec{b}$, de la
+définition de la fluctuation, $\avg{\widetilde{\varphi}_l}^l = 0$, et la
+périodicité remplace les conditions inconnues sur les faces de la
+cellule. Ce problème est identique à celui de $\vec{b}$ : on a donc
+$\vec{d} = \vec{b}$ et $\tens{D}_i^{\text{eff,mig}} = \tens{D}_i^{\mathrm{eff}}$.
+Les ions sont freinés par la microstructure de la même façon, qu'ils
+diffusent ou qu'ils migrent.
+
+Lorsque ces hypothèses ne sont pas vérifiées, les fluctuations du
+potentiel sont couplées à celles de la concentration, et $\vec{d}$ doit
+être déterminé par un problème de fermeture couplé.
 
 En substituant la fermeture $\tilde\varphi_l = \vec{d}\cdot\Grad\avg{\varphi_l}^l$
 dans le terme de surface, puis en factorisant $\varepsilon_l$ à l'aide de
@@ -1148,17 +1241,19 @@ suivantes :
     périodique à l'échelle du pore ;
     \item coefficients $D_i$ et $\sigma_s$ uniformes à l'échelle du pore ;
     \item transport quasi stationnaire à l'échelle du pore ;
+    \item diffusion dominante à l'échelle du pore : nombre de Péclet de
+    pore petit devant 1, ce qui permet aussi de réutiliser $\vec{b}$ pour
+    la dispersion, et variation de potentiel à travers un pore petite
+    devant $RT/F$ ;
     \item nombre de Damköhler faible à l'échelle du pore : la réaction
-    n'intervient pas dans les problèmes de fermeture, et la surface des fibres
-    y est traitée comme une paroi isolante ;
+    n'intervient pas dans les problèmes de fermeture, et la surface des
+    fibres y est traitée comme une paroi isolante ;
     \item fluctuations de concentration faibles devant les valeurs moyennes,
-    ce qui permet de négliger le terme de corrélation (terme 4) et de prendre
-    $\vec{d} = \vec{b}$ ;
-    \item nombre de Péclet faible à l'échelle du pore, ce qui permet de
-    réutiliser $\vec{b}$ pour la dispersion ;
-    \item fluctuations de concentration et de potentiel faibles au voisinage
-    de l'interface, ce qui permet d'évaluer la loi cinétique avec les grandeurs
-    moyennes ;
+    ce qui permet de négliger le terme de corrélation (terme 4) et de
+    prendre $\vec{d} = \vec{b}$ ;
+    \item fluctuations de concentration et de potentiel faibles au
+    voisinage de l'interface, ce qui permet d'évaluer la loi cinétique
+    avec les grandeurs moyennes ;
     \item réseau de fibres continu, résistances de contact négligées.
 \end{itemize}
 

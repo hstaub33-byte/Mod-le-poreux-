@@ -1,61 +1,28 @@
-\subsection*{Rappels théoriques}
+\section*{Conclusion}
 
-\paragraph{Moyenne superficielle :}
-On considère une grandeur $g$ définie uniquement dans le volume fluide $V_l$.
-On définit sa moyenne sur le volume total $V$ (fluide + solide) par :
+Ce travail a permis d'établir un modèle homogénéisé décrivant le transport de
+matière et de charge au sein d'une électrode poreuse. À partir des équations
+locales de conservation, de Nernst--Planck, de Poisson et d'Ohm, une procédure
+d'homogénéisation spatiale a été mise en œuvre afin de remplacer la géométrie
+complexe du milieu poreux par un milieu homogène équivalent caractérisé par des
+propriétés effectives.
 
-\begin{equation}
-\avg{g} = \frac{1}{V}\int_{V_l} g\, dV \label{eq:moy_sup}
-\end{equation}
-Cette moyenne, dite superficielle, s’exprime comme la moyenne dans le fluide multipliée
-par la porosité $\varepsilon_l = \frac{V_l}{V}$~\cite{le<3MultiscaleModelling2022}.
-Elle ne correspond donc pas à la moyenne de $g$ dans le fluide seul.
-La moyenne intrinsèque $\avgl{g}$ représente la vraie valeur moyenne de $g$
-dans le fluide seul. La relation entre moyenne superficielle et moyenne
-intrinsèque est alors :
+L'analyse des différentes hypothèses simplificatrices a ensuite montré comment
+ce modèle général pouvait être réduit à des formulations plus simples selon les
+phénomènes retenus. En particulier, le modèle classique fondé sur le module de
+Thiele apparaît comme un cas limite correspondant à un transport purement
+diffusif couplé à une réaction du premier ordre.
 
-\begin{equation}
-\avg{g} = \varepsilon_l \avgl{g} = \frac{V_l}{V}\avgl{g}  \label{eq:relation_moy}
-\end{equation}
+Le cadre obtenu reste cependant plus général que l'approche de Thiele, car il
+permet de conserver les effets de migration électrique, de convection, de
+transport électronique et de structure poreuse. Il constitue ainsi une base de
+travail pour l'étude de situations où les hypothèses habituellement utilisées
+deviennent insuffisantes.
 
-\paragraph{Théorème de la divergence de Gauss :}
-Ce théorème relie une intégrale de volume à une intégrale de surface.
-Pour une quantité $g$ définie dans un volume $V$ délimité par une surface $A$ :
-
-\begin{equation}
-\int_V \Grad g\, dV = \oint_A g\,\vec{n}\, dA
-\label{eq:gauss}
-\end{equation}
-
-où $\vec{n}$ est le vecteur normal sortant à la surface $A$.
-
-\paragraph{Théorème de la moyenne spatiale :}
-Ce théorème découle du théorème de la divergence
-de Gauss appliqué au volume fluide.
-Il relie la moyenne du gradient d'une quantité $g$ à son gradient
-de moyenne, avec un terme de correction surfacique sur l'interface
-$A_{sf}$ entre le fluide et le solide :
-
-\begin{equation}
-\avg{\Grad g} = \Grad\avg{g} + \frac{1}{V}\int_{A_{sf}} g\,\vec{n}\, dA \label{eq:moy_spatiale}
-\end{equation}
-
-où $\vec{n}$ est le vecteur normal à l'interface $A_{sf}$ 
-pointant du fluide vers le solide. Pour un champ vectoriel $\vec{g}$,
-le même théorème s'écrit sous forme de divergence :
-
-\begin{equation}
-\avg{\Div\vec{g}} = \Div\avg{\vec{g}} + \frac{1}{V}\int_{A_{sf}} \vec{n}\cdot\vec{g}\, dA \label{eq:moy_spatiale_div}
-\end{equation}
-
-\paragraph{Théorème de transport :}
-Ce théorème permet d'échanger la moyenne et la dérivée temporelle,
-à condition que le volume $V_l$ ne dépende pas du temps :
-
-\begin{equation}
-\left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial}{\partial t}\avg{g} \label{eq:transport}
-\end{equation}
-
-\bigskip
-
-% ============================================================
+Plusieurs perspectives peuvent être envisagées pour la suite de ce travail. La
+première consiste à résoudre numériquement le système homogénéisé complet afin
+d'évaluer l'influence relative des différents mécanismes de transport. Une
+autre perspective concerne l'amélioration de la description des réactions
+électrochimiques, notamment en remettant en question certaines hypothèses
+cinétiques utilisées dans ce document et en introduisant des modèles plus
+adaptés aux conditions de fonctionnement considérées.

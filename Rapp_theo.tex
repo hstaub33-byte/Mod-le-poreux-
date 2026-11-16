@@ -4,10 +4,29 @@
 
 Les outils mathématiques de la prise de moyenne volumique utilisés dans ce
 document sont rappelés ci-dessous~\cite{whitakerMethodVolumeAveraging1999}.
-On considère un volume de prise de moyenne $V$, fixe dans l'espace et
-contenant les deux phases : $V = V_l + V_s$. L'interface solide/fluide
-contenue dans $V$ est notée $A_{sf}$, et $\vec{n}$ désigne sa normale unitaire,
-orientée du fluide vers le solide.
+On considère un volume de prise de moyenne $V$ contenant les deux phases :
+$V = V_l + V_s$. L'interface solide/fluide contenue dans $V$ est notée
+$A_{sf}$, et $\vec{n}$ désigne sa normale unitaire, orientée du fluide vers le
+solide.
+
+\paragraph{Hypothèses.} Les résultats rappelés ci-dessous reposent sur les
+hypothèses suivantes~\cite{whitakerMethodVolumeAveraging1999} :
+\begin{itemize}
+    \item le volume de prise de moyenne a une taille, une forme et une
+    orientation constantes, indépendantes de la position et du temps. La
+    moyenne calculée sur ce volume est attribuée à son centre $\vec{x}$ :
+    elle est donc une fonction de la position, et faire varier $\vec{x}$
+    revient à translater le volume dans l'espace, sans le déformer ;
+    \item les grandeurs locales sont continues et dérivables dans chaque
+    phase, jusqu'à l'interface, et l'interface est une surface régulière (par
+    morceaux) ;
+    \item les pores sont entièrement remplis d'électrolyte, si bien que la
+    fraction volumique de liquide $\varepsilon_l$ est égale à la porosité.
+\end{itemize}
+L'utilisation de ces résultats pour construire un modèle macroscopique
+suppose en outre la séparation des échelles,
+$\ell_p \ll r_0 \ll l_e$, discutée dans la section consacrée à
+l'homogénéisation.
 
 \paragraph{Moyennes volumiques :}
 On considère une grandeur $g$ définie uniquement dans le volume fluide $V_l$.
@@ -38,7 +57,7 @@ $\avg{g} = \varepsilon_s \avg{g}^s$ et $\varepsilon_s = V_s/V$.
 
 \paragraph{Moyenne surfacique :}
 Pour une grandeur $g$ définie sur la partie catalytique de l'interface, on
-définit sa moyenne surfacique par :
+définit sa moyenne surfacique, ou moyenne interfaciale, par :
 
 \begin{equation}
 \avg{g}^{sf} = \frac{1}{A_{sf}^{\mathrm{cat}}}\int_{A_{sf}^{\mathrm{cat}}} g\, dA
@@ -46,9 +65,10 @@ définit sa moyenne surfacique par :
 \end{equation}
 
 \paragraph{Théorème de Green--Ostrogradski (théorème de la divergence) :}
-Ce théorème relie une intégrale de volume à une intégrale de surface. Pour un
-champ vectoriel $\vec{g}$ défini dans un volume $V$ délimité par une surface
-fermée $A$, de normale unitaire sortante $\vec{n}$ :
+Ce théorème, également appelé théorème de flux--divergence, relie une
+intégrale de volume à une intégrale de surface. Pour un champ vectoriel
+$\vec{g}$ continûment dérivable dans un volume $V$ délimité par une surface
+fermée régulière $A$, de normale unitaire sortante $\vec{n}$ :
 
 \begin{equation}
 \int_V \Div\vec{g}\, dV = \oint_A \vec{g}\cdot\vec{n}\, dA
@@ -65,9 +85,12 @@ scalaire $g$ :
 \end{equation}
 
 \paragraph{Théorème de la moyenne spatiale :}
-Ce théorème relie la moyenne du gradient d'une grandeur $g$ au gradient de sa
+Ce théorème, appelé \emph{spatial averaging theorem} dans la littérature
+anglophone, relie la moyenne du gradient d'une grandeur $g$ au gradient de sa
 moyenne, avec un terme de correction sur l'interface $A_{sf}$ entre le fluide
-et le solide :
+et le solide. Il suppose que le volume de prise de moyenne est simplement
+translaté lorsque sa position varie, sans changer de taille, de forme ni
+d'orientation :
 
 \begin{equation}
 \avg{\Grad g} = \Grad\avg{g} + \frac{1}{V}\int_{A_{sf}} g\,\vec{n}\, dA \label{eq:moy_spatiale}
@@ -102,9 +125,11 @@ $\vec{n}_s = -\vec{n}$.
 
 \paragraph{Théorème de transport (règle de Leibniz) :}
 Ce théorème permet d'échanger la moyenne et la dérivée temporelle. Le volume de
-prise de moyenne $V$ étant fixe, seule l'interface $A_{sf}$ peut se déplacer,
-à une vitesse notée $\vec{w}$. Le théorème de transport de Reynolds, appliqué
-au volume fluide, donne alors :
+prise de moyenne $V$ ne dépendant pas du temps, seule l'interface $A_{sf}$
+peut se déplacer, à une vitesse notée $\vec{w}$ ; le volume de liquide $V_l$
+qu'il contient peut donc varier. Le théorème de transport de Reynolds, qui
+généralise la règle de Leibniz à un domaine mobile, appliqué au volume
+fluide, donne alors :
 
 \begin{equation}
 \left\langle \frac{\partial g}{\partial t} \right\rangle
@@ -113,9 +138,11 @@ au volume fluide, donne alors :
 \label{eq:transport_gen}
 \end{equation}
 
-Lorsque l'interface solide/fluide est immobile ($\vec{w} = \vec{0}$), ce qui est
-le cas pour un réseau de fibres rigides, le terme de surface s'annule et la
-moyenne commute avec la dérivée temporelle :
+Lorsque l'interface solide/fluide est immobile ($\vec{w} = \vec{0}$), le terme
+de surface s'annule et la moyenne commute avec la dérivée temporelle. C'est
+le cas pour un réseau de fibres rigides, en l'absence de dépôt, de
+dissolution du solide et de bulles de gaz dans les pores ; la porosité
+$\varepsilon_l$ est alors indépendante du temps :
 
 \begin{equation}
 \left\langle \frac{\partial g}{\partial t} \right\rangle = \frac{\partial \avg{g}}{\partial t} \label{eq:transport}

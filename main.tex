@@ -16,6 +16,7 @@
 \usepackage[version=4]{mhchem}   % Facilite l'écriture de formules chimiques
 \usepackage{enumitem}%Je veux un putain de point blanc
 \frenchsetup{StandardLists=true}% garde les puces (babel-french mettrait des tirets)
+\frenchsetup{SmallCapsFigTabCaptions=false}
 \addto\captionsfrench{\renewcommand{\tablename}{Tableau}}
 \usepackage{caption}
 \captionsetup{
@@ -27,7 +28,7 @@
   {1.5em}  % espace AVANT le titre
   {1.5em}  % espace APRÈS le titre
 
-\usetikzlibrary{babel, arrows.meta, positioning, fit, backgrounds, decorations.pathreplacing}
+\usetikzlibrary{babel, arrows.meta, positioning, fit, backgrounds, decorations.pathreplacing, shapes.geometric}
 \makenomenclature            % <-- et ici
 \renewcommand{\nomgroup}[1]{%
   \ifthenelse{\equal{#1}{A}}{\item[\textbf{Lettres latines}]}{%
