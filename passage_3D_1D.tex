@@ -1103,24 +1103,75 @@ bui<3ContinuumModeling2022} :
 \label{eq:sys3}
 \end{equation}
 
-\paragraph{Fermeture des termes sources.} Le système n'est fermé que si les
-termes sources $\avg{R_i}^{sf}$ et $\avg{j}^{sf}$ sont exprimés en fonction des
-grandeurs moyennes. La loi de Faraday étant linéaire, la relation
-$\avg{R_i}^{sf} = \frac{\nu_i}{n_eF}\avg{j}^{sf}$ est exacte. La loi de
-Butler--Volmer~\eqref{eq:BV} est en revanche non linéaire : la moyenne de $j$
-n'est pas égale à $j$ évalué avec les grandeurs moyennes. On suppose que les
-fluctuations de concentration et de potentiel au voisinage de l'interface sont
-faibles, ce qui est cohérent avec l'hypothèse de nombre de Damköhler faible à
-l'échelle du pore, et l'on évalue la loi cinétique avec les grandeurs
-moyennes :
+\paragraph{Homogénéisation de la loi de Butler--Volmer.} Le système n'est
+fermé que si les termes sources $\avg{R_i}^{sf}$ et $\avg{j}^{sf}$ sont
+exprimés en fonction des grandeurs moyennes. La loi de Faraday étant
+linéaire, la relation $\avg{R_i}^{sf} = \frac{\nu_i}{n_eF}\avg{j}^{sf}$ est
+exacte. La loi de Butler--Volmer~\eqref{eq:BV} est en revanche non
+linéaire : la moyenne de $j$ n'est pas égale à $j$ évalué avec les
+grandeurs moyennes.
+
+On note $\eta = \varphi_s - \varphi_l - E_{\mathrm{eq}}^{\mathrm{ref}}$ la
+surtension locale et $C_k$ les concentrations qui interviennent dans la
+cinétique. La densité de courant moyenne sur la surface active s'écrit :
+\begin{equation}
+\avg{j}^{sf} = \frac{1}{A_{sf}^{\mathrm{cat}}}\int_{A_{sf}^{\mathrm{cat}}}
+j\left(C_k,\ \eta\right) dA
+\end{equation}
+On décompose les grandeurs locales en moyenne et fluctuation,
+$C_k = \avg{C_k}^l + \tilde{C}_k$ et $\eta = \avg{\eta} + \tilde{\eta}$, avec
+\begin{equation}
+\avg{\eta} = \avg{\varphi_s}^s - \avg{\varphi_l}^l - E_{\mathrm{eq}}^{\mathrm{ref}},
+\qquad
+\tilde{\eta} = \widetilde{\varphi}_s - \widetilde{\varphi}_l .
+\end{equation}
+Un développement de Taylor de la loi cinétique autour des grandeurs
+moyennes donne :
+\begin{equation}
+j\left(C_k,\ \eta\right) = j\left(\avg{C_k}^l,\ \avg{\eta}\right)
++ \sum_k \frac{\partial j}{\partial C_k}\,\tilde{C}_k
++ \frac{\partial j}{\partial \eta}\,\tilde{\eta}
++ \mathcal{O}\!\left(\tilde{C}_k^2,\ \tilde{\eta}^2\right)
+\end{equation}
+où les dérivées sont évaluées avec les grandeurs moyennes, et sont donc
+constantes à l'échelle du pore. En prenant la moyenne sur la surface
+active :
+\begin{equation}
+\avg{j}^{sf} = j\left(\avg{C_k}^l,\ \avg{\eta}\right)
++ \sum_k \frac{\partial j}{\partial C_k}\,\avg{\tilde{C}_k}^{sf}
++ \frac{\partial j}{\partial \eta}\,\avg{\tilde{\eta}}^{sf}
++ \mathcal{O}\!\left(\tilde{C}_k^2,\ \tilde{\eta}^2\right)
+\end{equation}
+
+Contrairement à leur moyenne volumique, les moyennes surfaciques des
+fluctuations ne sont pas nulles par définition : la réaction voit la
+concentration au contact des fibres, et non la concentration moyenne du
+pore. Avec les fermetures obtenues précédemment, elles s'écrivent
+$\avg{\tilde{C}_k}^{sf} = \avg{\vec{b}}^{sf}\cdot\Grad\avg{C_k}^l$, et de
+même pour $\tilde{\eta}$ avec $\vec{d}$ et $\vec{e}$. Le vecteur $\vec{b}$
+étant de l'ordre de la taille des pores, on a
+$\avg{\tilde{C}_k}^{sf} \sim \ell_p\,\|\Grad\avg{C_k}^l\| \sim
+(\ell_p/l_e)\,\avg{C_k}^l$ : ces termes sont petits grâce à la séparation
+des échelles. Les termes d'ordre deux sont négligeables si les
+fluctuations sont faibles devant les moyennes et, en raison du caractère
+exponentiel de la loi, si les fluctuations de surtension restent petites
+devant le potentiel thermique, $|\tilde{\eta}| \ll RT/F \approx 25$~mV. On
+évalue donc la loi cinétique avec les grandeurs moyennes :
 \begin{equation}
 \avg{j}^{sf} \simeq j\left(\avg{C_{\mathrm{CO_2}}}^l,\ \avg{C_{\mathrm{CO}}}^l,\
 \avg{\varphi_s}^s - \avg{\varphi_l}^l - E_{\mathrm{eq}}^{\mathrm{ref}}\right).
 \label{eq:j_homo}
 \end{equation}
-En raison du caractère exponentiel de la loi, cette approximation suppose en
-outre que les fluctuations des potentiels restent petites devant le potentiel
-thermique $RT/F \approx 25$~mV.
+
+Physiquement, cette approximation suppose que la concentration au contact
+des fibres est pratiquement égale à la concentration moyenne du pore.
+C'est le cas si la diffusion dans le pore est rapide devant la réaction
+(nombre de Damköhler faible) : le réactif consommé à la surface est
+renouvelé presque instantanément, et aucun appauvrissement local
+significatif ne se forme autour des fibres. Si la réaction devenait
+rapide, une couche appauvrie apparaîtrait au voisinage de chaque fibre,
+et il faudrait un facteur d'efficacité à l'échelle du pore pour corriger
+la cinétique moyenne.
 
 \paragraph{Bilan de charge.} Le système comporte $N+2$ inconnues, les
 concentrations $\avg{C_i}^l$ et les potentiels $\avg{\varphi_l}^l$ et
