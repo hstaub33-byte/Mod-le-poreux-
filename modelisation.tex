@@ -2,13 +2,16 @@
 \section*{Modélisation}
 
 Cette partie décrit la résolution du modèle homogénéisé unidimensionnel. On
-présente d'abord la solution analytique obtenue dans le cas réduit
-diffusion--réaction, qui sert de solution de référence. On détaille ensuite la
-discrétisation du modèle 1D général, puis la résolution du système non
-linéaire obtenu.
+présente d'abord deux solutions analytiques obtenues dans des cas réduits,
+qui servent de solutions de référence : la solution de Thiele, où seul le
+transport de matière limite la réaction, et la solution de Newman et Tobias,
+où seule la conduction la limite. On détaille ensuite la discrétisation du
+modèle 1D général, puis la résolution du système non linéaire obtenu.
 
 % ============================================================
-\subsection*{Solution analytique de référence}
+\subsection*{Solutions analytiques de référence}
+
+\subsubsection*{Cas diffusion--réaction : solution de Thiele}
 
 Dans le cas réduit étudié précédemment (régime stationnaire, transport
 purement diffusif, potentiels uniformes et cinétique du premier ordre), le
@@ -42,6 +45,140 @@ Cette solution joue deux rôles dans la suite.
     la phase homogène, où la concentration varie fortement. Le maillage doit
     résoudre cette couche, ce qui justifie un raffinement près de $z = L_b$.
 \end{itemize}
+
+\subsubsection*{Cas conduction : solution de Newman et Tobias}
+
+La solution de Thiele suppose les potentiels uniformes : elle ne dit rien de
+la conduction dans le solide et dans l'électrolyte. Le cas réduit inverse,
+où les concentrations sont uniformes et où seules les résistances des deux
+phases limitent la réaction, admet lui aussi une solution analytique,
+établie par Newman et Tobias~\cite{newman1962}. On la déduit ici du modèle
+1D~\eqref{eq:flux1D}--\eqref{eq:charge1D} en deux hypothèses.
+
+\paragraph{Hypothèse 1 : concentrations uniformes.} Si la diffusion est très
+rapide devant la réaction, les concentrations restent égales à leur valeur
+dans la phase homogène, $C_i = C_i^{\mathrm{hom}}$. Le flux~\eqref{eq:flux1D}
+se réduit alors à la migration, et le courant ionique
+$i_l = F\sum_i z_i N_i$ suit une loi d'Ohm :
+\begin{equation}
+i_l = -\kappa\,\frac{\partial \varphi_l}{\partial z},
+\qquad
+\kappa = \frac{F^2}{RT}\sum_i z_i^2\,\varepsilon_l D_i^{\mathrm{eff}}\,C_i^{\mathrm{hom}} .
+\label{eq:NT_kappa}
+\end{equation}
+De même, on note $i_s = -K_s\,\partial\varphi_s/\partial z$ le courant
+électronique, avec $K_s = \varepsilon_s\sigma^{\mathrm{eff}}$. On suppose en
+outre $C_{\ce{CO2}}^{\mathrm{hom}} = C_{\ce{CO}}^{\mathrm{hom}} = C_{\mathrm{ref}}$,
+de sorte que la surtension
+$\eta = \varphi_s - \varphi_l - E_{\mathrm{eq}}^{\mathrm{ref}}$ soit nulle à
+l'équilibre. Cette hypothèse correspond à la limite opposée du cas de Thiele :
+le module de Thiele est très petit, $\phi \ll 1$, et le facteur d'efficacité
+de Thiele vaut $\eta_E = \tanh(\phi)/\phi \simeq 1$. Le transport de matière
+n'entraîne alors aucune perte, et seule la conduction peut limiter la
+réaction.
+
+\paragraph{Conservation du courant total.} D'après~\eqref{eq:ohm1D}
+et~\eqref{eq:charge1D}, $\partial i_s/\partial z = a\,j$ et
+$\partial i_l/\partial z = -a\,j$ : ce que la réaction retire au solide, elle
+le donne à l'électrolyte, et $i_s + i_l = I$ est constant. Au collecteur, le
+flux de chaque espèce est nul, donc $i_l = 0$ et tout le courant circule dans
+le solide, $i_s = I$ ; à l'interface avec la phase homogène,
+$\partial\varphi_s/\partial z = 0$, donc $i_s = 0$ et $i_l = I$.
+
+\paragraph{Hypothèse 2 : cinétique linéaire.} Pour une faible surtension,
+$|F\eta/RT| \ll 1$, le développement au premier ordre de la loi de
+Butler--Volmer donne
+\begin{equation}
+a\,j \simeq -k\,\eta,
+\qquad
+k = a\,j_{0,\mathrm{ref}}\,(\alpha_a + \alpha_c)\,\frac{F}{RT} .
+\end{equation}
+
+\paragraph{Équation sur la surtension.} En dérivant
+$\eta = \varphi_s - \varphi_l - E_{\mathrm{eq}}^{\mathrm{ref}}$, il vient
+\begin{equation}
+\frac{\partial\eta}{\partial z} = -\frac{i_s}{K_s} + \frac{i_l}{\kappa},
+\qquad
+\frac{\partial^2\eta}{\partial z^2}
+= -a\,j\left(\frac{1}{K_s} + \frac{1}{\kappa}\right)
+= k\left(\frac{1}{K_s} + \frac{1}{\kappa}\right)\eta .
+\label{eq:NT_derivee}
+\end{equation}
+Avec $\zeta = (z - L_m)/l_e$, on obtient
+\begin{equation}
+\frac{\mathrm{d}^2\eta}{\mathrm{d}\zeta^2} = \Lambda^2\,\eta,
+\qquad
+\Lambda^2 = k\,l_e^2\left(\frac{1}{\kappa} + \frac{1}{K_s}\right),
+\end{equation}
+où le nombre adimensionnel $\Lambda$ joue pour la conduction le rôle que joue
+le module de Thiele $\phi$ pour le transport de matière. D'après le bilan de
+courant aux deux bords, les conditions limites portent sur la dérivée :
+\begin{equation}
+\left.\frac{\mathrm{d}\eta}{\mathrm{d}\zeta}\right|_{\zeta=0} = -\frac{I\,l_e}{K_s},
+\qquad
+\left.\frac{\mathrm{d}\eta}{\mathrm{d}\zeta}\right|_{\zeta=1} = \frac{I\,l_e}{\kappa} .
+\end{equation}
+
+\paragraph{Solution.} En écrivant $\eta = A\cosh(\Lambda\zeta) + B\sinh(\Lambda\zeta)$
+et en appliquant ces deux conditions, on obtient
+\begin{equation}
+\eta(\zeta) = \frac{I\,l_e}{\Lambda}
+\left[
+\left(\frac{1}{\kappa} + \frac{\cosh\Lambda}{K_s}\right)
+\frac{\cosh(\Lambda\zeta)}{\sinh\Lambda}
+- \frac{\sinh(\Lambda\zeta)}{K_s}
+\right].
+\label{eq:ref_NT}
+\end{equation}
+La réaction se concentre près des deux bords : du côté du collecteur, où le
+courant électronique est le plus fort, et du côté de la phase homogène, où le
+courant ionique est le plus fort.
+
+\paragraph{Relation avec le potentiel imposé.} Le calcul n'impose pas le
+courant $I$, mais les potentiels $\varphi_s = E$ au collecteur et
+$\varphi_l = \varphi_l^{\mathrm{hom}}$ à l'interface. La tension imposée
+$V = E - \varphi_l^{\mathrm{hom}} - E_{\mathrm{eq}}^{\mathrm{ref}}$ n'est pas
+la surtension locale : elle comprend en plus la chute de potentiel dans
+l'électrolyte,
+\begin{equation}
+V = \eta(0) + \left[\varphi_l(0) - \varphi_l(1)\right] .
+\end{equation}
+En combinant~\eqref{eq:NT_derivee} et $i_s = I - i_l$, on obtient
+$i_l = (\partial\eta/\partial z + I/K_s)\,K_s\kappa/(K_s + \kappa)$, dont
+l'intégration sur l'électrode donne la chute de potentiel :
+\begin{equation}
+\varphi_l(0) - \varphi_l(1)
+= \frac{K_s}{K_s + \kappa}\left[\eta(1) - \eta(0) + \frac{I\,l_e}{K_s}\right] .
+\end{equation}
+En y reportant $\eta(0)$ et $\eta(1)$ tirés de~\eqref{eq:ref_NT}, on trouve
+$V = R_{\mathrm{el}}\,I$, avec la résistance de l'électrode
+\begin{equation}
+R_{\mathrm{el}} = \frac{l_e}{K_s + \kappa}
+\left[1 + \frac{2 + \left(\kappa/K_s + K_s/\kappa\right)\cosh\Lambda}{\Lambda\sinh\Lambda}\right] .
+\label{eq:NT_R}
+\end{equation}
+Le courant $I = V/R_{\mathrm{el}}$ et le profil~\eqref{eq:ref_NT} sont ainsi
+entièrement déterminés par les données : la solution de référence ne dépend
+d'aucun résultat du calcul.
+
+\paragraph{Facteur d'efficacité.} Par analogie avec Thiele, on compare le
+courant au courant obtenu si toute l'électrode voyait la surtension $V$,
+$-k\,V\,l_e$ :
+\begin{equation}
+\eta_E^{\mathrm{NT}} = \frac{I}{-k\,V\,l_e} = \frac{1}{k\,l_e\,R_{\mathrm{el}}} .
+\end{equation}
+La perte d'efficacité ne vient plus ici de l'appauvrissement en réactif,
+puisque $\eta_E = 1$, mais des chutes de potentiel dans les deux phases.
+
+\paragraph{Généralisation.} Si $C_{\ce{CO2}}^{\mathrm{hom}} \neq C_{\ce{CO}}^{\mathrm{hom}}$,
+toutes deux non nulles, l'équilibre est décalé de
+\begin{equation*}
+\eta_{\mathrm{eq}} = \frac{RT}{(\alpha_a + \alpha_c)F}\,
+\ln\!\left(\frac{C_{\ce{CO2}}^{\mathrm{hom}}}{C_{\ce{CO}}^{\mathrm{hom}}}\right),
+\end{equation*}
+et la même démarche s'applique à $\eta - \eta_{\mathrm{eq}}$, avec une
+constante $k$ modifiée. En revanche, si $C_{\ce{CO}}^{\mathrm{hom}} = 0$, il
+n'existe pas d'équilibre et la linéarisation n'est pas possible.
 
 % ============================================================
 \subsection*{Discrétisation du modèle 1D}
@@ -608,7 +745,20 @@ point de départ de la suivante, n'est pas encore implémentée.
 % ============================================================
 \subsection*{Vérification du code}
 
-\paragraph{Cas test.} Le code est vérifié sur un cas choisi pour que les
+Le code est vérifié sur deux cas tests, chacun construit pour que les
+hypothèses de l'une des deux solutions de référence soient presque
+vérifiées. Le premier rend les conductivités très grandes : seul le transport
+de matière compte, et il vérifie les bilans d'espèces, la diffusion et le
+terme de réaction. Le second rend la diffusion très rapide : seule la
+conduction compte, et il vérifie la loi d'Ohm, le courant ionique et leur
+couplage par la réaction. Les deux cas utilisent le même code, seul le
+fichier de données change. Certaines valeurs sont volontairement non
+physiques : elles sont choisies pour satisfaire les hypothèses des solutions
+analytiques.
+
+\subsubsection*{Cas test de Thiele}
+
+\paragraph{Cas test.} Le premier cas est choisi pour que les
 hypothèses du modèle de Thiele soient presque vérifiées. L'électrode a une
 épaisseur $l_e = 10~\mu$m, avec $\varepsilon_l = \varepsilon_s = 0{,}5$,
 $\sigma_s = 1000$~S\,m$^{-1}$ et
@@ -707,6 +857,143 @@ le collecteur, calculé à partir du gradient de $\varphi_s$ dans la première
 maille, vaut $1583$~A\,m$^{-2}$ : il est égal au courant total de réaction.
 Le courant qui entre dans l'électrode sous forme électronique est donc
 intégralement transféré à l'électrolyte.
+
+\subsubsection*{Cas test de Newman et Tobias}
+
+\paragraph{Cas test.} Le second cas est choisi pour que les hypothèses de la
+solution~\eqref{eq:ref_NT} soient presque vérifiées. L'électrode a toujours
+une épaisseur $l_e = 10~\mu$m, avec
+$\varepsilon_l = \varepsilon_s = 0{,}5$ et
+$a_v^{\mathrm{cat}} = 10^7$~m$^{-1}$. Le potentiel imposé
+$E = -5$~mV, avec $\varphi_l^{\mathrm{hom}} = 0$ et
+$E_{\mathrm{eq}}^{\mathrm{ref}} = 0$, place la cinétique dans le régime
+linéaire ($|F\eta/RT| \approx 0{,}1$). Le \ce{CO2} et le \ce{CO} sont à la
+même concentration, $C_{\ce{CO2}}^{\mathrm{hom}} = C_{\ce{CO}}^{\mathrm{hom}}
+= C_{\mathrm{ref}} = 10^4$~mol\,m$^{-3}$, si bien que $\eta = 0$ est
+l'équilibre. Toutes les espèces ont un coefficient
+$D^{\mathrm{tot}} = 10^{-6}$~m$^2$\,s$^{-1}$ : cette valeur, non physique,
+rend la diffusion assez rapide pour que les concentrations restent
+uniformes. Les deux ions sont à $10^3$~mol\,m$^{-3}$ avec
+$D^{\mathrm{eff}} = 10^{-9}$~m$^2$\,s$^{-1}$, ce qui donne d'après~\eqref{eq:NT_kappa}
+$\kappa = 3{,}755$~S\,m$^{-1}$, et
+$\sigma^{\mathrm{eff}} = 7{,}5$~S\,m$^{-1}$ donne $K_s = 3{,}75$~S\,m$^{-1}$ :
+les deux phases conduisent de façon comparable. La densité de courant
+d'échange, $j_{0,\mathrm{ref}} = 200$~A\,m$^{-2}$, est elle aussi une valeur
+de test, choisie pour obtenir $\Lambda = 2{,}037$. Le maillage est uniforme,
+avec $h = 10$~nm, soit $M = 1001$ nœuds. La solution analytique donne
+$R_{\mathrm{el}} = 3{,}03\times10^{-6}~\Omega$\,m$^2$, un courant cathodique
+$|I| = 1648{,}4$~A\,m$^{-2}$ et $\eta_E^{\mathrm{NT}} = 0{,}42$.
+
+\paragraph{Comparaison avec la solution de Newman et Tobias.} La méthode de
+Newton converge en trois itérations. Les concentrations varient de moins de
+$5\times10^{-5}$ en valeur relative dans l'électrode, ce qui confirme
+l'hypothèse de concentrations uniformes : avec
+$D^{\mathrm{tot}} = 10^{-6}$~m$^2$\,s$^{-1}$, le module de Thiele vaut
+$\phi = 0{,}011$, et le facteur d'efficacité de Thiele
+$\eta_E = 0{,}99996$. La surtension calculée coïncide avec
+la solution analytique (figure~\ref{fig:profils_NT}) : elle vaut
+$-2{,}8$~mV aux deux bords et $-1{,}8$~mV au centre, alors que la tension
+imposée est de $-5$~mV. Les $2{,}2$~mV manquants au collecteur correspondent à
+la chute de potentiel dans l'électrolyte : c'est l'effet que la solution de
+Thiele néglige et que ce cas test vérifie. L'écart maximal sur $\eta$,
+rapporté à $\max|\eta|$, vaut $1{,}1\times10^{-4}$. Le courant total,
+$I = \sum_k a\,\omega_k\,j_k = 1648{,}6$~A\,m$^{-2}$, diffère de
+$1{,}1\times10^{-4}$ en valeur relative de la valeur analytique
+$V/R_{\mathrm{el}}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/profils_newman_tobias}
+\caption{Cas test de Newman et Tobias : surtension calculée (trait) et
+solution analytique~\eqref{eq:ref_NT} (cercles), pour $\Lambda = 2{,}04$,
+$K_s/\kappa = 1$ et une tension imposée de $-5$~mV.}
+\label{fig:profils_NT}
+\end{figure}
+
+\paragraph{Origine de l'écart.} Comme pour Thiele, l'écart ne vient pas de la
+discrétisation : il reste le même lorsque le maillage passe de $251$ à
+$2001$ nœuds. Il traduit les hypothèses de la solution analytique,
+principalement la linéarisation de la loi de Butler--Volmer : il est divisé
+par trois lorsque la tension imposée passe de $-5$ à $-1$~mV
+(tableau~\ref{tab:ecart_NT}).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrcc}
+\hline
+$E$ (mV) & $M$ & écart relatif sur $\eta$ & écart relatif sur $I$ \\
+\hline
+$-5$ & $251$  & $1{,}07\times10^{-4}$ & $1{,}15\times10^{-4}$ \\
+$-5$ & $1001$ & $1{,}06\times10^{-4}$ & $1{,}12\times10^{-4}$ \\
+$-5$ & $2001$ & $1{,}06\times10^{-4}$ & $1{,}12\times10^{-4}$ \\
+$-1$ & $251$  & $3{,}27\times10^{-5}$ & $1{,}82\times10^{-5}$ \\
+$-1$ & $1001$ & $3{,}37\times10^{-5}$ & $2{,}18\times10^{-5}$ \\
+$-1$ & $2001$ & $3{,}37\times10^{-5}$ & $2{,}20\times10^{-5}$ \\
+\hline
+\end{tabular}
+\caption{Écarts à la solution de Newman et Tobias en fonction de la tension
+imposée et du nombre de nœuds.}
+\label{tab:ecart_NT}
+\end{table}
+
+\paragraph{Ordre de convergence.} Pour faire apparaître l'erreur de
+discrétisation, le cas est recalculé avec une tension imposée de
+$-0{,}1$~mV, qui rend l'erreur de linéarisation négligeable, et sur des
+maillages grossiers. L'écart sur $\eta$ est alors divisé par quatre chaque
+fois que le pas est divisé par deux (tableau~\ref{tab:convergence_NT}), ce
+qui confirme l'ordre deux du schéma pour la partie conduction. Sur les
+maillages plus fins, il se stabilise vers $3\times10^{-5}$, valeur de l'écart
+de modèle résiduel.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrcc}
+\hline
+$h$ (nm) & $M$ & $\max|\eta - \eta^{\mathrm{NT}}|/\max|\eta^{\mathrm{NT}}|$ & ordre \\
+\hline
+$1000$ & $11$ & $1{,}84\times10^{-3}$ & -- \\
+$500$  & $21$ & $4{,}53\times10^{-4}$ & $2{,}02$ \\
+$250$  & $41$ & $1{,}04\times10^{-4}$ & $2{,}12$ \\
+\hline
+\end{tabular}
+\caption{Écart à la solution de Newman et Tobias en fonction du pas du
+maillage, pour une tension imposée de $-0{,}1$~mV.}
+\label{tab:convergence_NT}
+\end{table}
+
+\subsubsection*{Bilan de la vérification}
+
+Les deux solutions de référence sont retrouvées, avec des écarts que l'on
+sait attribuer aux hypothèses des solutions analytiques et non au code : ils
+ne dépendent pas du maillage, et ils diminuent lorsque l'hypothèse
+correspondante est mieux satisfaite. Lorsque ces écarts de modèle sont
+rendus négligeables, l'écart restant décroît comme $h^2$ dans les deux cas.
+Le tableau~\ref{tab:bilan_verif} résume les deux cas tests : chacun isole une
+source de perte d'efficacité en rendant l'autre négligeable. Dans les
+situations réalistes, où les deux pertes se cumulent et où il n'existe pas de
+solution analytique, le calcul s'appuie donc sur deux parties du code
+vérifiées séparément.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\hline
+ & Thiele & Newman et Tobias \\
+\hline
+Grandeur variable & concentrations & surtension \\
+Grandeur uniforme & potentiels & concentrations \\
+Cinétique & Tafel ($\eta = -0{,}65$~V) & linéaire ($E = -5$~mV) \\
+Nombre adimensionnel & $\phi = 1{,}876$ & $\Lambda = 2{,}037$ \\
+Efficacité, transport de matière & $\eta_E = 0{,}509$ & $\eta_E \simeq 1$ \\
+Efficacité, conduction & $\eta_E^{\mathrm{NT}} \simeq 1$ & $\eta_E^{\mathrm{NT}} = 0{,}42$ \\
+Écart maximal & $8\times10^{-4}$ sur $C_{\ce{CO2}}$ & $1{,}1\times10^{-4}$ sur $\eta$ \\
+Origine de l'écart & chutes de potentiel & linéarisation \\
+Ordre du schéma & 2 & 2 \\
+\hline
+\end{tabular}
+\caption{Synthèse des deux cas tests de vérification.}
+\label{tab:bilan_verif}
+\end{table}
 
 % ============================================================
 \subsection*{Résultats}
