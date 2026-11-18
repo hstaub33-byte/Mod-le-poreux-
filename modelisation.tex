@@ -32,6 +32,23 @@ C_{\ce{CO2}}^{\mathrm{hom}}
 \end{align}
 et le facteur d'efficacité vaut $\eta_E = \tanh(\phi)/\phi$.
 
+Pour $\phi \gg 1$, $\cosh(\phi\zeta)/\cosh(\phi) \simeq e^{-\phi(1-\zeta)}$
+dès que $\phi\zeta \gg 1$, si bien que
+\begin{equation}
+\avg{C_{\ce{CO2}}}^l(z) \simeq C_{\ce{CO2}}^{\mathrm{hom}}
+\exp\!\left(-\frac{L_b - z}{\delta}\right),
+\qquad
+\delta = \frac{l_e}{\phi},
+\qquad
+\eta_E \simeq \frac{1}{\phi} .
+\label{eq:ref_phi_grand}
+\end{equation}
+La longueur de pénétration $\delta$ ne dépend pas de l'épaisseur de
+l'électrode, puisque $\phi$ est proportionnel à $l_e$ : seule une couche
+d'épaisseur de l'ordre de quelques $\delta$, du côté de la phase homogène,
+participe à la réaction, et le facteur d'efficacité tend vers zéro lorsque
+l'électrode s'épaissit.
+
 Cette solution joue deux rôles dans la suite.
 \begin{itemize}
     \item \textbf{Vérification du code.} Le modèle numérique général doit
@@ -858,6 +875,76 @@ maille, vaut $1583$~A\,m$^{-2}$ : il est égal au courant total de réaction.
 Le courant qui entre dans l'électrode sous forme électronique est donc
 intégralement transféré à l'électrolyte.
 
+\paragraph{Facteur d'efficacité tendant vers zéro.} Le cas précédent
+correspond à $\eta_E = 0{,}51$. Pour tester le régime $\phi \gg 1$, où la
+réaction est confinée dans une couche mince qu'il faut résoudre
+numériquement, le même cas est recalculé en augmentant l'épaisseur de
+l'électrode, toutes choses égales par ailleurs : la longueur de pénétration
+reste $\delta = 5{,}33~\mu$m, et $\phi = l_e/\delta$ croît avec $l_e$. Pour
+que les potentiels restent uniformes malgré l'épaisseur, la conductivité du
+solide est portée à $\sigma_s = 10^6$~S\,m$^{-1}$ et la concentration des
+ions à $10^5$~mol\,m$^{-3}$, deux valeurs de test. Le maillage est raffiné
+aux deux bords, avec $h_{\min} = 10$~nm et $r = 1{,}02$, de façon à résoudre
+la couche de réaction. Le facteur d'efficacité du calcul est obtenu à partir
+du courant total, $\eta_E = \sum_k a\,\omega_k\,j_k / (a\,j^{\mathrm{hom}}\,l_e)$,
+où $j^{\mathrm{hom}}$ est la densité de courant calculée avec
+$C_{\ce{CO2}}^{\mathrm{hom}}$ et la surtension imposée.
+
+La méthode de Newton converge pour toutes les épaisseurs, de $10~\mu$m à
+$1$~cm, et le facteur d'efficacité calculé suit $\tanh(\phi)/\phi$ jusqu'à
+$\eta_E = 5\times10^{-4}$, avec un écart relatif inférieur à
+$4\times10^{-4}$ (tableau~\ref{tab:efficacite_faible} et
+figure~\ref{fig:efficacite_faible}a). Pour $l_e = 1$~mm ($\phi = 188$), le
+profil de \ce{CO2} coïncide avec la solution de Thiele et avec sa forme
+limite~\eqref{eq:ref_phi_grand} sur six décades
+(figure~\ref{fig:efficacite_faible}b) : la réaction n'a lieu que dans les
+$30~\mu$m les plus proches de la phase homogène, soit $3~\%$ de l'épaisseur.
+L'écart augmente légèrement pour les plus grandes épaisseurs, où le courant
+électronique traverse toute l'électrode : il traduit la chute de potentiel
+résiduelle dans le solide, que le modèle de Thiele néglige.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrrccc}
+\hline
+$l_e$ & $M$ & $\phi$ & $\tanh(\phi)/\phi$ & $\eta_E$ calculé & écart relatif \\
+\hline
+$10~\mu$m   & $245$ & $1{,}88$  & $0{,}50866$ & $0{,}50862$ & $8\times10^{-5}$ \\
+$30~\mu$m   & $349$ & $5{,}63$  & $0{,}17771$ & $0{,}17770$ & $6\times10^{-5}$ \\
+$100~\mu$m  & $469$ & $18{,}8$  & $0{,}05331$ & $0{,}05331$ & $6\times10^{-5}$ \\
+$300~\mu$m  & $579$ & $56{,}3$  & $0{,}01777$ & $0{,}01777$ & $6\times10^{-5}$ \\
+$1$~mm      & $699$ & $188$     & $0{,}00533$ & $0{,}00533$ & $9\times10^{-5}$ \\
+$3$~mm      & $811$ & $563$     & $0{,}00178$ & $0{,}00178$ & $1{,}5\times10^{-4}$ \\
+$1$~cm      & $933$ & $1876$    & $0{,}00053$ & $0{,}00053$ & $3{,}8\times10^{-4}$ \\
+\hline
+\end{tabular}
+\caption{Facteur d'efficacité calculé et solution de Thiele lorsque
+l'épaisseur de l'électrode augmente, à surtension fixée ($\eta = -0{,}65$~V).}
+\label{tab:efficacite_faible}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/efficacite_thiele}\\
+(a)
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/couche_reaction}\\
+(b)
+\end{minipage}
+\caption{Régime de faible efficacité. (a) Facteur d'efficacité calculé
+(cercles) en fonction du module de Thiele, comparé à $\tanh(\phi)/\phi$ et à
+son asymptote $1/\phi$. (b) Profil de \ce{CO2} pour $l_e = 1$~mm
+($\phi = 188$), en fonction de la distance à l'interface rapportée à
+$\delta$ : calcul (trait), solution de Thiele (cercles) et forme
+limite~\eqref{eq:ref_phi_grand} (tirets).}
+\label{fig:efficacite_faible}
+\end{figure}
+
 \subsubsection*{Cas test de Newman et Tobias}
 
 \paragraph{Cas test.} Le second cas est choisi pour que les hypothèses de la
@@ -963,7 +1050,8 @@ maillage, pour une tension imposée de $-0{,}1$~mV.}
 
 \subsubsection*{Bilan de la vérification}
 
-Les deux solutions de référence sont retrouvées, avec des écarts que l'on
+Les deux solutions de référence sont retrouvées, y compris dans le régime
+où le facteur d'efficacité tend vers zéro, avec des écarts que l'on
 sait attribuer aux hypothèses des solutions analytiques et non au code : ils
 ne dépendent pas du maillage, et ils diminuent lorsque l'hypothèse
 correspondante est mieux satisfaite. Lorsque ces écarts de modèle sont
@@ -985,6 +1073,7 @@ Grandeur uniforme & potentiels & concentrations \\
 Cinétique & Tafel ($\eta = -0{,}65$~V) & linéaire ($E = -5$~mV) \\
 Nombre adimensionnel & $\phi = 1{,}876$ & $\Lambda = 2{,}037$ \\
 Efficacité, transport de matière & $\eta_E = 0{,}509$ & $\eta_E \simeq 1$ \\
+Plus faible efficacité testée & $\eta_E = 5\times10^{-4}$ ($\phi = 1876$) & -- \\
 Efficacité, conduction & $\eta_E^{\mathrm{NT}} \simeq 1$ & $\eta_E^{\mathrm{NT}} = 0{,}42$ \\
 Écart maximal & $8\times10^{-4}$ sur $C_{\ce{CO2}}$ & $1{,}1\times10^{-4}$ sur $\eta$ \\
 Origine de l'écart & chutes de potentiel & linéarisation \\
